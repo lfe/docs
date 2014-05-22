@@ -18,12 +18,15 @@ do so via:
 * a <a href="https://plus.google.com/u/1/communities/103919485468949397234">Google+
   Community</a>
 
-## Blogs and News
+## Blogs, News, and Wikis
 
 * an <a href="http://blog.lfe.io/">LFE news and updates blog</a>
 * <a href="http://rvirding.blogspot.com/">Robert Virding's blog</a>
 * <a href="http://technicae.cogitat.io/search/label/lfe">Duncan McGreggor's blog</a>
 * <a href="https://paper.li/ErlangLisp/1397422779">LFE Sunday Times</a>
+* an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
+  on Erlang Central
+
 
 ## Code
 
@@ -39,20 +42,16 @@ do so via:
   Code</a>
 * The LFE <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
 
+
 ## Video and Presentations
 
 {% include presentations-resources-toc.html %}
 
-## Other Community Pages
-
-* an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
-  on Erlang Central
-* "About" page on  <a href="http://www.trapexit.org/Lisp_Flavoured_Erlang">Trapexit</a>
-* the old forum on <a href="http://forum.trapexit.org/viewtopic.php?p=40268">Trapexit</a>
 
 ## Additional Resources
 
 {% include other-resources-toc.html %}
+
 
 ## Code from the Wild
 
