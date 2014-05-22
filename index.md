@@ -16,6 +16,11 @@ layout: home
 
 {% include tutorials-toc.html %}
 
+## Presentations
+
+Our <a href="/presentations.html">presentations page</a> has recorded video of LFE talks,
+slide decks, and screencasts.
+
 ## Classic Docs
 
 Below are links to the documentation taken from the LFE repository.
