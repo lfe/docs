@@ -17,7 +17,10 @@ do so via:
 * our project <a href="https://twitter.com/ErlangLisp">Twitter account</a>
   where news items of interest will be posted,
 * a <a href="https://plus.google.com/u/1/communities/103919485468949397234">Google+
-  Community</a>
+  Community</a>,
+* an <a href="http://blog.lfe.io/">LFE Updates/News blog</a>,
+* an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
+  on Erlang Central,
 * on <a href="https://github.com/rvirding/lfe">github</a>
   (<a href="https://github.com/lfe/docs">docs</a>), and
 * the <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
