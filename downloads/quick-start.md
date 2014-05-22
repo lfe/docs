@@ -9,14 +9,14 @@ author: Duncan McGreggor
 <a name="1_going_plaid"></a>
 ## 1 Going Plaid
 
-<img src="https://raw.github.com/lfe/lfe.github.io/master/images/plaid.jpg"
+<img src="https://raw.github.com/lfe/docs/master/images/plaid.jpg"
      style="float: right;">
 This guide will give you what you need in order to jump into LFE at ludicrous
 speed.
 
 For a more gradual introduction (with a bit more Erlang) and for
 something that's going to give you time to see the stars, checkout the
-<a href="http://lfe.github.io/user-guide/intro/1.html">User Guide</a>.
+<a href="http://docs.lfe.io/user-guide/intro/1.html">User Guide</a>.
 
 
 <a name="11_lfetool"></a>
@@ -66,7 +66,7 @@ Personally, we prefer to manage our Erlang builds and installations with
 This allows for multiple versions of Erlang to be installed
 on your system simultaneously. For more information about using ``kerl`` in LFE
 projects, be sure to visit the "kerl" section of the
-<a href="http://lfe.github.io/user-guide/intro/4.html">User Guide</a>.
+<a href="http://docs.lfe.io/user-guide/intro/4.html">User Guide</a>.
 
 You will be using ```rebar``` to build LFE under the covers as well as managing
 dependencies for your projects, so go ahead and get that set up:
@@ -85,7 +85,7 @@ just one command ...
 <a name="2_your_first_lfe_project"></a>
 ## 2 Your First LFE Project
 
-<img src="https://raw.github.com/lfe/lfe.github.io/master/images/barf.jpg"
+<img src="https://raw.github.com/lfe/docs/master/images/barf.jpg"
      style="float: left; padding-right: 1em;">
 A project? Already?! It sounds daunting, but it's just one command :-)
 
@@ -234,7 +234,7 @@ You're going to be looking at LFE code next ...
 <a name="3_hitting_the_code"></a>
 ## 3 Hitting the Code
 
-<img src="https://raw.github.com/lfe/lfe.github.io/master/images/smash.jpg"
+<img src="https://raw.github.com/lfe/docs/master/images/smash.jpg"
      style="float: right; padding-left: 1em;">
 It may not seem like it, but we're off to a pretty fast start. If you had to
 do everything we've done, manually, you'd have given up by now. Seriously.
@@ -333,12 +333,12 @@ that example shows some bidirectional message passing between the LFE shell
 and a spawned process.)
 
 If you'd like to learn more about using the LFE REPL, be sure to read the
-<a href="http://lfe.github.io/user-guide/intro/2.html">REPL Section</a> of the
+<a href="http://docs.lfe.io/user-guide/intro/2.html">REPL Section</a> of the
 User Guide.
 
 If you want to step through a tutorial on Erlang's light-weight threds (per the
 example code above), you'll want to read
-<a href="http://lfe.github.io/tutorials/processes/1.html">this tutorial</a>.
+<a href="http://docs.lfe.io/tutorials/processes/1.html">this tutorial</a>.
 
 
 
@@ -349,7 +349,7 @@ adventure ...
 <a name="4_behind_the_scenes"></a>
 ## 4 Behind the Scenes
 
-<img src="https://raw.github.com/lfe/lfe.github.io/master/images/doubles.jpg"
+<img src="https://raw.github.com/lfe/docs/master/images/doubles.jpg"
      style="float: right; padding-left: 1em;">
 
 <a name="41_using_make"></a>
@@ -388,7 +388,7 @@ One thing to keep in mind for future reference: if you add new deps to your
 ``Makefile`` to include them.
 
 Read more about setting up a development environment
-<a href="http://lfe.github.io/user-guide/intro/4.html">here</a>.
+<a href="http://docs.lfe.io/user-guide/intro/4.html">here</a>.
 
 
 <a name="42_next_steps"></a>
@@ -399,7 +399,7 @@ reading the <a href="/user-guide/intro/1.html">User Guide</a>
 next. You can see all our docs at a glance by visiting the
 <a href="/docs.html">Docs</a> page.
 
-There is a <a href="http://lfe.github.io/tutorials/processes/1.html">tutorial
+There is a <a href="http://docs.lfe.io/tutorials/processes/1.html">tutorial
 on light-weight Erlang processes</a> in LFE that you may be intersted in.
 
 If you want to develop RESTful services in LFE, you should take a look at the
@@ -415,5 +415,5 @@ source code; studying examples is the quickest way to make progress.
 
 If at any time you would like to provide feedback about the documentation on
 this site, feel free to
-<a href="https://github.com/lfe/lfe.github.io/issues">create an issue</a>. Be
+<a href="https://github.com/lfe/docs/issues">create an issue</a>. Be
 sure to give a full description so that we can best help you!

@@ -4,7 +4,7 @@ formats: [markdown, html, pdf, epub, mobi]
 docs: [quick-start::Quick Start,
        user-guide::User Guide,
        processes-tutorial::Processes Tutorial]
-download-url: https://github.com/lfe/lfe.github.io/blob/master/downloads
+download-url: https://github.com/lfe/docs/blob/master/downloads
 ---
 
 # LFE Downloads

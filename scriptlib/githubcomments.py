@@ -22,8 +22,8 @@ username = parser.get("Personal Account", "username")
 password = parser.get("Personal Account", "password")
 
 server = "api.github.com"
-src_repo = "lfe/lfe.github.com"
-dst_repo = "lfe/lfe.github.io"
+src_repo = "lfe/docs"
+dst_repo = "lfe/docs"
 src_url = "https://%s/repos/%s" % (server, src_repo)
 dst_url = "https://%s/repos/%s" % (server, dst_repo)
 

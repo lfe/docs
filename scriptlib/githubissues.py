@@ -12,8 +12,8 @@ import urllib2
 
 
 #==== configurations =======
-src_repo = "lfe/lfe.github.com"
-dst_repo = "lfe/lfe.github.io"
+src_repo = "lfe/docs"
+dst_repo = "lfe/docs"
 #==== end of configurations ===
 
 parser = SafeConfigParser()

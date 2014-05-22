@@ -32,7 +32,7 @@ toc_page = "%s/toc.html" % oebps_dir
 toc_ncx = "%s/toc.ncx" % oebps_dir
 book_page = "%s/book.html" % oebps_dir
 lang = "en-US"
-generator = "lfe.github.io (custom scripts)"
+generator = "docs.lfe.io (custom scripts)"
 toc_depth = 4
 toc_indent = "&nbsp;&nbsp;"
 
@@ -172,7 +172,7 @@ copyright_page_html = """
       <p>
         Email lisp-flavoured-erlang@googlegroups.com
         <br/>
-        Web site http://lfe.github.io/
+        Web site http://docs.lfe.io/
       </p>
       <p>
         &copy; 2013, Duncan McGreggor

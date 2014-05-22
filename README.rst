@@ -1,4 +1,4 @@
-.. image:: https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-tiny.png
+.. image:: https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-tiny.png
 
 Lisp Flavored Erlang
 ====================
@@ -10,7 +10,7 @@ The Github Site
 This is the repo for the Github-hosted web site for Robert Virding's Lisp
 implementation on the Erlang VM.
 
-Checkout the `LFE web site`_.
+Checkout the `LFE docs site`_.
 
 
 Downloads
@@ -35,6 +35,6 @@ to acknowledge a user agreement for that bit. You can get that `here`_.
 
 
 .. links
-.. _LFE web site: http://lfe.github.io/
-.. _download page: https://github.com/lfe/lfe.github.io/tree/master/downloads
+.. _LFE web site: http://docs.lfe.io/
+.. _download page: https://github.com/lfe/docs/tree/master/downloads
 .. _here: http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211
