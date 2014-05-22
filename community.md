@@ -28,10 +28,14 @@ do so via:
 
 * <a href="https://github.com/rvirding/lfe">LFE master</a> and
   <a href="https://github.com/rvirding/lfe/tree/develop">develop</a> branches
-* The LFE <a href="https://github.com/lfe">Github org</a> which has a massive collection of LFE projects
+* The LFE <a href="https://github.com/lfe">Github org</a> which has a
+  massive collection of LFE projects
 * The LFE <a href="https://github.com/lfe/docs">docs site repo</a>
 * The LFE <a href="https://github.com/lfe/blog">blog site repo</a>
-* The repo for the LFE <a href="https://github.com/lfe/lfe.github.io">main web site source</a>
+* The repo for the LFE <a href="https://github.com/lfe/lfe.github.io">main
+  web site source</a>
+* LFE examples on <a href="http://rosettacode.org/wiki/Category:LFE">Rosetta
+  Code</a>
 * The LFE <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
 
 ## Video and Presentations
