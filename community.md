@@ -9,15 +9,14 @@ layout: common
 If you'd like to ask questions or just keep in touch with the project, you can
 do so via:
 
+* our project <a href="https://twitter.com/ErlangLisp">Twitter account</a>
+  where we chatter about related topics
 * our low-volume
   <a href="http://groups.google.com/group/lisp-flavoured-erlang">forum/mail list</a>
   on Google Groups
 * we have an IRC channel -- come by and say "hi" on <a href="http://webchat.freenode.net/?channels=erlang-lisp">#erlang-lisp</a> (Freenode.net)
-* our project <a href="https://twitter.com/ErlangLisp">Twitter account</a>
-  where news items of interest are posted
 * a <a href="https://plus.google.com/u/1/communities/103919485468949397234">Google+
   Community</a>
-* a <a href="https://www.youtube.com/channel/UCrHLs2pNgg6DMsJXOiiBLcg">YouTube</a> channel
 
 ## Blogs
 
@@ -27,13 +26,13 @@ do so via:
 
 ## Code
 
-* on <a href="https://github.com/rvirding/lfe">LFE master</a> and
+* <a href="https://github.com/rvirding/lfe">LFE master</a> and
   <a href="https://github.com/rvirding/lfe/tree/develop">develop</a> branches
-* LFE <a href="https://github.com/lfe">Github org</a>
-* LFE <a href="https://github.com/lfe/docs">docs source</a>
-* LFE <a href="https://github.com/lfe/blog">blog source</a>
-* LFE <a href="https://github.com/lfe/lfe.github.io">main site source</a>
-* the <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
+* The LFE <a href="https://github.com/lfe">Github org</a> which has a massive collection of LFE projects
+* The LFE <a href="https://github.com/lfe/docs">docs site repo</a>
+* The LFE <a href="https://github.com/lfe/blog">blog site repo</a>
+* The repo for the LFE <a href="https://github.com/lfe/lfe.github.io">main web site source</a>
+* The LFE <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
 
 ## Video and Presentations
 
