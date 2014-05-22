@@ -28,7 +28,3 @@ Here are various code snippets and small or sample projects that demonstrate
 how to use LFE in various ways:
 
 {% include examples-toc.html %}
-
-## Other Resources
-
-{% include other-resources-toc.html %}

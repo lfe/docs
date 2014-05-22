@@ -22,6 +22,10 @@ do so via:
   (<a href="https://github.com/lfe/docs">docs</a>), and
 * the <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
 
+## Other Resources
+
+{% include other-resources-toc.html %}
+
 ## Contributing Code
 
 If you'd like to work on the source code for LFE, you can checkout master from
