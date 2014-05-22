@@ -11,22 +11,42 @@ do so via:
 
 * our low-volume
   <a href="http://groups.google.com/group/lisp-flavoured-erlang">forum/mail list</a>
-  on Google Groups,
-* we have a small IRC channel that's not really used for much yet, but you can
-  come by and say "hi" -- #erlang-lisp on Freenode.net,
+  on Google Groups
+* we have an IRC channel -- come by and say "hi" on <a href="http://webchat.freenode.net/?channels=erlang-lisp">#erlang-lisp</a> (Freenode.net)
 * our project <a href="https://twitter.com/ErlangLisp">Twitter account</a>
-  where news items of interest will be posted,
+  where news items of interest are posted
 * a <a href="https://plus.google.com/u/1/communities/103919485468949397234">Google+
-  Community</a>,
-* an <a href="http://blog.lfe.io/">LFE Updates/News blog</a>,
-* an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
-  on Erlang Central,
-* a <a href="https://www.youtube.com/channel/UCrHLs2pNgg6DMsJXOiiBLcg">YouTube</a> channel,
-* on <a href="https://github.com/rvirding/lfe">github</a>
-  (<a href="https://github.com/lfe/docs">docs</a>), and
+  Community</a>
+* a <a href="https://www.youtube.com/channel/UCrHLs2pNgg6DMsJXOiiBLcg">YouTube</a> channel
+
+## Blogs
+
+* an <a href="http://blog.lfe.io/">LFE news and updates blog</a>
+* <a href="http://rvirding.blogspot.com/">Robert Virding's blog</a>
+* <a href="http://technicae.cogitat.io/search/label/lfe">Duncan McGreggor's blog</a>
+
+## Code
+
+* on <a href="https://github.com/rvirding/lfe">LFE master</a> and
+  <a href="https://github.com/rvirding/lfe/tree/develop">develop</a> branches
+* LFE <a href="https://github.com/lfe">Github org</a>
+* LFE <a href="https://github.com/lfe/docs">docs source</a>
+* LFE <a href="https://github.com/lfe/blog">blog source</a>
+* LFE <a href="https://github.com/lfe/lfe.github.io">main site source</a>
 * the <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
 
-## Other Resources
+## Video and Presentations
+
+{% include presentations-resources-toc.html %}
+
+## Other Community Pages
+
+* an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
+  on Erlang Central
+* "About" page on  <a href="http://www.trapexit.org/Lisp_Flavoured_Erlang">Trapexit</a>
+* the old forum on <a href="http://forum.trapexit.org/viewtopic.php?p=40268">Trapexit</a>
+
+## Additional Resources
 
 {% include other-resources-toc.html %}
 
