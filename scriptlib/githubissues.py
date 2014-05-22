@@ -12,14 +12,14 @@ import urllib2
 
 
 #==== configurations =======
-src_repo = "lfe/docs"
+src_repo = "lfe/lfe.github.io"
 dst_repo = "lfe/docs"
 #==== end of configurations ===
 
 parser = SafeConfigParser()
 parser.read("/etc/github")
-parser.get("Personal Account", "username")
-parser.get("Personal Account", "password")
+username = parser.get("Personal Account", "username")
+password = parser.get("Personal Account", "password")
 
 server = "api.github.com"
 src_url = "https://%s/repos/%s" % (server, src_repo)
@@ -29,6 +29,12 @@ print "Using the following URLs:"
 print "\tsource: %s" % src_url
 print "\tdestination: %s" % dst_url
 print
+
+def get_milestones(url):
+    response = urllib2.urlopen("%s/milestones" % url)
+    result = response.read()
+    milestones = json.load(StringIO(result))
+    return milestones
 
 def get_labels(url):
     response = urllib2.urlopen("%s/labels" % url)
