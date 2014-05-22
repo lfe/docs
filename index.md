@@ -21,7 +21,6 @@ written in LFE can freely be used together with modules written in other BEAM
 languages such as Erlang and Elixir.
 
 
-
 ## LFE Features
 
 We have a <a href="/features.html">Features page</a>, but here are some
