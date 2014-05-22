@@ -4,6 +4,4 @@ layout: common
 
 # LFE Presentations and Videos
 
-## Presentations
-
-## Screencasts
+{% include presentations-resources-toc.html %}
