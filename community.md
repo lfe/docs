@@ -21,6 +21,7 @@ do so via:
 * an <a href="http://blog.lfe.io/">LFE Updates/News blog</a>,
 * an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
   on Erlang Central,
+* a <a href="https://www.youtube.com/channel/UCrHLs2pNgg6DMsJXOiiBLcg">YouTube</a> channel,
 * on <a href="https://github.com/rvirding/lfe">github</a>
   (<a href="https://github.com/lfe/docs">docs</a>), and
 * the <a href="https://www.ohloh.net/p/lfe">project page</a> on Ohloh.
