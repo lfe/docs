@@ -1,5 +1,5 @@
 ---
-layout: docs-home
+layout: home
 ---
 
 # LFE Documentation
