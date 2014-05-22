@@ -3,3 +3,6 @@ _site
 .venv
 bin/kindlegen
 build
+*.xcf
+*.pyc
+*.sw[op]
