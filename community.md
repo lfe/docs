@@ -18,11 +18,12 @@ do so via:
 * a <a href="https://plus.google.com/u/1/communities/103919485468949397234">Google+
   Community</a>
 
-## Blogs
+## Blogs and News
 
 * an <a href="http://blog.lfe.io/">LFE news and updates blog</a>
 * <a href="http://rvirding.blogspot.com/">Robert Virding's blog</a>
 * <a href="http://technicae.cogitat.io/search/label/lfe">Duncan McGreggor's blog</a>
+* <a href="https://paper.li/ErlangLisp/1397422779">LFE Sunday Times</a>
 
 ## Code
 
