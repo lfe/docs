@@ -5,25 +5,25 @@ layout: home
 # LFE Documentation
 
 
-<a name="Resources">
+<a name="Resources" />
 ## Erlang Resources
 
 {% include erlang-docs.html %}
 
 
-<a name="Guides">
+<a name="Guides" />
 ## Guides
 
 {% include guides-toc.html %}
 
 
-<a name="Tutorials">
+<a name="Tutorials" />
 ## Tutorials
 
 {% include tutorials-toc.html %}
 
 
-<a name="Classic-Docs">
+<a name="Classic-Docs" />
 ## Classic Docs
 
 Below are links to the documentation taken from the LFE repository.
@@ -31,21 +31,21 @@ Below are links to the documentation taken from the LFE repository.
 {% include classic-docs-toc.html %}
 
 
-<a name="History">
+<a name="History" />
 ## History
 
 The history section got too big, so we moved it into its own page. Please visit
 the <a href="/history.html">LFE-related history page</a>.
 
 
-<a name="LFE-Presentations">
+<a name="LFE-Presentations" />
 ## Presentations
 
 Our <a href="/presentations.html">presentations page</a> has recorded video of
 LFE talks, slide decks, and screencasts.
 
 
-<a name="Examples">
+<a name="Examples" />
 ## Examples
 
 Here are various code snippets and small or sample projects that demonstrate
