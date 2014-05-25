@@ -34,14 +34,15 @@ Below are links to the documentation taken from the LFE repository.
 <a name="History">
 ## History
 
-{% include history-docs.html %}
+The history section got too big, so we moved it into its own page. Please visit
+the <a href="/history.html">LFE-related history page</a>.
 
 
 <a name="LFE-Presentations">
 ## Presentations
 
-Our <a href="/presentations.html">presentations page</a> has recorded video of LFE talks,
-slide decks, and screencasts.
+Our <a href="/presentations.html">presentations page</a> has recorded video of
+LFE talks, slide decks, and screencasts.
 
 
 <a name="Examples">
