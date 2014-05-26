@@ -1,7 +1,7 @@
-.. image:: https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-tiny.png
-
 Lisp Flavored Erlang
 ====================
+
+.. image:: images/logos/LispFlavoredErlang-tiny.png
 
 
 The Github Site
@@ -35,6 +35,6 @@ to acknowledge a user agreement for that bit. You can get that `here`_.
 
 
 .. links
-.. _LFE web site: http://docs.lfe.io/
+.. _LFE docs site: http://docs.lfe.io/
 .. _download page: https://github.com/lfe/docs/tree/master/downloads
 .. _here: http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211
