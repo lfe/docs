@@ -7,36 +7,36 @@ layout: docs
 ## Common Binary Functions
 
 {% highlight text %}
-    MODULE
+MODULE
 
         lfe_bits
 
-    MODULE SUMMARY
+MODULE SUMMARY
 
         Lisp Flavoured Erlang (LFE) common binary functions
 
-    DESCRIPTION
+DESCRIPTION
 
         This module contains a collection of library functions for for
         handling binaries. They are generally not called by the user.
 
-    EXPORTS
+EXPORTS
 
-    parse_bitspecs(Specs) ->
+parse_bitspecs(Specs) ->
         {ok,Size,{Type,Unit,Sign,Endian}} |
         {error,Error}.
 
         Parse a bitspec and return the data. Unmentioned fields get
         the value 'default'.
 
-    get_bitspecs(Specs) ->
+get_bitspecs(Specs) ->
         {ok,Size,{Type,Unit,Sign,Endian}} |
         {error,Error}.
 
         Parse a bitspec, apply defaults and return the
         data. Unmentioned fields get the value 'default'.
 
-    Error Information
+Error Information
 
         The following error values are returned:
 

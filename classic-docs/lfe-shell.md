@@ -7,25 +7,36 @@ layout: docs
 ## LFE Shell (REPL)
 
 {% highlight text %}
-    MODULE
+MODULE
 
         lfe_shell
 
-    MODULE SUMMARY
+MODULE SUMMARY
 
         Lisp Flavoured Erlang (LFE) shell
 
-    DESCRIPTION
+DESCRIPTION
 
         There is now a simple LFE shell in which you can enter sexprs
         which are evaluated and the value printed. There are no user
         shell variables (scoping and lack of setq)
 
-        Built-in shell functions:
+Built-in shell functions:
+
+        These are defined as normal functions and macros and can be
+        called from anywhere in the shell. They can even be redefined.
+        They can also be explicitly called (: lfe_shell ...).
 
         (c File [Options])
             Compile and load an LFE file. Assumes default
             extension .lfe.
+
+        (ec File [Options])
+                Compile and load an Erlang file.
+
+        (i)
+                Print information about the currently running
+                processes in the system.
 
         (l Module ...)
             Load modules.
@@ -34,46 +45,91 @@ layout: docs
             Print out module information, if no modules are given
             then print information about all modules.
 
-        (ec File [Options])
-            Compile and load an Erlang file.
+        (pid x y z)
+                Create a pid from x, y, z.
 
-        (slurp File)
-            Slurp in a source LFE file and makes all functions and
-            macros defined in the file available in the
-            shell. Only one file can be slurped at a time and
-            slurping a new file removes all data about the
-            previous one.
+        (p Expr)
+        (pp Expr)
+                Print/prettyprint a value to full depth.
 
-        (unslurp)
-            Remove all function and macro definitions except the
-            default ones.
-
-        (set Pattern Expr)
-            Evaluate Expr ad match the result with Pattern binding
-            variables in it. These variables can then be used in
-            the shell and also rebound in another set.
+        (regs)
+                Print information about the currently running
+                processes in the system.
 
         (: c Command Arg ...)
-            All the commands in the standard Erlang shell can be
-            reached in this way.
+                All the commands in the standard Erlang shell can be
+                reached in this way.
 
-        Builtin shell variables:
+Built-in shell commands
+
+        These are special forms which are only recognised at the
+        top-level in shell input. The cannot be redefined.
+
+        (reset-environment)
+                Resets the environment to its initial state.
+
+        (set Pattern Expr)
+        (set Pattern (when Guard) Expr)
+                Evaluate Expr and match the result with Pattern
+                binding variables in it. These variables can then be
+                used in the shell and also rebound in another set.
+
+        (slurp File)
+                Slurp in a source LFE file and makes all functions and
+                macros defined in the file available in the
+                shell. Only one file can be slurped at a time and
+                slurping a new file basically does an unslurp first.
+
+        (unslurp)
+                Revert back to the state before the last slurp
+                removing all function and macro definitions both in
+                the slurped file and defined in the shell since then.
+
+        (run File)
+                Execute all the shell commands in File. All defined
+                variables, functions and macros will be saved in the
+                environment if there are no errors.
+
+Shell functions and macros
+
+        Functions and macros can be defined in the shell. These will
+        only be local to the shell and cannot be called from
+        modules. The forms are the standard forms for defining
+        functions and macros.
+
+        (defun Fun ...)
+                Define a function in the shell.
+
+        (defmacro Macro ...)
+                Define a macro in the shell.
+
+Builtin shell variables:
 
         +/++/+++
-            The three previous expressions input.
+                The three previous expressions input.
+
         */**/***
-            The values of the previous 3 expressions.
+                The values of the previous 3 expressions.
+
         -
-            The current expression input.
+                The current expression input.
 
-    Starting the LFE shell
+Shell Environment
 
-        The best way is probably to start Erlang directly running the
-        LFE shell with:
+        The shell maintains an environment of local function and macro
+        definitions, and variable bindings. The environment can be
+        accessed using the built-in shell variable $ENV. This can be
+        useful when calling functions like macroexpand and
+        macro-function which unless an explicit environment is given
+        will only search the default environment.
 
-        erl -noshell -noinput -s lfe_boot start
 
-        This can easily be put in a shell script.
+Starting the LFE shell
+
+        After installing the best way is probably to start Erlang
+        directly running the LFE shell with:
+
+        lfe [flags]
 
         From a normal Erlang shell the best way to start the shell is
         by calling:
@@ -87,4 +143,23 @@ layout: docs
 
         will create a job running the LFE shell and connect to
         it. This also works when starting a remote shell.
+
+Running LFE shell scripts
+
+        The LFE shell can also be directly called to run LFE shell
+        scripts with:
+
+        lfe [flags] file [args]
+
+        This will start the shell, run a script with LFE shell
+        commands and then terminate the shell. The following built-in
+        variables are also bound:
+
+        script-name
+                The name of the script file as a string.
+
+        script-args
+                A list of the arguments to the script as strings. If
+                no arguments have been given then this will be an
+                empty list.
 {% endhighlight %}

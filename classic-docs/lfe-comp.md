@@ -7,27 +7,27 @@ layout: docs
 ## Compiler
 
 {% highlight text %}
-    MODULE
+MODULE
 
         lfe_comp
 
-    MODULE SUMMARY
+MODULE SUMMARY
 
         Lisp Flavoured Erlang (LFE) compiler
 
-    DESCRIPTION
+DESCRIPTION
 
         This module provides an interface to the standard LFE
         compiler. It can generate either a new file which contains the
         object code, or return a binary which can be loaded directly.
 
-    EXPORTS
+EXPORTS
 
-    file(FileName) -> CompRet
+file(FileName) -> CompRet
 
         Is the same as file(FileName, [report]).
 
-    file(FileName, Options) -> CompRet
+file(FileName, Options) -> CompRet
 
         where
           CompRet = ModRet | BinRet | ErrRet
@@ -97,11 +97,11 @@ layout: docs
         here to be compatible with the Erlang compiler. As yet there
         is no extra information about included files.
 
-    forms(Forms) -> CompRet
+forms(Forms) -> CompRet
 
         Is the same as forms(Forms, [report]).
 
-    forms(Forms, Options) -> CompRet
+forms(Forms, Options) -> CompRet
 
         where
           Forms = [sexpr()]
@@ -114,14 +114,14 @@ layout: docs
         generating Errors and Warnings the "line number" is the index
         of the form in which the error occured.
 
-    format_error(Error) -> Chars
+format_error(Error) -> Chars
 
         Uses an ErrorDescriptor and returns a deep list of characters
         which describes the error. This function is usually called
         implicitly when an ErrorInfo structure is processed. See
         below.
 
-    Error Information
+Error Information
 
         The ErrorInfo mentioned above is the standard ErrorInfo
         structure which is returned from all IO modules. It has the

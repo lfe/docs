@@ -7,22 +7,22 @@ layout: docs
 ## Macro Expander
 
 {% highlight text %}
-    MODULE
+MODULE
 
         lfe_macro
 
-    MODULE SUMMARY
+MODULE SUMMARY
 
         Lisp Flavoured Erlang (LFE) macro expander
 
-    DESCRIPTION
+DESCRIPTION
 
         This module provides an interface to the LFE macro expander.
         The expander is used by the LFE compile and in the shell but
         can also be used by applications explicitly wanting to handle
         a file.
 
-    DATA TYPES
+DATA TYPES
 
         sexpr()
             An LFE s-expression, a list structure.
@@ -34,22 +34,22 @@ layout: docs
             This is an macro and evaluation environment as created
             by lfe_lib:new_env().
 
-    EXPORTS
+EXPORTS
 
-    expand_forms([FileSexpr], Env) -> ExpRet
+expand_forms([FileSexpr], Env) -> ExpRet
 
         where
           FileSexpr = filesexpr()
           Env = env()
           ExpRet = {yes,[FileSexpr],Env,Warnings} | {error,Errors,Warnings}
 
-    macro_forms([FileSexpr], Env) -> {[FileSexpr],Env}.
+macro_forms([FileSexpr], Env) -> {[FileSexpr],Env}.
 
         where
           FileSexpr = filesexpr()
           Env = env()
 
-    expand_expr_all(Sexpr, Env) -> Sexpr.
+expand_expr_all(Sexpr, Env) -> Sexpr.
 
         where
           Sexpr = sexpr()
@@ -59,8 +59,8 @@ layout: docs
         or just the default macros. Note that any eventual new macro
         definitions will be lost.
 
-    expand_expr(Sexpr, Env) -> {yes,Exp} | no.
-    expand_expr_1(Sexpr, Env) -> {yes,Exp} | no.
+expand_expr(Sexpr, Env) -> {yes,Exp} | no.
+expand_expr_1(Sexpr, Env) -> {yes,Exp} | no.
 
         where
           Sexpr = Exp = sexpr()
