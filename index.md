@@ -14,7 +14,8 @@ layout: home
 <a name="Classic-Docs"></a>
 
 ## Classic Docs
-Below are links to the documentation taken from the LFE repository.
+Below are links to the LFE man pages (plain text) maintained in the LFE
+repository:
 {% include classic-docs-toc.html %}
 
 
