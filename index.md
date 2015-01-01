@@ -11,6 +11,10 @@ layout: home
 {% include erlang-docs.html %}
 
 
+<a name="Classic-Docs"></a>
+## Classic Docs
+
+
 <a name="Guides"></a>
 ## Guides
 
@@ -22,9 +26,6 @@ layout: home
 
 {% include tutorials-toc.html %}
 
-
-<a name="Classic-Docs"></a>
-## Classic Docs
 
 Below are links to the documentation taken from the LFE repository.
 
