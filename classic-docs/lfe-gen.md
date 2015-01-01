@@ -6,27 +6,27 @@ layout: docs
 ## Dynamic Code Generator
 
 {% highlight text %}
-    MODULE
+MODULE
 
         lfe_gen
 
-    MODULE SUMMARY
+MODULE SUMMARY
 
         Lisp Flavoured Erlang (LFE) dynamic code generator
 
-    DESCRIPTION
+DESCRIPTION
 
         This module provides an experimental interface for dynamically
         generating modules.
 
-    DATA TYPES
+DATA TYPES
 
         sexpr()
             An LFE s-expression, a list structure.
 
-    EXPORTS
+EXPORTS
 
-    compile_forms(Forms) -> CompRet
+compile_forms(Forms) -> CompRet
 
         where
           Forms = [sexpr()]
@@ -48,12 +48,12 @@ layout: docs
         Warnings the "line number" is the index of the form in which
         the error occured.
 
-    new_module(Name) -> ModDef.
-    add_exports([{Name,Arity}], ModDef) -> ModDef.
-    add_imports({from,Module,[{Name,Arity}]}, ModDef) -> ModDef.
-    add_form(Form, ModDef) -> ModDef.
-    print_mod(ModDef) -> iolist().
-    compile_mod(Mod) -> CompRet
+new_module(Name) -> ModDef.
+add_exports([{Name,Arity}], ModDef) -> ModDef.
+add_imports({from,Module,[{Name,Arity}]}, ModDef) -> ModDef.
+add_form(Form, ModDef) -> ModDef.
+print_mod(ModDef) -> iolist().
+compile_mod(Mod) -> CompRet
 
         where
           CompRet = BinRet | ErrRet
@@ -69,7 +69,7 @@ layout: docs
         M2 = lfe_gen:add_form([defun,a,[],[quote,yes]], M2),
         lfe_gen:compile_mod(M2)
 
-    Example
+Example
 
         In this example we build a module of parameters where each
         parameter has a number of features which each have a value. We
@@ -133,7 +133,7 @@ layout: docs
         make_funcs([], Mod) -> Mod.            %All done
 
 
-    Error Information
+Error Information
 
         The ErrorInfo mentioned above is the standard ErrorInfo
         structure which is returned from all IO modules. It has the
