@@ -18,6 +18,11 @@ Below are links to the LFE man pages (plain text) maintained in the LFE
 repository:
 {% include classic-docs-toc.html %}
 
+<a name="Books"></a>
+
+## Books
+{% include books.html %}
+
 
 <a name="Guides"></a>
 
