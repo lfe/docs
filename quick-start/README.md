@@ -2,7 +2,7 @@
 
 ## New Home!
 
-The LFE Quicl Start has been converted into a book using Gitbook. The new home
+The LFE Quick Start has been converted into a book using Gitbook. The new home
 for the Quick Start is here:
  * [http://lfe.gitbooks.io/quick-start/](http://lfe.gitbooks.io/quick-start/)
 
