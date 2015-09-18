@@ -45,8 +45,8 @@ do so via:
 
 ## Video and Presentations
 
-{% include presentations-resources-toc.html %}
-
+Our <a href="/presentations.html">presentations page</a> has recorded video of
+LFE talks, slide decks, and screencasts.
 
 ## Additional Resources
 
