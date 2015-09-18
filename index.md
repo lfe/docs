@@ -53,6 +53,7 @@ LFE talks, slide decks, and screencasts.
 <a name="Examples"></a>
 
 ## Examples
-Here are various code snippets and small or sample projects that demonstrate
-how to use LFE in various ways:
-{% include examples-toc.html %}
+
+See the <a href="/examples.html">examples page</a> for a list of links which
+provide access to a great number of LFE examples and real-world projects which
+you can both use and learn from.
