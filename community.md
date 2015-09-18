@@ -33,7 +33,7 @@ do so via:
 
 * <a href="https://github.com/rvirding/lfe">LFE master</a> and
   <a href="https://github.com/rvirding/lfe/tree/develop">develop</a> branches
-* The LFE <a href="https://github.com/lfe">Github org</a> which has a
+* The <a href="https://github.com/lfex">LFE Exchange</a> on Github which has a
   massive collection of LFE projects
 * The LFE <a href="https://github.com/lfe/docs">docs site repo</a>
 * The LFE <a href="https://github.com/lfe/blog">blog site repo</a>
