@@ -23,9 +23,10 @@ do so via:
 * an <a href="http://blog.lfe.io/">LFE news and updates blog</a>
 * <a href="http://rvirding.blogspot.com/">Robert Virding's blog</a>
 * <a href="http://technicae.cogitat.io/search/label/lfe">Duncan McGreggor's blog</a>
-* <a href="https://paper.li/ErlangLisp/1397422779">LFE Sunday Times</a>
+* <a href="https://en.wikipedia.org/wiki/LFE_(programming_language)">LFE on Wikipedia</a>
 * an <a href="https://erlangcentral.org/wiki/index.php/Lisp_Flavoured_Erlang">LFE intro</a>
   on Erlang Central
+* <a href="https://paper.li/ErlangLisp/1397422779">LFE Sunday Times</a>
 
 
 ## Code
