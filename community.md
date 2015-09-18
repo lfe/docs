@@ -55,7 +55,6 @@ do so via:
 
 ## Code from the Wild
 
-Be sure to check out the "Examples" section of the
-<a href="/">Docs home page</a>, as we have collected a list of project and
-code samples that folks have put up in various corners of Github -- all for
-your convenience!
+Be sure to check out the <a href="/examples.html">Examples page</a>, as we have
+collected a list of project and code samples that folks have put up in various
+corners of Github -- all for your convenience!
