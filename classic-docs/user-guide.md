@@ -5,7 +5,7 @@ layout: docs
 
 ## User Guide
 
-{% highlight cl %}
+```lisp
 Note \{\{ ... \}\} is used to denote optional syntax.
 
 Special syntactic rules
@@ -741,4 +741,4 @@ Notes
 
 NYI - Not Yet Implemented
 N.B. - Nota bene (note well)
-{% endhighlight %}
+```
