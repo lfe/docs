@@ -32,13 +32,14 @@ python-deps:
 	. $(ACT) && pip install markdown
 	. $(ACT) && pip install --allow-external pil
 
-doc-deps: $(VENV) $(JEKYLL) $(WKPDF) python-deps redcarpet
+#doc-deps: $(VENV) $(JEKYLL) $(WKPDF) python-deps redcarpet
+doc-deps: $(VENV) $(JEKYLL) python-deps redcarpet
 
 md: doc-deps
 	@echo
 	@echo "Generating markdown for ebooks ..."
 	rm -f $(BOOK_DST)/*.markdown
-	. $(ACT) && $(PYTHONPATH) python bin/generateMD.py
+	. $(ACT) && $(PYTHONPATH) python2 bin/generateMD.py
 
 site: md
 	@echo
