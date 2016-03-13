@@ -6,7 +6,7 @@ layout: docs
 
 ## LFE Shell (REPL)
 
-{% highlight text %}
+```
 MODULE
 
         lfe_shell
@@ -162,4 +162,4 @@ Running LFE shell scripts
                 A list of the arguments to the script as strings. If
                 no arguments have been given then this will be an
                 empty list.
-{% endhighlight %}
+```

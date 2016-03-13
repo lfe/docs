@@ -5,7 +5,7 @@ layout: docs
 
 ## Dynamic Code Generator
 
-{% highlight text %}
+```
 MODULE
 
         lfe_gen
@@ -144,4 +144,4 @@ Error Information
         A string describing the error is obtained with the following call:
 
         apply(Module, format_error, ErrorDescriptor)
-{% endhighlight %}
+```

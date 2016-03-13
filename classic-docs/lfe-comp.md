@@ -6,7 +6,7 @@ layout: docs
 
 ## Compiler
 
-{% highlight text %}
+```
 MODULE
 
         lfe_comp
@@ -132,4 +132,4 @@ Error Information
         A string describing the error is obtained with the following call:
 
         apply(Module, format_error, ErrorDescriptor)
-{% endhighlight %}
+```
