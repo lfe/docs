@@ -19,7 +19,7 @@
 
 > When I first came here, this was all yak hair. Everyone said I was daft to build a yurt on the Endless High Plain of Yak, but I built in all the same, just to show them. It sank into the Plains of Yak. So I built a second one. That sank into the Plains of Yak. So I built a third. That burned down, fell over, then sank into the Plains of Yak. But the fourth one stayed up. And that's what you're going to get, the strongest yak hair yurt on the Endless High Plain of Yak.
 
-So maybe we should make this version 4 and skip version 3?
+Build for failure? No! Build to burn down, fall over, and sink into the Plains of Yak!
 
 This is the source code that generates the site for the [LFE documentation][docs].
 
