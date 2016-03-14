@@ -43,7 +43,8 @@ devdocs: docs
 	@echo
 	@echo "Running docs server on http://$(LOCAL_DOCS_HOST):$(LOCAL_DOCS_PORT) ... (To quit, hit ^c twice)"
 	@echo
-	@erl -s inets -noshell -eval 'inets:start(httpd,[{server_name,"devdocs"},{document_root, "$(DOCS_BUILD_DIR)"},{server_root, "$(DOCS_BUILD_DIR)"},{port, $(LOCAL_DOCS_PORT)},{mime_types,[{"html","text/html"},{"htm","text/html"},{"js","text/javascript"},{"css","text/css"},{"gif","image/gif"},{"jpg","image/jpeg"},{"jpeg","image/jpeg"},{"png","image/png"}]}]).'
+	@ERL_LIBS=`find ./_build/default/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;` \
+	erl -s docs -noshell
 
 setup-temp-repo: $(SLATE_GIT_HACK)
 	@echo "\nSetting up temporary git repos for gh-pages ...\n"
