@@ -12,7 +12,8 @@
     (terminate 2)
     (code_change 3)
     ;; server API
-    (gen-content 0)))
+    (gen-content 0)
+    (httpd 0)))
 
 ;;; config functions
 
@@ -27,9 +28,7 @@
 
 (defun start ()
   (logjam:start)
-  (inets:start)
   (let ((cfg (initial-state)))
-    (docs-dev:start-httpd cfg)
     (logjam:info "Starting docs gen-server ...")
     (gen_server:start (register-name)
                       (callback-module)
@@ -37,8 +36,7 @@
                       (genserver-opts))))
 
 (defun stop ()
-  (gen_server:call (server-name) 'stop)
-  (inets:stop))
+  (gen_server:call (server-name) 'stop))
 
 ;;; callback implementation
 
@@ -47,7 +45,9 @@
 
 (defun handle_cast
   (('gen state-data)
-    `#(noreply ,(docs-gen:start state-data))))
+    `#(noreply ,(docs-gen:run state-data)))
+  (('httpd state-data)
+    `#(noreply ,(docs-dev:start-httpd state-data))))
 
 (defun handle_call
   ((message _caller state-data)
@@ -73,3 +73,6 @@
 
 (defun gen-content ()
   (gen_server:cast (server-name) 'gen))
+
+(defun httpd ()
+  (gen_server:cast (server-name) 'httpd))

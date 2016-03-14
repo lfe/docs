@@ -3,9 +3,10 @@ ROOT_DIR = $(shell pwd)
 REPO = $(shell git config --get remote.origin.url)
 LFE = _build/default/lib/lfe/bin/lfe
 DOCS_BUILD_DIR = $(ROOT_DIR)/master
-SLATE_GIT_HACK = $(DOCS_DIR)/.git
+GHPAGES_GIT_HACK = $(DOCS_BUILD_DIR)/.git
 LOCAL_DOCS_HOST = localhost
 LOCAL_DOCS_PORT = 5099
+ERL_LIBS = $(shell find ./_build/default/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;)
 
 compile:
 	rebar3 compile
@@ -29,22 +30,19 @@ clean-all: clean
 $(DOCS_BUILD_DIR):
 	@mkdir -p $(DOCS_BUILD_DIR)
 
-$(SLATE_GIT_HACK): $(DOCS_BUILD_DIR)
-	@ln -s $(ROOT_DIR)/.git $(DOCS_BUILD_DIR)
-
 docs-clean:
 	@echo "\nCleaning build directories ..."
 	@rm -rf $(DOCS_BUILD_DIR)
 
-docs: clean docs-clean compile $(SLATE_GIT_HACK)
+docs: clean docs-clean compile $(DOCS_BUILD_DIR)
 	@echo "\nBuilding docs ...\n"
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -noshell -eval 'init:stop()'
 
 devdocs: docs
 	@echo
 	@echo "Running docs server on http://$(LOCAL_DOCS_HOST):$(LOCAL_DOCS_PORT) ... (To quit, hit ^c twice)"
 	@echo
-	@ERL_LIBS=`find ./_build/default/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;` \
-	erl -s docs -noshell
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -s docs httpd -noshell
 
 setup-temp-repo: $(SLATE_GIT_HACK)
 	@echo "\nSetting up temporary git repos for gh-pages ...\n"

@@ -17,6 +17,18 @@
 (defun get-nav-file (cfg)
   (get-in '(site-gen nav-file) cfg))
 
+(defun get-top-nav (cfg)
+  (get-in '(nav top-nav) cfg))
+
+(defun get-build-dir (cfg)
+  (get-in '(site-gen build-dir) cfg))
+
+(defun get-static-assets (cfg)
+  (get-in '(site-gen static-assets) cfg))
+
+(defun get-httpd-port (cfg)
+  (get-in '(site-gen dev-server port) cfg))
+
 (defun get-in (keys cfg)
   (lists:foldl #'get/2 cfg keys))
 

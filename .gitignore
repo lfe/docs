@@ -11,3 +11,4 @@ erl_crash.dump
 bin
 _build/*
 log/*
+master/*
