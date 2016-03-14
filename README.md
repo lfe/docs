@@ -17,7 +17,9 @@
 
 ## Introduction [&#x219F;](#contents)
 
-TBD
+> When I first came here, this was all swamp. Everyone said I was daft to build a castle on a swamp, but I built in all the same, just to show them. It sank into the swamp. So I built a second one. That sank into the swamp. So I built a third. That burned down, fell over, then sank into the swamp. But the fourth one stayed up. And that's what you're going to get, Lad, the strongest castle in all of England.
+
+So maybe we should make this version 4 and skip version 3?
 
 This is the source code that generates the site for the [LFE documentation][docs].
 
