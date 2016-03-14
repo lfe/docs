@@ -31,7 +31,21 @@ TBD
 
 ### Building [&#x219F;](#contents)
 
-TBD
+To run a local copy of the development server and view your work at [http://localhost:5099](http://localhost:5099), run the following:
+
+```bash
+$ make devdocs
+```
+
+This will build the docs before running the server.
+
+To just build the docs:
+
+```bash
+$ make docs
+```
+
+This runs the LFE code which is generating the site (details are logged to the console).
 
 
 ## License [&#x219F;](#contents)
