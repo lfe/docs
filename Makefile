@@ -53,7 +53,7 @@ setup-temp-repo: $(SLATE_GIT_HACK)
 
 teardown-temp-repo:
 	@echo "\nTearing down temporary gh-pages repos ..."
-	@rm $(DOCS_BUILD_DIR)/.git
+	@rm -rf $(DOCS_BUILD_DIR)/.git
 
 publish-docs: docs setup-temp-repo
 	@echo "\nPublishing docs ...\n"
