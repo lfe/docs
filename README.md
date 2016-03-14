@@ -26,8 +26,13 @@ This is the source code that generates the site for the [LFE documentation][docs
 
 ## Development [&#x219F;](#contents)
 
-TBD
+The vision for the new LFE docs site is outlined in a series of epic tickets (as well as in various emails on the LFE mail list) linked here in this meta-epic (oh yeah, we took it up a level):
 
+* [https://github.com/lfe/docs/issues/62](https://github.com/lfe/docs/issues/62)
+
+v3 of the LFE docs site has been forked from v1. It will use some of the CSS of v2 (heavily borrowing from Github's API site), and when done, should be able to be merged back into the regular docs site (thus preserving the contributions made by community members to-date).
+
+This particular repo is infrastructural only -- it's aim is to produce a tool that we can use to generate the LFE docs site without having to rely on Ruby or Github's gh-pages features (which we have not been entirely happy with; but hey, you can't please all the people all the time ... espeically the fringe Lispers who write distributed systems).
 
 ### Building [&#x219F;](#contents)
 
