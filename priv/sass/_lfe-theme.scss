@@ -16,6 +16,19 @@
   filter: none;
 }
 
+// Body =======================================================================
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  padding-top: 70px;
+}
+
 // Navbar =====================================================================
 
 .navbar {
@@ -449,4 +462,18 @@ a.list-group-item {
   .panel-heading {
     border-color: #000;
   }
+}
+
+// Footer =====================================================================
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
 }
