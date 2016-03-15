@@ -46,8 +46,8 @@ docs-clean:
 css: $(CSS_BUILD_DIR)
 	@echo "\nGenerating minimized and dev versions of CSS files ..."
 	@echo
-	@sass --style compressed $(SASS_DIR)/_lfe-theme.scss $(CSS_BUILD_DIR)/bootstrap-min.css
-	@sass $(SASS_DIR)/_lfe-theme.scss $(CSS_BUILD_DIR)/bootstrap.css
+	@sass --style compressed $(SASS_DIR)/lfe-theme.scss $(CSS_BUILD_DIR)/bootstrap-min.css
+	@sass $(SASS_DIR)/lfe-theme.scss $(CSS_BUILD_DIR)/bootstrap.css
 
 docs: clean docs-clean compile $(DOCS_BUILD_DIR) css
 	@echo "\nBuilding docs ..."
