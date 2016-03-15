@@ -44,7 +44,7 @@ This particular repo is infrastructural only -- it's aim is to produce a tool th
 
 ### Building [&#x219F;](#contents)
 
-The CSS files are managed with [SASS](http://sass-lang.com). After changing values in ````, you'll need to rebuild:
+The CSS files are managed with [sass](http://sass-lang.com). After changing values in ``priv/sass/lfe-theme.scss`` (or in the ``priv/sass/_variables.scss`` file), you'll need to rebuild:
 
 ```bash
 $ make css
