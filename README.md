@@ -34,7 +34,21 @@ v3 of the LFE docs site has been forked from v1. It will use some of the CSS of 
 
 This particular repo is infrastructural only -- it's aim is to produce a tool that we can use to generate the LFE docs site without having to rely on Ruby or Github's gh-pages features (which we have not been entirely happy with; but hey, you can't please all the people all the time ... espeically the fringe Lispers who write distributed systems).
 
+
+### Dependencies [&#x219F;](#contents)
+
+* Erlang
+* ``rebar3``
+* ``sass`` (use ``make sass`` to install; requires Ruby + ``gem`` to be installed)
+
+
 ### Building [&#x219F;](#contents)
+
+The CSS files are managed with [SASS](http://sass-lang.com). After changing values in ````, you'll need to rebuild:
+
+```bash
+$ make css
+```
 
 To run a local copy of the development server and view your work at [http://localhost:5099](http://localhost:5099), run the following:
 
@@ -42,7 +56,7 @@ To run a local copy of the development server and view your work at [http://loca
 $ make devdocs
 ```
 
-This will build the docs before running the server.
+This will automatically rebuild the CSS and build the docs before running the server.
 
 To just build the docs:
 
