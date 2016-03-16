@@ -13,6 +13,12 @@ $accent-text-active: $accent-text-hover;
 $accent-text-disabled: #aaa;
 $accent-light: #f0f3dd;
 
+$footer-link-color: #fc0;
+$footer-height: 60px;
+$footer-buffer: 20px;
+$footer-buffer2x: ($footer-buffer * 2);
+$footer-buffer4x: ($footer-buffer * 4);
+
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
@@ -264,7 +270,7 @@ $dropdown-link-active-color:     $accent-text-active !default;
 $dropdown-link-active-bg:        $gray-darker !default;
 
 //** Disabled dropdown menu item background color.
-$dropdown-link-disabled-color:   $gray-light !default;
+$dropdown-link-disabled-color:   $accent-text-disabled !default;
 
 //** Text color for headers within dropdown menus.
 $dropdown-header-color:          $gray-light !default;
