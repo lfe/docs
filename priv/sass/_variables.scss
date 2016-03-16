@@ -3,17 +3,26 @@ $bootstrap-sass-asset-helper: false !default;
 // Variables
 // --------------------------------------------------
 
+// LFE Colors
+
+$accent-bg: #5b710d; // navbar, coloured buttons, etc.
+$accent-alt-bg: #fc0; // alternate accent for primary buttons, etc.
+$accent-text: #333; // color of links on navbar, coloured buttons, etc.
+$accent-text-hover: #fc0;
+$accent-text-active: $accent-text-hover;
+$accent-text-disabled: #aaa;
+$accent-light: #f0f3dd;
 
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
 
 $gray-base:              #000 !default;
-$gray-darker:            #272B30 !default; // #222
-$gray-dark:              #3A3F44 !default;   // #333
-$gray:                   #52575C !default; // #555
+$gray-darker:            #282926 !default; // #222 // #272B30
+$gray-dark:              #5b710d !default;   // #333 // #3A3F44
+$gray:                   #5a5c51 !default; // #555
 $gray-light:             #7A8288 !default;   // #999
-$gray-lighter:           #999 !default; // #eee
+$gray-lighter:           #888a7e !default; // #eee
 
 $brand-primary:         $gray-light !default;
 $brand-success:         #62c462 !default;
@@ -149,9 +158,10 @@ $btn-default-color:              #fff !default;
 $btn-default-bg:                 $gray-dark !default;
 $btn-default-border:             $btn-default-bg !default;
 
-$btn-primary-color:              $btn-default-color !default;
-$btn-primary-bg:                 $brand-primary !default;
-$btn-primary-border:             $btn-primary-bg !default;
+$btn-primary-color:              #2f3b05 !default;
+$btn-primary-color-hover:        #fff;
+$btn-primary-bg:                 $accent-alt-bg !default;
+$btn-primary-border:             $accent-alt-bg !default;
 
 $btn-success-color:              $btn-default-color !default;
 $btn-success-bg:                 $brand-success !default;
@@ -182,7 +192,7 @@ $btn-border-radius-small:        $border-radius-small !default;
 //##
 
 //** `<input>` background color
-$input-bg:                       #fff !default;
+$input-bg:                       $accent-light !default;
 //** `<input disabled>` background color
 $input-bg-disabled:              $gray-lighter !default;
 
@@ -244,12 +254,12 @@ $dropdown-divider-bg:            $gray-darker !default;
 //** Dropdown link text color.
 $dropdown-link-color:            $text-color !default;
 //** Hover color for dropdown links.
-$dropdown-link-hover-color:      #fff !default;
+$dropdown-link-hover-color:      $accent-text-hover !default;
 //** Hover background for dropdown links.
 $dropdown-link-hover-bg:         $gray-darker !default;
 
 //** Active dropdown menu item text color.
-$dropdown-link-active-color:     #fff !default;
+$dropdown-link-active-color:     $accent-text-active !default;
 //** Active dropdown menu item background color.
 $dropdown-link-active-bg:        $gray-darker !default;
 
@@ -365,15 +375,15 @@ $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
 $navbar-collapse-max-height:       340px !default;
 
-$navbar-default-color:             $text-color !default;
+$navbar-default-color:             #333 !default;
 $navbar-default-bg:                $gray-dark !default;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
-$navbar-default-link-color:                $text-color !default;
-$navbar-default-link-hover-color:          #fff !default;
+$navbar-default-link-color:                #161b02 !default;
+$navbar-default-link-hover-color:          $accent-text-hover !default;
 $navbar-default-link-hover-bg:             darken($navbar-default-bg, 8%) !default;
-$navbar-default-link-active-color:         #fff !default;
+$navbar-default-link-active-color:         $accent-text-active !default;
 $navbar-default-link-active-bg:            darken($navbar-default-bg, 8%) !default;
 $navbar-default-link-disabled-color:       #ccc !default;
 $navbar-default-link-disabled-bg:          transparent !default;
@@ -452,15 +462,15 @@ $pagination-color:                     $link-color !default;
 $pagination-bg:                        $btn-default-bg !default;
 $pagination-border:                    rgba(0, 0, 0, 0.6) !default;
 
-$pagination-hover-color:               $link-hover-color !default;
+$pagination-hover-color:               $accent-text-hover !default;
 $pagination-hover-bg:                  transparent !default;
 $pagination-hover-border:              rgba(0, 0, 0, 0.6) !default;
 
-$pagination-active-color:              #fff !default;
+$pagination-active-color:              $accent-text-active !default;
 $pagination-active-bg:                 darken($pagination-bg, 10%) !default;
 $pagination-active-border:             rgba(0, 0, 0, 0.6) !default;
 
-$pagination-disabled-color:            $gray-light !default;
+$pagination-disabled-color:            $accent-text-disabled !default;
 $pagination-disabled-bg:               #fff !default;
 $pagination-disabled-border:           rgba(0, 0, 0, 0.6) !default;
 
@@ -478,7 +488,7 @@ $pager-hover-bg:                       $pagination-hover-bg !default;
 $pager-active-bg:                      $pagination-active-bg !default;
 $pager-active-color:                   $pagination-active-color !default;
 
-$pager-disabled-color:                 $gray-light !default;
+$pager-disabled-color:                 $accent-text-disabled !default;
 
 
 //== Jumbotron
@@ -795,7 +805,7 @@ $breadcrumb-bg:                 transparent !default;
 //** Breadcrumb text color
 $breadcrumb-color:              #ccc !default;
 //** Text color of current page in the breadcrumb
-$breadcrumb-active-color:       $gray-light !default;
+$breadcrumb-active-color:       $accent-text-disabled !default;
 //** Textual separator for between breadcrumb elements
 $breadcrumb-separator:          "/" !default;
 

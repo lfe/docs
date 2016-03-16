@@ -54,9 +54,20 @@ docs: clean docs-clean compile $(DOCS_BUILD_DIR) css
 	@echo
 	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -noshell -eval 'init:stop()'
 
+docs-only: $(DOCS_BUILD_DIR)
+	@echo "\nBuilding docs ..."
+	@echo
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -noshell -eval 'init:stop()'
+
 devdocs: docs
 	@echo "\nRunning docs server on http://$(LOCAL_DOCS_HOST):$(LOCAL_DOCS_PORT) ... (To quit, hit ^c twice)"
 	@echo
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -s docs httpd -noshell
+
+devcss:
+	@echo "\nRunning docs server on http://$(LOCAL_DOCS_HOST):$(LOCAL_DOCS_PORT) ... (To quit, hit ^c twice)"
+	@echo
+	@sass --watch $(SASS_DIR)/lfe-theme.scss:$(CSS_BUILD_DIR)/bootstrap-min.css &
 	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -s docs httpd -noshell
 
 setup-temp-repo: $(SLATE_GIT_HACK)

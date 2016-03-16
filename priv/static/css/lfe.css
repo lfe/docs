@@ -1,3 +1,13 @@
+a.navbar-brand {
+  float: left;
+  display: inline-block;
+  width: 216px;
+  height: 27px;
+  margin-top: 12px;
+  margin-left: -10px !important;
+  background: url(../images/logos/lfe-logo-site-brand.png) 0 0 no-repeat;
+}
+
 /*!
  * IE10 viewport hack for Surface/desktop Windows 8 bug
  * Copyright 2014-2015 Twitter, Inc.

@@ -34,8 +34,9 @@ body {
 .navbar {
 
   @include btn-shadow($navbar-default-bg);
+  background: url(../images/header2.png) 0 0 repeat-x;
   border: 1px solid rgba(0, 0, 0, 0.6);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  //text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 
   .navbar-nav > li > a {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
@@ -89,6 +90,7 @@ body {
 
   &:hover {
     @include btn-shadow-inverse($btn-default-bg);
+    color: $accent-text-hover;
   }
 }
 
@@ -97,6 +99,7 @@ body {
 
   &:hover {
     @include btn-shadow-inverse($btn-primary-bg);
+    color: $btn-primary-color-hover;
   }
 }
 
@@ -195,6 +198,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .table-responsive > .table {
   background-color: $table-bg;
+}
+
+.table-of-contents a:hover {
+  color: $accent-text-hover;
+}
+
+.table-of-contents a:active {
+  color: $accent-text-active;
 }
 
 // Forms ======================================================================
@@ -315,6 +326,7 @@ legend {
     &:hover {
       @include btn-shadow-inverse($btn-default-bg);
       border: 1px solid rgba(0, 0, 0, 0.6);
+      color: $accent-text-hover;
     }
   }
 
@@ -323,11 +335,13 @@ legend {
     background-color: none;
     @include btn-shadow-inverse($btn-default-bg);
     border: 1px solid rgba(0, 0, 0, 0.6);
+    color: $accent-text-active;
   }
 
   & > li.disabled > a,
   & > li.disabled > a:hover {
     @include btn-shadow($btn-default-bg);
+    color: $accent-text-disabled;
   }
 }
 
@@ -365,6 +379,7 @@ legend {
 
     &:hover {
       @include btn-shadow-inverse($btn-default-bg);
+      color: $accent-text-hover;
     }
   }
 
