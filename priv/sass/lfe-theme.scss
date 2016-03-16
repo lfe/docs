@@ -35,6 +35,7 @@ body {
 
   @include btn-shadow($navbar-default-bg);
   background: url(../images/header2.png) 0 0 repeat-x;
+  background-color: $accent-bg;
   border: 1px solid rgba(0, 0, 0, 0.6);
   //text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 
