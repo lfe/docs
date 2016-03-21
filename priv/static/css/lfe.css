@@ -1,3 +1,5 @@
+@import 'octicons.css';
+
 a.navbar-brand {
   float: left;
   display: inline-block;
@@ -10,6 +12,44 @@ a.navbar-brand {
 
 center-block {
     float: none;
+}
+
+.highlight-module-group {
+    width: 100%;
+    background-color: #343530;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+}
+
+.highlight-module {
+  list-style-type: none;
+  display: table-cell;
+  padding: 40px 14px 30px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.5em;
+}
+
+.highlight-module p {
+  font-size: 150% !important;
+  line-height: 1.5em;
+}
+
+.highlight-module h2 {
+  font-size: 250%;
+  color: #fc0;
+}
+
+.highlight-module h2 a {
+  color: #fc0;
+}
+
+.highlight-module .mega-octicon {
+  font-size: 70px;
+  width: 70px;
+  height: 70px;
+  color: #ccc;
 }
 
 /*!

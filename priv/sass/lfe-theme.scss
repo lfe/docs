@@ -77,6 +77,25 @@ body {
   }
 }
 
+// Landing page ===============================================================
+
+.backsplash {
+}
+
+.splash div {
+  padding-top: 1.5em;
+}
+
+.splash h1 {
+  line-height: 1.25em;
+  font-size: 320%;
+}
+
+.splash p {
+  font-size: 180%;
+  color: #aaa;
+}
+
 // Buttons ====================================================================
 
 .btn,
@@ -143,6 +162,7 @@ body {
 // Typography =================================================================
 
 h1, h2, h3, h4, h5, h6 {
+  color: $accent-text-active !important;
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
 }
 

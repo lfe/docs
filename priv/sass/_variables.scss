@@ -24,11 +24,11 @@ $footer-buffer4x: ($footer-buffer * 4);
 //## Gray and brand colors for use across Bootstrap.
 
 $gray-base:              #000 !default;
-$gray-darker:            #282926 !default; // #222 // #272B30
+$gray-darker:            #282926 !default;   // #222 // #272B30
 $gray-dark:              #5b710d !default;   // #333 // #3A3F44
-$gray:                   #5a5c51 !default; // #555
+$gray:                   #5a5c51 !default;   // #555
 $gray-light:             #7A8288 !default;   // #999
-$gray-lighter:           #888a7e !default; // #eee
+$gray-lighter:           #888a7e !default;   // #eee
 
 $brand-primary:         $gray-light !default;
 $brand-success:         #62c462 !default;
