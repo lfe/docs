@@ -45,6 +45,11 @@ center-block {
   color: #fc0;
 }
 
+.highlight-module code {
+  color: #fc0;
+  background-color: transparent;
+}
+
 .highlight-module .mega-octicon {
   font-size: 70px;
   width: 70px;
