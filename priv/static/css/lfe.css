@@ -19,6 +19,9 @@ center-block {
     background-color: #343530;
     padding-bottom: 1em;
     margin-bottom: 2em;
+    border: 1px solid #222;
+    border-right: 0;
+    border-left: 1;
 }
 
 .highlight-module {
