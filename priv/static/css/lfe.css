@@ -60,6 +60,19 @@ center-block {
   color: #ccc;
 }
 
+.landing-doc-cats {
+    font-size: 120%;
+}
+
+.landing-doc-cats ul {
+    display: inline-block;
+    text-align: left;
+}
+
+.landing-doc-cats p, .landing-doc-cats a {
+    font-size: 120%;
+}
+
 /*!
  * IE10 viewport hack for Surface/desktop Windows 8 bug
  * Copyright 2014-2015 Twitter, Inc.
