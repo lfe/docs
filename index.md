@@ -6,6 +6,18 @@ layout: home
 We're trying something new! Looking for the old index page? View it
 [here](index-old.html)
 
+We have organized the LFE docs into three major categories:
+
+* Learning LFE
+* Reference
+* Community
+
+Note that some of these have links that appear in more than one category -- and
+that's okay!
+
+Also, this page is a big pile of links -- the next version of the docs site
+will present this content in a more easily accessible format.
+
 ----
 
 # Learn LFE
@@ -68,6 +80,10 @@ Some of these include:
 * [Casting SPELs in LFE](https://www.gitbook.com/book/lfe/casting-spels/details)
 * [Structure and Interpretation of Computer Programs](https://www.gitbook.com/book/lfe/sicp/details), LFE Edition - IN PROGRESS
 
+## History
+
+See the [history page](http://docs.lfe.io/history.html)
+
 ----
 
 # Community
@@ -115,8 +131,3 @@ TBD (will provide information on how to start contributing)
 
 TBD (will highlight some of the interesting/useful community libraries)
 
-----
-
-# History
-
-See the [history page](http://docs.lfe.io/history.html)
