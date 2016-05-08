@@ -3,10 +3,8 @@ layout: home
 ---
 
 
-We're trying something new! Looking for the old index page? View it
-[here](index-old.html)
-
-We have organized the LFE docs into three major categories:
+We're trying something new! We have organized the LFE docs into three major
+categories:
 
 * Learning LFE
 * Reference
@@ -17,6 +15,8 @@ that's okay!
 
 Also, this page is a big pile of links -- the next version of the docs site
 will present this content in a more easily accessible format.
+
+Looking for the old index page? View it [here](index-old.html)
 
 ----
 
