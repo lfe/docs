@@ -13,10 +13,11 @@ categories:
 Note that some of these have links that appear in more than one category -- and
 that's okay!
 
-Also, this page is a big pile of links -- the next version of the docs site
+Also, this page is a big pile of links -- the
+[next version of the docs site](https://github.com/lfe/docs/issues/62)
 will present this content in a more easily accessible format.
 
-Looking for the old index page? View it [here](index-old.html)
+Looking for the old index page? View it [here](index-old.html).
 
 ----
 
