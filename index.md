@@ -6,6 +6,8 @@ layout: home
 We're trying something new! Looking for the old index page? View it
 [here](index-old.html)
 
+----
+
 # Learn LFE
 
 ## Getting Started
@@ -24,6 +26,8 @@ We're trying something new! Looking for the old index page? View it
 * [A "Counter" App](http://docs.lfe.io/tutorials/counter-app/1.html)
 * [LFE and OTP](http://blog.lfe.io/tutorials/2015/05/24/1808-what-is-otp/)
 * [Tutorial Blog Posts](http://blog.lfe.io/categories.html#tutorials-ref)
+
+----
 
 # Reference
 
@@ -52,6 +56,8 @@ Some of these include:
 * [The LFE Tutorial](https://www.gitbook.com/book/lfe/tutorial/details) - IN PROGRESS
 * [Casting SPELs in LFE](https://www.gitbook.com/book/lfe/casting-spels/details)
 * [Structure and Interpretation of Computer Programs](https://www.gitbook.com/book/lfe/sicp/details), LFE Edition - IN PROGRESS
+
+----
 
 # Community
 
@@ -108,6 +114,8 @@ TBD (will provide information on how to start contributing)
 ## Libraries
 
 TBD (will highlight some of the interesting/useful community libraries)
+
+----
 
 # History
 
