@@ -33,6 +33,17 @@ We're trying something new! Looking for the old index page? View it
 
 ## Core
 
+* [User Guide](https://github.com/rvirding/lfe/blob/develop/doc/user_guide.txt)
+* [lfescript](https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt)
+* [LFE Shell](https://github.com/rvirding/lfe/blob/develop/doc/lfe.txt)
+* [I/O Functions](https://github.com/rvirding/lfe/blob/develop/doc/lfe_io.txt)
+* [Macro Expander](https://github.com/rvirding/lfe/blob/develop/doc/lfe_macro.txt)
+* [Compiler](https://github.com/rvirding/lfe/blob/develop/doc/lfe_comp.txt)
+* [Common Binary Functions](https://github.com/rvirding/lfe/blob/develop/doc/lfe_bits.txt)
+* [Dynamic Code Generator](https://github.com/rvirding/lfe/blob/develop/doc/lfe_gen.txt)
+* [Internal Library used by LFE](https://github.com/rvirding/lfe/blob/develop/doc/lfe_lib.txt)
+* [Version History](https://github.com/rvirding/lfe/blob/develop/doc/version_history.md)
+
 ## Examples
 
 * See the [examples page](http://docs.lfe.io/examples.html)
