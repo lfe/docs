@@ -88,27 +88,21 @@ links!
 
 * [lfe](https://github.com/lfe) - Core LFE repos - [
     [PRs](https://github.com/search?utf8=%E2%9C%93&q=org%3Alfe+is%3Aopen+is%3Apr+&type=Issues&ref=searchresults&s=created) |
-    [Tickets](https://github.com/search?o=desc&q=org%3Alfe+is%3Aopen+is%3Aissue+sort%3Acreated&ref=searchresults&s=created&type=Issues&utf8=%E2%9C%93) | 
+    [Tickets](https://github.com/search?o=desc&q=org%3Alfe+is%3Aopen+is%3Aissue+sort%3Acreated&ref=searchresults&s=created&type=Issues&utf8=%E2%9C%93) |
     [Build Status](https://travis-ci.org/lfe) ]
-
 * [lfex](https://github.com/lfex) - Community libraries - [
     [PRs](https://github.com/search?utf8=%E2%9C%93&q=org%3Alfex+is%3Aopen+is%3Apr+&type=Issues&ref=searchresults&s=created) |
     [Tickets](https://github.com/search?o=desc&q=org%3Alfex+is%3Aopen+is%3Aissue&ref=searchresults&s=created&type=Issues&utf8=%E2%9C%93) |
     [Build Status](https://travis-ci.org/lfex) ]
-
-* [lfe-rebar3](https://github.com/lfe-rebar3) - Tooling for LFE (rebar3 plugins) - [
+* [lfe-rebar3](https://github.com/lfe-rebar3) - Tooling for LFE - IN PROGRESS - [
     [PRs](https://github.com/search?utf8=%E2%9C%93&q=org%3Alfe-rebar3+is%3Aopen+is%3Apr&type=Issues&ref=searchresults) |
     [Tickets](https://github.com/search?o=desc&q=org%3Alfe-rebar3+is%3Aopen+is%3Aissue&ref=searchresults&s=created&type=Issues&utf8=%E2%9C%93) |
     [Build Status](https://travis-ci.org/lfe-rebar3) ]
-
-* [lmug](https://github.com/lmug) - The next-generation web middleware for LFE
-  IN PROGRESS - [
+* [lmug](https://github.com/lmug) - Web middleware for LFE - IN PROGRESS - [
     [PRs](https://github.com/search?utf8=%E2%9C%93&q=org%3Almug+is%3Aopen+is%3Apr&type=Issues&ref=searchresults) |
     [Tickets](https://github.com/search?o=desc&q=org%3Almug+is%3Aopen+is%3Aissue&ref=searchresults&s=created&type=Issues&utf8=%E2%9C%93) |
     [Build Status](https://travis-ci.org/lmug) ]
-
-* [clojang](https://github.com/clojang) - JVM interop repos (with a bias
-  towards Clojure, naturally) - [
+* [clojang](https://github.com/clojang) - JVM interop repos - [
     [PRs](https://github.com/search?utf8=%E2%9C%93&q=org%3Aclojang+is%3Aopen+is%3Apr&type=Issues&ref=searchresults) |
     [Tickets](https://github.com/search?o=desc&q=org%3Aclojang+is%3Aopen+is%3Aissue&ref=searchresults&s=created&type=Issues&utf8=%E2%9C%93) |
     [Build Status](https://travis-ci.org/clojang) ]
