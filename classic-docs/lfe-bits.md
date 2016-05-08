@@ -6,7 +6,7 @@ layout: docs
 
 ## Common Binary Functions
 
-{% highlight text %}
+```
 MODULE
 
         lfe_bits
@@ -42,4 +42,4 @@ Error Information
 
         {undefined_bittype,Type}
         bittype_unit
-{% endhighlight %}
+```

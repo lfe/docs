@@ -6,7 +6,7 @@ layout: docs
 
 ## Macro Expander
 
-{% highlight text %}
+```
 MODULE
 
         lfe_macro
@@ -72,4 +72,4 @@ expand_expr_1(Sexpr, Env) -> {yes,Exp} | no.
         possible while expand_expr_1/2 will only try it once. These
         functions use the macro definitions in the environment and the
         standard pre-defined macros.
-{% endhighlight %}
+```

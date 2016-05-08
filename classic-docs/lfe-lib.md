@@ -6,7 +6,7 @@ layout: docs
 
 ## Internal LFE Library
 
-{% highlight text %}
+```
 MODULE
 
         lfe_lib
@@ -39,4 +39,4 @@ is_guard_bif(Name, Arity) -> bool().
 is_core_form(Name) -> bool().
 
         Test whether Name is one the LFE core forms.
-{% endhighlight %}
+```

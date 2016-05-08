@@ -5,7 +5,7 @@ layout: docs
 
 ## I/O Functions
 
-{% highlight text %}
+```
 MODULE
 
         lfe_io
@@ -116,4 +116,4 @@ Error Information
         A string describing the error is obtained with the following call:
 
         apply(Module, format_error, ErrorDescriptor)
-{% endhighlight %}
+```
