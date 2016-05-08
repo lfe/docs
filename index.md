@@ -29,6 +29,8 @@ will present this content in a more easily accessible format.
 * [Exercism.io](http://exercism.io/languages/lfe)
 * [Language Comparison Chart](http://lfex.github.io/hyperpolyglot/) - IN PROGRESS
 * [Casting SPELs with LFE](https://lfe.gitbooks.io/casting-spels/content/)
+* [LFE Style Guide](http://docs.lfe.io/style-guide/1.html)
+* [LFE Programming Rules and Conventions](http://docs.lfe.io/prog-rules/1.html)
 
 ## Tutorials
 
