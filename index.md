@@ -30,15 +30,15 @@ Looking for the old index page? View it [here](index-old.html).
 * [Exercism.io](http://exercism.io/languages/lfe)
 * [Language Comparison Chart](http://lfex.github.io/hyperpolyglot/) - IN PROGRESS
 * [Casting SPELs with LFE](https://lfe.gitbooks.io/casting-spels/content/)
-* [LFE Style Guide](http://docs.lfe.io/style-guide/1.html)
-* [LFE Programming Rules and Conventions](http://docs.lfe.io/prog-rules/1.html)
+* [LFE Style Guide](/style-guide/1.html)
+* [LFE Programming Rules and Conventions](/prog-rules/1.html)
 
 ## Tutorials
 
 * [LFE Tutorial](https://www.gitbook.com/book/lfe/tutorial/details) - IN PROGRESS
-* [Mnesia](http://docs.lfe.io/tutorials/mnesia/1.html) - IN PROGRESS
-* [Light-weight Processes](http://docs.lfe.io/tutorials/processes/1.html)
-* [A "Counter" App](http://docs.lfe.io/tutorials/counter-app/1.html)
+* [Mnesia](/tutorials/mnesia/1.html) - IN PROGRESS
+* [Light-weight Processes](/tutorials/processes/1.html)
+* [A "Counter" App](/tutorials/counter-app/1.html)
 * [LFE and OTP](http://blog.lfe.io/tutorials/2015/05/24/1808-what-is-otp/)
 * [Tutorial Blog Posts](http://blog.lfe.io/categories.html#tutorials-ref)
 
@@ -61,13 +61,13 @@ Looking for the old index page? View it [here](index-old.html).
 
 ## Examples
 
-* See the [examples page](http://docs.lfe.io/examples.html)
+* See the [examples page](/examples.html)
 
 ## Guides
 
-* [LFE Style Guide](http://docs.lfe.io/style-guide/1.html)
-* [LFE Programming Rules and Conventions](http://docs.lfe.io/prog-rules/1.html)
-* [Experimental User Guide](http://docs.lfe.io/user-guide/intro/1.html)
+* [LFE Style Guide](/style-guide/1.html)
+* [LFE Programming Rules and Conventions](/prog-rules/1.html)
+* [Experimental User Guide](/user-guide/intro/1.html)
 
 ## Tooling
 
@@ -85,13 +85,13 @@ Some of these include:
 
 ## History
 
-See the [history page](http://docs.lfe.io/history.html)
+See the [history page](/history.html)
 
 ----
 
 # Community
 
-Also see the [Community page](http://docs.lfe.io/community.html) for more
+Also see the [Community page](/community-details.html) for more
 links!
 
 ## Communications
@@ -101,7 +101,7 @@ links!
 * [Community .plan File](http://plan.lfe.io/)
 * [Mail list](http://groups.google.com/group/lisp-flavoured-erlang)
 * [LFE on Slack](http://lfe.slack.com/)
-* [Presentations](http://docs.lfe.io/presentations.html) (slides and videos)
+* [Presentations](/presentations.html) (slides and videos)
 
 ## Github Orgs
 
