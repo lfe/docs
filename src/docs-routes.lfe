@@ -3,5 +3,5 @@
 
 (defun site ()
   (poise:site
-    '(("index.html" (lambda () (docs-pages:index))))
+    `(("index.html" ,#'docs-pages:index/0))
     #m(output-dir "docs")))
