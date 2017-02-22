@@ -1,18 +1,16 @@
 (defmodule docs-cfg
   (export all))
 
-(include-lib "clj/include/compose.lfe")
-
 (defun load-config ()
   (let ((cfg (lcfg-file:parse-local)))
     (++ cfg
         `(#(nav ,(load-nav cfg))))))
 
 (defun load-nav (cfg)
-  (-> cfg
-      (docs-cfg:get-nav-file)
-      (lcfg-file:read-file)
-      (lcfg-file:parse-config)))
+  (clj:-> cfg
+          (docs-cfg:get-nav-file)
+          (lcfg-file:read-file)
+          (lcfg-file:parse-config)))
 
 (defun get-nav-file (cfg)
   (get-in '(site-gen nav-file) cfg))
