@@ -19,6 +19,7 @@ When LFE Docs ErlyDTL templates are compiled, several things happen:
 As for the templates themselves, here are some quick link docs for your
 reference:
 
+* [ErlyDTL](https://django.readthedocs.io/en/1.6.x/ref/templates/builtins.html#include)
 * [Template Inheritance](https://django.readthedocs.io/en/1.6.x/topics/templates.html#template-inheritance)
 * Commonly used tags:
   * [for](https://django.readthedocs.io/en/1.6.x/ref/templates/builtins.html#for)
