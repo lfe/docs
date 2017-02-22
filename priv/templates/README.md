@@ -15,3 +15,12 @@ When LFE Docs ErlyDTL templates are compiled, several things happen:
    template `base.html` is compiled to `base-tmpl.beam`
 1. The compiled `.beam` file exports the `render/{0,1,2}` functions. These are
    what LFE Docs uses to generate the site content from the templates.
+
+As for the templates themselves, here are some quick link docs for your
+reference:
+
+* [Template Inheritance](https://django.readthedocs.io/en/1.6.x/topics/templates.html#template-inheritance)
+* Commonly used tags:
+  * [for](https://django.readthedocs.io/en/1.6.x/ref/templates/builtins.html#for)
+  * [ifequal](https://django.readthedocs.io/en/1.6.x/ref/templates/builtins.html#ifequal)
+  * [include](https://django.readthedocs.io/en/1.6.x/ref/templates/builtins.html#include)
