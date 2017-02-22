@@ -13,3 +13,5 @@ _build/*
 log/*
 master/*
 .sass-cache
+priv/templates/*.erl
+rebar.lock
