@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/community.html">Community</a></li>
+            <li class="title"><a href="/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/tutorials/mnesia/1.html">Introduction</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/2.html">Getting Started</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/3.html">Structure</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/4.html">Content</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/5.html">Querying</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/6.html">Big Data</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Mnesia</h1>
+
+<h2>2 Getting Started</h2>
+
+<h3>2.1 Download the Tutorial Project</h3>
+
+<p>To help you get started more quickly, we&#39;ve provided a repo with some helper
+tools in them. The rest of the tutorial will refer to this project. Here it
+is:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ git clone https://github.com/lfe/mnesia-tutorial.git
+    $ <span class="nb">cd</span> mnesia-tutorial
+</code></pre></div>
+<p>Next, let&#39;s get all the dependencies downloaded and built:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ make compile
+</code></pre></div>
+<p>Okay, we&#39;re ready to go :-) You can start up an mnesia-ready LFE REPL by
+using a <code>make</code> target we provided in the <code>Makefile</code> for you. You need to
+pass it the path of the database you want to create or connect to, stored in
+an environment variable:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ <span class="nv">DB</span><span class="o">=</span>/tmp/funky make mnesia-shell
+</code></pre></div>
+<p>This will dump you into the shell, ready to start dataing:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="nv">Erlang</span> <span class="nv">R16B</span> <span class="p">(</span><span class="nv">erts-5.10.1</span><span class="p">)</span> <span class="nv">[source]</span> <span class="nv">[smp:8:8]</span> <span class="nv">[async-threads:10]</span> <span class="o">...</span>
+
+    <span class="nv">LFE</span> <span class="nv">Shell</span> <span class="nv">V5.10.1</span> <span class="p">(</span><span class="nb">abort</span> <span class="nv">with</span> <span class="nv">^G</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>If you did want to execute a manual command analogous to the <code>make</code> target,
+you could do this, with the assumption that you&#39;re using the LFE from your
+project&#39;s <code>deps</code> directory:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ <span class="nv">ERL_LIBS</span><span class="o">=</span>./deps/lfe:. ./deps/lfe/bin/lfe -mnesia dir <span class="s1">&#39;&quot;/tmp/funky&quot;&#39;</span>
+</code></pre></div>
+<h3>2.1 First Run</h3>
+
+<p>You&#39;re now in the LFE REPL, so let&#39;s create a new database on disk, start it
+up, and then create a table:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:create_schema</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">node</span><span class="p">)))</span>
+    <span class="nv">ok</span>
+    <span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:start</span><span class="p">)</span>
+    <span class="nv">ok</span>
+    <span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:create_table</span> <span class="ss">&#39;funky</span> <span class="o">&#39;</span><span class="p">())</span>
+    <span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+    <span class="nb">&gt;</span>
+</code></pre></div>
+<p>We can take a look at our creation with this command:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nv">mnesia:info</span><span class="p">)</span>
+</code></pre></div>
+<p>Which should give you something like this:</p>
+<div class="highlight"><pre><code class="language-erlang" data-lang="erlang">    <span class="o">---&gt;</span> <span class="nv">Processes</span> <span class="n">holding</span> <span class="n">locks</span> <span class="o">&lt;---</span>
+    <span class="o">---&gt;</span> <span class="nv">Processes</span> <span class="n">waiting</span> <span class="n">for</span> <span class="n">locks</span> <span class="o">&lt;---</span>
+    <span class="o">---&gt;</span> <span class="nv">Participant</span> <span class="n">transactions</span> <span class="o">&lt;---</span>
+    <span class="o">---&gt;</span> <span class="nv">Coordinator</span> <span class="n">transactions</span> <span class="o">&lt;---</span>
+    <span class="o">---&gt;</span> <span class="nv">Uncertain</span> <span class="n">transactions</span> <span class="o">&lt;---</span>
+    <span class="o">---&gt;</span> <span class="nv">Active</span> <span class="n">tables</span> <span class="o">&lt;---</span>
+    <span class="n">funky</span>          <span class="p">:</span> <span class="n">with</span> <span class="mi">0</span>        <span class="n">records</span> <span class="n">occupying</span> <span class="mi">317</span>      <span class="n">words</span> <span class="k">of</span> <span class="n">mem</span>
+    <span class="n">schema</span>         <span class="p">:</span> <span class="n">with</span> <span class="mi">2</span>        <span class="n">records</span> <span class="n">occupying</span> <span class="mi">541</span>      <span class="n">words</span> <span class="k">of</span> <span class="n">mem</span>
+    <span class="o">===&gt;</span> <span class="nv">System</span> <span class="n">info</span> <span class="n">in</span> <span class="n">version</span> <span class="s">&quot;4.8&quot;</span><span class="p">,</span> <span class="n">debug</span> <span class="n">level</span> <span class="o">=</span> <span class="n">none</span> <span class="o">&lt;===</span>
+    <span class="n">opt_disc</span><span class="p">.</span> <span class="nv">Directory</span> <span class="s">&quot;/tmp/funky&quot;</span> <span class="n">is</span> <span class="n">used</span><span class="p">.</span>
+    <span class="n">use</span> <span class="n">fallback</span> <span class="n">at</span> <span class="n">restart</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="n">running</span> <span class="n">db</span> <span class="nb">nodes</span>   <span class="o">=</span> <span class="p">[</span><span class="n">nonode</span><span class="p">@</span><span class="n">nohost</span><span class="p">]</span>
+    <span class="n">stopped</span> <span class="n">db</span> <span class="nb">nodes</span>   <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">master</span> <span class="nb">node</span> <span class="n">tables</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">remote</span>             <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ram_copies</span>         <span class="o">=</span> <span class="p">[</span><span class="n">funky</span><span class="p">]</span>
+    <span class="n">disc_copies</span>        <span class="o">=</span> <span class="p">[</span><span class="n">schema</span><span class="p">]</span>
+    <span class="n">disc_only_copies</span>   <span class="o">=</span> <span class="p">[]</span>
+    <span class="p">[{</span><span class="n">nonode</span><span class="p">@</span><span class="n">nohost</span><span class="p">,</span><span class="n">disc_copies</span><span class="p">}]</span> <span class="o">=</span> <span class="p">[</span><span class="n">schema</span><span class="p">]</span>
+    <span class="p">[{</span><span class="n">nonode</span><span class="p">@</span><span class="n">nohost</span><span class="p">,</span><span class="n">ram_copies</span><span class="p">}]</span> <span class="o">=</span> <span class="p">[</span><span class="n">funky</span><span class="p">]</span>
+    <span class="mi">3</span> <span class="n">transactions</span> <span class="n">committed</span><span class="p">,</span> <span class="mi">0</span> <span class="n">aborted</span><span class="p">,</span> <span class="mi">0</span> <span class="n">restarted</span><span class="p">,</span> <span class="mi">2</span> <span class="n">logged</span> <span class="n">to</span> <span class="n">disc</span>
+    <span class="mi">0</span> <span class="n">held</span> <span class="n">locks</span><span class="p">,</span> <span class="mi">0</span> <span class="n">in</span> <span class="n">queue</span><span class="p">;</span> <span class="mi">0</span> <span class="n">local</span> <span class="n">transactions</span><span class="p">,</span> <span class="mi">0</span> <span class="n">remote</span>
+    <span class="mi">0</span> <span class="n">transactions</span> <span class="n">waits</span> <span class="n">for</span> <span class="n">other</span> <span class="nb">nodes</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="n">ok</span>
+</code></pre></div>
+<p>You can quit the REPL now, as we&#39;ll restart it in the next section.</p>
+
+<h3>Next</h3>
+
+<p>We&#39;ve had a little taste, next we&#39;re going to spend some time getting to know
+Mnesia a little better.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

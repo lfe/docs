@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>3 Lists and Simple Data</h1>
+
+<h2>3.5 Records</h2>
+
+<h3>3.5.1 Just Records</h3>
+
+<p>Sometimes lists, tuples, property lists, or hashes are not quite what is
+needed. With tuples, you can&#39;t name keys (without awkward work-arounds), and
+this makes working with large tuples rather cumbersome. Records are one way
+around this.</p>
+
+<p>A record is a data structure for storing a fixed number of elements. It has
+named fields and LFE provides some convenience functions/macros for interacting
+with them.</p>
+
+<p>However, it is important to note that record expressions are translated to
+tuple expressions during compilation. Due to this, record expressions are not
+understood by the shell in both Erlang and LFE. The examples in this section,
+therefore, will assume that you are saving the code to a file.</p>
+
+<p>Let&#39;s start by defining a record. Save this in a file named <code>record.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">rec</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">person</span>
+  <span class="nv">name</span>
+  <span class="nv">address</span>
+  <span class="nv">age</span><span class="p">)</span></code></pre></figure>
+
+<p>Then load it up in the REPL:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;record.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">rec</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now let&#39;s create some people:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">ford</span>
+    <span class="p">(</span><span class="nv">make-person</span> <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Ford Prefect&quot;</span>
+                 <span class="nv">address</span> <span class="o">&#39;</span><span class="s">&quot;Betelgeuse Seven&quot;</span>
+                 <span class="nv">age</span> <span class="mi">234</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">person</span> <span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">234</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">trillian</span>
+    <span class="p">(</span><span class="nv">make-person</span> <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Tricia Marie McMillan&quot;</span>
+                 <span class="nv">age</span> <span class="mi">60</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">person</span> <span class="s">&quot;Tricia Marie McMillan&quot;</span> <span class="nv">undefined</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Let&#39;s define a non-person, too:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">zaphod</span> <span class="o">#(</span><span class="s">&quot;Zaphod Beeblebrox&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="s">&quot;Zaphod Beeblebrox&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Some quick checks:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">is-person</span> <span class="nv">ford</span><span class="p">)</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">is-person</span> <span class="nv">zaphod</span><span class="p">)</span>
+<span class="nv">false</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>If you remember working with the tuples, property lists, and dictionaries, then
+you will enjoy the relative succinctness of the following usages:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">person-name</span> <span class="nv">ford</span><span class="p">)</span>
+<span class="s">&quot;Ford Prefect&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">person-address</span> <span class="nv">ford</span><span class="p">)</span>
+<span class="s">&quot;Betelgeuse Seven&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">person-age</span> <span class="nv">ford</span><span class="p">)</span>
+<span class="mi">234</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Let&#39;s make some changes to our data:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">ford</span>
+    <span class="p">(</span><span class="nv">set-person-age</span> <span class="nv">ford</span> <span class="mi">244</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">person</span> <span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">244</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">person-age</span> <span class="nv">ford</span><span class="p">)</span>
+<span class="mi">244</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Just as we saw with the <code>dict</code> examples, <code>set-person-age</code> doesn&#39;t
+modify the data in-place, but rather returns a new record. If we want to use
+that data in the future, we&#39;ll need to assign it to a variable (sensibly, we
+re-use the <code>ford</code> variable here).</p>
+
+<p>Also, note that there are also <code>set-person-name</code> and
+<code>set-person-address</code>.</p>
+
+<h3>3.5.2 Records and ETS</h3>
+
+<p>Additional convenience functions for records are provided by LFE, but some of
+these will only make sense in the context of ETS (Erlang Term Storage), when
+when the ability to store large amounts of data in memory becomes important. We
+will be discussing this in detail later, but this section provides a quick
+preview.</p>
+
+<p>Let&#39;s create an ETS table:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">people</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">new</span> <span class="ss">&#39;people-table</span> <span class="o">&#39;</span><span class="p">(</span><span class="o">#(</span><span class="nv">keypos</span> <span class="mi">2</span><span class="p">)</span> <span class="nb">set</span><span class="p">)))</span>
+<span class="mi">16401</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now let&#39;s insert the two <code>person</code> records that we created above:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">insert</span> <span class="nv">people</span> <span class="nv">ford</span><span class="p">)</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">insert</span> <span class="nv">people</span> <span class="nv">trillian</span><span class="p">)</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now that we have a table with some data in it, we can do some querying. Let&#39;s
+start with the <code>emp-match</code> LFE macro. Here&#39;s how we can get the name for
+every record in the table:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">match</span> <span class="nv">people</span> <span class="p">(</span><span class="nv">emp-person</span> <span class="nv">name</span> <span class="ss">&#39;$1</span><span class="p">))</span>
+<span class="p">((</span><span class="s">&quot;Ford Prefect&quot;</span><span class="p">)</span> <span class="p">(</span><span class="s">&quot;Tricia Marie McMillan&quot;</span><span class="p">))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Or, we can adjust that to return the name and address:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">match</span> <span class="nv">people</span> <span class="p">(</span><span class="nv">emp-person</span> <span class="nv">name</span> <span class="ss">&#39;$1</span> <span class="nv">address</span> <span class="ss">&#39;$2</span><span class="p">))</span>
+<span class="p">((</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span><span class="p">)</span> <span class="p">(</span><span class="s">&quot;Tricia Marie McMillan&quot;</span> <span class="nv">undefined</span><span class="p">))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>With the <code>match-person</code> LFE macro, we can do more  sophisticated querying</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">select</span> <span class="nv">people</span>
+    <span class="p">(</span><span class="nv">match-spec</span> <span class="p">(((</span><span class="nv">match-person</span> <span class="nv">name</span> <span class="nv">found-name</span> <span class="nv">age</span> <span class="nv">found-age</span><span class="p">))</span>
+                 <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="mi">100</span> <span class="nv">found-age</span><span class="p">))</span>
+                 <span class="nv">found-name</span><span class="p">)))</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="s">&quot;Tricia Marie McMillan&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Here we&#39;ve done a select in the &quot;people&quot; table for any person whose age is less
+than 100.</p>
+
+<p>Here&#39;s what it looks like when multiple records are returned:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">select</span> <span class="nv">people</span>
+    <span class="p">(</span><span class="nv">match-spec</span> <span class="p">(((</span><span class="nv">match-person</span> <span class="nv">name</span> <span class="nv">found-name</span> <span class="nv">age</span> <span class="nv">found-age</span><span class="p">))</span>
+                 <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="mi">21</span> <span class="nv">found-age</span><span class="p">))</span>
+                 <span class="nv">found-name</span><span class="p">)))</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Tricia Marie McMillan&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>This should be enough of an ETS taste to last until you get to the dedicated
+tutorial ;-)</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="3.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="5.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

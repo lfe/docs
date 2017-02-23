@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>4 Documentation</h2>
+
+<h3>4.1 Document everything</h3>
+
+<p>You should use document strings on all visible functions to explain how to
+use your code.</p>
+
+<p>Unless some bit of code is painfully self-explanatory, document it with a
+documentation string (also known as docstring).</p>
+
+<p>Documentation strings are destined to be read by the programmers who use
+your code. Documentation strings are where you should document your API.
+They should describe how to use the code (including what pitfalls to avoid),
+as opposed to how the code works (and where more work is needed), which is
+what you&#39;ll put in comments.</p>
+
+<p>Supply a documentation string when defining top-level functions, types,
+classes, variables and macros. Generally, add a documentation string
+wherever the language allows.</p>
+
+<p>For functions, the docstring should describe the function&#39;s contract: what
+the function does, what the arguments mean, what values are returned, what
+conditions the function can signal. It should be expressed at the
+appropriate level of abstraction, explaining the intended meaning rather
+than, say, just the syntax. In documentation strings, capitalize the names
+of Lisp symbols, such as function arguments. For example:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">get-area</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">width</span><span class="p">)</span>
+  <span class="s">&quot;This function calculates the area of a rectangle.</span>
+
+<span class="s">  The value of LENGTH should be an integer. The value of WIDTH should be an</span>
+<span class="s">  integer.&quot;</span>
+  <span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<p>A long docstring may usefully begin with a short, single-sentence summary,
+followed by the larger body of the docstring.</p>
+
+<p>When you fix a bug, consider whether what the fixed code does is obviously
+correct or not; if not, you must add a comment explaining the reason for the
+code in terms of fixing the bug. Adding the bug number, if any, is also
+recommended.</p>
+
+<h3>4.2 Comment Semicolons</h3>
+
+<p>Comments are explanations to the future maintainers of the code. Even if
+you&#39;re the only person who will ever see and touch the code, even if you&#39;re
+either immortal and never going to quit, or unconcerned with what happens
+after you leave (and have your code self-destruct in such an eventuality),
+you may find it useful to comment your code. Indeed, by the time you revisit
+your code, weeks, months or years later, you will find yourself a different
+person from the one who wrote it, and you will be grateful to that previous
+self for making the code readable.</p>
+
+<p>You must comment anything complicated so that the next developer can
+understand what&#39;s going on. (Again, the &quot;hit by a bus&quot; principle.)</p>
+
+<p>Also use comments as a way to guide those who read the code, so they know
+what to find where.</p>
+
+<ul>
+<li>File headers and important comments that apply to large sections of code in
+a source file should begin with four semicolons <code>;;;;</code>.</li>
+<li>You should use three semicolons <code>;;;</code> to begin comments that apply to
+just one top-level form or small group of top-level forms.</li>
+<li>Inside a top-level form, you should use two semicolons <code>;;</code> to begin a
+comment if it appears between lines.</li>
+<li>You should use one semicolon <code>;</code> if it is a parenthetical remark and
+occurs at the end of a line. You should use spaces to separate the comment
+from the code it refers to so the comment stands out. You should try to
+vertically align consecutive related end-of-line comments.</li>
+</ul>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;;;; Great module description</span>
+<span class="c1">;;;; ...</span>
+<span class="p">(</span><span class="nv">defmodule</span> <span class="nv">great-module</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">some-useful-function</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="o">...</span>
+
+<span class="c1">;;; Comment about function</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">some-useful-function</span> <span class="p">(</span><span class="nv">useful-argument</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">another-function</span> <span class="nv">useful-argument</span><span class="p">)</span>           <span class="c1">; Comment at end of line</span>
+  <span class="p">(</span><span class="nv">yet-another-fucntion</span><span class="p">)</span>                       <span class="c1">; Another one for this line</span>
+  <span class="c1">;; Comment about the next chunk of code at the same level of indentation</span>
+  <span class="o">...</span><span class="p">)</span>
+<span class="o">...</span>
+</code></pre></div>
+<p>For all semicolon comments, you should include a space between the semicolon
+and the text of the comment.</p>
+
+<h3>4.3 Grammar and Punctuation</h3>
+
+<p>When a comment is a full sentence, you should capitalize the initial letter
+of the first word and end the comment with a period. In general, you should
+use correct punctuation.</p>
+
+<h3>4.4 Attention Required</h3>
+
+<p>You should follow the convention of using <code>TODO</code> OR <code>XXX</code> comments for
+code requiring special attention. For code using unobvious forms, you must
+include a comment.</p>
+
+<p>For comments requiring special attention, such as incomplete code, todo
+items, questions, breakage, and danger, include a <code>TODO</code> OR <code>XXX</code>
+comment indicating the type of problem, its nature, and any notes on how it
+may be addressed.</p>
+
+<p>The comments begin with <code>TODO</code> OR <code>XXX</code> in all capital letters, followed
+by the name, e-mail address, or other identifier of the person with the best
+context about the problem referenced by the <code>TODO</code>. The main purpose is to
+have a consistent <code>TODO</code> that can be searched to find out how to get more
+details upon request. A <code>TODO</code> is not a commitment that the person
+referenced will fix the problem. Thus when you create a <code>TODO</code>, it is
+almost always your name that is given.</p>
+
+<p>When signing comments, you should use your username or full email address,
+which ever most readily identifies you. If using github, you can use your
+github username preceded by the &quot;@&quot; sign. Do not just initials of your name.</p>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; XXX (oubiwann@cogitat.io): Refactor to provide a better API.</span>
+</code></pre></div>
+<p>Be specific when indicating times or software releases in a <code>TODO</code> comment
+and use YYYY-MM-DD format for dates to make automated processing of such
+dates easier, e.g., 2038-01-20 for the end of the 32-bit signed <code>time_t</code>.</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; TODO (@rvirding): Remove this code after release 1.7 or before</span>
+<span class="c1">;; 2012-11-30.</span>
+</code></pre></div>
+<p>For code that uses unobvious forms to accomplish a task, you should include a
+comment stating the purpose of the form and the task it accomplishes.</p>
+
+<h3>4.5 Domain-Specific Languages</h3>
+
+<p>You should design your Domain Specific Language to be easy to read and
+understand by people familiar with the domain.</p>
+
+<p>You must properly document all your Domain Specific Language.</p>
+
+<p>Sometimes, your DSL is designed for terseness. In that case, it is important
+to document what each program does, if it&#39;s not painfully obvious from the
+context.</p>
+
+<p>Notably, when you use regular expressions (e.g. with the <code>re</code> module), you
+should always put in a comment (usually a two-semicolon comment on the
+previous line) explaining, at least basically, what the regular expression
+does, or what the purpose of using it is. The comment need not spell out
+every bit of the syntax, but it should be possible for someone to follow the
+logic of the code without actually parsing the regular expression.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

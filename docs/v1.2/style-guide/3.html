@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/community.html">Community</a></li>
+            <li class="title"><a href="/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>3 Formatting</h2>
+
+<h3>3.1 Spelling and Abbreviations</h3>
+
+<p>You should use correct spelling in your comments, and most importantly in
+your identifiers.</p>
+
+<p>English is the Lingua Franca of programming, but both Brittish English and
+American English spellings are acceptable. Do be consistent within single
+projects, though -- don&#39;t mix spellings.</p>
+
+<p>You should use only common and domain-specific abbreviations, and should be
+consistent with these abbreviations. You may abbreviate lexical variables of
+limited scope in order to avoid overly-long symbol names.</p>
+
+<p>If you&#39;re not sure, consult a dictionary, Google for alternative spellings,
+or ask a local expert.</p>
+
+<h3>3.2 Line length</h3>
+
+<p>You should format source code so that no line is longer than 80 characters.</p>
+
+<p>Some line length restriction is better than none at all. Old text
+terminals used to make 80 columns the standard, which was inherited from
+punchcard character widths. That, in turn, was inherited from automated
+loom card widths. We continue to recommend this width for several reasons:</p>
+
+<ol>
+<li>When printing code on A4 or US Letter paper sizes, 80-character width
+source files can be printed without requiring a magnifying glass to read.</li>
+<li>There are times when one does not have the luxury of a wide-screen monitor
+(e.g., debugging code on a console in a data center), and at those times,
+we are quite grateful to be looking at code that is 80 characters wide at
+most.</li>
+<li>Using modern text editors that support multiple panes/frames, one may have
+3 to 4 files open side-by-side in a single window, thanks to the 80-char
+limit.</li>
+</ol>
+
+<h3>3.3 Indentation</h3>
+
+<p>Indent your code the way a properly configured GNU Emacs does or the way that
+Sublime Text with the paredit plugin does.</p>
+
+<p>Maintain a consistent indentation style throughout a project.</p>
+
+<p>Indent carefully to make the code easier to understand.</p>
+
+<p>There are several projects that assist with Lisp-indentation in various text
+editors:</p>
+
+<ul>
+<li>Emacs: <code>cl-indent</code></li>
+<li>Sublime Text: <code>lispindent</code></li>
+<li>Vim: various (see the <a href="http://www.cliki.net/vim">CLiki page</a>)</li>
+</ul>
+
+<p>You should use the indentation provided by these packages (though note that
+lispindent for Sublime Text does get a few things wrong).</p>
+
+<p>Use indentation to make complex function applications easier to read. When
+an application does not fit on one line or the function takes many
+arguments, consider inserting newlines between the arguments so that each
+one is on a separate line. However, do not insert newlines in a way that
+makes it hard to tell how many arguments the function takes or where an
+argument form starts and ends.</p>
+
+<p>Don&#39;t do this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Bad</span>
+<span class="p">(</span><span class="nv">do-something</span> <span class="nv">first-argument</span> <span class="nv">second-argument</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">frob</span> <span class="nv">x</span><span class="p">))</span> <span class="nv">fourth-argument</span> <span class="nv">last-argument</span><span class="p">)</span>
+</code></pre></div>
+<p>Do this instead:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Better</span>
+<span class="p">(</span><span class="nv">do-something</span> <span class="nv">first-argument</span>
+              <span class="nv">second-argument</span>
+              <span class="nf">#&#39;</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">frob</span> <span class="nv">x</span><span class="p">))</span>
+              <span class="nv">fourth-argument</span>
+              <span class="nv">last-argument</span><span class="p">)</span>
+</code></pre></div>
+<h3>3.4 File Header</h3>
+
+<p>What to include in the top of source files:</p>
+
+<ul>
+<li>Module descriptions.</li>
+<li>Copyright for special files.</li>
+<li>Authorship for special files.</li>
+</ul>
+
+<p>What should not be included in the file headers:</p>
+
+<ul>
+<li>Copyright and licesning info that is the same as the <code>LICENSE</code> file.</li>
+<li>General authorship info -- use your VCS for that.</li>
+</ul>
+
+<p>Every source file should begin with a brief description of the contents of
+that file.</p>
+
+<p>After that description, every regular LFE module should start the code
+itself with a <code>(defmodule ...)</code> form. Include files do not have
+<code>(defmodule ...)</code>, but should have a series of <code>(defmacro ...)</code>,
+<code>(defrecord ...)</code>, etc., forms instead.</p>
+
+<p>In general, copyright and licensing should be listed in the <code>LICENSE</code> file
+at the root of the project, not in the file header. Exceptions should be
+made for files that are meant to be distributed independently (e.g.,
+scripts, binaries, etc.) or for files that have a differing license from the
+rest of the project (for whatever reason).</p>
+
+<p>Each comment line of the file header should be prepended with four (4)
+semicolons:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;;;; This module does some truly amazing stuff. For example, ...</span>
+<span class="c1">;;;; ...</span>
+</code></pre></div>
+<h3>3.5 Vertical White Space</h3>
+
+<p>You should include one blank line between top-level forms, such as function
+definitions.</p>
+
+<p>Exceptionally, blank lines can be omitted between simple, closely related
+defining forms of the same kind, such as a group of related constant
+definitions.</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">pi</span> <span class="p">()</span> <span class="p">(</span><span class="nb">*</span> <span class="mh">#x12B9B0A1</span> <span class="p">(</span><span class="nv">math:pow</span> <span class="mi">10</span> <span class="mi">-8</span><span class="p">)))</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">golden-ratio</span> <span class="p">()</span> <span class="p">(</span><span class="nb">*</span> <span class="mh">#x397BEEF356E6C4</span> <span class="p">(</span><span class="nv">math:pow</span> <span class="mi">10</span> <span class="mi">-16</span><span class="p">)))</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">e</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nb">*</span> <span class="mh">#xB9FE0D492C1F1BCA8C9CB776B21EA1C8A94019588B</span> <span class="p">(</span><span class="nv">math:pow</span> <span class="mi">10</span> <span class="mi">-50</span><span class="p">)))</span>
+</code></pre></div>
+<p>Blank lines can be used to separate parts of a complicated function.
+Generally, however, you should break a large function into smaller ones
+instead of trying to make it more readable by adding vertical space. If you
+can&#39;t, you should document with a <code>;;</code> comment what each of the separated
+parts of the function does.</p>
+
+<p>You should strive to keep top-level forms, including comments but excluding
+the documentation string, of appropriate length -- preferrably short. Forms
+extending beyond a single page should be rare and their use should be
+justfied.</p>
+
+<h3>3.6 Horizontal White Space</h3>
+
+<p>It is considered very bad style to include extra horizontal whitespace
+before or after parentheses or around symbols.</p>
+
+<p>You should not place right parentheses by themselves on a line. A set of
+consecutive trailing parentheses need to appear on the same line.</p>
+
+<p>Don&#39;t do this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Very Bad</span>
+<span class="p">(</span> <span class="nb">defun</span> <span class="nv">factorial</span>
+    <span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">(</span> <span class="nb">*</span> <span class="nv">n</span> <span class="p">(</span> <span class="nv">factorial</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+</code></pre></div>
+<p>Instead, do this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Better</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">factorial</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">((</span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">*</span> <span class="nv">n</span> <span class="p">(</span><span class="nv">factorial</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span>
+</code></pre></div>
+<p>You should use only one space between forms.</p>
+
+<p>You should not use spaces to vertically align forms in the middle of
+consecutive lines. An exception is made when the code possesses an important
+yet otherwise not visible symmetry that you want to emphasize.</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Bad</span>
+<span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">low</span>    <span class="mi">1</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">high</span>   <span class="mi">2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">sum</span>    <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">low</span> <span class="nv">low</span><span class="p">)</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">high</span> <span class="nv">high</span><span class="p">))))</span>
+  <span class="o">...</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Better</span>
+<span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">low</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">high</span> <span class="mi">2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">sum</span> <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">low</span> <span class="nv">low</span><span class="p">)</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">high</span> <span class="nv">high</span><span class="p">))))</span>
+  <span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<p>You should align nested forms if they occur across more than one line.</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Bad</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">munge</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+<span class="nv">c</span><span class="p">))</span>
+</code></pre></div><div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Better</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">munge</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+     <span class="nv">c</span><span class="p">))</span>
+</code></pre></div>
+<p>You should set your editor to avoid inserting tab characters in the files you
+edit. Tabs cause confusion when editors disagree on how many spaces they
+represent. In Emacs, do <code>(setq-default indent-tabs-mode nil)</code>.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

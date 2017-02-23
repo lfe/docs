@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/rvirding/lfe">View On GitHub</a></li>
+          <li class="title"><a href="/download.html">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/docs.html">Docs</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+      <section>
+        <div id="title">
+          <h1>
+          <img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-tiny.png" align="top" />
+          Lisp Flavored Erlang</h1>
+          <hr>
+          <span class="credits left">LFE project maintained by <a href="https://github.com/rvirding">Robert Virding</a></span>
+          <span class="credits right">Hosted on GitHub @ <a href="https://github.com/rvirding/lfe/">rvirding/lfe</a></span>
+          <br/>
+          <span class="credits left">LFE docs maintained by <a href="https://github.com/oubiwann">Duncan McGreggor</a></span>
+          <span class="credits right">Hosted on GitHub @ <a href="https://github.com/lfe/lfe.github.io/">lfe/lfe.github.io</a></span>
+        </div>
+
+<h2>Nothing Quite Compares...</h2>
+
+<p>...To the taste of Erlang, aged in the oaken barrels of Lisp, served at a
+temperature of perfect hotness. New to LFE? Check out our
+<a href="/quick-start/1.html">Quick Start</a> guide!</p>
+
+<h3>What Is This?</h3>
+
+<p>You are at the home page of LFE --
+<a href="https://github.com/rvirding/lfe/">Lisp Flavoured Erlang</a>
+-- a Lisp syntax front-end to the Erlang compiler. LFE is a
+<a href="http://en.wikipedia.org/wiki/Lisp-1_vs._Lisp-2#The_function_namespace">Lisp-2</a>,
+like Common Lisp, and comes with a
+<a href="http://en.wikipedia.org/wiki/REPL">REPL</a> (shell) for use with
+interactive coding.</p>
+
+<p>LFE coexists seamlessly with vanilla Erlang and OTP. As such, code written in
+LFE can freely be used together with modules written in vanilla Erlang and
+applications in Erlang/OTP.</p>
+
+<h3>Features</h3>
+
+<p>Below are a selection of code samples representing features available in LFE.
+There&#39;s much more to see, though -- so don&#39;t forget to visit the
+<a href="/docs.html">Docs</a> page!</p>
+
+<h4>Records</h4>
+
+<p>Records are very simple in LFE. They are created with the <code>defrecord</code> form
+like so:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defrecord</span> <span class="nv">person</span>
+  <span class="nv">name</span>
+  <span class="nv">address</span>
+  <span class="nv">age</span><span class="p">)</span></code></pre></figure>
+
+<p>For more information, see the
+<a href="/tutorials/records/1.html">tutorial on LFE records</a>.</p>
+
+<h4>Pattern Matching</h4>
+
+<p>The power of Erlang&#39;s pattern matching is available in Lisp form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">name</span> <span class="nv">place</span> <span class="nv">age</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">234</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nb">list</span> <span class="nv">name</span> <span class="nv">place</span> <span class="nv">age</span><span class="p">))</span></code></pre></figure>
+
+<p>For more information, see the
+<a href="/user-guide/1.html">User Guide</a> as well as the
+<a href="/tutorials/patterns/1.html">tutorial on pattern matching</a>.</p>
+
+<h4>Macros</h4>
+
+<p>Here are a couple example LFE macros:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nb">caar</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="nb">car</span> <span class="p">(</span><span class="nb">car</span> <span class="o">,</span><span class="nv">x</span><span class="p">)))</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nb">list*</span>
+  <span class="p">((</span><span class="nb">list</span> <span class="nv">e</span><span class="p">)</span> <span class="nv">e</span><span class="p">)</span>
+  <span class="p">((</span><span class="nb">cons</span> <span class="nv">e</span> <span class="nv">es</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="nb">cons</span> <span class="o">,</span><span class="nv">e</span> <span class="p">(</span><span class="nb">list*</span> <span class="o">.</span> <span class="o">,</span><span class="nv">es</span><span class="p">)))</span>
+  <span class="p">(()</span> <span class="p">()))</span></code></pre></figure>
+
+<p>Note that the functionality represented by the LFE code above was implemented
+internally in Erlang, not in LFE itself.</p>
+
+<h3>More Shiny!</h3>
+
+<p>For those that can&#39;t wait, here&#39;s an example client/server in action:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">ping_pong</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">start_link</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">ping</span> <span class="mi">0</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">init</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nv">handle_call</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nv">handle_cast</span> <span class="mi">2</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">handle_info</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nv">terminate</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nv">code_change</span> <span class="mi">3</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">behaviour</span> <span class="nv">gen_server</span><span class="p">))</span> <span class="c1">;Just indicates intent</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">start_link</span> <span class="p">()</span>
+  <span class="p">(</span><span class="err">:</span> <span class="nv">gen_server</span> <span class="nv">start_link</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;local</span> <span class="ss">&#39;ping_pong</span><span class="p">)</span> <span class="ss">&#39;ping_pong</span> <span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span><span class="p">)))</span>
+
+<span class="c1">;; Client API</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">ping</span> <span class="p">()</span>
+  <span class="p">(</span><span class="err">:</span> <span class="nv">gen_server</span> <span class="nv">call</span> <span class="ss">&#39;ping_pong</span> <span class="ss">&#39;ping</span><span class="p">))</span>
+
+<span class="c1">;; Gen_server callbacks</span>
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">state</span> <span class="p">(</span><span class="nv">pings</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">init</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="p">(</span><span class="nv">make-state</span> <span class="nv">pings</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">handle_call</span> <span class="p">(</span><span class="nv">req</span> <span class="nv">from</span> <span class="nv">state</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">new-count</span> <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nv">state-pings</span> <span class="nv">state</span><span class="p">)</span> <span class="mi">1</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">new-state</span> <span class="p">(</span><span class="nv">set-state-pings</span> <span class="nv">state</span> <span class="nv">new-count</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;reply</span>
+           <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;pong</span> <span class="nv">new-count</span><span class="p">)</span>
+           <span class="nv">new-state</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">handle_cast</span> <span class="p">(</span><span class="nv">msg</span> <span class="nv">state</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;noreply</span> <span class="nv">state</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">handle_info</span> <span class="p">(</span><span class="nv">info</span> <span class="nv">state</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;noreply</span> <span class="nv">state</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">terminate</span> <span class="p">(</span><span class="nv">reason</span> <span class="nv">state</span><span class="p">)</span>
+  <span class="ss">&#39;ok</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">code_change</span> <span class="p">(</span><span class="nv">old-vers</span> <span class="nv">state</span> <span class="nv">extra</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">state</span><span class="p">))</span></code></pre></figure>
+
+<h3>Cool! How do I start?</h3>
+
+<p>LFE documentation is maintained in the source code in the
+<a href="https://github.com/rvirding/lfe/tree/master/doc">doc directory</a>.
+There is also a <a href="https://github.com/rvirding/lfe/wiki">wiki</a> with
+some excellent content presented there.  However, the site you are currently
+reading is attempting to provide a gentler and more verbose introduction to
+Lisp Flavored Erlang. We aim to accomplish this in two important ways:</p>
+
+<ul>
+<li>First, with a <a href="/quick-start/1.html">Quick Start</a>. This page gives
+a nice general overview of LFE, providing some content as well as a sense of
+what you can do with it.</li>
+<li>Secondly, over time, we will be providing a more detailed version of the
+source code documentation in the <a href="/docs">Docs</a> section of this
+site. Note, however, that for now, those pages are currently under active
+development.</li>
+</ul>
+
+<p>A final resource for the curious and motivated is available in the
+<a href="https://github.com/rvirding/lfe/tree/master/examples">examples</a>
+directory of the project repo. Each sample provides functioning code that
+shows how to use LFE in larger contexts.</p>
+
+<p>Enjoy!</p>
+
+
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

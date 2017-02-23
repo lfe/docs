@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>5 Naming</h2>
+
+<h3>5.1 Symbol Guidelines</h3>
+
+<p>Use lower case for all symbols. Consistently using lower case makes
+searching for symbol names easier and is more readable. You should follow
+the rules for Spelling and Abbreviations You should follow punctuation
+conventions.</p>
+
+<p>Note that, unlike Common Lisp, LFE is <em>not</em> case-converting, and that the
+symbol-name of your symbols will be lowercase. As such, <code>FUNC</code> and <code>func</code>
+would represent two different functions. Regarldess, we encourage all LFEers
+to use the Common Lisp standards and not mix case: keep it simple.</p>
+
+<p>Place hyphens between all the words in a symbol. If you can&#39;t easily say an
+identifier out loud, it is probably badly named.</p>
+
+<p>You must not use &quot;/&quot; or &quot;.&quot; instead of &quot;-&quot; unless you have a well-documented
+overarching reason to, and permission from other hackers who review your
+proposal.</p>
+
+<p>See the section on Spelling and Abbreviations for guidelines on using
+abbreviations.</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Bad</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">default-username</span> <span class="p">()</span> <span class="o">&#39;</span><span class="s">&quot;Ann&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">max-widget-cnt</span> <span class="p">()</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; Better</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">default-user-name</span> <span class="p">()</span> <span class="o">&#39;</span><span class="s">&quot;Ann&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">maximum-widget-count</span> <span class="p">()</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div>
+<p>There are conventions in Common Lisp for the use of punctuation in symbols.
+You should not use punctuation in symbols outside these conventions.</p>
+
+<p>Unless the scope of a variable is very small, do not use overly short names
+like <code>i</code> and <code>zq</code>.</p>
+
+<h3>5.2 Denote Intent, Not Content</h3>
+
+<p>You should name a variable according to the high-level concept that it
+represents, not according to the low-level implementation details of how the
+concept is represented.</p>
+
+<p>Thus, you should avoid embedding data structure or aggregate type names,
+such as <code>list</code>, <code>tuple</code>, or <code>atom</code> inside variable names, unless you&#39;re
+writing a generic algorithm that applies to arbitrary <code>list</code>s, <code>tuple</code>s,
+<code>atom</code>s, etc. In that case it&#39;s perfectly OK to name a variable <code>list</code>
+or <code>tuple</code>.</p>
+
+<p>Be consistent. If a variable is named <code>row</code> in one function, and its value
+is being passed to a second function, then call it <code>row</code> rather than, say,
+<code>value</code>.</p>
+
+<h3>5.3 Global Variables and Constants</h3>
+
+<p>Global variables should be avoided whenever possible. In Common Lisp, the
+following convention is followed:</p>
+
+<ul>
+<li>Global constants start and end with plus characters <code>+</code>.</li>
+<li>Global variable names start and end with asterisks <code>*</code> (also known in
+this context as &quot;earmuffs&quot;).</li>
+</ul>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">+hash-results+</span> <span class="p">()</span> <span class="mh">#xbd49d10d10cbee50</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="vg">*maximum-search-depth*</span> <span class="p">()</span> <span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<p>In LFE, while we won&#39;t say this is a bad practice, we&#39;d suggest you do things
+a little differently. (You may find that some LFE projects will reject a
+pull request with global constants or variables, or ones named in the Common
+Lisp manner.)</p>
+
+<p>The prefered method is to define a constants module for your project, such as
+<code>my-proj-const.lfe</code>. Then, you can refer to that project&#39;s constants with
+calls like <code>(my-proj-const:max-widgets)</code>. The use of a constants module
+like this provides the same context as <code>+name+</code> or <code>*name*</code> without the
+need for such things as &quot;earmuffs&quot;.</p>
+
+<p>Keep in mind that, unlike Common Lisp, LFE doesn&#39;t have <code>(defvar ...)</code> or
+<code>(defconstant ...)</code> forms. Instead, functions are used (functions which
+take no arguments).</p>
+
+<p>In some projects, parameters that are not meant to be usually modified or
+bound under normal circumstances (but may be during experimentation or
+exceptional situations) should start (but do not end) with a dollar sign. If
+such a convention exists within your project, you should follow it
+consistently. Otherwise, you should avoid naming variables like this.</p>
+
+<h3>5.4 Predicate Names</h3>
+
+<p>Due to the influence of Clojure, LFE supports two conventions for naming
+predicates:</p>
+
+<ul>
+<li>A trailing <code>p</code> or <code>-p</code>, or</li>
+<li>A trailing <code>?</code>.</li>
+</ul>
+
+<p>You should name boolean-valued functions and variables with a trailing &quot;?&quot;,
+&quot;P&quot;, or &quot;-P&quot;, to indicate they are predicates. When choosing the Common Lisp
+convention, you should use &quot;P&quot; when the rest of the function name is one
+word and &quot;-P&quot; when it is more than one word.</p>
+
+<p>A rationale for this convention is given in the
+<a href="http://www.cs.cmu.edu/Groups/AI/html/cltl/clm/node69.html">CLtL2
+chapter on predicates</a>.</p>
+
+<p>When you develop such a package and decide upon a convention for your
+predicates, you should be consistent with the rest of the package. When you
+start a new package, you should not use an alternative rule without a very
+good documented reason.</p>
+
+<h3>5.5 Modules</h3>
+
+<p>Erlang doesn&#39;t have packages, and LFE inherits this approach to module
+management. Filenames and module names need to match, and they need to be
+unique across all installed libraries and services. As such, LFE gets
+namespaces in the form of module names, and conventions such as prefixing
+modules with unique atoms (such as the project name) make this approach
+usable.</p>
+
+<p>Only functions which have been explicitly exported (or all functions, in the
+case of an <code>(export all)</code>) are accessible outside the module.</p>
+
+<p>You may find that some internal symbols represent concepts you usually want
+to abstract away and hide under the hood, yet at times are necessary to
+expose for various extensions. For the former reason, you do not want to
+export them, yet for the latter reason, you have to export them. The
+solution is to have two different modules, one for your normal users to
+use, and another for the implementation and its extenders to use.</p>
+
+<p>Your module cannot shadow core LFE forms (and thus can&#39;t effectively
+redefine) symbols that are part of the LFE language. For forms that are
+shadowable, we strongly discourage this practice. There are certain
+exceptions, but they should be very well-justified and extremely rare:</p>
+
+<ul>
+<li>If you are explicitly replacing an Erlang or LFE symbol with a safer or
+more featureful version. (If this is the case, you should also submit a
+patch upstream so that others may benefit from this improvement.)</li>
+<li>If you are defining a module not meant to be &quot;used&quot;, and have a good
+reason to export a symbol that clashes with LFE.</li>
+</ul>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="4.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="6.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

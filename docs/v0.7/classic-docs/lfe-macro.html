@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="/download.html">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/docs.html">Docs</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Index</h3>
+
+    <ul>
+  <li><a href="/classic-docs/user-guide.html">User Guide</a></li>
+  <li><a href="/classic-docs/release-notes.html">Release Notes</a></li>
+  <li><a href="/classic-docs/lfe-shell.html">LFE Shell</a></li>
+  <li><a href="/classic-docs/lfe-io.html">I/O Functions</a></li>
+  <li><a href="/classic-docs/lfe-macro.html">Macro Expander</a></li>
+  <li><a href="/classic-docs/lfe-comp.html">Compiler</a></li>
+  <li><a href="/classic-docs/lfe-bits.html">Common Binary Functions</a></li>
+  <li><a href="/classic-docs/lfe-gen.html">Dynamic Code Generator</a></li>
+  <li><a href="/classic-docs/lfe-lib.html">Internal Library used by LFE</a></li>
+</ul>
+
+
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Documentation</h1>
+
+<h2>Macro Expander</h2>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">    MODULE
+
+        lfe_macro
+
+    MODULE SUMMARY
+
+        Lisp Flavoured Erlang (LFE) macro expander
+
+    DESCRIPTION
+
+        This module provides an interface to the LFE macro expander.
+        The expander is used by the LFE compile and in the shell but
+        can also be used by applications explicitly wanting to handle
+        a file.
+
+    DATA TYPES
+
+        sexpr()
+            An LFE s-expression, a list structure.
+        filesexpr() = {Sexpr,Line}
+            This is the format returned by lfe_io:parse_file/1 and
+            is used by the compiler to give better error
+            information.
+            env()
+            This is an macro and evaluation environment as created
+            by lfe_lib:new_env().
+
+    EXPORTS
+
+    expand_forms([FileSexpr], Env) -&gt; ExpRet
+
+        where
+          FileSexpr = filesexpr()
+          Env = env()
+          ExpRet = {yes,[FileSexpr],Env,Warnings} | {error,Errors,Warnings}
+
+    macro_forms([FileSexpr], Env) -&gt; {[FileSexpr],Env}.
+
+        where
+          FileSexpr = filesexpr()
+          Env = env()
+
+    expand_expr_all(Sexpr, Env) -&gt; Sexpr.
+
+        where
+          Sexpr = sexpr()
+          Env = env()
+
+        Expand all macros in Sexpr either using the definitions in Env
+        or just the default macros. Note that any eventual new macro
+        definitions will be lost.
+
+    expand_expr(Sexpr, Env) -&gt; {yes,Exp} | no.
+    expand_expr_1(Sexpr, Env) -&gt; {yes,Exp} | no.
+
+        where
+          Sexpr = Exp = sexpr()
+          Env = env()
+
+        Test if the top s-expression here is a macro call, if so
+        expand it and return {yes,Expansion}, if not then return no.
+        expand_expr/2 will expand the top s-expression as much as
+        possible while expand_expr_1/2 will only try it once. These
+        functions use the macro definitions in the environment and the
+        standard pre-defined macros.</code></pre></figure>
+
+  </article>
+</div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

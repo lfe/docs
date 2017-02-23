@@ -1,0 +1,613 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="/download.html">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/docs.html">Docs</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/user-guide/check/3.html">EUnit</a></li>
+        <li><a class="spec" href="/user-guide/check/4.html">TDD</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>2 Diving In</h1>
+
+<h2>2.5 Pattern Matching</h2>
+
+<h3>2.5.1 What Are Patterns?</h3>
+
+<p>Pattern matching in Erlang is huge, and it has a proportional impact on LFE and
+what one can do with this dialect of Lisp. Pattern matching in LFE can be used
+in function clauses, <code>let</code>, <code>case</code>, <code>receive</code> and in the macros
+<code>cond</code>, <code>lc</code>, and <code>bc</code>. From the REPL, pattern matching may be done
+in <code>set</code> as well.</p>
+
+<p>Pattern matching in LFE happens when an expression matches a given pattern,
+e.g.:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="o">...</span> <span class="p">(</span><span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expression&gt;</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<p>where the <code>&lt;pattern&gt;</code> might be something like this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">binary</span> <span class="p">(</span><span class="nv">f</span> <span class="nb">float</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">32</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">b</span> <span class="nv">bitstring</span><span class="p">))</span></code></pre></figure>
+
+<p>or this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">value</span><span class="p">)</span></code></pre></figure>
+
+<p>or this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span></code></pre></figure>
+
+<p>or this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">cons</span> <span class="nv">h</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+
+<p>and the <code>&lt;expression&gt;</code> is any legal LFE expression. Ideally, it will return
+data that will be matched by the pattern.</p>
+
+<p>If the matching succeeds, any unbound variables in the pattern become bound. If
+the matching fails, a run-time error occurs.  All of this is best understood
+through the examples given below. Each example is preceeded by the general form
+of pattern as used in the given context. This should help keep things clear,
+even when the examples get convoluted.</p>
+
+<h3>2.5.2 Patterns in Forms</h3>
+
+<h4>2.5.2.1 <code>let</code></h4>
+
+<p>Pattern matching in <code>let</code> has the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expression&gt;</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expression&gt;</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
+  <span class="o">...</span> <span class="p">)</span></code></pre></figure>
+
+<p>Examples:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">)</span> <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">len</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>In this example, we have a pattern of <code>(tuple len status data)</code> and this is
+getting matched against our expression which is some data of the form
+<code>#(8 ok &quot;Trillian&quot;)</code>. The pattern expects a tuple, and a tuple is what we
+gave it. With the pattern&#39;s variables bound inside the <code>let</code>, we can return
+a list of the variables.</p>
+
+<p>If our pattern was written to expect a list and the expression was a tuple,
+we&#39;d get a <code>badmatch</code> error:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nb">list</span> <span class="nv">len</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">)</span> <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">len</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">))</span>
+<span class="nv">exception</span> <span class="nv">error:</span> <span class="o">#(</span><span class="nv">badmatch</span> <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">))</span>
+
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Whatever our expression is going to be needs to be matched in the pattern. If
+we had a list integers in the expression, we would need a pattern like
+<code>(list i1 i2 i3 ...)</code>.</p>
+
+<p>Here&#39;s a super-simplified version of a <code>let</code> with pattern matching:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">data</span> <span class="o">&#39;</span><span class="s">&quot;Trillian&quot;</span><span class="p">))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">data</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Here our pattern was simply the variable <code>data</code> and our expression was the
+string &quot;Trillian&quot;. This, of course, is easily recognized as a standard variable
+assignment within a <code>let</code>.</p>
+
+<p>Patterns can nest, though, and with this you can start to get a sense of the
+power they hold. Let&#39;s look at a more complicated example:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">lens</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">)</span>
+         <span class="o">#(</span><span class="p">(</span><span class="mi">8</span> <span class="mi">43</span><span class="p">)</span> <span class="o">#(</span><span class="nv">err</span> <span class="s">&quot;msg too short&quot;</span><span class="p">)</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">lens</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;\b+&quot;</span> <span class="o">#(</span><span class="nv">err</span> <span class="s">&quot;msg too short&quot;</span><span class="p">)</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>As you can see, we&#39;ve nested our expression: length is a two-valued list and
+status is a two-valued tuple. Our pattern, however, is still simple. But this
+is going to change: we want to extract our data into more variables, and we do
+this by mirroring the expression data structure in the pattern itself:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">len-data</span> <span class="nv">len-total</span><span class="p">)</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">status-code</span> <span class="nv">status-msg</span><span class="p">)</span> <span class="nv">data</span><span class="p">)</span>
+         <span class="o">#(</span><span class="p">(</span><span class="mi">8</span> <span class="mi">43</span><span class="p">)</span> <span class="o">#(</span><span class="nv">err</span> <span class="s">&quot;msg too short&quot;</span><span class="p">)</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">len-data</span> <span class="nv">len-total</span> <span class="nv">status-code</span> <span class="nv">status-msg</span> <span class="nv">data</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">8</span> <span class="mi">43</span> <span class="nv">err</span> <span class="s">&quot;msg too short&quot;</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>As you can see, our nested pattern extracted the data into the pattern&#39;s
+variables. If all we cared about was the status message, we could make
+this simpler by using the &quot;I don&#39;t care&quot; variable (the underscore):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">_</span> <span class="nv">_</span><span class="p">)</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">_</span> <span class="nv">status-msg</span><span class="p">)</span> <span class="nv">_</span><span class="p">)</span>
+         <span class="o">#(</span><span class="p">(</span><span class="mi">8</span> <span class="mi">43</span><span class="p">)</span> <span class="o">#(</span><span class="nv">err</span> <span class="s">&quot;msg too short&quot;</span><span class="p">)</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">status-msg</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;msg too short&quot;</span><span class="p">)</span></code></pre></figure>
+
+<p>Having seen these examples, you are probably gaining some insight into the
+power of pattern matching in Erlang and LFE. There&#39;s more, though :-) See below
+for equally potent uses.</p>
+
+<h4>2.5.2.2 <code>case</code></h4>
+
+<p>Pattern matching in <code>case</code> has the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">case</span> <span class="nv">&lt;expression&gt;</span>
+  <span class="p">(</span><span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expression&gt;</span> <span class="o">...</span> <span class="p">)</span>
+  <span class="p">(</span><span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expression&gt;</span> <span class="o">...</span> <span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<p>Keep in mind that <code>case</code> may also be used (optionally) inside the <code>try</code>
+form. For more information on <code>try</code>, see
+<a href="/user-guide/check/2.html">section 5.2</a>.</p>
+
+<p>Let&#39;s take a look at <code>case</code> in action:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="o">#(</span><span class="mi">6</span> <span class="nb">warn</span> <span class="s">&quot;Arthur&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">6</span> <span class="nb">warn</span> <span class="s">&quot;Arthur&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">case</span> <span class="nv">data</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="ss">&#39;ok</span> <span class="nv">msg</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~s seems good.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="ss">&#39;err</span> <span class="nv">msg</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;There&#39;s a problem with ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="ss">&#39;warn</span> <span class="nv">msg</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Be careful of ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))))</span>
+<span class="nv">Be</span> <span class="nv">careful</span> <span class="nv">of</span> <span class="nv">Arthur.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>The patterns we are using in this <code>case</code> example expect data of one
+particular format, differentiating by the second element of the provided tuple.
+With new data, we can exercise the other cases:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span></code></pre></figure>
+
+<p>We won&#39;t re-type the <code>case</code> example here; just hit the &quot;up&quot; arror until you
+get to the <code>case</code> entry and hit return:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">case</span> <span class="o">...</span><span class="p">)</span>
+<span class="nv">Trillian</span> <span class="nv">seems</span> <span class="nv">good.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Similarly, we can test the remaining case:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="o">#(</span><span class="mi">6</span> <span class="nv">err</span> <span class="s">&quot;Zaphod&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">6</span> <span class="nv">err</span> <span class="s">&quot;Zaphod&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">case</span> <span class="o">...</span><span class="p">)</span>
+<span class="nv">There</span><span class="ss">&#39;s</span> <span class="nv">a</span> <span class="nv">problem</span> <span class="nv">with</span> <span class="nv">Zaphod.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h4>2.5.2.3 <code>receive</code></h4>
+
+<p>Pattern matching in <code>receive</code> has the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">receive</span>
+  <span class="p">(</span><span class="nv">&lt;pattern&gt;</span> <span class="o">...</span> <span class="p">)</span>
+  <span class="p">(</span><span class="nv">&lt;pattern&gt;</span> <span class="o">...</span> <span class="p">)</span>
+  <span class="o">...</span>
+  <span class="p">(</span><span class="nv">after</span> <span class="nv">timeout</span>
+    <span class="o">...</span> <span class="p">))</span></code></pre></figure>
+
+<p>There is a tutorial on working with Erlang&#39;s <a
+href="/tutorials/processes/1.html">light weight processes in LFE</a>, and
+several example usages of <code>receive</code> are given there. On the second page of
+that tutorial, we see that any message sent to <code>receive</code> is accepted and
+processed. In the example below, we replace the simple pattern of the whole
+data (i.e., <code>msg</code>) with a series of patterns that will print only if the
+message matches one of the provided patterns.</p>
+
+<p>Save the following in a file named <code>rcv-pttrn.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">rcv-pttrn</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">safety-check</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">safety-check</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">item</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~s is safe to approach.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">item</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">safety-check</span><span class="p">))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;warn</span> <span class="nv">item</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Approach ~s with extreme caution.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">item</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">safety-check</span><span class="p">))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;crit</span> <span class="nv">item</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Withdraw from ~s immediately!~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">item</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">safety-check</span><span class="p">))))</span></code></pre></figure>
+
+<p>Next, start up the LFE REPL, compile the module above, and start our safety
+server:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;rcv-pttrn&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">rcv-pttrn</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;rcv-pttrn</span> <span class="ss">&#39;safety-check</span> <span class="p">()))</span>
+<span class="nv">&lt;0.34.0&gt;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now let&#39;s give our patterns a try by sending messages to the server process:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">#(</span><span class="nv">ok</span> <span class="s">&quot;Earth&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="s">&quot;Earth&quot;</span><span class="p">)</span>
+<span class="nv">Earth</span> <span class="nv">is</span> <span class="nv">safe</span> <span class="nv">to</span> <span class="nv">approach.</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">#(</span><span class="nb">warn</span> <span class="s">&quot;Frogstar&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="nb">warn</span> <span class="s">&quot;Frogstar&quot;</span><span class="p">)</span>
+<span class="nv">Approach</span> <span class="nv">Frogstar</span> <span class="nv">with</span> <span class="nv">extreme</span> <span class="nv">caution.</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">#(</span><span class="nv">crit</span> <span class="s">&quot;Krikkit&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">crit</span> <span class="s">&quot;Krikkit&quot;</span><span class="p">)</span>
+<span class="nv">Withdraw</span> <span class="nv">from</span> <span class="nv">Krikkit</span> <span class="nv">immediately!</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>As you can see, the <code>receive</code> patterns are working.</p>
+
+<p>We can also see what happens when we send messages that don&#39;t match any of the
+defined patterns:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">#(</span><span class="nv">noop</span> <span class="s">&quot;This won&#39;t be matched&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">noop</span> <span class="s">&quot;This won&#39;t be matched&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Neither will this&quot;</span><span class="p">))</span>
+<span class="s">&quot;Neither will this&quot;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Absolutely nothing, that&#39;s what. Well, nothing from the process we spawned,
+that is... just the REPL doing its thang.</p>
+
+<h4>2.5.2.4 <code>cond</code></h4>
+
+<p>Pattern matching in <code>cond</code> has the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">cond</span> <span class="p">(</span><span class="nv">&lt;test&gt;</span> <span class="o">...</span> <span class="p">)</span>
+      <span class="p">((</span><span class="nv">?=</span> <span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expr&gt;</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
+      <span class="o">...</span> <span class="p">)</span></code></pre></figure>
+
+<p>Typically, a <code>cond</code> looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">==</span> <span class="nv">a</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;It&#39;s one!&quot;</span><span class="p">))</span>
+      <span class="p">((</span><span class="nv">==</span> <span class="nv">a</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;It&#39;s two!&quot;</span><span class="p">)))</span></code></pre></figure>
+
+<p>In other words, a series of tests with conditional results. LFE extends the
+basic form with support for pattern matching, as seen in the general form
+above.</p>
+
+<p>Here&#39;s an example of how one can do pattern matching in LFE with <code>cond</code>
+(starting with the setting of some data):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">?=</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="ss">&#39;ok</span> <span class="nv">msg</span><span class="p">)</span> <span class="nv">data</span><span class="p">)</span>
+         <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~s seems good.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+        <span class="p">((</span><span class="nv">?=</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="ss">&#39;err</span> <span class="nv">msg</span><span class="p">)</span> <span class="nv">data</span><span class="p">)</span>
+         <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;There&#39;s a problem with ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+        <span class="p">((</span><span class="nv">?=</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="ss">&#39;warn</span> <span class="nv">msg</span><span class="p">)</span> <span class="nv">data</span><span class="p">)</span>
+         <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Be careful of ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))))</span>
+<span class="nv">Trillian</span> <span class="nv">seems</span> <span class="nv">good.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Note that this is a replacement of the <code>case</code> example above.</p>
+
+<p>We can set the <code>data</code> variable differently to exercise the other code
+paths, and then enter the <code>cond</code> expression from above (elided below to
+save space):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="o">#(</span><span class="mi">6</span> <span class="nb">warn</span> <span class="s">&quot;Arthur&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">6</span> <span class="nb">warn</span> <span class="s">&quot;Arthur&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cond</span> <span class="o">...</span> <span class="p">)</span>
+<span class="nv">Be</span> <span class="nv">careful</span> <span class="nv">of</span> <span class="nv">Arthur.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="o">#(</span><span class="mi">6</span> <span class="nv">err</span> <span class="s">&quot;Zaphod&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">6</span> <span class="nv">err</span> <span class="s">&quot;Zaphod&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cond</span> <span class="o">...</span> <span class="p">)</span>
+<span class="nv">There</span><span class="ss">&#39;s</span> <span class="nv">a</span> <span class="nv">problem</span> <span class="nv">with</span> <span class="nv">Zaphod.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h3>2.5.3 Special Cases</h3>
+
+<h4>2.5.3.1 <code>set</code> in the REPL</h4>
+
+<p>Using <code>set</code> in the REPL has the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">set</span> <span class="nv">&lt;pattern&gt;</span> <span class="nv">&lt;expression&gt;</span><span class="p">)</span></code></pre></figure>
+
+<p>Note that <code>set</code> is only valid when running the LFE shell. Example usage:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">)</span>
+       <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="nv">len</span>
+<span class="mi">8</span>
+<span class="nb">&gt;</span> <span class="nv">status</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="nv">data</span>
+<span class="s">&quot;Trillian&quot;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h4>2.5.3.2 Aliases with <code>=</code></h4>
+
+<p>Aliases are defined with the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span> <span class="o">...</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">&lt;pattern</span> <span class="nv">1&gt;</span> <span class="nv">&lt;pattern</span> <span class="nv">2&gt;</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span></code></pre></figure>
+
+<p>Aliases can be used anywhere in a pattern. A quick example of this, updating
+the previous example with aliases:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nb">=</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">len</span> <span class="nv">status</span> <span class="nv">data</span><span class="p">)</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span>
+       <span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">8</span> <span class="nv">ok</span> <span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>The same variables that were bound in the previous example are bound in this
+one:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">len</span>
+<span class="mi">8</span>
+<span class="nb">&gt;</span> <span class="nv">status</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="nv">data</span>
+<span class="s">&quot;Trillian&quot;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>In addition, however, we have aliased new variables to these:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">a</span>
+<span class="mi">8</span>
+<span class="nb">&gt;</span> <span class="nv">b</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="nv">c</span>
+<span class="s">&quot;Trillian&quot;</span></code></pre></figure>
+
+<h4>2.5.3.3 Arguments to <code>defun</code></h4>
+
+<p>Pattern matching in functions has the following general form:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="p">(</span><span class="nb">defun</span> <span class="nv">name</span>
+      <span class="p">((</span><span class="nv">argpat</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+      <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<p>We haven&#39;t covered functions yet (that&#39;s coming up in
+<a href="/user-guide/funcode/1.html">Chapter 4</a>), so this will be a short
+preview focusing just on the pattern usage in functions, with more detail
+coming later.</p>
+
+<p>Proper functions can&#39;t be defined in the LFE REPL, so save the following to
+<code>func-pttrn.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">func-pttrn</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">safety-check</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">safety-check</span>
+  <span class="p">((</span><span class="ss">&#39;ok</span> <span class="nv">msg</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~s seems good.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+  <span class="p">((</span><span class="ss">&#39;warn</span> <span class="nv">msg</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;There&#39;s a problem with ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+  <span class="p">((</span><span class="ss">&#39;crit</span> <span class="nv">msg</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Be careful of ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))))</span></code></pre></figure>
+
+<p>As you can see, the usual function arguments have been replaced with a pattern.
+In particular, this function will accept any of three options with two
+arguments each: where the first argument is <code>&#39;ok</code>, or where it is
+<code>&#39;warn</code>, or where it is <code>&#39;crit</code>.</p>
+
+<p>Let&#39;s compile our new module from the LFE REPL:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;func-pttrn&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">func-pttrn</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now let&#39;s step it through its paces:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">func-pttrn</span> <span class="nv">safety-check</span> <span class="ss">&#39;ok</span> <span class="o">&#39;</span><span class="s">&quot;Trillian&quot;</span><span class="p">)</span>
+<span class="nv">Trillian</span> <span class="nv">seems</span> <span class="nv">good.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">func-pttrn</span> <span class="nv">safety-check</span> <span class="ss">&#39;warn</span> <span class="o">&#39;</span><span class="s">&quot;Arthur&quot;</span><span class="p">)</span>
+<span class="nv">There</span><span class="ss">&#39;s</span> <span class="nv">a</span> <span class="nv">problem</span> <span class="nv">with</span> <span class="nv">Arthur.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">func-pttrn</span> <span class="nv">safety-check</span> <span class="ss">&#39;crit</span> <span class="o">&#39;</span><span class="s">&quot;Zaphod&quot;</span><span class="p">)</span>
+<span class="nv">Be</span> <span class="nv">careful</span> <span class="nv">of</span> <span class="nv">Zaphod.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>If a pattern is not matched in our example (which has no fallback pattern), an
+error is raised:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">func-pttrn</span> <span class="nv">safety-check</span> <span class="ss">&#39;oops</span> <span class="o">&#39;</span><span class="s">&quot;Eccentrica Gallumbits&quot;</span><span class="p">)</span>
+<span class="nv">exception</span> <span class="nv">error:</span> <span class="o">#(</span><span class="nv">case_clause</span> <span class="o">#(</span><span class="nv">oops</span> <span class="s">&quot;Eccentrica Gallumbits&quot;</span><span class="p">))</span>
+  <span class="nv">in</span> <span class="p">(</span><span class="nv">func-pttrn</span> <span class="nv">safety-check</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<h4>2.5.3.4 Arguments to Anonymous Functions</h4>
+
+<p>One can use patterns in arguments with anonymous functions similarly to how one
+does with named functions, demonstrated above. In LFE, this is done with
+<code>match-lambda</code>. Here&#39;s an example done in the REPL:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">safety-check</span>
+    <span class="p">(</span><span class="nv">match-lambda</span>
+      <span class="p">((</span><span class="ss">&#39;ok</span> <span class="nv">msg</span><span class="p">)</span>
+        <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~s seems good.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+      <span class="p">((</span><span class="ss">&#39;warn</span> <span class="nv">msg</span><span class="p">)</span>
+        <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;There&#39;s a problem with ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))</span>
+      <span class="p">((</span><span class="ss">&#39;crit</span> <span class="nv">msg</span><span class="p">)</span>
+        <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Be careful of ~s.~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))))</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.31.53503600&gt;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Usage is similar as well:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nv">safety-check</span> <span class="ss">&#39;warn</span> <span class="o">&#39;</span><span class="s">&quot;Arthur&quot;</span><span class="p">)</span>
+<span class="nv">There</span><span class="ss">&#39;s</span> <span class="nv">a</span> <span class="nv">problem</span> <span class="nv">with</span> <span class="nv">Arthur.</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nv">safety-check</span> <span class="ss">&#39;oops</span> <span class="o">&#39;</span><span class="s">&quot;Eccentrica Gallumbits&quot;</span><span class="p">)</span>
+<span class="nv">exception</span> <span class="nv">error:</span> <span class="nv">function_clause</span>
+
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h4>2.5.3.5 Patterns in Comprehensions</h4>
+
+<p>List and binary comprehensions make use of patterns in a limited sense. They
+have the following general forms:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">&lt;-</span> <span class="nv">pat</span> <span class="nv">guard</span> <span class="nv">list-expr</span><span class="p">)</span></code></pre></figure>
+
+<p>and</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">&lt;=</span> <span class="nv">bin-pat</span> <span class="nv">guard</span> <span class="nv">binary-expr</span><span class="p">)</span></code></pre></figure>
+
+<p>where the <code>guard</code> in both cases is optional.</p>
+
+<p>You can read more about LFE comprehensions in
+<a href="/user-guide/data/2.html">section 3.3</a></p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="4.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

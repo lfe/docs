@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>1 Introduction</h1>
+
+<h2>1.7 Setting up a Development Environment</h2>
+
+<p>The last thing we need to do before you&#39;re off and running is to discuss a
+good standard process for setting up a development environment. There are
+several key aspects to this:</p>
+
+<ul>
+<li>Intent
+
+<ul>
+<li>exploring LFE and LFE examples</li>
+<li>creating an LFE library</li>
+<li>creating an LFE service/daemon/application</li>
+<li>hacking on LFE itself</li>
+</ul></li>
+<li>Tools
+
+<ul>
+<li>kerl</li>
+<li>rebar</li>
+<li>testing</li>
+<li>IDEs</li>
+</ul></li>
+</ul>
+
+<p>This section takes a pragmatic approach of getting started as quickly as
+possible, so we will not cover these in great detail. However, we will
+provide useful links and additional references so that you can explore at your
+own leisure.</p>
+
+<h3>1.7.1 Starting from Scratch</h3>
+
+<p>In the <a href="/quick-start/1.html">LFE Quick Start</a>,
+you saw how to get up and running, and
+we&#39;re going to repeat some of that here. However, we do this for the sake of
+completeness and having all the information in one easy-to-access reference.</p>
+
+<h3>1.7.2 lfetool</h3>
+
+<p><a href="https://github.com/lfe/lfetool">lfetool</a> is a powerful little
+utility that eases the tasks of the LFE developer. It can do everything from
+install software to run tests and start up REPLs.</p>
+
+<p>Since using <code>lfetool</code> makes pretty much everything easier, we&#39;ll rely on it
+heavily for the development tasks described in the LFE documentation. Let&#39;s
+get it set up. </p>
+
+<p>Here&#39;s how to download and install it:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ curl -L -o ./lfetool https://raw.github.com/lfe/lfetool/master/lfetool
+$ bash lfetool install /usr/local/bin
+</code></pre></div>
+<p>If you already have <code>lfetool</code> installed, but it&#39;s been a while, you should
+probably update it:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool update
+</code></pre></div>
+<p>Development on <code>lfetool</code> is on-going, with new features landing on a fairly
+regular basis. It&#39;s probably a good idea to update rather freqently, to take
+advantage of the latest improvements. Also note that all versions are tagged;
+should you ever want to revert to an earlier release, it is rivial to do so.</p>
+
+<h3>1.7.3 Dependencies</h3>
+
+<p><strong>kerl</strong></p>
+
+<p>First and foremost, you&#39;re going to need Erlang. In the course of your
+experiments with LFE, you may want to try out different versions of Erlang, so
+we&#39;ll start off right: using
+<a href="https://github.com/spawngrid/kerl">kerl</a>. If you don&#39;t have Erlang
+install or you want to be able to run multiple versions of Erlang, instlal
+<code>kerl</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool install kerl
+</code></pre></div>
+<p>This will download and save it to <code>/usr/local/bin</code>.</p>
+
+<p><strong>rebar</strong></p>
+
+<p>Next up is rebar. No matter what your intent with LFE, you&#39;re going to need
+<code>rebar</code> sooner or later. We don&#39;t rely on it exlusively (e.g., we have our
+own test runner), but we do use it for maintaining and compiling dependencies.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool install rebar
+</code></pre></div>
+<h3>1.7.4 How to Use LFE</h3>
+
+<p>There are many ways in which you may download and use LFE:</p>
+
+<ul>
+<li>As a project dependency</li>
+<li>Via a direct <code>git clone</code> working directory</li>
+<li>A &quot;system-wide&quot; install (where system here is defined as your currently
+active version of Erlang)</li>
+</ul>
+
+<p>More often than not, you won&#39;t be downloading and directly interacting with
+LFE code. Rather, you&#39;ll be including LFE in your project dependencies (the
+<code>rebar.config</code> file).</p>
+
+<h4>1.7.4.1 Project Install</h4>
+
+<p>To create a new LFE project, with your <code>rebar.config</code> set up to download LFE,
+simply do the following:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool new library my-lib
+$ <span class="nb">cd</span> my-lib
+$ make compile
+</code></pre></div>
+<p>Or, if you want to build an OTP app:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool new service my-svc
+$ <span class="nb">cd</span> my-svc
+$ make compile
+</code></pre></div>
+<h4>1.7.4.2 Getting and Building LFE</h4>
+
+<p>You can, of course, just do it the old fashioned way:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ git clone git://github.com/rvirding/lfe.git
+$ <span class="nb">cd</span> ./lfe
+$ rebar compile
+</code></pre></div>
+<h4>1.7.4.3 Installing LFE</h4>
+
+<p>We don&#39;t actually recommend installing LFE system-wide. The only time it&#39;s
+really necessary is when you want to run <code>lfescript</code> scripts from anywhere
+on your box.</p>
+
+<p>In such a case, here&#39;s what you do:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool install lfe
+</code></pre></div>
+<h3>1.7.5 A Test Drive with the REPL</h3>
+
+<p>With LFE built, you&#39;re ready to play :-) If you&#39;ve created an LFE project with
+<code>lfetool</code>, you can use the make target provided for you:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ make shell
+</code></pre></div>
+<p>This will compile all the deps; if you want to skip that, you can do:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ make shell-no-deps
+</code></pre></div>
+<p>This will compile just your project code. If that&#39;s more hand-holding than
+you need and you don&#39;t want anything compiled for you before you leap into
+the REPL, you can just use <code>lfetool</code> directly:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool repl lfe
+</code></pre></div>
+<p>Note that all of the above commands will look for and add dependency directories
+to <code>ERL_LIBS</code> and start Erlang/LFE with those defined.</p>
+
+<p>If you&#39;re running from an LFE working directory, you can simply do this:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ ./bin/lfe -pa ./ebin
+</code></pre></div>
+<p>Once you are in the REPL you can Lisp it up:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cons</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">6</span> <span class="o">.</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">40</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">((</span><span class="mi">6</span> <span class="mi">7</span><span class="p">)</span> <span class="mi">40</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lists:foldl</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">))</span> <span class="mi">0</span> <span class="p">(</span><span class="nv">lists:seq</span> <span class="mi">1</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>1.7.6 Running Some Examples</h3>
+
+<p>While in the REPL, you can run some examples by <code>slurp</code>ing them in:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;./examples/internal-state.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">internal-state</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">account</span> <span class="p">(</span><span class="nv">new-account</span> <span class="o">&#39;</span><span class="s">&quot;Alice&quot;</span> <span class="mf">100.00</span> <span class="mf">0.06</span><span class="p">))</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.10.6046715&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">account</span><span class="p">)</span>
+<span class="s">&quot;Alice&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">balance</span> <span class="nv">account</span><span class="p">)</span>
+<span class="mf">100.0</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>And another one:</p>
+<div class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;./examples/church.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">church</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">three</span><span class="p">))</span>
+<span class="mi">3</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>To quit out of the REPL, hit <code>^g</code> and then <code>q&lt;ENTER&gt;</code>.</p>
+
+<h3>1.7.7 An Example IDE: Sublime Text 2</h3>
+
+<p>First off: our definition of &quot;IDE&quot; is text editor + REPL + terminal. So there
+you have it.</p>
+
+<p>As we are sure is obvious, you can use any text editor you want with LFE. If
+you&#39;re a Lisper, Emacs might be a natural choice. Vim, quite honestly, can work
+just as well.</p>
+
+<p>For this example, though, we will be using Sublime Text 2 as the example editor.
+To use LFE effectively with Sublime, we recommend the following plugins:</p>
+
+<ul>
+<li><p>Package Control</p></li>
+<li><p>Bracket Highlighter</p></li>
+<li><p>Lisp Indent</p></li>
+<li><p>Trailing Spaces</p></li>
+<li><p>LFE</p></li>
+<li><p>Theme - Vim Blackboard (for those who like dark editors and a classic terminal
+syntax highlight look)</p></li>
+</ul>
+
+<p>Instructions for installing Package Control are
+<a href="https://sublime.wbond.net/installation#st2">here</a>.</p>
+
+<p>After the restart, you&#39;re ready to go. For each package you want to install, do
+the following:</p>
+
+<ol>
+<li><p>Go to Sublime Text 2 -&gt; Preferences -&gt; Package Control</p></li>
+<li><p>Type &quot;Package Control: Install Package&quot;</p></li>
+<li><p>Wait for the text entry box to display (available packages are loading)</p></li>
+<li><p>Enter the name of the package you want to install and hit <code>&lt;ENTER&gt;</code></p></li>
+</ol>
+
+<p>After you have done that for each packge, you will need to restart. Many of the
+packages will then have their own entries under
+Sublime Text 2 -&gt; Preferences -&gt; Package Settings
+where you can copy the default settings and paste them into your own (&quot;User&quot;)
+settings, modifying as you see fit.</p>
+
+<p>To configure the dark theme, you&#39;ll want to visit see the
+<a href="https://github.com/oubiwann/vim-blackboard-sublime-theme/blob/master/README.md">project README</a>.</p>
+
+<p>The LFE plugin doesn&#39;t need any configuration. Once you restart Sublime, it
+should recognize your LFE files by the file extension.</p>
+
+<p>For the Lispindent plugin you will need to add some configuration. Go to
+Sublime Text 2 -&gt; Preferences -&gt; Package Settings -&gt; Lispindent and click on
+&quot;Settings - User&quot;. In the new file that pops up, paste the following:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+    <span class="s2">&quot;languages&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;LFE&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;detect&quot;</span><span class="o">:</span> <span class="s2">&quot;.*\\.(lfe)$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;syntax&quot;</span><span class="o">:</span> <span class="s2">&quot;LFE.tmLanguage&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;default_indent&quot;</span><span class="o">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;regex&quot;</span><span class="o">:</span>
+            <span class="p">[</span><span class="s2">&quot;(ns|fn|def[^\\s]*|bound-fn|if|if-not|case|condp|when|while|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;when-not|when-first|do|future|comment|doto|locking|proxy|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;with-open|with-precision|with-local-vars|reify|deftype|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;defrecord|defprotocol|extend|extend-protocol|extend-type|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;try|catch|finally|let|letfn|binding|loop|for|doseq|dotimes|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;when-let|if-let|defstruct|struct-map|assoc|defmethod|testing|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;deftest|use-fixtures|handler-case|handle|dotrace|deftrace|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;begin|case|delay|do|define|lambda|let|let\\*|letrec|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;let-values|let\\*-values|sequence|let-syntax|letrec-syntax|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;syntax-rules|syntax-case|call-with-input-file|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;with-input-from-file|with-input-from-port|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;call-with-output-file|with-output-to-file|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;with-output-to-port|call-with-values|dynamic-wind|catch|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;defvar|defclass|defconstant|defcustom|defparameter|defconst|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;define-condition|define-modify-macro|defsetf|defun|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;defgeneric|define-setf-method|define-self-expander|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;defmacro|defsubst|deftype|defmethod|defpackage|defstruct|&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;dolist|dotimes|lambda|let|let\\*|prog1|prog2|unless|when)$&quot;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Your text editor is now ready to rock out some LFE!</p>
+
+<h3>1.7.8 A Quick Note on Writing Tests</h3>
+
+<p>We&#39;ve covered getting LFE running, using the REPL, and operating your text
+editor in an LFE-friendly manner. The next of the essentils we need to look at
+is unit tests. This will be covered in much more detail in the
+<a href="http://lfe.github.io/user-guide/check/4.html">TDD section</a>
+of the Checks and Testing chapter.</p>
+
+<p>For now, though, let&#39;s give you a quick overview... and some caveats. In fact,
+let&#39;s do the caveats first.</p>
+
+<p>Ideally, LFE would use <code>eunit</code>, like it does with most other libraries.
+Unfortunately, there are some quirky edge cases in LFE&#39;s Erlang macro handling
+that prevent correct usage of <code>eunit</code>. As such, an
+<a href="https://github.com/oubiwann/lfeunit">interim solution</a> was created.
+Once the <a href="https://github.com/rvirding/lfe/issues/42">macro issue</a>
+in LFE is addressed for eunit (and progress is being made!), we will be
+able to abandon lfeunit (or make it a thin wrapper).</p>
+
+<p>A quick and dirty intro to using lfeunit follows:</p>
+
+<ol>
+<li><p>Create the <code>test/unit</code> directories in your project, if they don&#39;t already
+exist.</p></li>
+<li><p>In <code>test/unit</code>, create a <code>unit-&lt;module-name&gt;-tests.lfe</code> file.</p></li>
+<li><p>Ensure that your module name matches in the file:</p></li>
+</ol>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">   <span class="p">(</span><span class="nv">defmodule</span> <span class="nv">unit-&lt;module-name&gt;-tests</span>
+     <span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<ol>
+<li>Update the import statement to include the unit test functions you need,
+as well as the required include, e.g.:</li>
+</ol>
+<div class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp">  <span class="o">...</span>
+  <span class="p">(</span><span class="nb">import</span>
+    <span class="p">(</span><span class="nv">from</span> <span class="nv">lfeunit-util</span>
+      <span class="p">(</span><span class="nv">check-failed-assert</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">check-wrong-assert-exception</span> <span class="mi">2</span><span class="p">))))</span>
+
+  <span class="p">(</span><span class="nv">include-lib</span> <span class="s">&quot;include/lfeunit-macros.lfe&quot;</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<ol>
+<li>Create test functions of the form <code>(deftest &lt;some-name&gt;</code>, with some asserts
+added, e.g.:</li>
+</ol>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">   <span class="p">(</span><span class="nv">deftest</span> <span class="nv">my-function</span>
+     <span class="p">(</span><span class="nv">is-true</span> <span class="mi">42</span> <span class="p">(</span><span class="nv">my-function</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+</code></pre></div>
+<ol>
+<li>Run the following to verify your tests (and to get nicely formatted, colored
+test runner output!):</li>
+</ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">   $ lfetool tests unit
+</code></pre></div>
+<p>Do this for every commit.</p>
+
+<h3>1.7.9 Toolchain</h3>
+
+<p>The primary tool used for LFE development is <code>lfetool</code>. It makes use of many
+other tools in the Erlang, Elixir, and LFE ecosystems, enabling everything
+from dependency management and compiling to running your unit tests and
+releasing your software.</p>
+
+<p>Projects created with <code>lfetool</code>&#39;s <code>new</code> command also have a <code>Makefile</code>
+with various <code>*.mk</code> includes.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="3.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

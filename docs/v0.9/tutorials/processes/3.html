@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/tutorials/processes/1.html">Interacting with Processes</a></li>
+      <li><a class="spec" href="/tutorials/processes/2.html">Processes in Modules</a></li>
+      <li><a class="spec" href="/tutorials/processes/3.html">The Process Registry</a></li>
+      <li><a class="spec" href="/tutorials/processes/4.html">Process Communications</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Lightweight Processes</h1>
+
+<h2>3 Process Registry in Erlang/LFE</h2>
+
+<p>We&#39;ve been setting the <code>pid</code> variable in the REPL so that we don&#39;t have to
+call <code>(self)</code> repeatedly. However, you don&#39;t <em>have</em> to use the pid. If you
+have a function running in a process whose purpose is to act as a service for
+any number of other processes, you may find the Erlang process registration
+system just the thing for you.</p>
+
+<p>There are a handful of processes that are registered by the shell. We can see
+them by doing the following:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"> <span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">c</span> <span class="nv">regs</span><span class="p">)</span></code></pre></figure>
+<div class="highlight"><pre><code class="language-text" data-lang="text">** Registered procs on node nonode@nohost **
+Name                  Pid          Initial Call                      Reds Msgs
+application_controlle &lt;0.6.0&gt;      erlang:apply/2                     434    0
+code_server           &lt;0.18.0&gt;     erlang:apply/2                  205428    0
+erl_prim_loader       &lt;0.3.0&gt;      erlang:apply/2                  633205    0
+error_logger          &lt;0.5.0&gt;      gen_event:init_it/6               4973    0
+file_server_2         &lt;0.17.0&gt;     file_server:init/1                 660    0
+global_group          &lt;0.16.0&gt;     global_group:init/1                 59    0
+global_name_server    &lt;0.12.0&gt;     global:init/1                       50    0
+inet_db               &lt;0.15.0&gt;     inet_db:init/1                     851    0
+init                  &lt;0.0.0&gt;      otp_ring0:start/2                 4663    0
+kernel_safe_sup       &lt;0.24.0&gt;     supervisor:kernel/1                 58    0
+kernel_sup            &lt;0.10.0&gt;     supervisor:kernel/1              37499    0
+rex                   &lt;0.11.0&gt;     rpc:init/1                          35    0
+standard_error        &lt;0.20.0&gt;     erlang:apply/2                       9    0
+standard_error_sup    &lt;0.19.0&gt;     supervisor_bridge:standar           41    0
+user                  &lt;0.22.0&gt;     erlang:apply/2                    8009    0
+user_drv              &lt;0.28.0&gt;     user_drv:server/2                52096    0
+
+** Registered ports on node nonode@nohost **
+Name                  Id              Command
+ok
+&gt;
+</code></pre></div>
+<p>Let&#39;s spawn our previously-defined function and register it:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid-2</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger</span> <span class="ss">&#39;print-result</span> <span class="p">()))</span>
+<span class="nv">&lt;0.52.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">register</span> <span class="ss">&#39;msg-svc</span> <span class="nv">pid-2</span><span class="p">)</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now, if we call <code>(: c regs)</code> again, we&#39;ll see our newly-registered process
+in the table:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&#39;msg-svc&#39;             &lt;0.52.0&gt;     messenger:&#39;print-result&#39;/            1    0
+</code></pre></div>
+<p>We see that it&#39;s running; let&#39;s do a lookup on it by name to get the pid:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">whereis</span> <span class="ss">&#39;msg-svc</span><span class="p">)</span>
+<span class="nv">&lt;0.52.0&gt;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Just to confirm that this is the same process we spawned:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">pid-2</span>
+<span class="nv">&lt;0.52.0&gt;</span></code></pre></figure>
+
+<p>We&#39;ve poked around a bit, now let&#39;s acutally use the new atom we&#39;ve set as the
+reference for our messaging service:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="ss">&#39;msg-svc</span> <span class="o">&#39;</span><span class="s">&quot;This is Prostetnic Vogon Jeltz...&quot;</span><span class="p">)</span>
+<span class="s">&quot;This is Prostetnic Vogon Jeltz...&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;This</span> <span class="nv">is</span> <span class="nv">Prostetnic</span> <span class="nv">Vogon</span> <span class="nv">Jeltz...</span><span class="o">&#39;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>That about wraps it up for the process registry!</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

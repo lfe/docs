@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="/download.html">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/docs.html">Docs</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Quick-Start Sections</h3>
+    <ol>
+      <li><a class="spec" href="/quick-start/1.html">Getting Set Up</a></li>
+      <li><a class="spec" href="/quick-start/2.html">Executing Code</a></li>
+      <li><a class="spec" href="/quick-start/3.html">Using Libraries</a></li>
+      <li><a class="spec" href="/quick-start/4.html">Next Steps</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Quick Start</h1>
+
+<h2>2 Executing Code</h2>
+
+<p>Once you&#39;ve got LFE built, you want to play with it, right? Let&#39;s take a look
+at the REPL (interactive shell) first.</p>
+
+<h3>2.1 The REPL</h3>
+
+<p>To start the REPL, simply run the <code>lfe</code> script and tell <code>erl</code> (which is
+being run in the script) which additional code paths it should look for (in this
+case, the compiled LFE code):</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ ./bin/lfe -pa ./ebin
+</code></pre></div>
+<p>This assumes that you are still in the <code>lfe</code> directory where you build LFE.
+Running that command will dump you into the LFE REPL, looking something like
+this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Erlang R15B03 (erts-5.9.3.1) [source] [64-bit] [smp:8:8] [async-threads:0] ...
+
+LFE Shell V5.9.3.1 (abort with ^G)
+&gt;
+</code></pre></div>
+<p>Note that you can also start the the LFE shell manually from an existing Erlang
+shell (as we did earlier in this guide) or you can pass parameters to <code>erl</code>
+to start it up:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ erl -pa ebin -s lfe_boot -noshell -noinput
+</code></pre></div>
+<p>Now try doing some basic operations:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cons</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+<span class="p">((</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Next, let&#39;s operate on some variables:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="mi">123456789</span><span class="p">))</span> <span class="nv">x</span><span class="p">)</span>
+<span class="mi">123456789</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="mi">123456789</span><span class="p">))</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+<span class="mi">15241578750190521</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">x</span> <span class="mi">123456789</span><span class="p">))</span> <span class="p">(</span><span class="nb">*</span> <span class="nv">x</span> <span class="nv">x</span> <span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+<span class="mi">232305722798259244150093798251441</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Looking good!</p>
+
+<h3>2.2 Running Scripts</h3>
+
+<p>Okay, so now that you can run things in the REPL, you want to run them as a
+script, yes? Here&#39;s how.</p>
+
+<p>Let&#39;s create a temporary subdirectory to play in without fear of messing up our
+LFE directory:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ mkdir tmp
+$ cd tmp
+</code></pre></div>
+<p>Then, in that directory, let&#39;s create the following file and save it as
+<code>hello.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">hello</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">start</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">start</span> <span class="p">()</span>
+  <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Lfe says &#39;Hello, World!&#39;~n&quot;</span><span class="p">))</span></code></pre></figure>
+
+<p>To compile that script and then run it, we can do this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ ../bin/lfec hello.lfe
+$ ../bin/lfe -s hello start -s erlang halt
+</code></pre></div>
+<p>Or, if we want to use Erlang directly, we could do this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ erl -pa ../ebin -s lfe_comp file hello -s erlang halt
+$ erl -pa ../ebin -s hello start -s erlang halt
+</code></pre></div>
+<p>Or, we could compile it and run it in the same command:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ erl -pa ../ebin -s lfe_comp file hello -s hello start -s erlang halt
+</code></pre></div>
+<p>Note that this is the command line equivalent of the following:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ erl -pa ../ebin
+1&gt; lfe_comp:file(hello).
+{ok,hello}
+2&gt; hello:start().
+Lfe says &#39;Hello, World!&#39;
+ok
+3&gt;
+</code></pre></div>
+<h3>2.3 Running Scripts from the REPL</h3>
+
+<p>You can also use your new <code>hello.lfe</code> script in the REPL itself. There are
+two ways you can do this, using <code>slurp</code> or compiling the file. If you use
+<code>slurp</code>, all the functions are pulled into the shell namespace, and you
+won&#39;t have to reference the module name.  Again, assuming that you are in
+<code>lfe/tmp</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nv">$</span> <span class="o">..</span><span class="nv">/bin/lfe</span> <span class="nv">-pa</span> <span class="o">..</span><span class="nv">/ebin</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;hello.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">hello</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">start</span><span class="p">)</span>
+<span class="nv">Lfe</span> <span class="nv">says</span> <span class="ss">&#39;Hello,</span> <span class="nv">World!</span><span class="o">&#39;</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>If you choose to compile your module instead, you will use it like so:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nv">$</span> <span class="o">..</span><span class="nv">/bin/lfe</span> <span class="nv">-pa</span> <span class="o">..</span><span class="nv">/ebin</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">hello</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">hello</span> <span class="nv">start</span><span class="p">)</span>
+<span class="nv">Lfe</span> <span class="nv">says</span> <span class="ss">&#39;Hello,</span> <span class="nv">World!</span><span class="o">&#39;</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Note that in the second example, you need to reference the module.</p>
+
+<p>For more information on the LFE shell, be sure to see the &quot;REPL&quot; section of the
+User Guide Introduction.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

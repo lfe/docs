@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/tutorials/counter-app/1.html">Introduction</a></li>
+      <li><a class="spec" href="/tutorials/counter-app/2.html">The Set Up</a></li>
+      <li><a class="spec" href="/tutorials/counter-app/3.html">Thinking
+        About Counting</a></li>
+      <li><a class="spec" href="/tutorials/counter-app/4.html">Thinking
+        About Lisp</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Counter Application</h1>
+
+<h2>2 The Set Up</h2>
+
+<h3>Define Our Module</h3>
+
+<p>Naturally we need a module so lets sort that out first.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">counter</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">new</span> <span class="mi">0</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">incr</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">count</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">counter</span> <span class="mi">0</span><span class="p">)))</span></code></pre></figure>
+
+<h3>Define Our Functions</h3>
+
+<p>Now we can start to define the functionality that will make up our module. Lets start with <code>new</code>.. Keeping to Erlang and LFE design principles we want to keep our counters in their own processes, so when this is called just spin up a new counter and hand back the <code>pid</code> to the caller.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">new</span> <span class="p">()</span>
+  <span class="s">&quot;For creating a new counter.&quot;</span>
+  <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;counter</span> <span class="ss">&#39;counter</span> <span class="o">&#39;</span><span class="p">()))</span></code></pre></figure>
+
+<p>Now of course having the <code>pid</code> to a process that does nothing but spawn itself isn&#39;t terribly useful so how about we implement the <code>incr</code> function to bump our counter up by 1.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">incr</span> <span class="p">(</span><span class="nv">counter</span><span class="p">)</span>
+  <span class="s">&quot;Increments our counter value.&quot;</span>
+  <span class="p">(</span><span class="nv">!</span> <span class="nv">counter</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;incr</span><span class="p">)))</span></code></pre></figure>
+
+<p>Notice that for the increment function we simply forward our request for an increment to occur and then end the function. Since our counter is designed to be a background process that will manage the counter it is holding and report back when asked. The increment step is an asynchronous action.</p>
+
+<h3>Tracking Counter State</h3>
+
+<p>Having a running process that we can send an increment instruction to is all well and good, but in this case it&#39;s a bit useless if we can&#39;t ask for the current value of the counter. Or the value of the counter at the time it was requested, if you want to be picky, so lets implement our <code>count</code> function to request the current value of the count.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nb">count</span> <span class="p">(</span><span class="nv">counter</span><span class="p">)</span>
+  <span class="s">&quot;Retrieves the value of the given counter.&quot;</span>
+  <span class="p">(</span><span class="nv">!</span> <span class="nv">counter</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;count</span> <span class="p">(</span><span class="nv">self</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;count</span> <span class="nb">count</span><span class="p">)</span>
+     <span class="nb">count</span><span class="p">)))</span></code></pre></figure>
+
+<p>This function takes care of the steps required to talk to our running counter process and the provide a message back to the caller. First we send a message to the given counter process, asking for it&#39;s current count value, and then we wait for a response before responding with the result.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

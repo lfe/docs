@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/community.html">Community</a></li>
+            <li class="title"><a href="/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Programming Rules and Conventions</h3>
+    <ol>
+      <li><a class="spec" href="/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/prog-rules/10.html">Required Documents</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Programming Rules and Conventions</h1>
+
+<h2>4 Error Handling</h2>
+
+<h3>4.1 Separate error handling and normal case code</h3>
+
+<p>Don&#39;t clutter code for the &quot;normal case&quot; with code designed to handle
+exceptions. As far as possible you should only program the normal case. If
+the code for the normal case fails, your process should report the error and
+crash as soon as possible. Don&#39;t try to fix up the error and continue. The
+error should be handled in a different process.</p>
+
+<p>(See <a href="http://lfe.github.io/prog-rules/5.html">Chapter 5</a>:
+&quot;5 Processes, Servers and Messages&quot;, section 5.5: &quot;Each process should only
+have one &#39;role&#39;&quot;.)</p>
+
+<p>Clean separation of error recovery code and normal case code should greatly
+simplify the overall system design.</p>
+
+<p>The error logs which are generated when a software or hardware error is
+detected will be used at a later stage to diagnose and correct the error. A
+permanent record of any information that will be helpful in this process
+should be kept.</p>
+
+<h3>4.2 Identify the error kernel</h3>
+
+<p>One of the basic elements of system design is identifying which part of the
+system has to be correct and which part of the system does not have to be
+correct.</p>
+
+<p>In conventional operating system design the kernel of the system is assumed
+to be, and must be, correct, whereas all user application programs do not
+necessarily have to be correct. If a user application program fails this
+will only concern the application where the failure occurred but should not
+affect the integrity of the system as a whole.</p>
+
+<p>The first part of the system design must be to identify that part of the
+system which must be correct; we call this the error kernel. Often the error
+kernel has some kind of real-time memory resident data base which stores the
+state of the hardware.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="3.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="5.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

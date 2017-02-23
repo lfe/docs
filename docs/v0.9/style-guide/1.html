@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>1 Introduction</h2>
+
+<h3>1.1 Motivation and Purpose</h3>
+
+<p>LFE has, since its inception in 2008, become increasinly popular in the
+Erlang and Lisp communities. Contributions to the source code, examples,
+third-party libraries, and LFE-based applications have steadily risen and are
+currently undergoing a sharp increase.</p>
+
+<p>As such, our community now has the need for resources we can provide for
+new-comers -- both to assist in their LFE literacy as well as make
+contributions easier to write and then get approved for merge.</p>
+
+<p>In summary, this guide recommends formatting and stylistic choices designed
+to make your code easier for other people to understand.</p>
+
+<h3>1.2 License</h3>
+
+<p>The material in this document is licensed under
+<a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons 3.0
+BY</a>, the same license as the majority of the source material in the
+<a href="http://google-styleguide.googlecode.com/svn/trunk/lispguide.xml">The
+Common Lisp Style Guide</a>.</p>
+
+<h3>1.3 Sources</h3>
+
+<p>The LFE Style Guide has several sources. The majority of the text is taken
+directly from the
+<a href="http://google-styleguide.googlecode.com/svn/trunk/lispguide.xml">The
+Common Lisp Style Guide</a>.</p>
+
+<p>Additional sources include the following:</p>
+
+<ul>
+<li><a href="http://norvig.com/luv-slides.ps">Tutorial on Good Lisp
+Programming Style</a></li>
+<li><a href="http://www.lispworks.com/documentation/HyperSpec/Front/index.htm">The
+Common Lisp HyperSpec</a>.</li>
+<li><a href="http://www.erlang.org/doc.html">Erlang Documentation</a></li>
+<li><a href="/prog-rules/1.html">LFE Programming Rules and Conventions</a></li>
+<li>Conversations, emails, and IRC chats with Robert Virding, creator of LFE
+(and co-creator of Erlang).</li>
+</ul>
+
+<h3>1.4 Differences from The Common Lisp Style Guide</h3>
+
+<p>Large portions of the Common Lisp Style Guide are more formal or too specific
+to Common Lisp itself to be appropriate for the LFE Style Guide. As such,
+that content has not been adapted to LFE.</p>
+
+<p>The recent versions of the Common Lisp Style Guide are targeted at Lisp usage
+inside Google. The LFE Style Guide changes the portions of the guide focused
+on groups inside Google to instead refer to the larger open source community,
+the Erlang community, or the LFE community and associated projects.</p>
+
+<h3>1.5 Credits</h3>
+
+<p>Contributors to the Common Lisp Style Guide:</p>
+
+<ul>
+<li>Adam Worrall</li>
+<li>Dan Pierson</li>
+<li>Matt Marjanovic</li>
+<li>Matt Reklaitis</li>
+<li>Paul Weiss</li>
+<li>Scott McKay</li>
+<li>Sundar Narasimhan, and several others</li>
+</ul>
+
+<p>Editors of the Common Lisp Style Guide:</p>
+
+<ul>
+<li>Dan Weinreb</li>
+<li>François-René Rideau</li>
+<li>Jeremy Brown</li>
+<li>Robert Brown</li>
+</ul>
+
+<p>Google is the current sponsor of the Common Lisp Style guide.</p>
+
+<p>Authors of Tutorial on Good Lisp Programming Style:</p>
+
+<ul>
+<li>Peter Norvig</li>
+<li>Kent Pitman</li>
+</ul>
+
+<p>Learn You Some Erlang</p>
+
+<ul>
+<li>Fred Hebert</li>
+</ul>
+
+<p>Creator of LFE:</p>
+
+<ul>
+<li>Robert Virding</li>
+</ul>
+
+<p>Editors of the LFE Style Guide:</p>
+
+<ul>
+<li>Duncan McGreggor</li>
+</ul>
+
+<h3>1.6 See Also</h3>
+
+<p>Also be sure to read the related guide, <a href="/prog-rules/1.html">LFE
+Programming Rules and Conventions</a>.</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

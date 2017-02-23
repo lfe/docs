@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Quick-Start Sections</h3>
+    <ol>
+      <li><a class="spec" href="/quick-start/old/1.html">Getting Set Up</a></li>
+      <li><a class="spec" href="/quick-start/old/2.html">Starter Project</a></li>
+      <li><a class="spec" href="/quick-start/old/3.html">Code Smash</a></li>
+      <li><a class="spec" href="/quick-start/old/4.html">Next Steps</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Quick Start</h1>
+
+<h2>3 Hitting the Code</h2>
+
+<p><img src="https://raw.github.com/lfe/docs/master/images/smash.jpg"
+     style="float: right; padding-left: 1em;">
+It may not seem like it, but we&#39;re off to a pretty fast start. If you had to
+do everything we&#39;ve done, manually, you&#39;d have given up by now. Seriously.</p>
+
+<p>Time to put the brakes on, though, &#39;cause you&#39;re gonna want to see this next
+part in slow motion.</p>
+
+<h3>3.1 REPL Me Up!</h3>
+
+<p>Sure thing :-) Just do this from your new LFE project directory:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">make repl-no-deps
+</code></pre></div>
+<p>This should give you something that looks like the following:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nv">Erlang</span> <span class="nv">R16B</span> <span class="p">(</span><span class="nv">erts-5.10.1</span><span class="p">)</span> <span class="nv">[source]</span> <span class="nv">[smp:8:8]</span> <span class="nv">[async-threads:10]</span> <span class="nv">[hipe]</span> <span class="o">...</span>
+
+<span class="nv">LFE</span> <span class="nv">Shell</span> <span class="nv">V5.10.1</span> <span class="p">(</span><span class="nb">abort</span> <span class="nv">with</span> <span class="nv">^G</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We&#39;re not going to spend a lot of time in the REPL right now, but feel free to
+take it for a spin :-)</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="mi">21</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nv">lists:foldl</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">))</span> <span class="mi">0</span> <span class="p">(</span><span class="nv">lists:seq</span> <span class="mi">1</span> <span class="mi">6</span><span class="p">)))</span>
+<span class="mi">42</span>
+</code></pre></div>
+<p>Enough fancy stuff! What about code? What does a project look like?</p>
+
+<h3>3.2 Sample Code</h3>
+
+<p>Well, you&#39;ve already seen one! Let&#39;s print it here for your viewing pleasure,
+though. Here&#39;s the starter project you have, with just the one module:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">my-test-lib</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="nv">all</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">my-adder</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</code></pre></div>
+<p>It has a corresponding test module:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">unit-my-test-lib-tests</span>
+  <span class="p">(</span><span class="nv">behaviour</span> <span class="nv">ltest-unit</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="nv">all</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">import</span>
+    <span class="p">(</span><span class="nv">from</span> <span class="nv">ltest</span>
+      <span class="p">(</span><span class="nv">check-failed-assert</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">check-wrong-assert-exception</span> <span class="mi">2</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nv">include-lib</span> <span class="s">&quot;ltest/include/ltest-macros.lfe&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">deftest</span> <span class="nv">my-adder</span>
+  <span class="p">(</span><span class="nv">is-equal</span> <span class="mi">4</span> <span class="p">(</span><span class="err">:</span> <span class="nv">my-test-lib</span> <span class="nv">my-adder</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)))</span>
+</code></pre></div>
+<p>Almost couldn&#39;t be simpler.</p>
+
+<p>Here&#39;s something a little more involved you may enjoy, from the examples in the
+LFE source code:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">messenger-back</span>
+ <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">print-result</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">send-message</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">pid</span> <span class="nv">msg</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Sending message to process ~p ...~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">pid</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">print-result</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">send-message</span> <span class="p">(</span><span class="nv">calling-pid</span> <span class="nv">msg</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">spawned-pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger-back</span> <span class="ss">&#39;print-result</span> <span class="p">())))</span>
+    <span class="p">(</span><span class="nv">!</span> <span class="nv">spawned-pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">calling-pid</span> <span class="nv">msg</span><span class="p">))))</span>
+</code></pre></div>
+<p>That bit of code demonstrates one of Erlang&#39;s core features in lovely Lisp
+syntax :-) (For those that don&#39;t read Erlang yet, when loaded into the REPL,
+that example shows some bidirectional message passing between the LFE shell
+and a spawned process.)</p>
+
+<p>If you&#39;d like to learn more about using the LFE REPL, be sure to read the
+<a href="http://docs.lfe.io/user-guide/intro/2.html">REPL Section</a> of the
+User Guide.</p>
+
+<p>If you want to step through a tutorial on Erlang&#39;s light-weight threads (per the
+example code above), you&#39;ll want to read
+<a href="http://docs.lfe.io/tutorials/processes/1.html">this tutorial</a>.</p>
+
+<h3>Next Stop</h3>
+
+<p>We did promise a bit more information, so we&#39;re going to do that next and then
+wrap up the quick start and point you in the direction of your next LFE
+adventure ...</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

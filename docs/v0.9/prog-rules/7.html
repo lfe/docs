@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Programming Rules and Conventions</h3>
+    <ol>
+      <li><a class="spec" href="/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/prog-rules/10.html">Required Documents</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Programming Rules and Conventions</h1>
+
+<h2>7 Specific Lexical and Stylistic Conventions</h2>
+
+<h3>7.1 Don&#39;t write deeply nested code</h3>
+
+<p>Nested code is code containing, for example, <code>case</code>/<code>if</code>/<code>receive</code>
+statements within other <code>case</code>/<code>if</code>/<code>receive</code> statements. It is bad
+programming style to write deeply nested code - the code has a tendency to
+drift across the page to the right and soon becomes unreadable. Try to limit
+most of your code to a maximum of two levels of indentation. This can be
+achieved by dividing the code into shorter functions.</p>
+
+<h3>7.2 Don&#39;t write very large modules</h3>
+
+<p>A module should not contain more than 400 lines of source code. It is better
+to have several small modules than one large one.</p>
+
+<h3>7.3 Don&#39;t write very long functions</h3>
+
+<p>Don&#39;t write functions with more than 15 to 20 lines of code. Split large
+function into several smaller ones. Don&#39;t solve the problem by writing long
+lines.</p>
+
+<h3>7.4 Don&#39;t write very long lines</h3>
+
+<p>Don&#39;t write very long lines. A line should not have more than 80 characters.
+(It will for example fit into an A4 page.)</p>
+
+<h3>7.5 Variable names</h3>
+
+<p>Choose meaningful variable names - this is very difficult.</p>
+
+<p>If a variable name consists of several words, use &quot;-&quot; to separate them.
+Example: <code>my-variable</code>.</p>
+
+<p>Avoid using &quot;<em>&quot; as don&#39;t care variable, use variables beginning with &quot;</em>&quot;
+instead. Example: <code>_name</code>. If you at a later stage need the value of the
+variable, you just remove the leading underscore. You will not have problem
+finding what underscore to replace and the code will be easier to read.</p>
+
+<h3>7.6 Function names</h3>
+
+<p>The function name must agree exactly with what the function does. It should
+return the kind of arguments implied by the function name. It should not
+surprise the reader. Use conventional names for conventional functions (
+<code>start</code>, <code>stop</code>, <code>init</code>, <code>main-loop</code>).</p>
+
+<p>Functions in different modules that solves the same problem should have the
+same name. Example: <code>my-module:module-info</code>.</p>
+
+<p>Bad function names is one of the most common programming errors - good choice of names is very difficult!</p>
+
+<p>Some kind of naming convention is very useful when writing lots of different
+functions. For example, the name suffix &quot;?&quot; or &quot;p&quot; (the latter from Common
+Lisp) could be used to signify that the function in question returns the
+atom true or false.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(...?) -&gt; &#39;true | &#39;false
+(...p) -&gt; &#39;true | &#39;false
+</code></pre></div>
+<p>Similarly, the prefix <code>check</code> should return tuples whose first elements
+indicate the success or failure of the check:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(check-...) -&gt; #(ok ...) | #(error ...)
+</code></pre></div>
+<h3>7.7 Module names</h3>
+
+<p>Erlang, and thus LFE, has a flat module structure (i.e. there are not
+modules within modules, no concept of real, native packages). Often,
+however, we might like to simulate the effect of a hierarchical module or
+package structure. This can be done by giving the same prefix to sets of
+related modules.</p>
+
+<p>If, for example, an ISDN handler is implemented using several different but
+related modules, the modules should be given names such as:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">isdn-init</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">defmodule</span> <span class="nv">isdn-partb</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">defmodule</span> <span class="nv">isdn-...</span><span class="p">)</span>
+</code></pre></div>
+<h3>7.8 Format programs in a consistent manner</h3>
+
+<p>A consistent programming style will help you, and other people, to
+understand your code. Different people have different styles concerning
+indentation, usage of spaces etc.</p>
+
+<p>LFE programs should follow Common Lisp formatting and style conventions. These are discussed in more detail in the
+<a href="/style-guide/1.html">LFE Style Guide</a>,
+though we well make a few points here.</p>
+
+<p>Peter Norvig and Kent Pitman&#39;s
+<a href="http://norvig.com/luv-slides.ps">Lisp style guide</a> (1993) lists
+some excellent maxims of good style, which we repeat here:</p>
+
+<ul>
+<li>Be explicit</li>
+<li>Be specific</li>
+<li>Be concise</li>
+<li>Be consistent</li>
+<li>Be helpful by anticipating the user&#39;s needs</li>
+<li>Be conventional (not obscure)</li>
+<li>Build <em>usable</em> abstractions</li>
+<li>Allow tools to interact</li>
+</ul>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="6.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="8.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

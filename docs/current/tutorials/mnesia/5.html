@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/community.html">Community</a></li>
+            <li class="title"><a href="/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/tutorials/mnesia/1.html">Introduction</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/2.html">Getting Started</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/3.html">Structure</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/4.html">Content</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/5.html">Querying</a></li>
+      <li><a class="spec" href="/tutorials/mnesia/6.html">Big Data</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Mnesia</h1>
+
+<h2>5 Querying</h2>
+
+<p>We&#39;ve going to be looking at how to query Mnesia tables in this section.
+Utility functions have been defined for your convenience in the LFE Mnesia
+tutorial repo, so let&#39;s bring those in now:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;src/querying.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">querying</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>5.1 Listing All the Data</h3>
+
+<p>We&#39;ve already seen how to list all the data in a Mnesia database. From the
+previous section:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">mnesia:transaction</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nv">mnesia:foldl</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">_</span><span class="p">)</span> <span class="p">(</span><span class="nv">lfe_io:format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">x</span><span class="p">)))</span>
+                  <span class="mi">0</span>
+                  <span class="ss">&#39;department</span><span class="p">)))</span>
+</code></pre></div>
+<p>As mentioned, this has been converted to a generally useful function of this
+form:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">show-data</span> <span class="p">(</span><span class="nv">table-name</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">mnesia:transaction</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nv">mnesia:foldl</span>
+        <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">_</span><span class="p">)</span> <span class="p">(</span><span class="nv">lfe_io:format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">x</span><span class="p">)))</span>
+        <span class="mi">0</span>
+        <span class="nv">table-name</span><span class="p">))))</span>
+</code></pre></div>
+<p>It now lives in the <code>querying</code> module of the Mnesia tutorial. We&#39;ve
+<code>slurp</code>ed that module, so we can just call it outright:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">show-data</span> <span class="ss">&#39;employee</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104659</span> <span class="s">&quot;Tornkvist Torbjorn&quot;</span> <span class="mi">2</span> <span class="nv">M</span> <span class="mi">99514</span> <span class="o">#(</span><span class="mi">222</span> <span class="mi">22</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">117716</span> <span class="s">&quot;Fedoriw Anna&quot;</span> <span class="mi">1</span> <span class="nv">F</span> <span class="mi">99143</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">31</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">115018</span> <span class="s">&quot;Mattsson Hakan&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99251</span> <span class="o">#(</span><span class="mi">203</span> <span class="mi">348</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104531</span> <span class="s">&quot;Nilsson Hans&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99495</span> <span class="o">#(</span><span class="mi">222</span> <span class="mi">26</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">114872</span> <span class="s">&quot;Dacker Bjarne&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99415</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">35</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104732</span> <span class="s">&quot;Wikstrom Claes&quot;</span> <span class="mi">2</span> <span class="nv">M</span> <span class="mi">99586</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">15</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">107912</span> <span class="s">&quot;Carlsson Tuula&quot;</span> <span class="mi">2</span> <span class="nv">F</span> <span class="mi">94556</span> <span class="o">#(</span><span class="mi">242</span> <span class="mi">56</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104465</span> <span class="s">&quot;Johnson Torbjorn&quot;</span> <span class="mi">1</span> <span class="nv">M</span> <span class="mi">99184</span> <span class="o">#(</span><span class="mi">242</span> <span class="mi">38</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>5.2 Updates with Locks, Reads, and Writes</h3>
+
+<h3>5.3 Select</h3>
+
+<h3>5.4 QLC</h3>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="4.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="6.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

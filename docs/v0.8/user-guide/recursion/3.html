@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>5 Recursion</h1>
+
+<h2>5.5 Primitive Recursive Functions</h2>
+
+<p>In the previous section, we leaned about the primitive recursive function called
+the &quot;successor&quot;, one that was used by Peano in his axioms. There are other
+primitive recursive functions as well, and these are usually given as axioms
+(i.e., without proof):</p>
+
+<ul>
+<li>the &quot;zero function&quot;</li>
+<li>the &quot;projection function&quot;</li>
+<li>&quot;identity function&quot;</li>
+</ul>
+
+<p>These combined with the Peano axioms allow us to define other primitive
+recursive functions.</p>
+
+<h3>5.5.1 Addition</h3>
+
+<p>In the literature, the definition for Peano addition is done in the following
+manner:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">a + 0 = a,
+a + S(b) = S(a + b)
+</code></pre></div>
+<p>where <code>S</code> is the successor function defined in the previous section.</p>
+
+<p>First we have an identity function: any number that has zero added to it yields
+the result of the number itself.</p>
+
+<p>Secondly, a number, when added with the successor of another number is equal to
+the successor of the two numbers combined. Let&#39;s take a look at an example:</p>
+
+<ul>
+<li>The number 0, when applied to the successor function yields 1 (<code>S(0) = 1</code>)</li>
+<li>Therefore, <code>a + S(0) = a + 1</code></li>
+<li>By Peano&#39;s definition of addition then, we have <code>a + 1 = S(a + 0)</code></li>
+<li>Which then gives <code>a + 1 = S(a)</code></li>
+</ul>
+
+<p>In other words, the successor of <code>a</code> is <code>a + 1</code>.</p>
+
+<p>These rules for addition are sometimes given in the following pseudo code:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">add(0, x) = x
+add(succ(n), x) = succ(add(n, x))
+</code></pre></div>
+<p>In LFE, we&#39;d like to maintain symmetry with this. We could try to construct a
+function that had both definitions as pattern arguments, thus alleviating the
+need for two function definitions. However, to perfectly map the pseudo code
+to LFE, we&#39;d have to put a function call in our pattern... and that&#39;s not
+possible.</p>
+
+<p>If, though, we do a little algebraic juggling, we can work around this. In our
+pseudo code we have two parameters: <code>succ(n)</code> and <code>x</code>. If we apply a
+&quot;predecessor&quot; function to <code>succ(n)</code>, we&#39;ll just have <code>n</code> -- which would
+do nicely for a matched function argument in LFE. But we&#39;ll also need to apply
+this predecessor function to the <code>n</code> on the other side of the equation.</p>
+
+<p>Let&#39;s create such a &quot;predecessor&quot; function:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">predecessor</span>
+  <span class="p">((</span><span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)))</span></code></pre></figure>
+
+<p>Now, we can recast the canonical form above using the workaround of the
+<code>predecessor</code> primitive recursive function, allowing us to use one function
+to define Peano&#39;s addition axiom:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">add</span>
+  <span class="p">((</span><span class="mi">0</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">n</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">successor</span> <span class="p">(</span><span class="nv">add</span> <span class="p">(</span><span class="nv">predecessor</span> <span class="nv">n</span><span class="p">)</span> <span class="nv">x</span><span class="p">))))</span></code></pre></figure>
+
+<p>All of this may seem rather absurd, given what we do in every-day programming.
+Remember, though: the verbosity of these axioms and their derived definitions
+serves to explicitly show that no assumptions are being made. With a foundation
+of no assumption, we can be certain that each brick we lay on top of this sound
+(if possibly baroque) basis will be unshakable (baring the random proof by
+Gödel, of course).</p>
+
+<h3>5.5.2 Subtraction</h3>
+
+<p>Next up, let&#39;s take a look at subtraction:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sub(0, x) = x
+sub(pred(n), x) = pred(sub(n, x))
+</code></pre></div>
+<p>Similar to addition above, we make some adjustments for the convenience of
+pattern matching:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">subtract</span>
+  <span class="p">((</span><span class="mi">0</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">n</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">predecessor</span> <span class="p">(</span><span class="nv">subtract</span> <span class="p">(</span><span class="nv">predecessor</span> <span class="nv">n</span><span class="p">)</span> <span class="nv">x</span><span class="p">))))</span></code></pre></figure>
+
+<p>Due to the manner in which we have defined our functions, the usual usage is
+reversed for our <code>subtract</code> function. The first operand is not the number
+that is being subtracted from, but rather the number that is being <em>subtracted</em>.</p>
+
+<p>We can see this in action if we put our definitions in a file called
+<code>prf.lfe</code> (named for &quot;primitive recursive functions&quot;) and <code>slurp</code> it in
+the LFE REPL:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;prf.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">prf</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">subtract</span> <span class="mi">1</span> <span class="mi">100</span><span class="p">)</span>
+<span class="mi">99</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h3>5.5.3 Multiplication</h3>
+
+<p>The last one of these that we will look at is multiplication, and then we&#39;ll
+move on to something a little more complicated :-)</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mult(0, x) = 0
+mult(succ(n), x) = x + (x * n)
+</code></pre></div>
+<p>Again, using our pattern workaround:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">multiply</span>
+  <span class="p">((</span><span class="mi">0</span> <span class="nv">x</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">n</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">add</span> <span class="nv">x</span> <span class="p">(</span><span class="nv">multiply</span> <span class="nv">x</span> <span class="p">(</span><span class="nv">predecessor</span> <span class="nv">n</span><span class="p">)))))</span></code></pre></figure>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Index</h3>
+
+    <ul>
+  <li>
+    <a href="https://github.com/rvirding/lfe/blob/develop/doc/user_guide.txt">User Guide</a>
+    (available as a Gitbook <a href="http://lfe.gitbooks.io/reference-guide/">here</a>)
+  </li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt">lfescript</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_shell.txt">LFE Shell</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_io.txt">I/O Functions</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_macro.txt">Macro Expander</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_comp.txt">Compiler</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_bits.txt">Common Binary Functions</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_gen.txt">Dynamic Code Generator</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_lib.txt">Internal Library used by LFE</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/version_history.md">Version History</a></li>
+</ul>
+
+
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Documentation</h1>
+
+<h2>Dynamic Code Generator</h2>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">MODULE
+
+        lfe_gen
+
+MODULE SUMMARY
+
+        Lisp Flavoured Erlang (LFE) dynamic code generator
+
+DESCRIPTION
+
+        This module provides an experimental interface for dynamically
+        generating modules.
+
+DATA TYPES
+
+        sexpr()
+            An LFE s-expression, a list structure.
+
+EXPORTS
+
+compile_forms(Forms) -&gt; CompRet
+
+        where
+          Forms = [sexpr()]
+          CompRet = BinRet | ErrRet
+          BinRet = {ok,ModuleName,Binary,Warnings}
+          ErrRet = {error,Errors,Warnings}
+
+        Compile a list of LFE forms which comprise an LFE module. For
+        example:
+
+        lfe_gen:compile_forms([[defmodule,foo,[export,[a,0]]],
+                       [defun,a,[],[quote,yes]]])
+
+        Both WarningList and ErrorList have the following format:
+
+        [{FileName,[ErrorInfo]}]
+
+        ErrorInfo is described below. When generating Errors and
+        Warnings the &quot;line number&quot; is the index of the form in which
+        the error occured.
+
+new_module(Name) -&gt; ModDef.
+add_exports([{Name,Arity}], ModDef) -&gt; ModDef.
+add_imports({from,Module,[{Name,Arity}]}, ModDef) -&gt; ModDef.
+add_form(Form, ModDef) -&gt; ModDef.
+print_mod(ModDef) -&gt; iolist().
+compile_mod(Mod) -&gt; CompRet
+
+        where
+          CompRet = BinRet | ErrRet
+          BinRet = {ok,ModuleName,Binary,Warnings}
+          ErrRet = {error,Errors,Warnings}
+
+        These functions are used to incrementally create a module
+        which can at the end be compiled by compile_mod/1. The same
+        example as above could be written:
+
+        M0 = lfe_gen:new_module(foo),
+        M1 = lfe_gen:add_exports([{a,0}], M0),
+        M2 = lfe_gen:add_form([defun,a,[],[quote,yes]], M2),
+        lfe_gen:compile_mod(M2)
+
+Example
+
+        In this example we build a module of parameters where each
+        parameter has a number of features which each have a value. We
+        will create one function for each parameter and the feature is
+        the functions argument. The value for each feature is
+        returned.
+
+        We are creating code equivalent to:
+
+        -module(Name).
+        -export([&lt;param1&gt;/1,...]).
+
+        &lt;param1&gt;(Feature) -&gt;
+            case Feature of
+            &lt;feature1&gt; -&gt; &lt;value1&gt;;
+            ...
+            _ -&gt; erlang:error({unknown_feature,&lt;param1&gt;,Feature)
+            end.
+        ...
+
+        but generating it and compiling it directly in memory without
+        generating a text file. We assume that we have collected the
+        data and have it in the form:
+
+        Params = [{Parameter,[{Feature,Value}]}]
+
+        The equivalent LFE code which we will be generating is:
+
+        (defmodule Name
+          (export (&lt;param1&gt; 1) (&lt;param2&gt; 1) ... ))
+
+        (defun &lt;param1&gt; (f)
+          (case f
+            (&#39;&lt;feature1&gt; &#39;&lt;value1&gt;)
+            ...
+            (f (: erlang error (tuple &#39;unknown_feature &#39;&lt;param1&gt; f)))))
+
+        ...
+
+        The following code builds and compiles a module from the
+        parameter data:
+
+        make_module(Name, Params) -&gt;
+            Mod0 = lfe_gen:new_module(Name),
+            Exps = map(fun ({F,_}) -&gt; {F,1} end, Params),
+            Mod1 = lfe_gen:add_exports(Exps, Mod0),
+            Mod2 = make_funcs(Params, Mod1),
+            lfe_gen:compile_mod(Mod2).
+
+        make_funcs([{Param,Fs}|Ps], Mod) -&gt;
+            %% Define catch-all which generates more explicit exit value.
+            CatchAll = [f,[&#39;:&#39;,erlang,error,
+                   [tuple,unknown_feature,[quote,Param],f]]],
+            %% Build case clauses
+            Cls = foldr(fun ({Feature,Value}, Cls) -&gt;
+                    [[[quote,Feature],[quote,Value]]|Cls]
+                end, [CatchAll], Params),
+            %% Build function.
+            Func = [defun,Param,[f],[&#39;case&#39;,f,Cls]],
+            make_funcs(Ps, lfe_gen:add_form(Func, Mod));
+        make_funcs([], Mod) -&gt; Mod.            %All done
+
+
+Error Information
+
+        The ErrorInfo mentioned above is the standard ErrorInfo
+        structure which is returned from all IO modules. It has the
+        following format:
+
+        {ErrorLine,Module,ErrorDescriptor}
+
+        A string describing the error is obtained with the following call:
+
+        apply(Module, format_error, ErrorDescriptor)</code></pre></figure>
+
+  </article>
+</div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

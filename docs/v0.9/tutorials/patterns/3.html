@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/tutorials/patterns/1.html">Patterns in Erlang</a></li>
+      <li><a class="spec" href="/tutorials/patterns/2.html">Function Dispatch and Patterns</a></li>
+      <li><a class="spec" href="/tutorials/patterns/3.html">Patterns and Variable Assignment</a></li>
+      <li><a class="spec" href="/tutorials/patterns/4.html">Conditions and Patterns</a></li>
+      <li><a class="spec" href="/tutorials/patterns/5.html">Using Patterns with Message Passing</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Pattern Matching</h1>
+
+<h2>3 Patterns and Variable Assignment</h2>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;ford&quot;</span> <span class="s">&quot;betel&quot;</span> <span class="mi">234</span> <span class="s">&quot;&quot;</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;ford&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;ford&quot;</span> <span class="s">&quot;betel&quot;</span> <span class="mi">234</span> <span class="s">&quot;&quot;</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;ford&quot;</span> <span class="s">&quot;betel&quot;</span> <span class="mi">234</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">234</span> <span class="s">&quot;&quot;</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">234</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">name</span> <span class="nv">place</span> <span class="nv">age</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">234</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">name</span> <span class="nv">place</span> <span class="nv">age</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;Ford Prefect&quot;</span> <span class="s">&quot;Betelgeuse Seven&quot;</span> <span class="mi">234</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+<span class="nv">exception</span> <span class="nv">error:</span> <span class="o">#(</span><span class="nv">badmatch</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">a</span> <span class="s">&quot;abc&quot;</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;cat&quot;</span> <span class="s">&quot;abc&quot;</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;cat&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">a</span> <span class="s">&quot;abc&quot;</span><span class="p">)</span> <span class="o">#(</span><span class="s">&quot;cat&quot;</span> <span class="s">&quot;abcd&quot;</span><span class="p">)))</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span><span class="p">))</span>
+<span class="nv">exception</span> <span class="nv">error:</span> <span class="o">#(</span><span class="nv">badmatch</span> <span class="o">#(</span><span class="s">&quot;cat&quot;</span> <span class="s">&quot;abcd&quot;</span><span class="p">))</span>
+
+<span class="nb">&gt;</span></code></pre></figure>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,518 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/community.html">Community</a></li>
+            <li class="title"><a href="/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Programming Rules and Conventions</h3>
+    <ol>
+      <li><a class="spec" href="/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/prog-rules/10.html">Required Documents</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Programming Rules and Conventions</h1>
+
+<h2>3 SW Engineering Principles</h2>
+
+<h3>3.1 Export as few functions as possible from a module</h3>
+
+<p>Modules are the basic code structuring entity in LFE. A module can contain a
+large number of functions but only functions which are included in the export
+list of the module can be called from outside the module.</p>
+
+<p>Seen from the outside, the complexity of a module depends upon the number of
+functions which are exported from the module. A module which exports one or
+two functions is usually easier to understand than a module which exports
+dozens of functions.</p>
+
+<p>Modules where the ratio of exported/non-exported functions is low are
+desirable in that a user of the module only needs to understand the
+functionality of the functions which are exported from the module.</p>
+
+<p>In addition, the writer or maintainer of the code in the module can change
+the internal structure of the module in any appropriate manner provided the
+external interface remains unchanged.</p>
+
+<h3>3.2 Try to reduce intermodule dependencies</h3>
+
+<p>A module which calls functions in many different modules will be more
+difficult to maintain than a module which only calls functions in a few
+different modules.</p>
+
+<p>This is because each time we make a change to a module interface, we have to
+check all places in the code where this module is called. Reducing the
+interdependencies between modules simplifies the problem of maintaining these
+modules.</p>
+
+<p>We can simplify the system structure by reducing the number of different
+modules which are called from a given module.</p>
+
+<p>Note also that it is desirable that the inter-module calling dependencies
+form a tree and not a cyclic graph. Example:</p>
+
+<p><img src="/prog-rules/images/module-dep-ok.gif" /></p>
+
+<p>But not</p>
+
+<p><img src="/prog-rules/images/module-dep-bad.gif" /></p>
+
+<h3>3.3 Put commonly used code into libraries</h3>
+
+<p>Commonly used code should be placed into libraries. The libraries should be
+collections of related functions. Great effort should be made in ensuring
+that libraries contain functions of the same type. Thus a library such as
+<code>lists</code> containing only functions for manipulating lists is a good choice,
+whereas a library, <code>lists-and-maths</code> containing a combination of functions
+for manipulating lists and for mathematics is a very bad choice.</p>
+
+<p>The best library functions have no side effects. Libraries with functions
+with side effects limit the re-usability.</p>
+
+<h3>3.4 Isolate &quot;tricky&quot; or &quot;dirty&quot; code into separate modules</h3>
+
+<p>Often a problem can be solved by using a mixture of clean and dirty code.
+Separate the clean and dirty code into separate modules.</p>
+
+<p>Dirty code is code that does dirty things. Example:</p>
+
+<ul>
+<li>Uses the process dictionary.</li>
+<li>Uses <code>(erlang:process_info arg)</code> for strange purposes.</li>
+<li>Does anything that you are not supposed to do (but have to do).</li>
+</ul>
+
+<p>Concentrate on trying to maximize the amount of clean code and minimize the
+amount of dirty code. Isolate the dirty code and clearly comment or otherwise
+document all side effects and problems associated with this part of the code.</p>
+
+<h3>3.5 Don&#39;t make assumptions about what the caller will do with the results of a function</h3>
+
+<p>Don&#39;t make assumptions about why a function has been called or about what the
+caller of a function wishes to do with the results.</p>
+
+<p>For example, suppose we call a routine with certain arguments which may be
+invalid. The implementer of the routine should not make any assumptions about
+what the caller of the function wishes to happen when the arguments are
+invalid.</p>
+
+<p>Thus we should not write code like</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">do-something</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">case</span> <span class="p">(</span><span class="nv">check-args</span> <span class="nv">args</span><span class="p">)</span>
+    <span class="p">(</span><span class="ss">&#39;ok</span>
+      <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="p">(</span><span class="nv">do-it</span> <span class="nv">args</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nb">error</span> <span class="nv">what</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nb">string</span> <span class="p">(</span><span class="nv">format-the-error</span> <span class="nv">what</span><span class="p">)))</span>
+        <span class="c1">;; don&#39;t do the following!</span>
+        <span class="p">(</span><span class="nv">io:format</span> <span class="o">&#39;</span><span class="s">&quot;* error: ~s~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nb">string</span><span class="p">))</span>
+        <span class="nb">error</span><span class="p">))))</span>
+</code></pre></div>
+<p>Instead write something like:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">do-something</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">case</span> <span class="p">(</span><span class="nv">check-args</span> <span class="nv">args</span><span class="p">)</span>
+    <span class="p">(</span><span class="ss">&#39;ok</span>
+      <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="p">(</span><span class="nv">do-it</span> <span class="nv">args</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nb">error</span> <span class="nv">what</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;error</span> <span class="nv">what</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">error-report</span>
+  <span class="p">(((</span><span class="nv">tuple</span> <span class="nb">error</span> <span class="nv">what</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">format-the-error</span> <span class="nv">what</span><span class="p">)))</span>
+</code></pre></div>
+<p>In the former case, the error string is always printed on standard output; in
+the latter case, an error descriptor is returned to the application. The
+application can now decide what to do with this error descriptor.</p>
+
+<p>By calling <code>error_report/1</code> the application can convert the error
+descriptor to a printable string and print it if so required. But this may
+not be the desired behavior - in any case the decision as to what to do with
+the result is left to the caller.</p>
+
+<h3>3.6 Abstract out common patterns of code or behavior</h3>
+
+<p>Whenever you have the same pattern of code in two or more places in the code
+try to isolate this in a common function and call this function instead of
+having the code in two different places. Copied code requires much effort to
+maintain.</p>
+
+<p>If you see similar patterns of code (i.e. almost identical) in two or more
+places in the code it is worth taking some time to see if one cannot change
+the problem slightly to make the different cases the same and then write a
+small amount of additional code to describe the differences between the two.</p>
+
+<p>Avoid &quot;copy&quot; and &quot;paste&quot; programming, use functions!</p>
+
+<h3>3.7 Top-down</h3>
+
+<p>Write your program using the top-down fashion, not bottom-up (starting with
+details). Top-down is a nice way of successively approaching details of the
+implementation, ending up with defining primitive functions. The code will be
+independent of representation since the representation is not known when the
+higher levels of code are designed.</p>
+
+<h3>3.8 Don&#39;t prematurely optimize code</h3>
+
+<p>Don&#39;t optimize your code at the first stage. First make it right, then (if
+necessary) make it fast (while keeping it right).</p>
+
+<h3>3.9 Use the principle of &quot;least astonishment&quot;</h3>
+
+<p>The system should always respond in a manner which causes the &quot;least
+astonishment&quot; to the user - i.e., a user should be able to predict what will
+happen when they do something and not be astonished by the result.</p>
+
+<p>This has to do with consistency. A consistent system where different modules
+do things in a similar manner will be much easier to understand than a system
+where each module does things in a different manner.</p>
+
+<p>If you get astonished by what a function does, either your function solves
+the wrong problem or it has a wrong name.</p>
+
+<h3>3.10 Try to eliminate side effects</h3>
+
+<p>LFE has several primitives which have side effects. One may also call
+functions from Erlang/OTP in LFE which have side effects. Functions which use
+these cannot be easily re-used since they cause permanent changes to their
+environment and you have to know the exact state of the process before
+calling such routines.</p>
+
+<p>Write as much as possible of the code with side-effect free code.</p>
+
+<p>Maximize the number of pure functions.</p>
+
+<p>Collect together the functions which have side effect and clearly document
+all the side effects.</p>
+
+<p>With a little care most code can be written in a side-effect free manner -
+this will make the system a lot easier to maintain, test and understand.</p>
+
+<h3>3.11 Don&#39;t allow private data structure to &quot;leak&quot; out of a module</h3>
+
+<p>This is best illustrated by a simple example. We define a simple module
+called queue, to implement queues:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">queues1</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">add</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">fetch</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">add</span> <span class="p">(</span><span class="nv">item</span> <span class="nv">queue</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">lists:append</span> <span class="nv">queue</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">item</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">fetch</span>
+  <span class="p">(((</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+  <span class="p">((</span><span class="o">&#39;</span><span class="p">())</span>
+    <span class="ss">&#39;empty</span><span class="p">))</span>
+</code></pre></div>
+<p>This implements a queue as a list, unfortunately to use this the user must
+know that the queue is represented as a list. A typical interactive usage in
+the LFE REPL might look like the following:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;src/queues1.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">queues1</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q1</span> <span class="o">&#39;</span><span class="p">())</span>
+<span class="p">()</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q2</span> <span class="p">(</span><span class="nv">queues1:add</span> <span class="ss">&#39;joe</span> <span class="nv">q1</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">joe</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q3</span> <span class="p">(</span><span class="nv">queues1:add</span> <span class="ss">&#39;mike</span> <span class="nv">q2</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">joe</span> <span class="nv">mike</span><span class="p">)</span>
+</code></pre></div>
+<p>This is bad since the user:</p>
+
+<ol>
+<li>needs to know that the queue is represented as a list, and</li>
+<li>the implementer cannot change the internal representation of the queue
+(this they might want to do later to provide a better version of the ̇
+module).</li>
+</ol>
+
+<p>Better is:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">queues2</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">add</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">fetch</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">new</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">new</span> <span class="p">()</span>
+  <span class="o">&#39;</span><span class="p">())</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">add</span> <span class="p">(</span><span class="nv">item</span> <span class="nv">queue</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">lists:append</span> <span class="nv">queue</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">item</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">fetch</span>
+  <span class="p">(((</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+  <span class="p">((</span><span class="o">&#39;</span><span class="p">())</span>
+    <span class="ss">&#39;empty</span><span class="p">))</span>
+</code></pre></div>
+<p>Now we can write:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;src/queues2.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">queues2</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q1</span> <span class="p">(</span><span class="nv">queues2:new</span><span class="p">))</span>
+<span class="p">()</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q2</span> <span class="p">(</span><span class="nv">queues2:add</span> <span class="ss">&#39;joe</span> <span class="nv">q1</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">joe</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q3</span> <span class="p">(</span><span class="nv">queues2:add</span> <span class="ss">&#39;mike</span> <span class="nv">q2</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">joe</span> <span class="nv">mike</span><span class="p">)</span>
+</code></pre></div>
+<p>Which is much better and corrects this problem.</p>
+
+<p>Now suppose the user needs to know the length of the queue, they might be
+tempted to write:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">len</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">queue-2</span><span class="p">))</span> <span class="c1">; don&#39;t do this!</span>
+</code></pre></div>
+<p>since they know that the queue is represented as a <code>list</code>. Again this is
+bad programming practice and leads to code which is very difficult to
+maintain and understand. If they need to know the length of the queue then a
+<code>len/1</code> function must be added to the module, thus:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">queues3</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">add</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">fetch</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">len/1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">new</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">new</span> <span class="p">()</span>
+  <span class="o">&#39;</span><span class="p">())</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">add</span> <span class="p">(</span><span class="nv">item</span> <span class="nv">queue</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">lists:append</span> <span class="nv">queue</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">item</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">fetch</span>
+  <span class="p">(((</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+  <span class="p">((</span><span class="o">&#39;</span><span class="p">())</span>
+    <span class="ss">&#39;empty</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">queue</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">length</span> <span class="nv">queue</span><span class="p">))</span>
+</code></pre></div>
+<p>Now the user can call <code>(queues3:len queue)</code> instead.</p>
+
+<p>Here we say that we have &quot;abstracted out&quot; all the details of the queue (the
+queue is in fact what is called an &quot;abstract data type&quot;).</p>
+
+<p>Why do we go to all this trouble? - the practice of abstracting out internal
+details of the implementation allows us to change the implementation without
+changing the code of the modules which call the functions in the module we
+have changed. So, for example, a better implementation of the queue is as
+follows:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">queues4</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">add</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">fetch</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">len</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">new</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">new</span> <span class="p">()</span>
+  <span class="o">#(</span><span class="p">()</span> <span class="p">()))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">add</span>
+  <span class="s">&quot;Faster addition of elements that using lists:append.&quot;</span>
+  <span class="p">((</span><span class="nv">item</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="p">(</span><span class="nb">cons</span> <span class="nv">item</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">y</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">fetch</span>
+  <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">head</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">x</span> <span class="nv">tail</span><span class="p">)))</span>
+  <span class="p">(((</span><span class="nv">tuple</span> <span class="o">&#39;</span><span class="p">()</span> <span class="o">&#39;</span><span class="p">()))</span>
+    <span class="ss">&#39;empty</span><span class="p">)</span>
+  <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">x</span> <span class="o">&#39;</span><span class="p">()))</span>
+    <span class="c1">;; perform this heavy computation only sometimes</span>
+    <span class="p">(</span><span class="nv">fetch</span> <span class="p">(</span><span class="nv">tuple</span> <span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="nv">lists:reverse</span> <span class="nv">x</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">len</span>
+  <span class="p">(((</span><span class="nv">tuple</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">+</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">y</span><span class="p">))))</span>
+</code></pre></div>
+<p>Which would then be used like so:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;src/queues4.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">queues4</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q1</span> <span class="p">(</span><span class="nv">queues4:new</span><span class="p">))</span>
+<span class="o">#(</span><span class="p">()</span> <span class="p">())</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q2</span> <span class="p">(</span><span class="nv">queues4:add</span> <span class="ss">&#39;joe</span> <span class="nv">q1</span><span class="p">))</span>
+<span class="o">#(</span><span class="p">(</span><span class="nv">joe</span><span class="p">)</span> <span class="p">())</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q3</span> <span class="p">(</span><span class="nv">queues4:add</span> <span class="ss">&#39;mike</span> <span class="nv">q2</span><span class="p">))</span>
+<span class="o">#(</span><span class="p">(</span><span class="nv">mike</span> <span class="nv">joe</span><span class="p">)</span> <span class="p">())</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">q4</span> <span class="p">(</span><span class="nv">queues4:add</span> <span class="ss">&#39;robert</span> <span class="nv">q3</span><span class="p">))</span>
+<span class="o">#(</span><span class="p">(</span><span class="nv">robert</span> <span class="nv">mike</span> <span class="nv">joe</span><span class="p">)</span> <span class="p">())</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:len</span> <span class="nv">q1</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:len</span> <span class="nv">q2</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:len</span> <span class="nv">q3</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:len</span> <span class="nv">q4</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:fetch</span> <span class="nv">q1</span><span class="p">)</span>
+<span class="nv">empty</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:fetch</span> <span class="nv">q2</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">joe</span> <span class="o">#(</span><span class="p">()</span> <span class="p">()))</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:fetch</span> <span class="nv">q3</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">joe</span> <span class="o">#(</span><span class="p">()</span> <span class="p">(</span><span class="nv">mike</span><span class="p">)))</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">queues4:fetch</span> <span class="nv">q4</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">joe</span> <span class="o">#(</span><span class="p">()</span> <span class="p">(</span><span class="nv">mike</span> <span class="nv">robert</span><span class="p">)))</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>3.12 Make code as deterministic as possible</h3>
+
+<p>A deterministic program is one which will always run in the same manner no
+matter how many times the program is run. A non-deterministic program may
+deliver different results each time it is run. For debugging purposes it is a
+good idea to make things as deterministic as possible. This helps make errors
+reproducible.</p>
+
+<p>For example, suppose one process has to start five parallel processes and
+then check that they have started correctly, suppose further that the order
+in which these five are started does not matter.</p>
+
+<p>We could then choose to either start all five in parallel and then check that
+they have all started correctly but it would be better to start them one at a
+time and check that each one has started correctly before starting the next
+one.</p>
+
+<h3>3.13 Do not program &quot;defensively&quot;</h3>
+
+<p>A defensive program is one where the programmer does not &quot;trust&quot; the input
+data to the part of the system they are programming. In general one should
+not test input data to functions for correctness. Most of the code in the
+system should be written with the assumption that the input data to the
+function in question is correct. Only a small part of the code should
+actually perform  any checking of the data. This is usually done when data
+&quot;enters&quot; the system for the first time, once data has been checked as it
+enters the system it should thereafter be assumed correct.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; args: option is either &#39;all or &#39;normal</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">get-server-usage-info</span> <span class="p">(</span><span class="nv">option</span> <span class="nv">ascii-pid</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">pid</span> <span class="p">(</span><span class="nv">list_to_pid</span> <span class="nv">ascii-pid</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">case</span> <span class="nv">option</span>
+      <span class="ss">&#39;all</span> <span class="p">(</span><span class="nv">get-all-info</span> <span class="nv">pid</span><span class="p">)</span>
+      <span class="ss">&#39;normal</span> <span class="p">(</span><span class="nv">get-normal-info</span> <span class="nv">pid</span><span class="p">))))</span>
+</code></pre></div>
+<p>The function will crash if <code>option</code> is neither <code>&#39;normal</code> nor <code>&#39;all</code>,
+and it <em>should</em> do that. The caller is responsible for supplying correct
+input.</p>
+
+<h3>3.14 Isolate hardware interfaces with a device driver</h3>
+
+<p>Hardware should be isolated from the system through the use of device
+drivers. The device drivers should implement hardware interfaces which make
+the hardware appear as if they were Erlang processes. Hardware should be
+made to look and behave like normal Erlang processes. Hardware should appear
+to receive and send normal Erlang messages and should respond in the
+conventional manner when errors occur.</p>
+
+<h3>3.15 Do and undo things in the same function</h3>
+
+<p>Suppose we have a program which opens a file, does something with it and
+closes it later. This should be coded as:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="c1">;; the followingis good code</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">do-something-with</span> <span class="p">(</span><span class="nv">file</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">case</span> <span class="p">(</span><span class="nv">file:open</span> <span class="nv">file</span> <span class="ss">&#39;read</span><span class="p">)</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nc">stream</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">do-it</span> <span class="nc">stream</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">file:close</span> <span class="nc">stream</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">error</span> <span class="nb">error</span><span class="p">)))</span>
+</code></pre></div>
+<p>Note the symmetry in opening the file with <code>(file:open ...)</code> and closing
+it with <code>(file:close ...)</code> in the same routine.</p>
+
+<p>The solution below is much  harder to follow and it is not obvious which
+file that is closed. Don&#39;t program it like this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">do-something-with</span> <span class="p">(</span><span class="nv">file</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">case</span> <span class="p">(</span><span class="nv">file:open</span> <span class="nv">file</span> <span class="ss">&#39;read</span><span class="p">)</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nc">stream</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">do-it</span> <span class="nc">stream</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">error</span> <span class="nb">error</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">do-it</span> <span class="p">(</span><span class="nc">stream</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="p">(</span><span class="nv">func-234</span> <span class="o">...</span> <span class="nc">stream</span> <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">func-234</span> <span class="p">(</span><span class="o">...</span> <span class="nc">stream</span> <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span>
+  <span class="p">(</span><span class="nv">file:close</span> <span class="nc">stream</span><span class="p">))</span> <span class="c1">; don&#39;t do this!</span>
+</code></pre></div>
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

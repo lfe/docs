@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="/download.html">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/docs.html">Docs</a></li>
+          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Quick-Start Sections</h3>
+    <ol>
+      <li><a class="spec" href="/quick-start/1.html">Getting Set Up</a></li>
+      <li><a class="spec" href="/quick-start/2.html">Executing Code</a></li>
+      <li><a class="spec" href="/quick-start/3.html">Using Libraries</a></li>
+      <li><a class="spec" href="/quick-start/4.html">Next Steps</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Quick Start</h1>
+
+<h2>3 Using Libraries</h2>
+
+<h3>3.1 OTP Modules</h3>
+
+<p>Taking advantage of the
+<a href="http://erldocs.com/R15B/index.html?i=734#stdlib">Erlang stdlib</a> is
+straightforward. All you need to do is prepend the call with a <code>:</code> and
+adjust to use the LFE syntax vs. the Erlang syntax.</p>
+
+<p>In fact, we&#39;ve already seen an example of this in Section 2
+when we called <code>(: io format ...)</code> as part of a &quot;Hello World.&quot;</p>
+
+<p>Here&#39;s an example <code>base64</code> usage from the Erlang <code>stdlib</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">base64</span> <span class="nv">encode_to_string</span> <span class="o">&#39;</span><span class="s">&quot;Space is big. Really big.&quot;</span><span class="p">)</span>
+<span class="s">&quot;U3BhY2UgaXMgYmlnLiBSZWFsbHkgYmlnLg==&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">base64</span> <span class="nv">decode_to_string</span> <span class="o">&#39;</span><span class="s">&quot;QW5kIHNvIHRoZSBVbml2ZXJzZSBlbmRlZC4=&quot;</span><span class="p">)</span>
+<span class="s">&quot;And so the Universe ended.&quot;</span></code></pre></figure>
+
+<h3>3.2 Processes in LFE</h3>
+
+<p>One of the first things that people want to do with LFE is examine the message
+passing syntax so that they can compare it with vanilla Erlang. Here&#39;s a small
+example of what this looks like in LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">(</span><span class="nv">msg</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">print-result</span><span class="p">))))</span></code></pre></figure>
+
+<p>If that was saved in a module called <code>messenger</code>, then one could utilize it
+thusly:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger</span> <span class="ss">&#39;print-result</span> <span class="p">()))</span>
+<span class="nv">&lt;0.34.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Ford is missing.&quot;</span><span class="p">)</span>
+<span class="s">&quot;Ford is missing.&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;Ford</span> <span class="nv">is</span> <span class="nv">missing.</span><span class="o">&#39;</span></code></pre></figure>
+
+<p>For  more information on working with processes in LFE, be sure to view the
+<a href="/tutorials/processes/1.html">tutorial</a>.</p>
+
+<p>Related to this, you can find details and discussion around OTP and creating
+your own servers in the
+<a href="/tutorials/otp-servers/1.html">OTP Servers tutorial</a>.</p>
+
+<h3>3.3 Third-Party Libraries</h3>
+
+<p>Finally, accessing code that is written in third-party libraries is exactly the
+same. Simply use the modules they have provided. If you started the LFE REPL
+pointing to your third-party libraries with a <code>-pa</code> (path) option, then all
+you have to do is this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">your-module</span> <span class="nv">some-function</span> <span class="o">&#39;</span><span class="s">&quot;some parameter&quot;</span><span class="p">)</span></code></pre></figure>
+
+<p>That&#39;s it!</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

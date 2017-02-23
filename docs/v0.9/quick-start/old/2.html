@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/community.html">Community</a></li>
+          <li class="title"><a href="/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Quick-Start Sections</h3>
+    <ol>
+      <li><a class="spec" href="/quick-start/old/1.html">Getting Set Up</a></li>
+      <li><a class="spec" href="/quick-start/old/2.html">Starter Project</a></li>
+      <li><a class="spec" href="/quick-start/old/3.html">Code Smash</a></li>
+      <li><a class="spec" href="/quick-start/old/4.html">Next Steps</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Quick Start</h1>
+
+<h2>2 Your First LFE Project</h2>
+
+<p><img src="https://raw.github.com/lfe/docs/master/images/barf.jpg"
+     style="float: left; padding-right: 1em;">
+A project? Already?! It sounds daunting, but it&#39;s just one command :-)</p>
+
+<p>Head over to your favorite workspace in an open terminal and do this:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool new library my-test-lib
+</code></pre></div>
+<p>As you watch the output crank away, read on to find out what it&#39;s doing:</p>
+
+<ul>
+<li><code>lfetool</code> created a skeleton project (of the &quot;library&quot; type)</li>
+<li><code>rebar</code> downloaded all the dependencies listed in the new
+<code>rebar.config</code> file that was created for your project</li>
+<li>All the downloaded dependendencies were then compiled</li>
+<li>During the first step, a failing test case was created for you; now, that
+test case has been run in the test suite and the error has been revealed
+(TDD!)</li>
+</ul>
+
+<h3>2.1 Tests First!</h3>
+
+<p>First things first: let&#39;s get that failing unit test passing.</p>
+
+<p>Here&#39;s the output we saw:</p>
+<div class="highlight"><pre><code class="language-erlang" data-lang="erlang"><span class="o">**</span><span class="nn">error</span><span class="p">:{</span><span class="n">assertEqual_failed</span><span class="p">,[{</span><span class="n">module</span><span class="p">,</span><span class="n">&#39;my-test-lib_tests&#39;</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">line</span><span class="p">,</span><span class="mi">11</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">expression</span><span class="p">,</span><span class="s">&quot;(: my-test-lib my-adder 2 2)&quot;</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">expected</span><span class="p">,</span><span class="mi">4</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">value</span><span class="p">,</span><span class="mi">5</span><span class="p">}]}</span>
+</code></pre></div>
+<p>We can see that our test expected 4 but it got 5.</p>
+
+<p>Before we go further, be sure you are in your project directory:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> my-test-lib
+</code></pre></div>
+<p>Let&#39;s look at the test by opening up <code>test/my-test-lib_tests.lfe</code>.</p>
+
+<p>Well, things there look good -- we should get 4 when 2 and 2 are added.</p>
+
+<p>Let&#39;s take a look at the source module: <code>src/my-test-lib.lfe</code>. Ah-ha! a
+bug :-) There&#39;s an extra operation that&#39;s being done which we don&#39;t want.</p>
+
+<p>To fix it, change this line:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">y</span> <span class="mi">1</span><span class="p">)))</span>
+</code></pre></div>
+<p>to this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</code></pre></div>
+<p>Now re-run the unit tests:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ make check-unit
+</code></pre></div>
+<p>And you should get a passing test:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">==</span>&gt; my-test-lib <span class="o">(</span>eunit<span class="o">)</span>
+<span class="o">========================</span> <span class="nv">EUnit</span> <span class="o">========================</span>
+my-test-lib_tests: my-adder_test <span class="o">(</span>module <span class="s1">&#39;my-test-lib_tests&#39;</span><span class="o">)</span>...<span class="o">[</span>0.031 s<span class="o">]</span> <span class="nv">ok</span>
+<span class="o">=======================================================</span>
+  Test passed.
+</code></pre></div>
+<p>We&#39;ll talk about the <code>make</code> targets in a bit, but our target above run the
+unit tests without recompiling all the deps; just our project files and
+our unit tests.</p>
+
+<h3>2.2 Project Inventory</h3>
+
+<p>Okay, we&#39;ve got our tests passing and our project looks healthy. But what does
+it have in it?</p>
+
+<ul>
+<li>a Markdown formatted README file</li>
+<li>a <code>Makefile</code></li>
+<li>the <code>rebar.config</code> file we mentioned earlier (this has all your project
+dependencies in it)</li>
+<li>a <code>package.exs</code> file for uploading your project to
+<a href="http://expm.co">expm.co</a></li>
+<li>the <code>src</code> directory which holds your project code, and</li>
+<li>the <code>test</code> directory which holds the tests</li>
+</ul>
+
+<p>There are some other things there (e.g., the <code>deps</code> directory created by <code>rebar</code>
+and the <code>ebin</code> directory that&#39;s created when everything is compiled).</p>
+
+<h3>2.3 Repo Ready to Go</h3>
+
+<p><code>lfetool</code> also did one more thing for you: <code>init</code>ed the project in git
+and added all the files:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ git status
+<span class="c1"># On branch master</span>
+<span class="c1">#</span>
+<span class="c1"># Initial commit</span>
+<span class="c1">#</span>
+<span class="c1"># Changes to be committed:</span>
+<span class="c1">#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span>
+<span class="c1">#</span>
+<span class="c1">#   new file:   .gitignore</span>
+<span class="c1">#   new file:   .travis.yml</span>
+<span class="c1">#   new file:   Makefile</span>
+<span class="c1">#   new file:   README.md</span>
+<span class="c1">#   new file:   package.exs</span>
+<span class="c1">#   new file:   rebar.config</span>
+<span class="c1">#   new file:   resources/make/common.mk</span>
+<span class="c1">#   new file:   src/my-test-lib-util.lfe</span>
+<span class="c1">#   new file:   src/my-test-lib.app.src</span>
+<span class="c1">#   new file:   src/my-test-lib.lfe</span>
+<span class="c1">#   new file:   test/my-test-lib_tests.lfe</span>
+<span class="c1">#</span>
+</code></pre></div>
+<p>All you need to do it <code>git commit -a &amp;&amp; git push --all</code> to wherever you want
+to put your project :-)</p>
+
+<h3>Next Stop</h3>
+
+<p>You can taste it, can&#39;t you? That LFE flavor coming your way? Yup, you&#39;re right.
+You&#39;re going to be looking at LFE code next ...</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/community.html">Community</a></li>
+            <li class="title"><a href="/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>1 Introduction</h1>
+
+<h2>1.1 Lisp Flavored Erlang</h2>
+
+<h3>1.1.1 About</h3>
+
+<p>Lisp Flavored Erlang or LFE is a Lisp syntax front-end to the Erlang
+compiler. LFE is a Lisp-2, like Common Lisp, and comes with a REPL (shell).
+LFE coexists seamlessly with vanilla Erlang and OTP. As such, code written in
+LFE can freely be used together with modules written in vanilla Erlang and
+applications in Erlang/OTP.</p>
+
+<h3>1.1.2 Background</h3>
+
+<p>This work started life as a beautification of what Robert Virding had already
+created when he originally documented LFE. There are a few exemplar open source
+projects which have produced extraordinary documentation: both highly
+informative as well as being exceedingly easy on the eyes. We wanted LFE to
+aspire to those standards. In addition to helping with project adoption,
+creating an attractive and well-documented online resource for LFE makes it much
+nicer for the folks who already use the project.</p>
+
+<p>The Github Pages feature provided us a means whereby an appealing open source
+project site could be created easily. These efforts were rewarded almost
+immediately by visitors and users who began spreading the word, further
+catalyzing our commitment to producing an improved user experience.</p>
+
+<p>While attempting to add more verbose descriptions and enhance the prose around
+the original docs, there arose a strong desire to improve the organization of
+the topics covered as well. In this effort, we turned to the excellent Erlang
+books that have been published to date, and began drawing inspiration from
+these. It soon became clear that what was really needed was an LFE version of
+some combination of those wonderful efforts. With that, the LFE User Guide was
+fully set upon its course.</p>
+
+<h3>1.1.3 Motivation for the Uninitiated</h3>
+
+<p>If you have ever found yourself greatly admiring the Erlang language but
+thirsting for an alternative to the standard syntax, and you do
+not fear the elegance of parentheses (<a href="http://xkcd.com/297/">for a more
+civilized age</a>), you might want to spend some time writing code in LFE. It
+could be just what you&#39;re looking for.</p>
+
+<p>LFE has borrowings from Common Lisp and Scheme, so should provide a familiar
+face for those who have spent time hacking on projects powered by SBCL, Allegro,
+LispWorks, Chicken Scheme, Gambit, or Racket.</p>
+
+<p>Similarly, those who have come to Lisp via the Java VM-powered Clojure will find
+much to love in the Erlang VM-powered LFE. LFE was released just one year after
+Clojure, but has 100% compatibility with the features in Erlang that inspired
+Clojure, some of which the Clojure community is still working on. You can
+get those without waiting when you use LFE!</p>
+
+<h2>1.2 Getting Started</h2>
+
+<p>The user guide assumes the following background knowledge:</p>
+
+<ul>
+<li>basic familiarity with Lisp or Lisp dialects</li>
+<li>a passing knowledge of Erlang</li>
+<li>a working installation of Erlang and LFE</li>
+</ul>
+
+<p>For those that would like additional information on any of these, we recommend
+the resources below.</p>
+
+<p>Online:</p>
+
+<ul>
+<li>The LFE <a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+<li><a href="http://learnyousomeerlang.com/content">Learn You Some Erlang for Great Good</a>
+(<a href="https://github.com/igstan/learn-you-some-erlang-kindle/downloads">.mobi</a>)</li>
+<li><a href="http://www.gigamonkeys.com/book/">Practical Common Lisp</a></li>
+<li><a href="http://www.paulgraham.com/onlisp.html">On Lisp</a></li>
+<li><a href="http://mitpress.mit.edu/sicp/">Structure and Interpretation of Computer Programs</a></li>
+</ul>
+
+<p>Books:</p>
+
+<ul>
+<li><a href="http://pragprog.com/book/jaerlang/programming-erlang">Programming Erlang: Software for a Concurrent World</a></li>
+<li><a href="http://shop.oreilly.com/product/9780596518189.do">Erlang Programming: A Concurrent Approach to Software Development</a></li>
+<li><a href="http://shop.oreilly.com/product/0636920025818.do">Introducing Erlang</a></li>
+<li><a href="http://norvig.com/paip.html">Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp</a></li>
+</ul>
+
+<p>The LFE <a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a> is an important
+resource, as it covers dependencies, building LFE, installation, using the
+REPL, running scripts, and using modules/libraries (OTP and third-party).</p>
+
+<h2>1.3 More About LFE</h2>
+
+<h3>1.3.1 What LFE Isn&#39;t</h3>
+
+<p>Just to clear the air and set some expectations, here&#39;s what you&#39;re <em>not</em> going
+to find in LFE:</p>
+
+<ul>
+<li>An implementation of Scheme</li>
+<li>An implementation of Common Lisp</li>
+<li>An implementation of Clojure</li>
+</ul>
+
+<p>As such, you will not find the following:</p>
+
+<ul>
+<li>A Scheme-like single namespace</li>
+<li>CL packages or munged names faking packages</li>
+<li>Access to Java libraries</li>
+</ul>
+
+<h3>1.3.2 What LFE Is!</h3>
+
+<p>Here&#39;s what you <em>can</em> expect of LFE:</p>
+
+<ul>
+<li>A proper Lisp-2, based on the features and limitations of the Erlang VM</li>
+<li>Compatibility with vanilla Erlang and OTP</li>
+<li>It runs on the standard Erlang VM</li>
+</ul>
+
+<p>Furthermore, as a result of Erlang&#39;s influence (and LFE&#39;s compatibility with
+it), the following hold:</p>
+
+<ul>
+<li>there is no global data</li>
+<li>data is not mutable</li>
+<li>only the standard Erlang data types are used</li>
+<li>you get pattern matching and guards</li>
+<li>you have access to Erlang functions and modules</li>
+<li>LFE has a compiler/interpreter</li>
+<li>functions with declared arity and fixed number of arguments</li>
+<li>Lisp macros</li>
+</ul>
+
+<h2>1.4 What to Expect from this Guide</h2>
+
+<p>The intent of this guide is to follow the same general pattern that the best
+Erlang books do, covering the topics listed in the User Guide table of contents
+from an LFE perspective.</p>
+
+<p>Some of the Guide&#39;s sections will be covered in dedicated tutorials or other
+in-depth documents; in those cases, we provide links to that material. If your
+favorite topic is not covered above, let us know! We&#39;ll try to find a place for
+it :-)</p>
+
+  </article>
+
+  
+  <div class="pagination loop-pagination">
+    
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/">Home</a>
+    
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+    
+  </div>
+  
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+
