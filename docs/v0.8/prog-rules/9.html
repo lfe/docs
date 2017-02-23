@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Lisp Flavored Erlang</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/pygment_trac.css" />
-    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/js/respond.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!--[if lt IE 8]>
-    <link rel="stylesheet" href="/css/ie.css">
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -26,10 +26,10 @@
         <nav>
           <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
           <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
-          <li class="title"><a href="/community.html">Community</a></li>
-          <li class="title"><a href="/contributing.html">Contributing</a></li>
-          <li class="title"><a href="/quick-start/1.html">Quick Start</a></li>
-          <li class="title"><a href="/">Home</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
         </nav>
       </div><!-- end header -->
 
@@ -40,16 +40,16 @@
   <div class="widget">
     <h3 class="widget-title">Programming Rules and Conventions</h3>
     <ol>
-      <li><a class="spec" href="/prog-rules/1.html">Introduction</a></li>
-      <li><a class="spec" href="/prog-rules/2.html">Structure and LFE Terminology</a></li>
-      <li><a class="spec" href="/prog-rules/3.html">SW Engineering Principles</a></li>
-      <li><a class="spec" href="/prog-rules/4.html">Error Handling</a></li>
-      <li><a class="spec" href="/prog-rules/5.html">Processes, Servers and Messages</a></li>
-      <li><a class="spec" href="/prog-rules/6.html">Various LFE Specific Conventions</a></li>
-      <li><a class="spec" href="/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
-      <li><a class="spec" href="/prog-rules/8.html">Documenting Code</a></li>
-      <li><a class="spec" href="/prog-rules/9.html">Common Mistakes</a></li>
-      <li><a class="spec" href="/prog-rules/10.html">Required Documents</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/10.html">Required Documents</a></li>
     </ol>
   </div>
 </div>
@@ -62,13 +62,13 @@
 
 <ul>
 <li>Writing functions which span many pages (see
-<a href="http://docs.lfe.io/prog-rules/7.html">Chapter 7</a>, &quot;Don&#39;t 
+<a href="http://docs.lfe.io/prog-rules/7.html">Chapter 7</a>, &quot;Don&#39;t
 write very long functions&quot;). </li>
 <li>Writing functions with deeply nested if&#39;s receive&#39;s, case&#39;s etc (see
 <a href="http://docs.lfe.io/prog-rules/7.html">Chapter 7</a>,<br>
 &quot;Don&#39;t write deeply nested code&quot;). </li>
 <li>Writing badly typed functions (see
-<a href="http://docs.lfe.io/prog-rules/6.html">Chapter 6</a>, &quot;Use 
+<a href="http://docs.lfe.io/prog-rules/6.html">Chapter 6</a>, &quot;Use
 tagged return values&quot;). </li>
 <li>Function names which do not reflect what the functions do (see
 <a href="http://docs.lfe.io/prog-rules/7.html">Chapter 7</a>,
@@ -78,10 +78,10 @@ tagged return values&quot;). </li>
 &quot;Variable names&quot;). </li>
 <li>Using processes when they are not needed (see
 <a href="http://docs.lfe.io/prog-rules/5.html">Chapter 5</a>,
-&quot;Assign exactly one parallel process to each true concurrent activity in 
+&quot;Assign exactly one parallel process to each true concurrent activity in
 the system&quot;). </li>
 <li>Badly chosen data structures (Bad representations). </li>
-<li>Bad comments or no comments at all (always document arguments and return 
+<li>Bad comments or no comments at all (always document arguments and return
 value). </li>
 <li>Unindented code. </li>
 <li>Using put/get (see
@@ -93,19 +93,19 @@ value). </li>
 
   </article>
 
-  
+
   <div class="pagination loop-pagination">
-    
+
       <a href="8.html" class="previous page-numbers spec">&larr; Previous</a> |
-    
+
       <a class="page-numbers spec" href="">Top</a> |
-      <a class="page-numbers spec" href="/docs.html">Docs</a> |
-      <a class="page-numbers spec" href="/">Home</a>
-    
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
       | <a href="10.html" class="next page-numbers spec">Next &rarr;</a>
-    
+
   </div>
-  
+
 
 
 </div><!-- #content -->
