@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Josefin Sans', sans-serif;
+  font-size: 110%;
 }
 
 a.navbar-brand {
@@ -172,5 +173,5 @@ center-block {
 
 blockquote {
   font-family: 'Josefin Slab', serif;
-  font-size: 110%;
+  font-size: 120%;
 }
