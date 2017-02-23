@@ -3,5 +3,8 @@
 
 (defun site ()
   (poise:site
-    `(("index.html" ,#'docs-pages:index/0))
+    `(("index.html"
+        ,(lambda () (docs-pages:get-page 'landing)))
+      ("design/bootstrap.html"
+        ,(lambda () (docs-pages:get-page 'bootstrap))))
     #m(output-dir "docs")))
