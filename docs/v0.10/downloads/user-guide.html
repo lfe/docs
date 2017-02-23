@@ -93,7 +93,7 @@ get those without waiting when you use LFE!</p>
 the resources below.</p>
 
 <p>Online:
-* The LFE <a href="/quick-start/1.html">Quick Start</a>
+* The LFE <a href="/v0.10/quick-start/1.html">Quick Start</a>
 * <a href="http://learnyousomeerlang.com/content">Learn You Some Erlang for Great Good</a>
   (<a href="https://github.com/igstan/learn-you-some-erlang-kindle/downloads">.mobi</a>)
 * <a href="http://www.gigamonkeys.com/book/">Practical Common Lisp</a>
@@ -106,7 +106,7 @@ the resources below.</p>
 * <a href="http://shop.oreilly.com/product/0636920025818.do">Introducing Erlang</a>
 * <a href="http://norvig.com/paip.html">Paradigms of Artificial Intelligence Programming: Case Studies in Common Lisp</a></p>
 
-<p>The LFE <a href="/quick-start/1.html">Quick Start</a> is an important
+<p>The LFE <a href="/v0.10/quick-start/1.html">Quick Start</a> is an important
 resource, as it covers dependencies, building LFE, installation, using the
 REPL, running scripts, and using modules/libraries (OTP and third-party).</p>
 
@@ -177,7 +177,7 @@ it :-)</p>
 <h3>1.5.1 Using the REPL</h3>
 
 <p>We covered basic REPL usage in the
-<a href="/quick-start/2.html">quick start</a>. That&#39;s the best place to go for
+<a href="/v0.10/quick-start/2.html">quick start</a>. That&#39;s the best place to go for
 an introduction to using the LFE REPL. Regardless (and for your convenience),
 we also provide some information about the REPL in the document you are
 currently reading :-)</p>
@@ -598,7 +598,7 @@ LFE Shell V5.9.3.1 (abort with ^G)
 <h4>1.6.1.1 <code>slurp</code></h4>
 
 <p>As mentioned in the section on
-<a href="/user-guide/intro/2.html">LFE&#39;s REPL</a>, <code>slurp</code>ing a file makes
+<a href="/v0.10/user-guide/intro/2.html">LFE&#39;s REPL</a>, <code>slurp</code>ing a file makes
 all functions and macros defined in the file available in the shell. One does
 not need to reference the module (and, in fact, attempting to do so will result
 in an error. Also, note that only one file can be slurped at a time; slurping a
@@ -731,7 +731,7 @@ own leisure.</p>
 
 <h3>1.7.1 Starting from Scratch</h3>
 
-<p>In the <a href="/quick-start/1.html">LFE Quick Start</a>,
+<p>In the <a href="/v0.10/quick-start/1.html">LFE Quick Start</a>,
 you saw how to get up and running, and
 we&#39;re going to repeat some of that here. However, we do this for the sake of
 completeness and having all the information in one easy-to-access reference.</p>
@@ -746,7 +746,7 @@ completeness and having all the information in one easy-to-access reference.</p>
 experiments with LFE, you may want to try out different versions of Erlang, so
 we&#39;ll start off right: using
 <a href="https://github.com/spawngrid/kerl">kerl</a>. We have
-<a href="/user-guide/devops/2.html">another section</a>
+<a href="/v0.10/user-guide/devops/2.html">another section</a>
 dedicated entirely to kerl, so we&#39;ll skip the details, refer tou to that page,
 and assume that you&#39;ve followed those instructions for getting it set up.</p>
 
@@ -755,7 +755,7 @@ and assume that you&#39;ve followed those instructions for getting it set up.</p
 <p>No matter what your intent with LFE, you&#39;re going to need <code>rebar</code> :-)
 The installation instructions are given in the first few sub-sections of the
 section
-<a href="/user-guide/devops/1.html">dedicated to rebar</a>.
+<a href="/v0.10/user-guide/devops/1.html">dedicated to rebar</a>.
 Be sure you follow those, and you will have a working rebar installation.
 Though you can build LFE without <code>rebar</code>, creating projects will be very
 cumbersome unless you have it installed and are using it.</p>
@@ -1087,7 +1087,7 @@ on them. The usual apply:</p>
 easy to forget that the angle brackets go at different ends for each.</p>
 
 <p>Then there are the operators which also check against type for exact
-(non-)equality: 
+(non-)equality:
 <div class="highlight"><pre><code class="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">=:=</span> <span class="mi">1</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="nv">false</span>
 <span class="nb">&gt;</span> <span class="p">(</span><span class="nv">=:=</span> <span class="mf">1.0</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -1317,7 +1317,7 @@ easily:</p>
 <code>binary</code> module in the Erlang stdlib! The <code>binary</code> module has all sorts
 of nifty functions we can use (check out the
 <a href="http://www.erlang.org/doc/man/binary.html">docs</a>). Here&#39;s an
-example of splitting our data: 
+example of splitting our data:
 <div class="highlight"><pre><code class="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">binary</span> <span class="nv">split</span> <span class="nv">data</span> <span class="p">(</span><span class="nv">binary</span> <span class="s">&quot; who really knows &quot;</span><span class="p">))</span>
 <span class="p">(</span><span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">84</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">39</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">97</span> <span class="mi">32</span> <span class="mi">102</span> <span class="mi">114</span> <span class="mi">111</span> <span class="mi">111</span> <span class="mi">100</span><span class="p">)</span>
  <span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">119</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">32</span> <span class="mi">104</span> <span class="mi">105</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">116</span> <span class="mi">111</span> <span class="mi">119</span> <span class="mi">101</span> <span class="mi">108</span> <span class="mi">32</span> <span class="mi">105</span> <span class="mi">115</span> <span class="mi">46</span><span class="p">))</span>
@@ -1680,7 +1680,7 @@ for equally potent uses.</p>
 
 <p>Keep in mind that <code>case</code> may also be used (optionally) inside the <code>try</code>
 form. For more information on <code>try</code>, see
-<a href="/user-guide/check/2.html">section 5.2</a>.</p>
+<a href="/v0.10/user-guide/check/2.html">section 5.2</a>.</p>
 
 <p>Let&#39;s take a look at <code>case</code> in action:</p>
 
@@ -1740,7 +1740,7 @@ get to the <code>case</code> entry and hit return:</p>
 </code></pre></div>
 
 <p>There is a tutorial on working with Erlang&#39;s <a
-href="/tutorials/processes/1.html">light weight processes in LFE</a>, and
+href="/v0.10/tutorials/processes/1.html">light weight processes in LFE</a>, and
 several example usages of <code>receive</code> are given there. On the second page of
 that tutorial, we see that any message sent to <code>receive</code> is accepted and
 processed. In the example below, we replace the simple pattern of the whole
@@ -1939,7 +1939,7 @@ one:</p>
 </code></pre></div>
 
 <p>We haven&#39;t covered functions yet (that&#39;s coming up in
-<a href="/user-guide/funcode/1.html">Chapter 4</a>), so this will be a short
+<a href="/v0.10/user-guide/funcode/1.html">Chapter 4</a>), so this will be a short
 preview focusing just on the pattern usage in functions, with more detail
 coming later.</p>
 
@@ -2041,7 +2041,7 @@ have the following general forms:</p>
 <p>where the <code>guard</code> in both cases is optional.</p>
 
 <p>You can read more about LFE comprehensions in
-<a href="/user-guide/data/2.html">section 3.3</a>
+<a href="/v0.10/user-guide/data/2.html">section 3.3</a>
 <a name="3_lists_and_simple_data"></a></p>
 
 <h1>3 Lists and Simple Data</h1>
@@ -3017,7 +3017,7 @@ tutorial ;-)</p>
 <h3>4.3.5 Projects</h3>
 
 <p>To see how modules are organized into projects, be sure to read the chapter on
-<a href="/user-guide/devops/1.html">Development and Deployments</a>.
+<a href="/v0.10/user-guide/devops/1.html">Development and Deployments</a>.
 <a name="5_recursion"></a></p>
 
 <h1>5 Recursion</h1>
