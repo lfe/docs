@@ -1,16 +1,18 @@
 (defmodule docs-routes
   (export all))
 
-(defun routes ()
-  `(("index.html"
-      ,(lambda () (docs-pages:get-page 'landing)))
-    ("design/bootstrap.html"
-      ,(lambda () (docs-pages:get-page 'bootstrap)))))
+(defun get-site (path)
+  (poise:site
+    `(("index.html"
+        ,(lambda () (docs-pages:get-page 'landing path)))
+      ("design/bootstrap.html"
+        ,(lambda () (docs-pages:get-page 'bootstrap path))))
+    `#m(output-dir ,(++ "docs" path))))
 
 (defun dev-site ()
   "Generate the development site."
-  (poise:site (routes) #m(output-dir "docs/dev")))
+  (get-site "/dev"))
 
 (defun site ()
   "Generate the production site."
-  (poise:site (routes) #m(output-dir "docs/current")))
+  (get-site "/current"))

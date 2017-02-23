@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"></a>
+          <a class="navbar-brand" href="{{ base_dir }}/"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -17,6 +17,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docs <span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li><a href="/current">v1.2</a></li>
+                <li><a href="/dev">v1.2</a></li>
                 <li><a href="/v1.2">v1.2</a></li>
                 <li><a href="/v0.10">v0.10</a></li>
                 <li><a href="/v0.9">v0.9</a></li>
@@ -53,21 +55,21 @@
         <div class="row">
           <div class="col-lg-5 text-center">
             <ul>
-              <li><a href="/tutorials/">Tutorials</a></li>
-              <li><a href="/presentations/">Presentations</a></li>
-              <li><a href="/history/">History</a></li>
+              <li><a href="{{ base_dir }}/tutorials/">Tutorials</a></li>
+              <li><a href="{{ base_dir }}/presentations/">Presentations</a></li>
+              <li><a href="{{ base_dir }}/history/">History</a></li>
               <li><a href="http://github.com/lfex">LFEX</a></li>
             </ul>
           </div>
           <div class="col-lg-2 text-center">
             <span>
               <a href="http://lfe.io/">
-                <img src="/docs3/images/logos/lfe-tiny-grey-square.png"/></a>
+                <img src="{{ base_dir }}/images/logos/lfe-tiny-grey-square.png"/></a>
             </span>
           </div>
           <div class="col-lg-5 text-center">
             <ul>
-              <li><a href="/contributing">Contributing</a></li>
+              <li><a href="{{ base_dir }}/contributing">Contributing</a></li>
               <li><a href="http://github.com/lfe/docs2/issues">Docs Tickets</a></li>
               <li><a href="http://blog.lfe.io/">Blog</a></li>
               <li><a href="http://twitter.com/ErlangLisp">Twitter</a></li>

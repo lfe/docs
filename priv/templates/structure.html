@@ -13,15 +13,15 @@
     <meta name="MSSmartTagsPreventParsing" content="true" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="{{ base_dir }}/favicon.ico">
 
     <title>{% block page_title %}{% endblock %}{% block page_subtitle %}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/docs3/css/bootstrap-min.css" rel="stylesheet">
+    <link href="{{ base_dir }}/css/bootstrap-min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/docs3/css/lfe.css" rel="stylesheet">
+    <link href="{{ base_dir }}/css/lfe.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -63,11 +63,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/docs3/js/jquery-1.12.1.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/docs3/js/jquery-1.12.1.min.js"><\/script>')</script>
-    <script src="/docs3/js/bootstrap-3.3.6.min.js"></script>
+    <script src="{{ base_dir }}/js/jquery-1.12.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ base_dir }}/js/jquery-1.12.1.min.js"><\/script>')</script>
+    <script src="{{ base_dir }}/js/bootstrap-3.3.6.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/docs3/js/lfe.js"></script>
+    <script src="{{ base_dir }}/js/lfe.js"></script>
     {% endblock %}
     {% block post_end_scripts %}
     {% endblock %}

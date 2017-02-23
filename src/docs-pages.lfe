@@ -6,7 +6,7 @@
   ((err) err))
 
 (defun get-page
-  (('landing)
-    (get-content (landing-tmpl:render)))
-  (('bootstrap)
-    (get-content (theme-tmpl:render))))
+  (('landing path)
+    (get-content (landing-tmpl:render `(#(base_dir ,path)))))
+  (('bootstrap path)
+    (get-content (theme-tmpl:render `(#(base_dir ,path))))))
