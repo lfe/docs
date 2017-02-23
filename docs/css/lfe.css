@@ -1,7 +1,6 @@
 @import 'octicons.css';
 
-html {
-  font-family: 'Josefin Slab', serif;
+body {
   font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -169,4 +168,8 @@ center-block {
     color: #fc0;
     font-size: 120%;
     line-height: 50px;
+}
+
+blockquote {
+  font-family: 'Josefin Slab', serif;
 }
