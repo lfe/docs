@@ -2,8 +2,6 @@
 
 [![][lfe-tiny]][lfe-large]
 
-[lfe-tiny]: priv/static/images/logos/lfe-tiny.png
-[lfe-large]: priv/static/images/logos/lfe-large.png
 
 *Documentation source for Lisp Flavoured Erlang*
 
@@ -67,39 +65,70 @@ contributions made by community members to-date).
 ## Dependencies [&#x219F;](#contents)
 
 * Erlang
-* ``rebar3``
-* ``sass`` (use ``make sass`` to install; requires Ruby + ``gem`` to be
+* `rebar3`
+
+If you want to regenerate the CSS, you'll need `sass`:
+
+* `sass` (use `make sass` to install; requires Ruby + `gem` to be
   installed)
 
 
 ## Building [&#x219F;](#contents)
 
 The CSS files are managed with [sass](http://sass-lang.com). After changing
-values in ``priv/sass/lfe-theme.scss`` (or in the
-``priv/sass/_variables.scss`` file), you'll need to rebuild:
+values in `priv/sass/lfe-theme.scss` (or in the
+`priv/sass/_variables.scss` file), you'll need to rebuild:
 
 ```bash
 $ make css
 ```
 
+To (re)generate the static files, start up an LFE REPL:
+
+```
+$ make repl
+```
+```
+Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] ...
+
+   ..-~.~_~---..
+  (      \\     )    |   A Lisp-2+ on the Erlang VM
+  |`-.._/_\\_.-':    |   Type (help) for usage info.
+  |         g |_ \   |
+  |        n    | |  |   Docs: http://docs.lfe.io/
+  |       a    / /   |   Source: http://github.com/rvirding/lfe
+   \     l    |_/    |
+    \   r     /      |   LFE v1.3-dev (abort with ^G)
+     `-E___.-'
+
+lfe>
+```
+
+To generate the docs to dev:
+
+```cl
+lfe> (docs-gen:run-dev)
+Created docs/dev/index.html.
+...
+ok
+```
+
+Or to generate the static files to prod (the `current` directory):
+
+```cl
+lfe> (docs-gen:run)
+Created docs/current/index.html.
+...
+ok
+```
+
 To run a local copy of the development server and view your work at
-[http://localhost:5099](http://localhost:5099), run the following:
+[http://localhost:8080](http://localhost:8080), run the following:
 
 ```bash
-$ make devdocs
+lfe> (docs-dev:serve)
+ok
 ```
-
-This will automatically rebuild the CSS and build the docs before running the
-server.
-
-To just build the docs:
-
-```bash
-$ make docs
-```
-
-This runs the LFE code which is generating the site (details are logged to the
-console).
 
 
 ## Contributing Content [&#x219F;](#contents)
@@ -115,3 +144,6 @@ Copyright © 2013-2016 LFE Community
 Distributed under the Apache License, Version 2.0.
 ```
 
+
+[lfe-tiny]: priv/static/images/logos/lfe-tiny.png
+[lfe-large]: priv/static/images/logos/lfe-large.png
