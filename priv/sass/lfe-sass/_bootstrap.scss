@@ -1,0 +1,15 @@
+/*!
+ * LFE Bootstrap Theme
+ * Copyright 2014-2017 Duncan McGreggor
+ * Licensed under Apache 2.0 License
+ */
+
+// LFE variables
+@import "bootstrap/variables";
+
+// Core variables and mixins
+@import "../bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/variables";
+@import "../bootstrap-sass-3.3.6/assets/stylesheets/bootstrap";
+
+// LFE theme
+@import "bootstrap/theme";
