@@ -29,4 +29,9 @@
     (clj:-> path
             (docs-data:base)
             (theme-tmpl:render)
+            (get-content)))
+  (('example-two-column path)
+    (clj:-> path
+            (docs-data:base)
+            (example_two_column-tmpl:render)
             (get-content))))
