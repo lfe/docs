@@ -1,30 +1,30 @@
 PROJECT = docs
 ROOT_DIR = $(shell pwd)
 REPO = $(shell git config --get remote.origin.url)
-LFE = _build/default/lib/lfe/bin/lfe
+LFE = _build/dev/lib/lfe/bin/lfe
 SASS_DIR = priv/sass
 DOCS_BUILD_DIR = $(ROOT_DIR)/master
 CSS_BUILD_DIR = $(DOCS_BUILD_DIR)/css
 GHPAGES_GIT_HACK = $(DOCS_BUILD_DIR)/.git
 LOCAL_DOCS_HOST = localhost
 LOCAL_DOCS_PORT = 5099
-ERL_LIBS = $(shell find ./_build/default/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;)
+ERL_LIBS = $(shell find ./_build/*/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;)
 
 sass:
 	sudo gem update --system
 	sudo gem install sass
 
 compile:
-	rebar3 compile
+	rebar3 as dev compile
 
 check:
 	@rebar3 as test eunit
 
 repl: compile
-	@$(LFE)
+	@ERL_LIBS=$(ERL_LIBS) $(LFE)
 
 shell:
-	@rebar3 shell
+	@rebar3 as dev shell
 
 clean:
 	@rebar3 clean
