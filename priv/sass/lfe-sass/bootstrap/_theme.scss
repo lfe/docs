@@ -13,6 +13,7 @@
 }
 
 // Body =======================================================================
+@import 'octicons.css';
 
 html {
   position: relative;
@@ -31,10 +32,19 @@ body {
 .navbar {
 
   @include btn-shadow($navbar-default-bg);
-  background: url(#{$deployment}/images/logos/lfe-logo-site-brand.png) 0 0 no-repeat;
+  background: url(/#{$deployment}/images/header2.png) 0 0 repeat-x;
   background-color: $accent-bg;
   border: 1px solid rgba(0, 0, 0, 0.6);
   //text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  a.navbar-brand {
+    float: left;
+    display: inline-block;
+    width: 216px;
+    height: 27px;
+    margin-top: 12px;
+    margin-left: -10px !important;
+    background: url(/#{$deployment}/images/logos/lfe-logo-site-brand.png) 0 0 no-repeat;
+  }
 
   .navbar-nav > li > a {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
@@ -82,16 +92,64 @@ body {
 
 .splash div {
   padding-top: 1.5em;
+  line-height: 2em;
 }
 
 .splash h1 {
-  line-height: 1.25em;
-  font-size: 320%;
+  line-height: 1.1em;
+  font-size: 260%;
 }
 
 .splash p {
-  font-size: 180%;
+  font-size: 140%;
   color: #aaa;
+}
+
+center-block {
+    float: none;
+}
+
+.highlight-module-group {
+  width: 100%;
+  background-color: $highlight-module-bg-color;
+  margin-bottom: 2em;
+  border: $highlight-module-border;
+  border-right: 0;
+  border-left: 1;
+}
+
+.highlight-module {
+  list-style-type: none;
+  display: table-cell;
+  padding: 40px 14px 30px;
+  text-align: center;
+  line-height: 1.5em;
+  margin-top: -1em;
+}
+
+.highlight-module p {
+  line-height: 1.5em;
+}
+
+.highlight-module h2 {
+  font-size: 200%;
+  color: #fc0;
+}
+
+.highlight-module h2 a {
+  color: #fc0;
+}
+
+.highlight-module code {
+  color: #fc0;
+  background-color: transparent;
+}
+
+.highlight-module .mega-octicon {
+  font-size: 70px;
+  width: 70px;
+  height: 70px;
+  color: #ccc;
 }
 
 // Buttons ====================================================================
