@@ -75,14 +75,6 @@ If you want to regenerate the CSS, you'll need `sass`:
 
 ## Building [&#x219F;](#contents)
 
-The CSS files are managed with [sass](http://sass-lang.com). After changing
-values in `priv/sass/lfe-theme.scss` (or in the
-`priv/sass/_variables.scss` file), you'll need to rebuild:
-
-```bash
-$ make css
-```
-
 To (re)generate the static files, start up an LFE REPL:
 
 ```
@@ -128,6 +120,14 @@ To run a local copy of the development server and view your work at
 ```bash
 lfe> (docs-dev:serve)
 ok
+```
+
+The CSS files are managed with [sass](http://sass-lang.com). After changing
+values in the `priv/sass/lfe*.scss` files or in the
+`priv/sass/lfe-sass/` subdirectories, you'll need to rebuild:
+
+```bash
+$ make css
 ```
 
 
