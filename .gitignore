@@ -15,3 +15,5 @@ master/*
 .sass-cache
 priv/templates/*.erl
 rebar.lock
+*.backup
+*.bak
