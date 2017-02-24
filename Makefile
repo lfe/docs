@@ -3,11 +3,10 @@ ROOT_DIR = $(shell pwd)
 REPO = $(shell git config --get remote.origin.url)
 LFE = _build/dev/lib/lfe/bin/lfe
 SASS_DIR = priv/sass
-DOCS_BUILD_DIR = $(ROOT_DIR)/master
+DOCS_BUILD_DIR = $(ROOT_DIR)/docs/current
+DEV_DOCS_BUILD_DIR = $(ROOT_DIR)/docs/dev
 CSS_BUILD_DIR = $(DOCS_BUILD_DIR)/css
-GHPAGES_GIT_HACK = $(DOCS_BUILD_DIR)/.git
-LOCAL_DOCS_HOST = localhost
-LOCAL_DOCS_PORT = 5099
+DEV_CSS_BUILD_DIR = $(DEV_DOCS_BUILD_DIR)/css
 ERL_LIBS = $(shell find ./_build/*/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;)
 
 sass:
@@ -33,21 +32,21 @@ clean:
 clean-all: clean
 	@rebar3 as dev lfe clean
 
-$(DOCS_BUILD_DIR):
-	@mkdir -p $(DOCS_BUILD_DIR)
-
-$(CSS_BUILD_DIR):
-	@mkdir -p $(CSS_BUILD_DIR)
-
-docs-clean:
-	@echo "\nCleaning build directories ..."
-	@rm -rf $(DOCS_BUILD_DIR)
-
-css: $(CSS_BUILD_DIR)
-	@echo "\nGenerating minimized and dev versions of CSS files ..."
+css:
+	@echo "\nGenerating minimized and regular versions of CSS files ..."
 	@echo
-	@sass --style compressed $(SASS_DIR)/lfe-theme.scss $(CSS_BUILD_DIR)/bootstrap-min.css
-	@sass $(SASS_DIR)/lfe-theme.scss $(CSS_BUILD_DIR)/bootstrap.css
+	@sass --style compressed $(SASS_DIR)/lfe-theme.scss \
+	$(CSS_BUILD_DIR)/bootstrap-min.css
+	@sass $(SASS_DIR)/lfe-theme.scss \
+	$(CSS_BUILD_DIR)/bootstrap.css
+
+dev-css:
+	@echo "\nGenerating minimized and regular versions of CSS files ..."
+	@echo
+	@sass --style compressed $(SASS_DIR)/lfe-theme.scss \
+	$(DEV_CSS_BUILD_DIR)/bootstrap-min.css
+	@sass $(SASS_DIR)/lfe-theme.scss \
+	$(DEV_CSS_BUILD_DIR)/bootstrap.css
 
 docs: clean docs-clean compile $(DOCS_BUILD_DIR) css
 	@echo "\nBuilding docs ..."
@@ -70,20 +69,7 @@ devcss:
 	@sass --watch $(SASS_DIR)/lfe-theme.scss:$(CSS_BUILD_DIR)/bootstrap-min.css &
 	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -s docs httpd -noshell
 
-setup-temp-repo: $(SLATE_GIT_HACK)
-	@echo "\nSetting up temporary git repos for gh-pages ..."
-	@echo
-	@rm -rf $(DOCS_BUILD_DIR)/.git
-	@cd $(DOCS_BUILD_DIR) && git init
-	@cd $(DOCS_BUILD_DIR) && git add * > /dev/null
-	@cd $(DOCS_BUILD_DIR) && git commit -a -m "Generated content." > /dev/null
-
-teardown-temp-repo:
-	@echo "\nTearing down temporary gh-pages repos ..."
-	@echo
-	@rm -rf $(DOCS_BUILD_DIR)/.git
-
-publish-docs: docs setup-temp-repo
+publish-docs: docs
 	@echo "\nPublishing docs ..."
 	@echo
 	@cd $(DOCS_BUILD_DIR) && git push -f $(REPO) master:gh-pages
