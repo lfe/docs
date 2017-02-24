@@ -170,6 +170,15 @@ following steps outline how to add new content to the LFE Documentation site.
    to test.
 1. Once you are sure it's good, commit the changes.
 
+*Caution*: Do not run `(docs-gen:run)`, as that will generate an updated stable
+version of the docs (the contents of the `current`) directory. That is only done
+prior to a new release of LFE and/or the documentation site. Any PRs that update
+`current` will not be approved until those changes are removed (modulo typo fixes
+and the like).
+
+If you have called `(docs-gen:run)` by accident, simply to a `git checkout`
+of the `current` dir to under the docs regen.
+
 **Submission**
 
 1. Push to your fork on Github.
