@@ -137,11 +137,16 @@ This part of the documentation (and code, for that matter) is under very active
 development and is changing regularly, but as it stands right now, the
 following steps outline how to add new content to the LFE Documentation site.
 
+**Preparation**
+
 1. Fork this repository.
 1. `git clone` your fork to your local machine and cd to local working
    directory.
 1. Select the template you want to base your page on
    (e.g., `priv/templates/base.html`).
+
+**Content Creation**
+
 1. Create a new template that extends your selected template, overriding the
    block with content in your new template (see the other templates for
    examples of this).
@@ -155,12 +160,18 @@ following steps outline how to add new content to the LFE Documentation site.
    1. Make sure your code here also needs to extract the results of the
       `render` function (e.g., using the provided `get-content` function in the
       same module).
+
+**Generation & Testing**
+
 1. Start up the LFE REPL (e.g., `make repl`).
 1. Generate the static content with `(docs-gen:run-dev)`.
 1. Serve the newly generated content with `(docs-dev:serve)`.
 1. Visit http://localhost:8080/dev/index.html and all the other pages you need
    to test.
 1. Once you are sure it's good, commit the changes.
+
+**Submission**
+
 1. Push to your fork on Github.
 1. Open a PR.
 
