@@ -3,11 +3,12 @@ ROOT_DIR = $(shell pwd)
 REPO = $(shell git config --get remote.origin.url)
 LFE = _build/dev/lib/lfe/bin/lfe
 SASS_DIR = priv/sass
-DOCS_BUILD_DIR = $(ROOT_DIR)/docs/current
-DEV_DOCS_BUILD_DIR = $(ROOT_DIR)/docs/dev
-CSS_BUILD_DIR = $(DOCS_BUILD_DIR)/css
-DEV_CSS_BUILD_DIR = $(DEV_DOCS_BUILD_DIR)/css
+DOCS_ROOT = $(ROOT_DIR)/docs
+DOCS_STABLE_BUILD_DIR = $(DOCS_ROOT)/current
+DOCS_DEV_BUILD_DIR = $(DOCS_ROOT)/dev
 ERL_LIBS = $(shell find ./_build/*/lib -maxdepth 1 -mindepth 1 -exec printf "%s:" {} \;)
+SASS = sass --no-cache -f --trace
+SASS_MIN = $(SASS) --style compressed
 
 sass:
 	sudo gem update --system
@@ -27,33 +28,40 @@ shell:
 
 clean:
 	@rebar3 clean
-	@rm -rf ebin/* _build/default/lib/$(PROJECT)
+	@rm -rf ebin/* _build/*/lib/$(PROJECT)
 
 clean-all: clean
 	@rebar3 as dev lfe clean
 
 css:
-	@echo "\nGenerating minimized and regular versions of CSS files ..."
+	@echo "\nGenerating minimized and regular versions of CSS files for $(DEPLOYMENT) ..."
 	@echo
-	@sass --style compressed $(SASS_DIR)/lfe-theme.scss \
-	$(CSS_BUILD_DIR)/bootstrap-min.css
-	@sass $(SASS_DIR)/lfe-theme.scss \
-	$(CSS_BUILD_DIR)/bootstrap.css
+	@$(SASS_MIN) $(SASS_DIR)/lfe-$(DEPLOYMENT).scss \
+		$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap-min.css
+	@$(SASS) $(SASS_DIR)/lfe-$(DEPLOYMENT).scss \
+		$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap.css
+	@echo "Done.\n"
 
-dev-css:
-	@echo "\nGenerating minimized and regular versions of CSS files ..."
-	@echo
-	@sass --style compressed $(SASS_DIR)/lfe-theme.scss \
-	$(DEV_CSS_BUILD_DIR)/bootstrap-min.css
-	@sass $(SASS_DIR)/lfe-theme.scss \
-	$(DEV_CSS_BUILD_DIR)/bootstrap.css
+css-dev: DEPLOYMENT = dev
+css-dev: css
 
-docs: clean docs-clean compile $(DOCS_BUILD_DIR) css
+css-stable: DEPLOYMENT = current
+css-stable: css
+
+css-1.3: DEPLOYMENT = v1.3
+css-1.3: css
+
+docs-dev: clean compile css-dev
 	@echo "\nBuilding docs ..."
 	@echo
-	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -noshell -eval 'init:stop()'
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs-gen run-dev -noshell -eval 'init:stop()'
 
-docs-only: $(DOCS_BUILD_DIR)
+docs-stable: clean compile css-stable
+	@echo "\nBuilding docs ..."
+	@echo
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs-gen run -noshell -eval 'init:stop()'
+
+docs-only:
 	@echo "\nBuilding docs ..."
 	@echo
 	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -noshell -eval 'init:stop()'
@@ -68,11 +76,5 @@ devcss:
 	@echo
 	@sass --watch $(SASS_DIR)/lfe-theme.scss:$(CSS_BUILD_DIR)/bootstrap-min.css &
 	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -s docs httpd -noshell
-
-publish-docs: docs
-	@echo "\nPublishing docs ..."
-	@echo
-	@cd $(DOCS_BUILD_DIR) && git push -f $(REPO) master:gh-pages
-	@make teardown-temp-repo
 
 .PHONY: docs
