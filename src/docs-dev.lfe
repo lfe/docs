@@ -1,19 +1,13 @@
 (defmodule docs-dev
   (export all))
 
-(defun start-httpd (cfg)
-  (logjam:info "Starting dev HTTP server ...")
-  (inets:start)
-  (logjam:debug "HTTP server starting with config: ~n~p" `(,cfg))
-  (let ((doc-root (filename:absname (docs-cfg:get-build-dir cfg)))
-        (port (docs-cfg:get-httpd-port cfg)))
-    (inets:start 'httpd `(#(server_name "devdocs")
-                          #(document_root ,doc-root)
-                          #(server_root ,doc-root)
-                          #(port ,port)
-                          #(mime_types (#("html" "text/html")
-                                        #("js" "text/javascript")
-                                        #("css" "text/css")
-                                        #("png" "image/png")
-                                        #("jpeg" "image/jpeg")
-                                        #("jpg" "image/jpeg")))))))
+(defun handler (request)
+  (io:format "Handling request for: ~s~n"
+             `(,(element 8 request)))
+  request)
+
+(defun serve ()
+  (barista:start #'handler/1))
+
+(defun stop-server ()
+  (barista:stop))
