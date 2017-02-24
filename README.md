@@ -179,7 +179,7 @@ following steps outline how to add new content to the LFE Documentation site.
 ## License [&#x219F;](#contents)
 
 ```
-Copyright © 2013-2016 LFE Community
+Copyright © 2013-2017 LFE Community
 
 Distributed under the Apache License, Version 2.0.
 ```
