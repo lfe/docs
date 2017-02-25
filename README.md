@@ -93,7 +93,7 @@ Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] ...
     \   r     /      |   LFE v1.3-dev (abort with ^G)
      `-E___.-'
 
-lfe> (docs:httpd)
+lfe> (docs:start)
 ok
 ```
 
