@@ -134,10 +134,12 @@ following steps outline how to add new content to the LFE Documentation site.
 **Preparation**
 
 1. Fork this repository.
-1. `git clone` your fork to your local machine and cd to local working
-   directory.
-1. Select the template you want to base your page on
-   (e.g., `priv/templates/base.html`).
+1. `git clone` your fork to your local machine and `cd` to the working
+   directory of your clone. If you will be making CSS changes, you'll need the
+   `bootstrap-sass` submodule. In that case, you'll want to use
+   `git clone --recursive`.
+1. If you plan on making content additions, you'll want to select the
+   template you want to base your page on (e.g., `priv/templates/base.html`).
 
 **Content Creation**
 
@@ -155,23 +157,33 @@ following steps outline how to add new content to the LFE Documentation site.
       `render` function (e.g., using the provided `get-content` function in the
       same module).
 
+**CSS Updates**
+
+1. Make sure that your clone of `lfe/docs` has the submodule populated (check
+   the `priv/sass/bootstrap-sass/` directory).
+1. Make updates to the file `priv/sass/lfe-sass/bootstrap/_theme.scss`.
+1. If you need to create some new variables, you'll want to edit
+   `priv/sass/lfe-sass/bootstrap/_variables.scss`.
+1. Commit your changes to the sass files.
+1. Regenerate the dev CSS with `make css-dev`.
+
 **Generation & Testing**
 
 1. Start up the LFE REPL (e.g., `make repl`).
-1. Generate the static content with `(docs-gen:run-dev)`.
-1. Serve the newly generated content with `(docs-dev:serve)`.
+1. Generate the static content with `(docs:gen-dev)`.
+1. Serve the newly generated content with `(docs:httpd)`.
 1. Visit http://localhost:8080/dev/index.html and all the other pages you need
    to test.
 1. Once you are sure it's good, commit the changes.
 
-*Caution*: Do not run `(docs-gen:run)`, as that will generate an updated stable
-version of the docs (the contents of the `current`) directory. That is only done
-prior to a new release of LFE and/or the documentation site. Any PRs that update
-`current` will not be approved until those changes are removed (modulo typo fixes
-and the like).
+*Caution*: Do not run `(docs:gen)`, as that will generate an updated stable
+version of the docs (the contents of the `current`) directory. That is only
+done prior to a new release of LFE and/or the documentation site. Any PRs that
+update `current` will not be approved until those changes are removed (modulo
+typo fixes and the like).
 
-If you have called `(docs-gen:run)` by accident, simply to a `git checkout`
-of the `current` dir to under the docs regen.
+If you have called `(docs:gen)` by accident, simply to a `git checkout` of the
+`current` dir to undo the docs regen.
 
 **Submission**
 
