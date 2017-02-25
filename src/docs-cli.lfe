@@ -14,3 +14,9 @@
 
 (defun httpd ()
   (do-cmd #'docs:httpd/0))
+
+(defun gen-dev-httpd ()
+  (do-cmd
+    (lambda ()
+      (docs:gen-dev)
+      (docs:httpd))))
