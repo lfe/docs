@@ -39,10 +39,10 @@ docs-header:
 	@echo
 
 docs-dev-only: docs-header
-	@ERL_LIBS=$(ERL_LIBS) erl -s docs-cli gen-dev -noshell -eval 'init:stop()'
+	@ERL_LIBS=$(ERL_LIBS) $(LFE) -e '(docs-cli:gen-dev)'
 
 docs-stable-only: docs-header
-	@ERL_LIBS=$(ERL_LIBS) erl -s docs-cli gen-stable -noshell -eval 'init:stop()'
+	@ERL_LIBS=$(ERL_LIBS) $(LFE) -e '(docs-cli:gen-stable)'
 
 docs-dev: docs-header clean compile css-dev docs-dev-only
 
@@ -60,7 +60,7 @@ serve: compile serve-header serve-only
 serve-watch-css: serve-header css-watch-dev serve-only
 
 serve-dev: docs-header clean compile css-dev serve-header
-	@ERL_LIBS=$(ERL_LIBS) erl -s docs-cli gen-dev-httpd -noshell
+	@ERL_LIBS=$(ERL_LIBS) $(LFE) -s docs-cli gen-dev-httpd
 
 contributors:
 	git log --pretty=format:"%an"|sort -u
