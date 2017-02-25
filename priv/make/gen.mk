@@ -58,9 +58,9 @@ serve-only:
 serve: compile serve-header serve-only
 
 serve-watch-css: serve-header css-watch-dev serve-only
-	@ERL_LIBS=$(ERL_LIBS) erl -s docs -s docs gen-content -s docs httpd -noshell
 
-serve-dev: docs-dev serve-watch-css
+serve-dev: docs-header clean compile css-dev serve-header
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs-cli gen-dev-httpd -noshell
 
 contributors:
 	git log --pretty=format:"%an"|sort -u
