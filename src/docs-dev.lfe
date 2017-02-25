@@ -11,3 +11,7 @@
 
 (defun stop-server ()
   (barista:stop))
+
+(defun restart-server ()
+  (stop-server)
+  (server))
