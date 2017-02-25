@@ -34,32 +34,24 @@ The last stable release is always available here:
 
 * http://docs.lfe.io/current/
 
-And the current development release for the docs is here:
+And the current development work on the docs is published here:
 
 * http://docs.lfe.io/dev/
 
-The dev version provides a drop-down menu in the top-nav for accessing
-previous releases of the LFE Documentation.
+Note that the latest dev version provides a drop-down menu in the top-nav for 
+accessing previous releases of the LFE Documentation.
 
 
 ## Goals [&#x219F;](#contents)
 
-The aim of this project is to produce a tool that we can use to generate the
-LFE docs site without having to rely on Ruby or Github's gh-pages features
-(which we have not been entirely happy with; but hey, you can't please all the
-people all the time ... espeically the fringe Lispers who write distributed
-systems).
+The aim of this project is twofold:
 
-The details behind this aim are outlined in a series of epic tickets (as well
-as in various emails on the LFE mail list) linked here in this meta- epic (oh
-yeah, we took it up a level):
+* Maintain the content for the LFE documentation site
+* Maintain a tool (written in LFE) for generating the LFE docs site
 
-* [https://github.com/lfe/docs/issues/62](https://github.com/lfe/docs/issues/62)
-
-v3 of the LFE docs site has been forked from v1. It will use some of the CSS
-of v2 (heavily borrowing from Github's API site), and when done, should be
-able to be merged back into the regular docs site (thus preserving the
-contributions made by community members to-date).
+The next release of the docs site and tooling is v3.1. All tickets 
+for the release are ulimately linked here:
+ * https://github.com/lfe/docs/issues/95
 
 
 ## Dependencies [&#x219F;](#contents)
