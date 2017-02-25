@@ -32,11 +32,11 @@ of Yak!
 This is the source code that generates the site for the LFE documentation.
 The last stable release is always available here:
 
-* http://docs3.lfe.io/current/
+* http://docs.lfe.io/current/
 
 And the current development release for the docs is here:
 
-* http://docs3.lfe.io/dev/
+* http://docs.lfe.io/dev/
 
 The dev version provides a drop-down menu in the top-nav for accessing
 previous releases of the LFE Documentation.
