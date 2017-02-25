@@ -5,7 +5,7 @@
   {description, "Documentation source for Lisp Flavoured Erlang."},
 
   %% The version of the application
-  {vsn, "3.0.0"},
+  {vsn, "3.1.0-dev"},
 
   %% All modules used by the application.
   {modules,
