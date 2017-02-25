@@ -1,14 +1,17 @@
 (defmodule docs-routes
   (export all))
 
+(defun get-routes (path)
+  `(("index.html"
+      ,(lambda () (docs-pages:get-page 'landing path)))
+    ("design/bootstrap.html"
+      ,(lambda () (docs-pages:get-page 'bootstrap path)))
+    ("design/example-2-column.html"
+      ,(lambda () (docs-pages:get-page 'example-two-column path)))))
+
 (defun get-site (path)
   (poise:site
-    `(("index.html"
-        ,(lambda () (docs-pages:get-page 'landing path)))
-      ("design/bootstrap.html"
-        ,(lambda () (docs-pages:get-page 'bootstrap path)))
-      ("design/example-2-column.html"
-        ,(lambda () (docs-pages:get-page 'example-two-column path))))
+    (get-routes path)
     `#m(output-dir ,(++ "docs" path))))
 
 (defun dev-site ()
