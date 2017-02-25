@@ -185,9 +185,9 @@ following steps outline how to add new content to the LFE Documentation site.
       function (after you add it to `docs-data`).
    1. Also, in the `get-page` function is where you will call your template's
       `render` function.
-   1. Make sure your code here also needs to extract the results of the
-      `render` function (e.g., using the provided `get-content` function in the
-      same module).
+   1. Make sure your `get-page` code extracts the results of the `render`
+      function (e.g., using the provided `get-content` function in the same
+      module).
 
 **CSS Updates**
 
@@ -204,8 +204,10 @@ following steps outline how to add new content to the LFE Documentation site.
 1. Start up the LFE REPL (e.g., `make repl`).
 1. Generate the static content with `(docs:gen-dev)`.
 1. Serve the newly generated content with `(docs:httpd)`.
-1. Visit http://localhost:8080/dev/index.html and all the other pages you need
-   to test.
+1. Or do all of those with one target: `make serve-dev`.
+1. Visit
+   [http://localhost:8080/dev/index.html](http://localhost:8080/dev/index.html)
+   and any other pages you need to test.
 1. Once you are sure it's good, commit the changes.
 
 *Caution*: Do not run `(docs:gen)`, as that will generate an updated stable
