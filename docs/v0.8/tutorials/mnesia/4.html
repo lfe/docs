@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.8/tutorials/mnesia/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/mnesia/2.html">Getting Started</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/mnesia/3.html">Structure</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/mnesia/4.html">Content</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/mnesia/5.html">Querying</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/mnesia/6.html">Big Data</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Mnesia</h1>
+
+<h2>4 Content</h2>
+
+<h3>4.1 Inserting Data</h3>
+
+<p>We&#39;ve created tables and we know how to inspect their metadata; now let&#39;s give
+them <em>data</em>. Again, from the REPL, we&#39;ll pull in our source code:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;src/content.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">content</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>4.1.1 Inserting Department Data</h3>
+
+<p>One of the functions now available to us in the REPL is <code>insert-departments</code>.
+It is defined like so:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">insert-departments</span>
+  <span class="p">((</span><span class="o">&#39;</span><span class="p">())</span>
+   <span class="ss">&#39;ok</span><span class="p">)</span>
+  <span class="p">(((</span><span class="nb">cons</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">id</span> <span class="nv">name</span><span class="p">)</span> <span class="nv">tail</span><span class="p">))</span>
+   <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">department</span> <span class="p">(</span><span class="nv">make-department</span> <span class="nv">id</span> <span class="nv">id</span> <span class="nv">name</span> <span class="nv">name</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nv">mnesia:transaction</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">mnesia:write</span> <span class="nv">department</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nv">insert-departments</span> <span class="nv">tail</span><span class="p">))))</span>
+</code></pre></div>
+<p>Which means that we can create a simple list of lists that it will iterate
+over and insert for us. Let&#39;s try it.</p>
+
+<p>Here&#39;s our list of departments:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">depts</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">B/SF</span> <span class="s">&quot;Open Telecom Platform&quot;</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">B/SFP</span> <span class="s">&quot;OTP - Product Development&quot;</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">B/SFR</span> <span class="s">&quot;Computer Science Laboratory&quot;</span><span class="p">)))</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Let&#39;s do the insert:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-departments</span> <span class="nv">depts</span><span class="p">)</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>To make sure that everything is where we planned, we can use <code>mnesia:foldl</code>:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:transaction</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nv">mnesia:foldl</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">_</span><span class="p">)</span> <span class="p">(</span><span class="nv">lfe_io:format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">x</span><span class="p">)))</span>
+                    <span class="mi">0</span>
+                    <span class="ss">&#39;department</span><span class="p">)))</span>
+<span class="o">#(</span><span class="nv">department</span> <span class="nv">B/SFP</span> <span class="s">&quot;OTP - Product Development&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">department</span> <span class="nv">B/SFR</span> <span class="s">&quot;Computer Science Laboratory&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">department</span> <span class="nv">B/SF</span> <span class="s">&quot;Open Telecom Platform&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We&#39;ve defined this as a function you can call from now on, without all that
+typing:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;department</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">department</span> <span class="nv">B/SFP</span> <span class="s">&quot;OTP - Product Development&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">department</span> <span class="nv">B/SFR</span> <span class="s">&quot;Computer Science Laboratory&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">department</span> <span class="nv">B/SF</span> <span class="s">&quot;Open Telecom Platform&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>4.1.2 Inserting Project Data</h3>
+
+<p>We can do something similar for populating our project table. There is another
+utility function defined for inserting projects, just like the one above for
+our company&#39;s departments:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">projs</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">erlang</span> <span class="mi">1</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">otp</span> <span class="mi">2</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">beam</span> <span class="mi">3</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">mnesia</span> <span class="mi">5</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">wolf</span> <span class="mi">6</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">documentation</span> <span class="mi">7</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">www</span> <span class="mi">8</span><span class="p">))))</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-projects</span> <span class="nv">projs</span><span class="p">)</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Let&#39;s give this a check, too:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;project</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nv">erlang</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nv">wolf</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nv">www</span> <span class="mi">8</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nv">otp</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nv">mnesia</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nv">beam</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">project</span> <span class="nb">documentation</span> <span class="mi">7</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We&#39;ve inserted all the data we can that doesn&#39;t depend upon relationships.
+All the remainder of our data will require dependent insertions.</p>
+
+<h3>4.2 Building Relationships</h3>
+
+<p>We&#39;ve going to take advantage of another utility function for setting up
+relationships between employees and their departments and projects:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">insert-employee</span> <span class="p">(</span><span class="nv">employee</span> <span class="nv">department-id</span> <span class="nv">project-names</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">mnesia:transaction</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nv">mnesia:write</span> <span class="nv">employee</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">insert-department-relation</span> <span class="p">(</span><span class="nv">employee-id</span> <span class="nv">employee</span><span class="p">)</span> <span class="nv">department-id</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">insert-project-relations</span> <span class="p">(</span><span class="nv">employee-id</span> <span class="nv">employee</span><span class="p">)</span> <span class="nv">project-names</span><span class="p">))))</span>
+</code></pre></div>
+<p>The functions called by our function are available for your viewing pleasure
+in the
+<a href="https://github.com/lfe/mnesia-tutorial/blob/master/src/content.lfe">LFE
+Mnesia tutorial repo</a>. They are similar in nature to the other utility
+functions we have already defined.</p>
+
+<p>Let&#39;s define our first employee (we will refer to the employee record we
+defined in <code>include/tables.lfe</code>, while doing so):</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">emp</span> <span class="p">(</span><span class="nv">make-employee</span>
+             <span class="nv">id</span> <span class="mi">104732</span>
+             <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Wikstrom Claes&quot;</span>
+             <span class="nv">salary</span> <span class="mi">2</span>
+             <span class="nv">gender</span> <span class="ss">&#39;M</span>
+             <span class="nv">phone</span> <span class="mi">98108</span>
+             <span class="nv">room-number</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">015</span><span class="p">)))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104732</span> <span class="s">&quot;Wikstrom Claes&quot;</span> <span class="mi">7</span> <span class="nv">M</span> <span class="mi">98108</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">15</span><span class="p">))</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Now let&#39;s use our insert utility function:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-employee</span> <span class="nv">emp</span> <span class="ss">&#39;B/SFR</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">erlang</span> <span class="nv">mnesia</span> <span class="nv">otp</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We&#39;ve got three tables to check; let&#39;s do that all at once:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;employee</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104732</span> <span class="s">&quot;Wikstrom Claes&quot;</span> <span class="mi">7</span> <span class="nv">M</span> <span class="mi">98108</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">15</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;in-project</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104732</span> <span class="nv">erlang</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104732</span> <span class="nv">mnesia</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104732</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;in-department</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">104732</span> <span class="nv">B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Fantastic! It&#39;s all there :-)</p>
+
+<p>Let&#39;s add some more:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">employees</span>
+    <span class="o">&#39;</span><span class="p">((</span><span class="mi">104465</span> <span class="s">&quot;Johnson Torbjorn&quot;</span> <span class="mi">1</span> <span class="nv">M</span> <span class="mi">99184</span> <span class="o">#(</span><span class="mi">242</span> <span class="mi">038</span><span class="p">)</span> <span class="nv">B/SF</span> <span class="p">(</span><span class="nv">otp</span><span class="p">))</span>
+      <span class="p">(</span><span class="mi">107912</span> <span class="s">&quot;Carlsson Tuula&quot;</span> <span class="mi">2</span> <span class="nv">F</span> <span class="mi">94556</span> <span class="o">#(</span><span class="mi">242</span> <span class="mi">056</span><span class="p">)</span> <span class="nv">B/SF</span> <span class="p">(</span><span class="nv">otp</span><span class="p">))</span>
+      <span class="p">(</span><span class="mi">114872</span> <span class="s">&quot;Dacker Bjarne&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99415</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">035</span><span class="p">)</span> <span class="nv">B/SFR</span> <span class="p">(</span><span class="nv">otp</span><span class="p">))</span>
+      <span class="p">(</span><span class="mi">104531</span> <span class="s">&quot;Nilsson Hans&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99495</span> <span class="o">#(</span><span class="mi">222</span> <span class="mi">026</span><span class="p">)</span> <span class="nv">B/SFR</span> <span class="p">(</span><span class="nv">mnesia</span> <span class="nv">otp</span><span class="p">))</span>
+      <span class="p">(</span><span class="mi">104659</span> <span class="s">&quot;Tornkvist Torbjorn&quot;</span> <span class="mi">2</span> <span class="nv">M</span> <span class="mi">99514</span> <span class="o">#(</span><span class="mi">222</span> <span class="mi">022</span><span class="p">)</span> <span class="nv">B/SFR</span> <span class="p">(</span><span class="nv">otp</span> <span class="nv">wolf</span><span class="p">))</span>
+      <span class="p">(</span><span class="mi">117716</span> <span class="s">&quot;Fedoriw Anna&quot;</span> <span class="mi">1</span> <span class="nv">F</span> <span class="mi">99143</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">031</span><span class="p">)</span> <span class="nv">B/SFP</span> <span class="p">(</span><span class="nb">documentation</span> <span class="nv">otp</span><span class="p">))</span>
+      <span class="p">(</span><span class="mi">115018</span> <span class="s">&quot;Mattsson Hakan&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99251</span> <span class="o">#(</span><span class="mi">203</span> <span class="mi">348</span><span class="p">)</span> <span class="nv">B/SFP</span> <span class="p">(</span><span class="nv">mnesia</span> <span class="nv">otp</span><span class="p">))))</span>
+<span class="o">...</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-employees</span> <span class="nv">employees</span><span class="p">)</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Let&#39;s do our checks again:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;employee</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104659</span> <span class="s">&quot;Tornkvist Torbjorn&quot;</span> <span class="mi">2</span> <span class="nv">M</span> <span class="mi">99514</span> <span class="o">#(</span><span class="mi">222</span> <span class="mi">22</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">117716</span> <span class="s">&quot;Fedoriw Anna&quot;</span> <span class="mi">1</span> <span class="nv">F</span> <span class="mi">99143</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">31</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">115018</span> <span class="s">&quot;Mattsson Hakan&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99251</span> <span class="o">#(</span><span class="mi">203</span> <span class="mi">348</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104531</span> <span class="s">&quot;Nilsson Hans&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99495</span> <span class="o">#(</span><span class="mi">222</span> <span class="mi">26</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">114872</span> <span class="s">&quot;Dacker Bjarne&quot;</span> <span class="mi">3</span> <span class="nv">M</span> <span class="mi">99415</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">35</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104732</span> <span class="s">&quot;Wikstrom Claes&quot;</span> <span class="mi">2</span> <span class="nv">M</span> <span class="mi">99586</span> <span class="o">#(</span><span class="mi">221</span> <span class="mi">15</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">107912</span> <span class="s">&quot;Carlsson Tuula&quot;</span> <span class="mi">2</span> <span class="nv">F</span> <span class="mi">94556</span> <span class="o">#(</span><span class="mi">242</span> <span class="mi">56</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">employee</span> <span class="mi">104465</span> <span class="s">&quot;Johnson Torbjorn&quot;</span> <span class="mi">1</span> <span class="nv">M</span> <span class="mi">99184</span> <span class="o">#(</span><span class="mi">242</span> <span class="mi">38</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;in-project</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104659</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104659</span> <span class="nv">wolf</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">117716</span> <span class="nb">documentation</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">117716</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">115018</span> <span class="nv">mnesia</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">115018</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104531</span> <span class="nv">mnesia</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104531</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">114872</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104732</span> <span class="nv">erlang</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104732</span> <span class="nv">mnesia</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104732</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">107912</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-project</span> <span class="mi">104465</span> <span class="nv">otp</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;in-department</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">104659</span> <span class="nv">B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">117716</span> <span class="nv">B/SFP</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">115018</span> <span class="nv">B/SFP</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">104531</span> <span class="nv">B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">114872</span> <span class="nv">B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">104732</span> <span class="nv">B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">107912</span> <span class="nv">B/SF</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">in-department</span> <span class="mi">104465</span> <span class="nv">B/SF</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Looks like everything is there. What&#39;s left?</p>
+
+<h3>4.3 Adding the Missing Data</h3>
+
+<p>There are a last few bits of data we can now add, given that we&#39;ve got our
+employee data fully inserted: manager data.</p>
+
+<p>We&#39;ve got a couple employees who are managers. Let&#39;s get them managing:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-manager</span> <span class="mi">104465</span> <span class="ss">&#39;B/SF</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-manager</span> <span class="mi">104465</span> <span class="ss">&#39;B/SFP</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">insert-manager</span> <span class="mi">114872</span> <span class="ss">&#39;B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+</code></pre></div>
+<p>Check that:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">querying:show-data</span> <span class="ss">&#39;manager</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">manager</span> <span class="mi">114872</span> <span class="nv">B/SFR</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">manager</span> <span class="mi">104465</span> <span class="nv">B/SF</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">manager</span> <span class="mi">104465</span> <span class="nv">B/SFP</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>And we&#39;re good!</p>
+
+<p>Next up: we&#39;re going to learn how to query our Mnesia tables...</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="3.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="5.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

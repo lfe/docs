@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.7/css/styles.css" />
+    <link rel="stylesheet" href="/v0.7/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.7/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.7/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="/v0.7/download.html">Download</a></li>
+          <li class="title"><a href="/v0.7/community.html">Community</a></li>
+          <li class="title"><a href="/v0.7/docs.html">Docs</a></li>
+          <li class="title"><a href="/v0.7/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.7/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.7/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/check/3.html">EUnit</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/check/4.html">TDD</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.7/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.7/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>3 Lists and Simple Data</h1>
+
+<h2>3.3 Comprehensions</h2>
+
+<p>In the section on lists, we gave an example of building a list using the
+<code>map</code> function:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">lists</span> <span class="nb">map</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">trunc</span>
+        <span class="p">(</span><span class="err">:</span> <span class="nv">math</span> <span class="nv">pow</span> <span class="mi">3</span> <span class="nv">x</span><span class="p">)))</span>
+    <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>This sort of approach should be familiar to many programmers, even those who
+aren&#39;t adepts at functional programming. This is a well-known pattern. Erlang
+offers another pattern, though: comprehensions.</p>
+
+<p>LFE supports Erlang comprehensions via two macros: <code>lc</code> for list
+comprehensions and <code>bc</code> for bitstring comprehensions.</p>
+
+<h3>3.3.1 List Comprehensions</h3>
+
+<p>Let&#39;s take a look at an example and then discuss it. Here&#39;s a list
+comprehension version of our <code>map</code>/<code>lambda</code> combo above:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lc</span>
+    <span class="p">((</span><span class="nv">&lt;-</span> <span class="nv">x</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">trunc</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">math</span> <span class="nv">pow</span> <span class="mi">3</span> <span class="nv">x</span><span class="p">)))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>This can be translated to English as &quot;the list of integers whose values are
+<code>x</code> raised to the power of <code>3</code> where <code>x</code> is taken from the list we
+provided, iterated in order from first to last.&quot;</p>
+
+<p>In Erlang, this would have looked like the following:</p>
+
+<figure class="highlight"><pre><code class="language-erlang" data-lang="erlang"><span class="mi">1</span><span class="o">&gt;</span> <span class="p">[</span><span class="nb">trunc</span><span class="p">(</span><span class="nn">math</span><span class="p">:</span><span class="nf">pow</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="p">||</span> <span class="nv">X</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]].</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">27</span><span class="p">]</span>
+<span class="mi">2</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>As we can see, the LFE syntax is not as concise as the native Erlang syntax,
+though it is pretty close. Our original example is 62 characters long; the LFE
+list comprehension is 49 characters long; the Erlang version is 41 characters.</p>
+
+<p>To a Lisper, the original is probably much more legible. However, in Erlang
+these is no question that the list comprehensions are shorter and easier to
+read than using anonymous functions.</p>
+
+<h3>3.3.1 Bitstring Comprehensions</h3>
+
+<p>For binary data, we have something similar to the list comprehension. Here&#39;s
+what a bitstring comprehension looks like (adapted from the example given by
+Francesco Cesarini and Simon Thompson in their book, &quot;Erlang Programming&quot;):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">bc</span>
+    <span class="p">((</span><span class="nb">&lt;=</span> <span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">1</span><span class="p">))</span> <span class="p">(</span><span class="nv">binary</span> <span class="p">(</span><span class="mi">42</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">6</span><span class="p">)))))</span>
+    <span class="p">((</span><span class="nv">bnot</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="err">#</span><span class="nv">B</span><span class="p">((</span><span class="mi">21</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">6</span><span class="p">)))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Note that the bitstring comprehension uses the <code>&lt;=</code> operator (not to be
+confused with the <code>=&lt;</code> equality operator!) instead of the <code>&lt;-</code> that
+list comprehensions use.</p>
+
+<p>Here&#39;s the Erlang version:</p>
+
+<figure class="highlight"><pre><code class="language-erlang" data-lang="erlang"><span class="mi">2</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span> <span class="o">&lt;&lt;</span><span class="ow">bnot</span><span class="p">(</span><span class="nv">X</span><span class="p">):</span><span class="mi">1</span><span class="o">&gt;&gt;</span> <span class="p">||</span> <span class="o">&lt;&lt;</span><span class="nv">X</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;&gt;</span> <span class="o">&lt;=</span> <span class="o">&lt;&lt;</span><span class="mi">42</span><span class="p">:</span><span class="mi">6</span><span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span><span class="p">.</span>
+<span class="o">&lt;&lt;</span><span class="mi">21</span><span class="p">:</span><span class="mi">6</span><span class="o">&gt;&gt;</span>
+<span class="mi">3</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>As we might expect, the native Erlang version is much more concise.
+Fortunately, though, in LFE we don&#39;t need to enter the whole binary form, just
+the bit syntax portion. In other words, instead of writing this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">binary</span> <span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">1</span><span class="p">)))</span></code></pre></figure>
+
+<p>and this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">binary</span> <span class="p">((</span><span class="nv">bnot</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">1</span><span class="p">)))</span></code></pre></figure>
+
+<p>we only had to write this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">1</span><span class="p">))</span></code></pre></figure>
+
+<p>and this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">((</span><span class="nv">bnot</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">1</span><span class="p">))</span></code></pre></figure>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.7/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.7/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

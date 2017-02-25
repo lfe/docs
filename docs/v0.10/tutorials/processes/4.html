@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.10/tutorials/processes/1.html">Interacting with Processes</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/processes/2.html">Processes in Modules</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/processes/3.html">The Process Registry</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/processes/4.html">Process Communications</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Lightweight Processes</h1>
+
+<h2>4 Process Communications</h2>
+
+<h3>4.1 It&#39;s a Two Way Street</h3>
+
+<p>We&#39;ve spent some time looking at sending messages to processes manually. Now
+let&#39;s see how processes can send messages to each other. This has the practical
+implication of being able to report back on something from one process to
+another process which might have initiated the current action.</p>
+
+<p>For instance, if we could have a function that spawns several lightweight
+processes, each of which may return data and a status code. If these spawned
+processes have the calling process&#39; ID, then they can, in turn, send their
+results back to the caller so that the data and statuses may be reported upon.</p>
+
+<h3>4.2 Walk the Talk</h3>
+
+<p>To demonstrate this, let&#39;s update our <code>print-result</code> function to do this:
+* pattern match for a process id as well as a message
+* write message about sending data to another process
+* actually send that data to the other process</p>
+
+<p>Additionally, let&#39;s create a new function that <code>spawn</code>s the
+<code>print-result</code> listener  and then sends a message to it.</p>
+
+<p>Save the following as <code>messenger-back.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">messenger-back</span>
+ <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">print-result</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">send-message</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">pid</span> <span class="nv">msg</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Sending message to process ~p ...~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">pid</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">print-result</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">send-message</span> <span class="p">(</span><span class="nv">calling-pid</span> <span class="nv">msg</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">spawned-pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger-back</span> <span class="ss">&#39;print-result</span> <span class="p">())))</span>
+    <span class="p">(</span><span class="nv">!</span> <span class="nv">spawned-pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">calling-pid</span> <span class="nv">msg</span><span class="p">))))</span></code></pre></figure>
+
+<p>With these in place, let&#39;s start up our LFE REPL and try it out. First we&#39;ll
+compile our code and then kick things off with our <code>send-message</code> function.
+Note that this will <code>spawn</code> a listener and send it a message:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;messenger-back&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">messenger-back</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">messenger-back</span> <span class="nv">send-message</span> <span class="o">&#39;</span><span class="s">&quot;There was a terrible ghastly silence.&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">&lt;0.25.0&gt;</span> <span class="s">&quot;There was a terrible ghastly silence.&quot;</span><span class="p">)</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;There</span> <span class="nv">was</span> <span class="nv">a</span> <span class="nv">terrible</span> <span class="nv">ghastly</span> <span class="nv">silence.</span><span class="o">&#39;</span>
+<span class="nv">Sending</span> <span class="nv">message</span> <span class="nv">to</span> <span class="nv">process</span> <span class="nv">&lt;0.25.0&gt;</span> <span class="o">...</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Let&#39;s take a look at shell&#39;s message queue (the quick and dirty way) to see if,
+in fact, the message <em>was</em> sent to the shell process:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">c</span> <span class="nv">flush</span><span class="p">)</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="nv">{</span><span class="s">&quot;There was a terrible ghastly silence.&quot;</span><span class="nv">}</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Sure enough, it was :-)</p>
+
+<h3>4.3 Conclusion</h3>
+
+<p>Well, that about wraps it up. We may add more information about working with
+Erlang lightweight processes in LFE, but the material covered so far in this
+tutorial should give you a solid foundation for exploring the ways in which you
+can use processes to breathe life into your applications.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="3.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

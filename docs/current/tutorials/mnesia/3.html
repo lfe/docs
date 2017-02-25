@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/current/css/styles.css" />
+    <link rel="stylesheet" href="/current/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/current/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/current/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/current/community.html">Community</a></li>
+            <li class="title"><a href="/current/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/current/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/current/tutorials/mnesia/1.html">Introduction</a></li>
+      <li><a class="spec" href="/current/tutorials/mnesia/2.html">Getting Started</a></li>
+      <li><a class="spec" href="/current/tutorials/mnesia/3.html">Structure</a></li>
+      <li><a class="spec" href="/current/tutorials/mnesia/4.html">Content</a></li>
+      <li><a class="spec" href="/current/tutorials/mnesia/5.html">Querying</a></li>
+      <li><a class="spec" href="/current/tutorials/mnesia/6.html">Big Data</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Mnesia</h1>
+
+<h2>3 Structure</h2>
+
+<h3>3.1 Starting Again</h3>
+
+<p>We&#39;ve had a quick taste of Mnesia, and what some of the calls look like in LFE.
+Next we&#39;re going to tackle a bit more heady stuff: tables and relationships.</p>
+
+<p>Go ahead and re-start the REPL, using a different database name this time:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ <span class="nv">DB</span><span class="o">=</span>./Company.DB make mnesia-shell
+</code></pre></div><div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:create_schema</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">node</span><span class="p">)))</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:start</span><span class="p">)</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Then pull in the code that will let us define our tables, adding them to the
+Mnesia schema we just created:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;src/structure.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">structure</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>3.2 Records as Tables</h3>
+
+<p>The <code>structure</code> module includes LFE records that act as our table definitions,
+as well as a macro that lets us create Mnesia tables with almost no boilerplate.</p>
+
+<p>The following records are defined in <code>include/tables.lfe</code>:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defrecord</span> <span class="nv">employee</span>
+  <span class="nv">id</span>
+  <span class="nv">name</span>
+  <span class="nv">salary</span>
+  <span class="nv">gender</span>
+  <span class="nv">phone</span>
+  <span class="nv">room-number</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">department</span>
+  <span class="nv">id</span>
+  <span class="nv">name</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">project</span>
+  <span class="nv">name</span>
+  <span class="nc">number</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">manager</span>
+  <span class="nv">employee-id</span>
+  <span class="nv">department-id</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">in-department</span>
+  <span class="nv">employee-id</span>
+  <span class="nv">department-id</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">in-project</span>
+  <span class="nv">employee-id</span>
+  <span class="nv">project-name</span><span class="p">)</span>
+</code></pre></div>
+<p>These records (tables) are taken from the example given in the
+<a href="http://www.erlang.org/doc/apps/mnesia/Mnesia_chap2.html#id63101">Erlang
+ Mnesia tutorial</a> which also gives this entity diagram for their proposed
+ &quot;Company&quot; database:</p>
+
+<p><img src="http://www.erlang.org/doc/apps/mnesia/company.gif" /></p>
+
+<h3>3.3 Creating Our Tables</h3>
+
+<p>In the <code>src/structure.lfe</code> module which we have just imported, some utility
+functions are defined which will lets us easily create tables in Mnesia based
+on the records defined in the <code>include/tables.lfe</code> file. Of particular
+interest right now is the <code>(init)</code> function; let&#39;s call it:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">init</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span>
+  <span class="p">(</span><span class="o">#(</span><span class="nv">create-set-tables</span> <span class="p">(</span><span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span> <span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span> <span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span> <span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)))</span>
+   <span class="o">#(</span><span class="nv">create-bag-tables</span> <span class="p">(</span><span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)</span> <span class="o">#(</span><span class="nv">atomic</span> <span class="nv">ok</span><span class="p">)))))</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>This just created all our Mnesia tables for us. If we run it again, we&#39;ll see
+errors indicating that the tables have already been created:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">init</span><span class="p">)</span>
+<span class="o">#(</span><span class="nb">error</span>
+  <span class="p">(</span><span class="o">#(</span><span class="nv">create-set-tables</span>
+     <span class="p">(</span><span class="o">#(</span><span class="nv">aborted</span> <span class="o">#(</span><span class="nv">already_exists</span> <span class="nv">employee</span><span class="p">))</span>
+      <span class="o">#(</span><span class="nv">aborted</span> <span class="o">#(</span><span class="nv">already_exists</span> <span class="nv">department</span><span class="p">))</span>
+      <span class="o">#(</span><span class="nv">aborted</span> <span class="o">#(</span><span class="nv">already_exists</span> <span class="nv">project</span><span class="p">))</span>
+      <span class="o">#(</span><span class="nv">aborted</span> <span class="o">#(</span><span class="nv">already_exists</span> <span class="nv">in-department</span><span class="p">))))</span>
+   <span class="o">#(</span><span class="nv">create-bag-tables</span>
+     <span class="p">(</span><span class="o">#(</span><span class="nv">aborted</span> <span class="o">#(</span><span class="nv">already_exists</span> <span class="nv">manager</span><span class="p">))</span>
+      <span class="o">#(</span><span class="nv">aborted</span> <span class="o">#(</span><span class="nv">already_exists</span> <span class="nv">in-project</span><span class="p">))))))</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>As you may guess from the output of that second call, under the covers, the
+<code>init</code> function calls a couple of utility functions:</p>
+
+<ul>
+<li><code>(structure:create-set-tables)</code>, and</li>
+<li><code>(structure:create-bag-tables)</code></li>
+</ul>
+
+<p>These, in turn, call a macro we created to make table-creation much easier.
+The custom macro alleviates the dev from having to write tedious and repetitive
+boilerplate code. This macro actually calls another macro that is generated
+-- by LFE -- for each record (one that gets a list of all the fields for a
+given record).</p>
+
+<p>Next, let&#39;s re-run that <code>info</code> function we saw in the previous section:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:info</span><span class="p">)</span>
+</code></pre></div>
+<p>The output of that function will be very similar to what we saw in the
+previous section. However, do note that our new tables are reported in the
+&quot;Active tables&quot; section:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">...
+---&gt; Active tables &lt;---
+in-project     : with 0        records occupying 305      words of mem
+in-department  : with 0        records occupying 305      words of mem
+manager        : with 0        records occupying 305      words of mem
+project        : with 0        records occupying 305      words of mem
+department     : with 0        records occupying 305      words of mem
+employee       : with 0        records occupying 305      words of mem
+...
+</code></pre></div>
+<p>If you would like to check up on the tables created above, you can use the
+<code>table_info</code> function to pull out certain data. For instance, here&#39;s how
+you find what backend type is being used for any given table:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:table_info</span> <span class="ss">&#39;employee</span> <span class="ss">&#39;type</span><span class="p">)</span>
+<span class="nb">set</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:table_info</span> <span class="ss">&#39;in-project</span> <span class="ss">&#39;type</span><span class="p">)</span>
+<span class="nv">bag</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>If you&#39;re interested in seeing <em>all</em> the details of any given table, you can
+do so with the <code>&#39;all</code> parameter:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">mnesia:table_info</span> <span class="ss">&#39;employee</span> <span class="ss">&#39;all</span><span class="p">)</span>
+<span class="p">(</span><span class="o">#(</span><span class="nv">access_mode</span> <span class="nv">read_write</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">active_replicas</span> <span class="p">(</span><span class="nv">nonode@nohost</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">all_nodes</span> <span class="p">(</span><span class="nv">nonode@nohost</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">arity</span> <span class="mi">7</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">attributes</span> <span class="p">(</span><span class="nv">id</span> <span class="nv">name</span> <span class="nv">salary</span> <span class="nv">gender</span> <span class="nv">phone</span> <span class="nv">room-number</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">checkpoints</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">commit_work</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">cookie</span> <span class="o">#(#(</span><span class="mi">1396</span> <span class="mi">680215</span> <span class="mi">616649</span><span class="p">)</span> <span class="nv">nonode@nohost</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">cstruct</span>
+ <span class="o">#(</span><span class="nv">cstruct</span>
+   <span class="nv">employee</span>
+   <span class="nb">set</span>
+   <span class="p">(</span><span class="nv">nonode@nohost</span><span class="p">)</span>
+   <span class="p">()</span>
+   <span class="p">()</span>
+   <span class="mi">0</span>
+   <span class="nv">read_write</span>
+   <span class="nv">false</span>
+   <span class="p">()</span>
+   <span class="p">()</span>
+   <span class="nv">false</span>
+   <span class="nv">employee</span>
+   <span class="p">(</span><span class="nv">id</span> <span class="nv">name</span> <span class="nv">salary</span> <span class="nv">gender</span> <span class="o">...</span><span class="p">)</span>
+   <span class="p">()</span>
+   <span class="p">()</span>
+   <span class="p">()</span>
+   <span class="o">#(...</span><span class="p">)</span><span class="o">...</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">disc_copies</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">disc_only_copies</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">frag_properties</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">index</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">load_by_force</span> <span class="nv">false</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">load_node</span> <span class="nv">nonode@nohost</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">load_order</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">load_reason</span> <span class="o">#(</span><span class="nv">dumper</span> <span class="nv">create_table</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">local_content</span> <span class="nv">false</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">majority</span> <span class="nv">false</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">master_nodes</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">memory</span> <span class="mi">317</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ram_copies</span> <span class="p">(</span><span class="nv">nonode@nohost</span><span class="p">))</span>
+<span class="o">#(</span><span class="nv">record_name</span> <span class="nv">employee</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">record_validation</span> <span class="o">#(</span><span class="nv">employee</span> <span class="mi">7</span> <span class="nb">set</span><span class="p">))</span>
+<span class="o">#(</span><span class="k">type</span> <span class="nb">set</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">size</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">snmp</span> <span class="p">())</span>
+<span class="o">#(</span><span class="nv">storage_properties</span> <span class="o">...</span><span class="p">)</span>
+<span class="o">#(...</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Next up, we&#39;ll start inserting some data.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/current/">Home</a>
+
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/current/css/styles.css" />
+    <link rel="stylesheet" href="/current/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/current/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/current/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/current/community.html">Community</a></li>
+            <li class="title"><a href="/current/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/current/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/current/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/current/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/current/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/current/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/current/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/current/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/current/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/current/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/current/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/current/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/current/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/current/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/current/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/current/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/current/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>9 Development &amp; Deployment</h1>
+
+<h2>9.2 Working with Kerl</h2>
+
+<p>These instructions were adopted from the
+<a href="https://github.com/spawngrid/kerl">kerl README</a>.
+There&#39;s more good stuff on that page.</p>
+
+<h3>9.2.1 Installation</h3>
+
+<p>Installation is a piece of cake:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ curl -L -O https://raw.github.com/spawngrid/kerl/master/kerl
+$ mv kerl /usr/local/bin/
+$ chmod a+x /usr/local/bin/kerl
+</code></pre></div>
+<h3>9.2.2 Poking Around</h3>
+
+<p>The first thing you&#39;re going to want to do is see what kerl can do:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl
+</code></pre></div>
+<p>Which gives:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">kerl: build and install Erlang/OTP
+usage: /usr/local/bin/kerl &lt;command&gt; [options ...]
+
+  &lt;command&gt;       Command to be executed
+
+Valid commands are:
+  build    Build specified release or git repository
+  install  Install the specified release at the given location
+  deploy   Deploy the specified installation to the given host and location
+  update   Update the list of available releases from erlang.org
+  list     List releases, builds and installations
+  delete   Delete builds and installations
+  active   Print the path of the active installation
+  status   Print available builds and installations
+  prompt   Print a string suitable for insertion in prompt
+  cleanup  Remove compilation artifacts (use after installation)
+</code></pre></div>
+<p>Let&#39;s see what releases are available:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl list releases
+</code></pre></div>
+<p>This will give you output like the following:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">R10B-0 R10B-10 R10B-1a R10B-2 R10B-3 R10B-4 R10B-5 R10B-6 R10B-7 R10B-8
+R10B-9 R11B-0 R11B-1 R11B-2 R11B-3 R11B-4 R11B-5 R12B-0 R12B-1 R12B-2
+R12B-3 R12B-4 R12B-5 R13A R13B R13B01 R13B02-1 R13B02 R13B03 R13B04 R14A
+R14B R14B01 R14B02 R14B03 R14B04 R15B R15B01 R15B02
+R15B02_with_MSVCR100_installer_fix R15B03-1
+R15B03 R16A_RELEASE_CANDIDATE R16B
+Run &quot;/usr/local/bin/kerl update releases&quot; to update this list from erlang.org
+</code></pre></div>
+<p>So many choices! Time to play &gt;:-)</p>
+
+<h3>9.2.3 Installing an Erlang</h3>
+
+<p>We&#39;ve see what releases are available. To install one, we need to:</p>
+
+<ol>
+<li>Choose a release, and</li>
+<li>Come up with a name for out installation of it.</li>
+</ol>
+
+<p>We&#39;re going to install the almost-venerable <code>R15B03</code> as our primary Erlang:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl build R15B03 erlang-15b03
+</code></pre></div>
+<p>This will take a few minutes... time for a bio break.</p>
+
+<p>Note that kerl supports passing options to the build so you can enable/disable
+various features. For more details, see the
+<a href="https://github.com/spawngrid/kerl">github README</a> for kerl.</p>
+
+<p>Once that&#39;s done, it&#39;s time to actually install it. Here, we use the name we
+chose when we built our particular Erlang. In this case, <code>erlang-15b03</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl install erlang-15b03 /opt/erlang/R15B03
+</code></pre></div>
+<p>Careful: if you leave off the path, kerl will install Erlang in your current
+directory.</p>
+
+<p>Before we go into the details on using a kerl-based Erlang, let&#39;s install
+another version.</p>
+
+<h3>9.2.4 Running Multiple Erlang Versions</h3>
+
+<p>Let&#39;s say we also want to develop against <code>R16B</code>; let&#39;s set that up too:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl build R16B erlang-R16B
+$ kerl install erlang-R16B /opt/erlang/R16B
+</code></pre></div>
+<p>Now that we have more than one Erlang installed, the next command will be
+useful:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl list installations
+</code></pre></div>
+<p>Which will give you:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">erlang-15b03 /opt/erlang
+erlang-R16B /opt/erlang
+</code></pre></div>
+<p>Now for a sanity check:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ which erl
+</code></pre></div>
+<p>If you don&#39;t have any other Erlangs installed, that should have returned
+nothing.</p>
+
+<p>Let&#39;s try these out now:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ . /opt/erlang/R15B03/activate
+$ erl -eval <span class="s1">&#39;erlang:display(erlang:system_info(otp_release)), halt().&#39;</span>  -noshell
+<span class="s2">&quot;R15B03&quot;</span>
+$ kerl_deactivate
+$ . /opt/erlang/R16B/activate
+$ erl -eval <span class="s1">&#39;erlang:display(erlang:system_info(otp_release)), halt().&#39;</span>  -noshell
+<span class="s2">&quot;R16B&quot;</span>
+</code></pre></div>
+<p>We&#39;re all set!</p>
+
+<h3>9.2.5 Deleting Erlang Versions</h3>
+
+<p>If for any reason you should want to remove a kerl installation of Erlang,
+you will need to do the following:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl delete installation /opt/erlang/old-or-bad-version
+</code></pre></div>
+<p>You can do something similar for builds:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ kerl delete build my-old-build
+</code></pre></div>
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/current/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

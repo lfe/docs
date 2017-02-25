@@ -1,0 +1,177 @@
+@import 'octicons.css';
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 140%;
+}
+
+a.navbar-brand {
+  float: left;
+  display: inline-block;
+  width: 216px;
+  height: 27px;
+  margin-top: 12px;
+  margin-left: -10px !important;
+  background: url(/dev/images/logos/lfe-logo-site-brand.png) 0 0 no-repeat;
+}
+
+center-block {
+    float: none;
+}
+
+.highlight-module-group {
+    width: 100%;
+    background-color: #343530;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    border: 1px solid #222;
+    border-right: 0;
+    border-left: 1;
+}
+
+.highlight-module {
+  list-style-type: none;
+  display: table-cell;
+  padding: 40px 14px 30px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.5em;
+}
+
+.highlight-module p {
+  font-size: 150% !important;
+  line-height: 1.5em;
+}
+
+.highlight-module h2 {
+  font-size: 250%;
+  color: #fc0;
+}
+
+.highlight-module h2 a {
+  color: #fc0;
+}
+
+.highlight-module code {
+  color: #fc0;
+  background-color: transparent;
+}
+
+.highlight-module .mega-octicon {
+  font-size: 70px;
+  width: 70px;
+  height: 70px;
+  color: #ccc;
+}
+
+.landing-doc-cats {
+    font-size: 120%;
+}
+
+.landing-doc-cats ul {
+    display: inline-block;
+    text-align: left;
+}
+
+.landing-doc-cats p, .landing-doc-cats a {
+    font-size: 120%;
+}
+
+/*!
+ * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*
+ * See the Getting Started docs for more information:
+ * http://getbootstrap.com/getting-started/#support-ie10-width
+ */
+@-webkit-viewport { width: device-width; }
+@-moz-viewport    { width: device-width; }
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
+
+
+/*
+ * From SB Admin
+ */
+
+#wrapper {
+    padding-left: 0;
+}
+
+
+.huge {
+    font-size: 50px;
+    line-height: normal;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+}
+
+#page-wrapper {
+    padding: 0;
+    margin: 5em;
+    margin-top: 3em;
+    background-color: #fff;
+}
+
+
+/* Side Navigation */
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 51px;
+        left: 225px;
+        width: 225px;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+    .side-nav>li>a {
+        width: 225px;
+    }
+}
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #999;
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fc0;
+}
+
+.side-nav>li>div.toc-heading {
+    display: block;
+    position: relative;
+    color: #fc0;
+    font-size: 120%;
+    line-height: 50px;
+}
+
+blockquote {
+  font-family: 'Josefin Slab', serif;
+  font-size: 120%;
+}

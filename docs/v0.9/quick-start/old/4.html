@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Quick-Start Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.9/quick-start/old/1.html">Getting Set Up</a></li>
+      <li><a class="spec" href="/v0.9/quick-start/old/2.html">Starter Project</a></li>
+      <li><a class="spec" href="/v0.9/quick-start/old/3.html">Code Smash</a></li>
+      <li><a class="spec" href="/v0.9/quick-start/old/4.html">Next Steps</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Quick Start</h1>
+
+<h2>4 Behind the Scenes</h2>
+
+<p><img src="https://raw.github.com/lfe/docs/master/images/doubles.jpg"
+     style="float: right; padding-left: 1em;"></p>
+
+<h3>4.1 Using make</h3>
+
+<p>We promised to come back to <code>make</code>, so here we are.</p>
+
+<p>Eventually, the <code>Makefile</code> will be replaced with a combination of <code>rebar</code>
+scripts and updates to <code>lfetool</code>, but for now it&#39;s what we&#39;ve got.</p>
+
+<p>There are some convenient targets available for you in the <code>Makefile</code>:</p>
+
+<ul>
+<li><code>upload</code> - when your project&#39;s ready for release, this will push it up to
+<a href="http://expm.co/">expm.co</a> for you</li>
+<li><code>compile</code> - rebuilds all your <code>.beam</code>s, including the dependencies</li>
+<li><code>install</code> - should you wish to install your project system-wide (we recommend
+against it), you could use this target to do it</li>
+<li><code>check</code> - run your unit tests after recompiling all <code>*.lfe</code> files <code>*.beam</code></li>
+<li><code>repl</code> - start up the LFE REPL after recompiling all <code>*.lfe</code> files</li>
+<li><code>shell</code> - start up the Erlang shell after recompiling all <code>*.lfe</code> files</li>
+<li><code>get-deps</code> - not only does this target get your deps initially, but subsequent
+runs of it will perform <code>git pull</code>s for the repos cloned in your <code>deps</code>
+dir, ensuring you have the latest code for everything</li>
+</ul>
+
+<p>If you do not need to recompile dependencies (and most of the time, you don&#39;t),
+you can skip the deps with the following targets:</p>
+
+<ul>
+<li><code>compile-no-deps</code></li>
+<li><code>repl-no-deps</code></li>
+<li><code>shell-no-deps</code></li>
+<li><code>check-unit</code></li>
+</ul>
+
+<p>There are other interesting <code>make</code> targets tucked in the <code>Makefile</code>, and
+you can learn more about how to manage LFE projects by checking them out.</p>
+
+<p>Read more about setting up a development environment
+<a href="http://docs.lfe.io/user-guide/intro/4.html">here</a>.</p>
+
+<h3>4.2 Next Steps</h3>
+
+<p>This has been a quick overview of what LFE has to offer, so you might enjoy
+reading the <a href="/v0.9/user-guide/intro/1.html">User Guide</a>
+next. You can see all our docs at a glance by visiting the
+<a href="/v0.9/">Docs</a> page.</p>
+
+<p>There is a <a href="http://docs.lfe.io/tutorials/processes/1.html">tutorial
+on light-weight Erlang processes</a> in LFE that you may be intersted in.</p>
+
+<p>If you want to develop RESTful services in LFE, you should take a look at the
+<a href="https://github.com/lfe/yaws-rest-starter">REST on YAWS with LFE</a>
+starter project.</p>
+
+<p>The <a href="https://github.com/lfe">LFE organization</a> on Gitub has a large
+collection of LFE projects that may be of interest to you.</p>
+
+<p>You should also take some time reading the
+<a href="https://github.com/rvirding/lfe">examples</a> provided in the LFE
+source code; studying examples is the quickest way to make progress.</p>
+
+<p>If at any time you would like to provide feedback about the documentation on
+this site, feel free to
+<a href="https://github.com/lfe/docs/issues">create an issue</a>. Be
+sure to give a full description so that we can best help you!</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="3.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

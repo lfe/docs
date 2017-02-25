@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>5 Recursion</h1>
+
+<h2>5.4 The Dedekind-Peano Axioms</h2>
+
+<p>For those that are math-averse, don&#39;t let this frighten you -- this will be a
+peaceful journey that should not leave you bewildered. Rather, it
+will provide some nice background for how recursion came to be used. With the
+history reviewed, we&#39;ll make our way into practical implementations.</p>
+
+<h3>5.4.1 Foundations</h3>
+
+<p>Despite the fluorescence of maths in the 17th and 18th centuries and the
+growing impact of number theory, the ground upon which mathematics were built
+was shaky at best. Indeed, what we now consider to be the foundations of
+mathematics had not even been agreed upon (and this didn&#39;t happen until the
+first half of the 20th century with the maturation of logic and rise of
+axiomatic set theory).</p>
+
+<p>One of the big problems facing mathematicians and one that also prevented the
+clarification of the foundations, was this: a thorough, precise, and consistent
+definition of the natural numbers as well as operations that could be performed
+on them (e.g., addition, multiplication, etc.). There was a long-accepted
+intuitive understanding, however, this was insufficient for complete
+mathematical rigor.</p>
+
+<p>Richard Dedekind addressed this with his method of cuts, but it was Giuseppe
+Peano that supplied us with the clearest, most easily described axioms defining
+the natural numbers and arithmetic, wherein he made effective use of
+recursion. His definitions can be easily found in text books and on the
+Internet; we will take a slightly unique approach, however, and cast them in
+terms of LFE.</p>
+
+<h3>5.4.2 A Constant and Equality</h3>
+
+<p>The first five Peano axioms deal with the constant (often written as &quot;0&quot;) and
+the reflexive, symmetric, transitive and closed equality relations. These don&#39;t
+relate recursion directly, so we&#39;re going to skip them ;-)</p>
+
+<h3>5.4.3 Successor Function</h3>
+
+<p>The concept of the &quot;successor&quot; in the Peano axioms is a primitive; it is taken
+as being true without having been proved. It is informally defined as being the
+next number following a given number &quot;n&quot;.</p>
+
+<p>In LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">successor</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">+</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">))</span></code></pre></figure>
+
+<p>The things to keep in mind here are that 1) we haven&#39;t defined addition yet,
+and 2) you must not interpret &quot;+&quot; as addition in this context, rather as the
+operator that allows for succession to occur. In the world of the Peano axioms,
+&quot;+&quot; is only validly used with &quot;n&quot; and &quot;1&quot;.</p>
+
+<p>This function is defined as being &quot;basic primitive recursive&quot;. The basic
+primitive recursives are defined by axioms; the term was coined by Rózsa
+Péter.</p>
+
+<h3>5.4.4 The Remaining Axioms</h3>
+
+<p>The remaining three Peano axioms do not touch upon recursion directly, so we
+leave them to your own research and reading pleasure.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

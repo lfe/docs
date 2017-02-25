@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/v0.8/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/v0.8/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>7 Language Usage Guidelines</h2>
+
+<h3>7.1 Functional Style</h3>
+
+<p>Erlang is a functional language; LFE should be treated as such as well. You
+should not be modifying local variables, mutating data, etc.</p>
+
+<p>If you use closures or processes to create stateful applications, be sure
+that functions which operate on these objects or processes return new data.
+Don&#39;t use setter functions that mutate state.</p>
+
+<p>Writing code that is as purely functional as possible has many benefits,
+some of which are:</p>
+
+<ul>
+<li>It is safer to run that code across distributed nodes.</li>
+<li>It is easier to debug.</li>
+<li>It is easier to test.</li>
+</ul>
+
+<h3>7.2 Recursion</h3>
+
+<p>You should take advantage of LFE&#39;s (Erlang&#39;s and OTP&#39;s) rich libraries and
+open source ecosystem to create programs in a functional style. Part of this
+includes taking advantage of recursion.</p>
+
+<p>There are several idioms for the creation of recursive functions in LFE:</p>
+
+<ul>
+<li>Recursion via list and binary comprehensions.</li>
+<li>Recursion via <code>(cons ...)</code>, deconstructing lists in function heads.</li>
+<li>Tail-call optimised code.</li>
+<li>Naïve recursion (code that is not tail-call optimised).</li>
+</ul>
+
+<p>To be clear, naïve recursion should not ever be used except for demonstration
+purposes. Erlang style typically promotes preferring comprehensions where
+applicable. In LFE, comprehensions are a bit less legible, so we leave the
+choice to the coder as a matter of preference.</p>
+
+<p>If you do rely on proper tail calls, you should prominently document the
+fact, as tail calls tend to be less clear than naïve recursion.</p>
+
+<h3>7.3 Objects and State</h3>
+
+<p>TBD</p>
+
+<h3>7.4 Error Handling</h3>
+
+<p>For recommendations on error handling, see the
+<a href="/v0.8/prog-rules/4.html">Error Handling</a> chapter of the
+LFE Programming Rules and Conventions Guide.</p>
+
+<h3>7.5 Processes, Servers and Messages</h3>
+
+<p>For recommendations on working with processes, servers and messages, see the
+<a href="/v0.8/prog-rules/5.html">Processes, Servers and Messages</a>
+chapter of the LFE Programming Rules and Conventions Guide.</p>
+
+<h3>7.6 Various LFE Specific Conventions</h3>
+
+<p>See the <a href="/v0.8/prog-rules/6.html">Various LFE Specific Conventions</a>
+chapter of the LFE Programming Rules and Conventions Guide for additional
+style guidance for LFE.</p>
+
+<h3>7.7 Specific Lexical and Stylistic Conventions</h3>
+
+<p>See the
+<a href="/v0.8/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a>
+chapter of the LFE Programming Rules and Conventions Guide for additional
+style guidance for LFE.</p>
+
+<h3>7.8 Documenting Code</h3>
+
+<p>For guidance on documenting code, see the following resources:</p>
+
+<ul>
+<li>The Style Guide chapter on <a href="/v0.8/style-guide/4.html">Documentation</a></li>
+<li>The LFE Programming Rules and Conventions Guide chapter on
+<a href="/v0.8/prog-rules/8.html">Documenting Code</a></li>
+<li>The LFE Programming Rules and Conventions Guide chapter on
+<a href="/v0.8/prog-rules/10.html">Required Documents</a></li>
+</ul>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="6.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="8.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

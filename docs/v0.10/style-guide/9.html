@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/v0.10/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>9 Data Representation</h2>
+
+<h3>9.1 Empty Lists</h3>
+
+<p>Thanks to Erlang, LFE doesn&#39;t have any of the problems of ambiguity around
+<code>NIL</code>, empty lists, and <code>&#39;false</code>:</p>
+
+<ul>
+<li>There is no <code>NIL</code> in LFE. If you want to indicate that something has no
+value, use the Erlang convention: return the <code>&#39;undefined</code> atom.</li>
+<li>The empty <code>&#39;()</code> list in LFE is just that: an empty list. It cannot be
+compared meaningfully to an undefined value or a boolean.</li>
+<li>The boolean value for &quot;False&quot; in LFE is the atom <code>&#39;false</code>. It cannot be
+meaningfully compared to an emoty list or an undefined value.</li>
+</ul>
+
+<h3>9.2 Do Not Abuse Lists</h3>
+
+<p>Even though back in 1958, LISP was short for &quot;LISt Processing&quot;, its
+successors such as Common Lisp, Clojure, and LFE, have been modern
+programming languages with modern data structures since the 1980s and
+mid-2000s, respectively. You should use the appropriate data structures in
+your programs.</p>
+
+<p>You should not abuse the builtin (single-linked) LIST data structure where
+it is not appropriate, even though LFE may make that easy to do.</p>
+
+<p>You should only use lists when their performance characteristics is
+appropriate for the algorithm at hand: sequential iteration over the entire
+contents of the list.</p>
+
+<p>An exception where it is appropriate to use lists is when it is known in
+advance that the size of the list will remain very short (say, less than 16
+elements).</p>
+
+<p>List data structures are often (but not always) appropriate for macros and
+functions used by macros at compile-time: indeed, not only is source code
+passed as lists in LFE, but the macro-expansion and compilation processes
+will typically walk over the entire source code sequentially.</p>
+
+<p>Another exception where it is appropriate to use lists is for introducing
+literal constants that will be transformed into more appropriate data
+structures at compile-time or load-time. It is a good to have a function
+with a relatively short name to build your program&#39;s data structures from
+such literals.</p>
+
+<p>In the many cases when lists are not the appropriate data structure,
+different data types and various libraries provide plenty of alternatives
+that should fulfill all the basic needs of your programs.</p>
+
+<h3>9.3 Lists vs. Tuples</h3>
+
+<p>For very simple tasks that require a little more structure than what lists
+provide, you should use <code>tuple</code>s.</p>
+
+<p>If other parts of your application need to work with this data, if you need
+to be able to pass data around to functions, it&#39;s probably a good time to
+switch to using records.</p>
+
+<h3>9.4 Lists vs. Records</h3>
+
+<p>You should avoid using a list as anything besides a container of elements of
+like type. You should not use a list as method of passing multiple separate
+values of different types in and out of function calls. Sometimes it is
+convenient to use a list as a little ad hoc structure, i.e. &quot;the first
+element of the list is a FOO, and the second is a BAR&quot;, but this should be
+used minimally since it gets harder to remember the little convention. You
+should only use a list that way when destructuring the list of arguments from
+a function, or creating a list of arguments to which to APPLY a function.</p>
+
+<p>The proper way to pass around an object comprising several values of
+heterogeneous types is to use a record as defined by <code>(defrecord ...)</code>.</p>
+
+<p>You should use multiple values only when a function returns a small number
+of values that are meant to be destructured immediately by the caller,
+rather than passed together as arguments to further functions.</p>
+
+<h3>9.5 Lists vs. Arrays</h3>
+
+<p>If you have code that requires data structures with nothing but numeric
+keys, arrays may be a good fit. Arrays provide access to elements with
+numerical indices. You can also fold over arrays while ignoring undefined
+slots.</p>
+
+<p>Note that, unlike most other data structures you will find in LFE/Erlang
+which are 1-indexed, arrays are 0-indexed.</p>
+
+<p><a href="http://learnyousomeerlang.com/a-short-visit-to-common-data-structures#arrays">More information</a>.</p>
+
+<h3>9.5 Lists vs. Sets</h3>
+
+<p>If you have data stored in lists and want to start doing union or
+intersection operations, it&#39;s time to switch to a set data type. Don&#39;t even
+think about writing macros for your lists. That&#39;d just be silly.</p>
+
+<p>LFE/Erlang has several to choose from:</p>
+
+<ul>
+<li>ordsets</li>
+<li>sets</li>
+<li>gb_sets</li>
+<li>sofs</li>
+</ul>
+
+<p><a href="http://learnyousomeerlang.com/a-short-visit-to-common-data-structures#set-of-sets">More information</a>.</p>
+
+<h3>9.6 Lists vs. Erlang Term Storage vs. Mnesia</h3>
+
+<p>If your data structures stored in lists need to be fast, support destructive
+updates, don&#39;t need garbage collection, and allow for other processes to
+access them, ETS tables might be just your thing.</p>
+
+<p><a href="http://learnyousomeerlang.com/ets">More information</a>.</p>
+
+<p>If you need better concurrency than ETS provides, want transactions, or want
+to store your data in either memory or on disk, you might want to move your
+data into Mnesia.</p>
+
+<p><a href="http://learnyousomeerlang.com/mnesia">More information</a>.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="8.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="10.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

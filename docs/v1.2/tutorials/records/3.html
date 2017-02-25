@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v1.2/css/styles.css" />
+    <link rel="stylesheet" href="/v1.2/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v1.2/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v1.2/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v1.2/community.html">Community</a></li>
+            <li class="title"><a href="/v1.2/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v1.2/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v1.2/tutorials/records/1.html">Creating a Record</a></li>
+      <li><a class="spec" href="/v1.2/tutorials/records/2.html">Extracting Record Data</a></li>
+      <li><a class="spec" href="/v1.2/tutorials/records/3.html">Querying Records</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: LFE Records</h1>
+
+<h2>3 Querying Records</h2>
+
+<p>Below is a brief explanation of the workings of the generated
+functions associated with any given record definition.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">make-person</span> <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Robert&quot;</span> <span class="nv">age</span> <span class="mi">54</span><span class="p">)</span></code></pre></figure>
+
+<p>Will create a new person record with the name field set to &quot;Robert&quot;,
+the age field set to 54 and the address field set to the default &quot;&quot;.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">match-person</span> <span class="nv">name</span> <span class="nv">name</span> <span class="nv">age</span> <span class="mi">55</span><span class="p">)</span></code></pre></figure>
+
+<p>Will match a person with age 55 and bind the variable name to the name
+field of the record. Can use any variable name here.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">is-person</span> <span class="nv">john</span><span class="p">)</span></code></pre></figure>
+
+<p>Test if john is a person record.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">emp-person</span> <span class="nv">age</span> <span class="ss">&#39;$1</span><span class="p">)</span></code></pre></figure>
+
+<p>Create an Ets Match Pattern for record person where the age field is
+set to $1 and all other fields are set to &#39;_.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">person-address</span> <span class="nv">john</span><span class="p">)</span></code></pre></figure>
+
+<p>Return the address field of the person record john.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">person-address</span><span class="p">)</span></code></pre></figure>
+
+<p>Return the index of the address field of a person record.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">set-person-address</span> <span class="nv">john</span> <span class="o">&#39;</span><span class="s">&quot;back street&quot;</span><span class="p">)</span></code></pre></figure>
+
+<p>Sets the address field of the person record john to &quot;back street&quot;.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">set-person</span> <span class="nv">john</span> <span class="nv">age</span> <span class="mi">35</span> <span class="nv">address</span> <span class="o">&#39;</span><span class="s">&quot;front street&quot;</span><span class="p">)</span></code></pre></figure>
+
+<p>In the person record john set the age field to 35 and the address
+field to &quot;front street&quot;.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v1.2/">Home</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

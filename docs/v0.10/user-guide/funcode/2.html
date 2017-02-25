@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>4 Functions and Modules</h1>
+
+<h2>4.2 LFE-Specific Functions and Macros</h2>
+
+<h3>4.2.1 Core Forms</h3>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="k">quote</span> <span class="nv">e</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">car</span> <span class="nv">e</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">cdr</span> <span class="nv">e</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">list</span> <span class="nv">e</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">tuple</span> <span class="nv">e</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">binary</span> <span class="nv">seg</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">match-lambda</span>
+  <span class="p">((</span><span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span> <span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">pat</span> <span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span> <span class="nv">e</span><span class="p">)</span>
+      <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">let-function</span> <span class="p">((</span><span class="nv">name</span> <span class="k">lambda</span><span class="nv">|match-lambda)</span>
+<span class="nv">               ... )</span>
+<span class="nv">  ... )</span>
+<span class="nv">(letrec-function ((name lambda|match-lambda</span><span class="p">)</span>
+                  <span class="o">...</span> <span class="p">)</span>
+  <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">let-macro</span> <span class="p">((</span><span class="nv">name</span> <span class="nv">lambda-match-lambda</span><span class="p">)</span>
+            <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="k">progn</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="k">if</span> <span class="nv">test</span> <span class="nv">true-expr</span> <span class="nv">false-expr</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">case</span> <span class="nv">e</span>
+  <span class="p">(</span><span class="nv">pat</span> <span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+   <span class="o">...</span> <span class="p">))</span>
+<span class="p">(</span><span class="nv">receive</span>
+  <span class="p">(</span><span class="nv">pat</span> <span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
+  <span class="o">...</span>
+  <span class="p">(</span><span class="nv">after</span> <span class="nv">timeout</span> <span class="o">...</span> <span class="p">))</span>
+<span class="p">(</span><span class="k">catch</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">try</span>
+  <span class="nv">e</span>
+  <span class="p">(</span><span class="nb">case</span> <span class="p">((</span><span class="nv">pat</span> <span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
+          <span class="o">...</span> <span class="p">))</span>
+  <span class="p">(</span><span class="k">catch</span>
+     <span class="p">(((</span><span class="nv">tuple</span> <span class="k">type</span> <span class="nv">value</span> <span class="k">ignore</span><span class="p">)</span> <span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span>
+
+      <span class="o">...</span> <span class="p">)</span>
+     <span class="o">...</span> <span class="p">)</span>
+  <span class="p">(</span><span class="nv">after</span> <span class="o">...</span> <span class="p">))</span>
+<span class="p">(</span><span class="nb">funcall</span> <span class="nv">func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">call</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span>
+
+<span class="p">(</span><span class="nv">define-function</span> <span class="nv">name</span> <span class="k">lambda</span><span class="nv">|match-lambda)</span>
+<span class="nv">(define-macro name lambda|match-lambda</span><span class="p">)</span></code></pre></figure>
+
+<h3>4.2.2 Macro Forms</h3>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="err">:</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span> <span class="nv">=&gt;</span>
+        <span class="p">(</span><span class="nv">call</span> <span class="ss">&#39;mod</span> <span class="ss">&#39;func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">?</span> <span class="nv">timeout</span> <span class="nv">default</span> <span class="p">)</span>
+
+<span class="p">(</span><span class="nv">++</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nb">list*</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="k">let*</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="k">flet</span> <span class="p">((</span><span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+       <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">flet*</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">fletrec</span> <span class="p">((</span><span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+          <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">cond</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">andalso</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">orelse</span> <span class="o">...</span> <span class="p">)</span>
+<span class="p">(</span><span class="nv">fun</span> <span class="nv">func</span> <span class="nv">arity</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">fun</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">arity</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">lc</span> <span class="p">(</span><span class="nv">qual</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">bc</span> <span class="p">(</span><span class="nv">qual</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">match-spec</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<h3>4.2.3 Common Lisp Inspired Macros</h3>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">name</span>
+  <span class="p">((</span><span class="nv">argpat</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defmacro</span> <span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defmacro</span> <span class="nv">name</span> <span class="nv">arg</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defmacro</span> <span class="nv">name</span>
+  <span class="p">((</span><span class="nv">argpat</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defsyntax</span> <span class="nv">name</span>
+  <span class="p">(</span><span class="nv">pat</span> <span class="nb">exp</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">macrolet</span> <span class="p">((</span><span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+           <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">syntaxlet</span> <span class="p">((</span><span class="nv">name</span> <span class="p">(</span><span class="nv">pat</span> <span class="nb">exp</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+            <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defmodule</span> <span class="nv">name</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">name</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<h3>4.2.4 Scheme Inspired Macros</h3>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">define</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">define</span> <span class="nv">name</span> <span class="k">lambda</span><span class="nv">|match-lambda)</span>
+<span class="nv">(define-syntax name</span>
+<span class="nv">  (syntax-rules (pat exp) ...)|</span><span class="p">(</span><span class="nv">macro</span> <span class="p">(</span><span class="nv">pat</span> <span class="nv">body</span><span class="p">)</span> <span class="o">...</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">let-syntax</span> <span class="p">((</span><span class="nv">name</span> <span class="o">...</span><span class="p">)</span>
+             <span class="o">...</span><span class="p">)</span>
+  <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">begin</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">define-module</span> <span class="nv">name</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">define-record</span> <span class="nv">name</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<h3>4.2.5 Additional Lisp Functions</h3>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">&lt;arith_op&gt;</span> <span class="nv">expr</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">&lt;comp_op&gt;</span> <span class="nv">expr</span> <span class="o">...</span><span class="p">)</span>
+        <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">arithmentic</span> <span class="nv">operators,</span> <span class="nb">+</span> <span class="nb">-</span> <span class="nb">*</span> <span class="nv">/,</span> <span class="nb">and</span> <span class="nv">comparison</span>
+        <span class="nv">operators,</span> <span class="nb">&gt;</span> <span class="nb">&gt;=</span> <span class="nb">&lt;</span> <span class="nv">=&lt;</span> <span class="nv">==</span> <span class="nb">/=</span> <span class="nv">=:=</span> <span class="nv">=/=</span> <span class="o">,</span> <span class="nv">can</span> <span class="nv">take</span> <span class="nv">multiple</span>
+        <span class="nv">arguments</span> <span class="k">the</span> <span class="nv">same</span> <span class="nv">as</span> <span class="nv">their</span> <span class="nv">standard</span> <span class="nv">lisp</span> <span class="nv">counterparts.</span> <span class="nv">This</span>
+        <span class="nv">is</span> <span class="nv">still</span> <span class="nv">experimental</span> <span class="nb">and</span> <span class="nv">implemented</span> <span class="nv">using</span> <span class="nv">macros.</span> <span class="nv">They</span> <span class="nv">do,</span>
+        <span class="nv">however,</span> <span class="nv">behave</span> <span class="nv">like</span> <span class="nv">normal</span> <span class="nv">functions</span> <span class="nb">and</span> <span class="nv">evaluate</span> <span class="nv">ALL</span> <span class="nv">their</span>
+        <span class="nv">arguments</span> <span class="nv">before</span> <span class="nv">doing</span> <span class="k">the</span> <span class="nv">arithmetic/comparisons</span> <span class="nv">operations.</span>
+
+<span class="p">(</span><span class="nb">acons</span> <span class="nv">key</span> <span class="nv">value</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">pairlis</span> <span class="nv">keys</span> <span class="nb">values</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assoc</span> <span class="nv">key</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assoc-if</span> <span class="nv">test</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assoc-if-not</span> <span class="nv">test</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">rassoc</span> <span class="nv">value</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">rassoc-if</span> <span class="nv">test</span> <span class="nb">list</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">rassoc-if-not</span> <span class="nv">test</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">association</span> <span class="nb">list</span> <span class="nv">functions.</span>
+
+<span class="p">(</span><span class="nb">subst</span> <span class="nv">new</span> <span class="nv">old</span> <span class="nv">tree</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">subst-if</span> <span class="nv">new</span> <span class="nv">test</span> <span class="nv">tree</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">subst-if-not</span> <span class="nv">new</span> <span class="nv">test</span> <span class="nv">tree</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">sublis</span> <span class="nv">alist</span> <span class="nv">tree</span><span class="p">)</span>
+        <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">substituition</span> <span class="nv">functions.</span>
+
+<span class="p">(</span><span class="nb">macroexpand-1</span> <span class="nv">expr</span> <span class="nv">environment</span><span class="p">)</span>
+        <span class="nv">If</span> <span class="nv">Expr</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">macro</span> <span class="nv">call,</span> <span class="nv">does</span> <span class="nv">one</span> <span class="nb">round</span> <span class="nv">of</span> <span class="nv">expansion,</span>
+        <span class="nv">otherwise</span> <span class="nv">returns</span> <span class="nv">Expr.</span>
+
+<span class="p">(</span><span class="nb">macroexpand</span> <span class="nv">expr</span> <span class="nv">environment</span><span class="p">)</span>
+        <span class="nv">Returns</span> <span class="k">the</span> <span class="nv">expansion</span> <span class="nv">returned</span> <span class="nv">by</span> <span class="nv">calling</span> <span class="nb">macroexpand-1</span>
+        <span class="nv">repeatedly,</span> <span class="nv">starting</span> <span class="nv">with</span> <span class="nv">Expr,</span> <span class="nv">until</span> <span class="k">the</span> <span class="nv">result</span> <span class="nv">is</span> <span class="nv">no</span> <span class="nv">longer</span>
+        <span class="nv">a</span> <span class="nv">macro</span> <span class="nv">call.</span>
+
+<span class="p">(</span><span class="nv">macroexpand-all</span> <span class="nv">expr</span> <span class="nv">environment</span><span class="p">)</span>
+        <span class="nv">Returns</span> <span class="k">the</span> <span class="nv">expansion</span> <span class="nv">from</span> <span class="k">the</span> <span class="nv">expression</span> <span class="nv">where</span> <span class="nv">all</span> <span class="nv">macro</span>
+        <span class="nv">calls</span> <span class="nv">have</span> <span class="nv">been</span> <span class="nv">expanded</span> <span class="nv">with</span> <span class="nv">macroexpand.</span>
+
+        <span class="nv">NOTE</span> <span class="nv">that</span> <span class="nb">when</span> <span class="nv">no</span> <span class="nv">explicit</span> <span class="nv">environment</span> <span class="nv">is</span> <span class="nv">given</span> <span class="k">the</span>
+        <span class="nb">macroexpand</span> <span class="nv">functions</span> <span class="nv">then</span> <span class="nv">only</span> <span class="k">the</span> <span class="nv">default</span> <span class="nv">built-in</span> <span class="nv">macros</span>
+        <span class="nv">will</span> <span class="nv">be</span> <span class="nv">expanded.</span> <span class="nv">Inside</span> <span class="nv">macros</span> <span class="nb">and</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">shell</span> <span class="k">the</span> <span class="nv">variable</span>
+        <span class="nv">$ENV</span> <span class="nv">is</span> <span class="nv">bound</span> <span class="nv">to</span> <span class="k">the</span> <span class="nv">current</span> <span class="nv">macro</span> <span class="nv">environment.</span>
+
+<span class="p">(</span><span class="nb">eval</span> <span class="nv">expr</span> <span class="nv">environment</span><span class="p">)</span>
+        <span class="nv">Evaluate</span> <span class="k">the</span> <span class="nv">expression</span> <span class="nv">expr.</span> <span class="nv">Note</span> <span class="nv">that</span> <span class="nv">only</span> <span class="k">the</span> <span class="nv">pre-defined</span>
+        <span class="nv">lisp</span> <span class="nv">functions,</span> <span class="nv">erlang</span> <span class="nv">BIFs</span> <span class="nb">and</span> <span class="nv">exported</span> <span class="nv">functions</span> <span class="nv">can</span> <span class="nv">be</span>
+        <span class="nv">called.</span> <span class="nv">Also</span> <span class="nv">no</span> <span class="nv">local</span> <span class="nv">variables</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">accessed.</span> <span class="nv">To</span> <span class="nv">access</span>
+        <span class="nv">local</span> <span class="nv">variables</span> <span class="k">the</span> <span class="nv">expr</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">evaluated</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">wrapped</span> <span class="nv">in</span> <span class="nv">a</span>
+        <span class="k">let</span> <span class="nv">defining</span> <span class="nv">these.</span>
+
+        <span class="nv">For</span> <span class="nv">example</span> <span class="k">if</span> <span class="k">the</span> <span class="nv">data</span> <span class="nv">we</span> <span class="nv">wish</span> <span class="nv">to</span> <span class="nv">evaluate</span> <span class="nv">is</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">variable</span>
+        <span class="nv">expr</span> <span class="nb">and</span> <span class="nv">it</span> <span class="nv">assumes</span> <span class="nv">there</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">local</span> <span class="nv">variable</span> <span class="s">&quot;foo&quot;</span> <span class="nv">which</span> <span class="nv">it</span>
+        <span class="nv">needs</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">then</span> <span class="nv">we</span> <span class="nv">could</span> <span class="nv">evaluate</span> <span class="nv">it</span> <span class="nv">by</span> <span class="nv">calling:</span>
+
+        <span class="p">(</span><span class="nb">eval</span> <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">foo</span> <span class="o">,</span><span class="nv">foo</span><span class="p">))</span> <span class="o">,</span><span class="nv">expr</span><span class="p">))</span></code></pre></figure>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

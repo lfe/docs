@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.8/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>5 Recursion</h1>
+
+<h2>5.1 See Section 5</h2>
+
+<p>Sorry, couldn&#39;t resist.</p>
+
+<h2>5.2 A Brief History</h2>
+
+<p>In functional languages, recursion plays an important role. For Erlang in
+particular, recursion is important because variables can&#39;t be changed. It is
+therefor often very useful to take advantage of recursion in order to work with
+changing values (examples are given in the latter half of this chapter).</p>
+
+<p>However, recursion is interesting in and of itself. The roots of functional
+programming languages such as Lisp, ML, Erlang, Haskell and others, can
+be traced to the concept of recursion in general and the λ-calculus in
+particular.</p>
+
+<p>The Italian mathematician Giuseppe Peano seems to have been one of the first to
+have made prominent use of recursion when defining his axioms for the natural
+numbers. Furthermore, Peano gave Bertrand Russell a copy of his &quot;Formulario&quot;
+(in fact, he gave Russell <em>all</em> of his published works!).  This impacted Russell
+hugely and quite possibly influenced his work on the &quot;Principia Mathematica&quot;
+which he coauthored several years later.</p>
+
+<p>It was from the Principia that Alonzo Church derived his lambda notation.  When
+Church&#39;s student, John McCarthy, created Lisp, he used both the lambda notation
+and the related concept of recursion in his new language.  (Interestingly
+enough, McCarthy and Dijkstra both advocated for the inclusions of recursion in
+ALGOL.) From John McCarthy&#39;s work onward, the lambda and recursion have been our
+constant companions.</p>
+
+<h2>5.3 A Preview</h2>
+
+<p>In the sections of the user guide, we explore various aspects of recursion as
+they can be formulated in Lisp Flavored Erlang. We will cover the following:</p>
+
+<ul>
+<li>The Dedekind-Peano Axioms</li>
+<li>Primitive Recursive Functions</li>
+<li>Total Recursive Functions</li>
+<li>The λ-Calculus</li>
+<li>Practical Examples in Computing</li>
+<li>Tail-Calls</li>
+</ul>
+
+<p>If you just want to jump to the practical examples, please do so! You should
+feel no guilt when enjoying LFE or reading about LFE :-) The other sections are
+provided simply because it is very rare to find a practical coverage of
+the foundations of recursion and the λ-Calculus. There may be readers out there
+who want to know this reasons and history behind the concepts studied; most of
+this chapter is for them.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

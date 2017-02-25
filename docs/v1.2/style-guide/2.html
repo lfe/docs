@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v1.2/css/styles.css" />
+    <link rel="stylesheet" href="/v1.2/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v1.2/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v1.2/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v1.2/community.html">Community</a></li>
+            <li class="title"><a href="/v1.2/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v1.2/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/v1.2/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/v1.2/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>2 General Guidelines</h2>
+
+<h3>2.1 Principles</h3>
+
+<p>There are some basic principles for team software development that every
+developer must keep in mind. Whenever the detailed guidelines are
+inadequate, confusing or contradictory, refer back to these principles for
+guidance:</p>
+
+<p>Every developer&#39;s code must be easy for another developer to read,
+understand, and modify — even if the first developer isn&#39;t around to explain
+it. (This is the &quot;hit by a truck&quot; principle.)</p>
+
+<p>Everybody&#39;s code should look the same. Ideally, there should be no way to
+look at lines of code and recognize it as &quot;Fred&#39;s code&quot; by its style.
+* Be precise.
+* Be concise.
+* Keep It Simple.
+* Use the smallest hammer for the job.
+* Use common sense.
+* Keep related code together. Minimize the amount of jumping around someone
+  has to do to understand an area of code.</p>
+
+<h3>2.2 Priorities</h3>
+
+<p>When making decisions about how to write a given piece of code, aim for the
+following &quot;-ilities&quot; in this priority order:</p>
+
+<ul>
+<li>Usability by the developer/user/consumer/customer.</li>
+<li>Debuggability/Testability.</li>
+<li>Readability/Comprehensibility.</li>
+<li>Extensibility/Modifiability.</li>
+<li>Efficiency (of the LFE code at runtime)</li>
+</ul>
+
+<p>Most of these are obvious.</p>
+
+<p>Usability means that the system has to do what the end user requires; it has
+to handle such things as transaction volumes, uptime requirements; etc.</p>
+
+<p>For the LFE efficiency point, given two options of equivalent complexity,
+pick the one that performs better. (This is often the same as the one that
+conses less, i.e. allocates less storage from the heap.)</p>
+
+<p>Given two options where one is more complex than the other, pick the simpler
+option and revisit the decision only if profiling shows it to be a
+performance bottleneck.</p>
+
+<p>However, avoid premature optimization. Don&#39;t add complexity to speed up
+something that runs rarely, since in the long run, it matters less whether
+such code is fast.</p>
+
+<h3>2.3 Architecture</h3>
+
+<p>To build code that is robust and maintainable, the following matter a great
+deal:</p>
+
+<ul>
+<li>how the code is divided into components;</li>
+<li>how these components communicate;</li>
+<li>how changes propagate as they evolve, and more importantly,</li>
+<li>how the programmers who develop these components communicate as these
+components evolve.</li>
+</ul>
+
+<p>If your work affects other projects, might be reusable across projects, adds
+new components, has an impact on other projects, or otherwise isn&#39;t purely
+local, you create a document describing the new architecture or proposed
+changes in architecture. This document should then be shared with projects
+and/or communities in order to build community consensus around the proposed
+changes or, better yet, provide additional insight of the problem space in
+question and perhaps better alternative solutions that have fewer negative
+impacts on other projects..</p>
+
+<p>If you don&#39;t know or don&#39;t care about these issues, ask someone who does. A
+great place to start is on the #erlang-lisp channel of Frenode or the Lisp
+Flavored Erlang mail list on Google Groups.</p>
+
+<h3>2.4 Using Libraries</h3>
+
+<p>Often, the smallest hammer is to use an existing library. Sometimes the
+least effort actually is to create one that doesn&#39;t exist yet.</p>
+
+<p>In general, it is better to contribute to a library that is missing the
+features that you need or has broken functionaly that you need fixed. The
+obvious benefits of this include:</p>
+
+<ul>
+<li>Good will with the maintainers of the open source project.</li>
+<li>Less code for you or your project(s) or team(s) to maintain.</li>
+<li>Increaed contact and communication between different projects.</li>
+<li>Safeguarding against the NIH syndrome.</li>
+</ul>
+
+<p>Whichever library, old or new, you pick, you should discuss with the other
+members of your project. Do they agree with the solution? Is the selected
+library viewed by all as a good project and dependency? Discuss the use of
+such library in the appropriate mailing-lists and IRC channels. Then have
+your code that integrates this library reviewed by people knowledgeable in
+the problem domain. Be ready to discuss why this particular solution makes
+sense as compared to other available libraries.</p>
+
+<p>Some libraries are distributed under licenses not compatible with the
+software you&#39;re writing, and must not be considered available for use. Be
+aware of these issues, or consult with people who are.</p>
+
+<h3>2.5 Open-Sourcing Code</h3>
+
+<p>If you write a general-purpose library, or modify an existing open-source
+library, you are encouraged to publish the result separate from your main
+project and then have your project import it like any other open-source
+library.</p>
+
+<p>Use your judgment to distinguish general-purpose versus business-specific
+code, and open-source the general-purpose parts.</p>
+
+<p>Open-sourcing code has many advantages, including being able to leverage
+third parties for development, letting the development of features be user-
+directed, and keeping you honest with respect to code quality. Whatever code
+you write, you will have to maintain anyway, and make sure its quality is
+high enough to sustain use in production. There should therefore be no
+additional burden to open-sourcing, even of code that (at least initially)
+is not directly usable by third parties.</p>
+
+<h3>2.6 Development Process</h3>
+
+<p>Development process is outside the scope of this document. However,
+developers should remember at least these bits: get reviewed, write tests,
+eliminate warnings, run tests, avoid mass-changes (keep branches small).</p>
+
+<ul>
+<li><p><strong>All code changes should be reviewed</strong>. You should expect that your code
+will be reviewed by other hackers, and that you will be assigned other
+hackers&#39; code to review. Part of the review criteria will be that code
+obeys the coding standards in this document.</p></li>
+<li><p><strong>You should write and check-in tests</strong> for new code that you write and old
+bugs you fix. There should be a unit test for every code path in each
+function, as well as tests for any previously failing case. Your work is
+not truly done until this activity is complete. For more details on this, see the
+<a href="/v1.2/style-guide/6.html">Testing</a> section of the Style Guide,
+the <a href="/v1.2/user-guide/check/3.html">EUnit</a> section of the User Guide,
+and the <a href="/v1.2/tutorials/tdd/1.html">LFE TDD Tutorial</a>.</p></li>
+<li><p><strong>Your code should compile without any errors</strong> or warning messages.</p></li>
+<li><p><strong>All code should be committed to an appropriate source control system</strong>,
+in a way that allows for complete reproducibility of build, test and
+execution of the code that is, has been, or may be deployed.</p></li>
+<li><p><strong>You should run the test suite for your project</strong> and all tests should
+pass before any code is committed.</p></li>
+<li><p><strong>All bug fixes, feature, changes, etc., should be done in small branches</strong>.
+A good rule of thumb is that a branch diff should not be greater than
+500 lines (e.g., <code>git diff|wc -l</code>). If it is, reviewers will be less
+likely to quickly volunteer a review, the changes will be harder to follow,
+and theh likelihood of negative impacts that might not get caught is
+higher. If you find that your branch is too large, hop on the mail list or
+IRC to seek advice on how best to split your brach into sensible, separate
+branches.</p></li>
+</ul>
+
+<p>The following is pending BEAM AST support:</p>
+
+<ul>
+<li><strong>You should incorporate code coverage into your testing process</strong>. Tests
+are not sufficient if they do not cover all new and updated code; code
+that for whatever reason cannot be included in coverage results should be
+clearly marked as such including the reason.</li>
+</ul>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v1.2/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

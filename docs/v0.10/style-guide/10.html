@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/v0.10/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/v0.10/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>10 Proper Forms</h2>
+
+<h3>10.1 Defining Constants</h3>
+
+<p>As mentioned earlier, LFE has no form for defining constants. As such, simply
+define a function that takes no arguments and has the name of your constant:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">pi</span> <span class="p">()</span> <span class="mf">3.14</span><span class="p">)</span>
+</code></pre></div>
+<h3>10.2 Defining Functions</h3>
+
+<p>Don&#39;t write functions with more than 15 to 20 lines of code. Split large
+function into several smaller ones. Don&#39;t solve the problem by writing long
+lines.</p>
+
+<p>You should avoid excessive nesting of binding forms inside a function. If
+your function ends up with massive nesting, you should probably break it up
+into several functions or macros.</p>
+
+<p>The function name must agree exactly with what the function does. It should
+return the kind of arguments implied by the function name. It should not
+surprise the reader. Use conventional names for conventional functions (
+<code>start</code>, <code>stop</code>, <code>init</code>, <code>main-loop</code>).</p>
+
+<p>Functions in different modules that solves the same problem should have the
+same name. Example: <code>my-module:module-info</code>.</p>
+
+<p>Bad function names is one of the most common programming errors - good choice of names is very difficult!</p>
+
+<p>Some kind of naming convention is very useful when writing lots of different
+functions. For example, the name suffix &quot;?&quot; or &quot;p&quot; (the latter from Common
+Lisp) could be used to signify that the function in question returns the
+atom true or false.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(...?) -&gt; &#39;true | &#39;false
+(...p) -&gt; &#39;true | &#39;false
+</code></pre></div>
+<p>Similarly, the prefix <code>check</code> should return tuples whose first elements
+indicate the success or failure of the check:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(check-...) -&gt; #(ok ...) | #(error ...)
+</code></pre></div>
+<h3>10.3 Conditional Expressions</h3>
+
+<p>Use a <code>(when ...)</code> guard if the checks being performed are simple logical operations or use the type-checking <code>(is_*)</code> BIFs.</p>
+
+<p>Use <code>(if ...)</code> when there are two alternatives.</p>
+
+<p>Use <code>(cond ...)</code> when there are more than two alternatives.</p>
+
+<p>Use <code>(case ...)</code> when a single expression is being checked for several
+possible values.</p>
+
+<p>You should prefer <code>(and ...)</code>/<code>(andalso ...)</code> or
+<code>(or ...)</code>/<code>(orelse ...)</code> when their use would produce more concise code.</p>
+
+<h3>10.4 Identity, Equality, and Comparisons</h3>
+
+<p>If you need to exactly match equal and not equal, you should use the forms
+<code>(=:= ...)</code> and <code>(=/= ...)</code>.</p>
+
+<p>If you don&#39;t need exactly equality (e.g., you want 42.0 and 42 to be
+considered the same), you should use the forms <code>(== ...)</code> and <code>(/= ...)</code>.</p>
+
+<h3>10.5 Iteration</h3>
+
+<p>Unlike Common Lisp, LFE doesn&#39;t have forms for iteration such as DOLIST,
+DOTIMES, and LOOP.</p>
+
+<p>LFE does support Erlang comprehensions, though, and can perform iterative
+tasks through those.</p>
+
+<p>For more information on when to use iteration vs. recursion, see
+<a href="/v0.10/style-guide/7.html">Chapter 7, Language Usage Guidelines</a> of
+the LFE Style Guide, section 7.2, &quot;Recursion&quot;.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="9.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="11.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

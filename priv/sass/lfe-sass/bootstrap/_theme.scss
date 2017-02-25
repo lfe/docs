@@ -1,0 +1,627 @@
+// Slate 3.3.5
+// Bootswatch
+// -----------------------------------------------------
+
+@mixin btn-shadow($color){
+  @include gradient-vertical-three-colors(lighten($color, 6%), $color, 60%, darken($color, 4%));
+  filter: none;
+}
+
+@mixin btn-shadow-inverse($color){
+  @include gradient-vertical-three-colors(darken($color, 24%), darken($color, 18%), 40%, darken($color, 16%));
+  filter: none;
+}
+
+// Body =======================================================================
+@import 'octicons.css';
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: $footer-height;
+  padding-top: 70px;
+  font-family: $font-family-sans-serif;
+  font-size: 180%;
+}
+
+// Navbar =====================================================================
+
+.navbar {
+
+  @include btn-shadow($navbar-default-bg);
+  background: url(/#{$deployment}/images/header2.png) 0 0 repeat-x;
+  background-color: $accent-bg;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  //text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  a.navbar-brand {
+    float: left;
+    display: inline-block;
+    width: 216px;
+    height: 27px;
+    margin-top: 12px;
+    margin-left: -10px !important;
+    background: url(/#{$deployment}/images/logos/lfe-logo-site-brand.png) 0 0 no-repeat;
+  }
+
+  .navbar-nav > li > a {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      @include btn-shadow-inverse($navbar-default-bg);
+      border-left-color: transparent;
+    }
+  }
+
+  &-inverse {
+    @include btn-shadow($navbar-inverse-bg);
+
+    .badge {
+      background-color: $navbar-inverse-link-active-bg;
+    }
+
+    .navbar-nav > li > a {
+
+      &:hover {
+        @include btn-shadow-inverse($navbar-inverse-bg);
+      }
+    }
+  }
+
+  .nav .open > a {
+    border-color: transparent;
+  }
+
+  &-nav > li.active > a {
+    border-left-color: transparent;
+  }
+
+  &-form {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+// Landing page ===============================================================
+
+.backsplash {
+}
+
+.splash div {
+  padding-top: 1.5em;
+  line-height: 2em;
+}
+
+.splash h1 {
+  line-height: 1.1em;
+  font-size: 260%;
+}
+
+.splash p {
+  font-size: 140%;
+  color: #aaa;
+}
+
+center-block {
+    float: none;
+}
+
+.highlight-module-group {
+  width: 100%;
+  background-color: $highlight-module-bg-color;
+  margin-bottom: 2em;
+  border: $highlight-module-border;
+  border-right: 0;
+  border-left: 1;
+}
+
+.highlight-module {
+  list-style-type: none;
+  display: table-cell;
+  padding: 40px 14px 30px;
+  text-align: center;
+  line-height: 1.5em;
+  margin-top: -1em;
+}
+
+.highlight-module p {
+  line-height: 1.5em;
+}
+
+.highlight-module h2 {
+  font-size: 200%;
+  color: #fc0;
+}
+
+.highlight-module h2 a {
+  color: #fc0;
+}
+
+.highlight-module code {
+  color: #fc0;
+  background-color: transparent;
+}
+
+.highlight-module .mega-octicon {
+  font-size: 70px;
+  width: 70px;
+  height: 70px;
+  color: #ccc;
+}
+
+.landing-doc-cats > div > div > div > .nav > li > a {
+  padding: 0;
+}
+
+// Buttons ====================================================================
+
+.btn,
+.btn:hover {
+  border-color: rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.btn-default {
+  @include btn-shadow($btn-default-bg);
+
+  &:hover {
+    @include btn-shadow-inverse($btn-default-bg);
+    color: $accent-text-hover;
+  }
+}
+
+.btn-primary {
+  @include btn-shadow($btn-primary-bg);
+
+  &:hover {
+    @include btn-shadow-inverse($btn-primary-bg);
+    color: $btn-primary-color-hover;
+  }
+}
+
+.btn-success {
+  @include btn-shadow($btn-success-bg);
+
+  &:hover {
+    @include btn-shadow-inverse($btn-success-bg);
+  }
+}
+
+.btn-info {
+  @include btn-shadow($btn-info-bg);
+
+  &:hover {
+    @include btn-shadow-inverse($btn-info-bg);
+  }
+}
+
+.btn-warning {
+  @include btn-shadow($btn-warning-bg);
+
+  &:hover {
+    @include btn-shadow-inverse($btn-warning-bg);
+  }
+}
+
+.btn-danger {
+  @include btn-shadow($btn-danger-bg);
+
+  &:hover {
+    @include btn-shadow-inverse($btn-danger-bg);
+  }
+}
+
+.btn-link,
+.btn-link:hover {
+  border-color: transparent;
+}
+
+// Typography =================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  color: $accent-text-active !important;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.text-primary,
+.text-primary:hover {
+  color: $brand-primary;
+}
+
+.text-success,
+.text-success:hover {
+  color: $brand-success;
+}
+
+.text-danger,
+.text-danger:hover {
+  color: $brand-danger;
+}
+
+.text-warning,
+.text-warning:hover {
+  color: $brand-warning;
+}
+
+.text-info,
+.text-info:hover {
+  color: $brand-info;
+}
+
+p {
+  font-size: 110%;
+}
+
+blockquote {
+  font-family: $font-family-serif, serif;
+  font-size: 140%;
+}
+
+// Tables =====================================================================
+
+.table {
+
+  .success,
+  .warning,
+  .danger,
+  .info {
+    color: #fff;
+  }
+
+  &-bordered tbody {
+
+    tr.success,
+    tr.warning,
+    tr.danger {
+
+      td,
+      &:hover td {
+        border-color: $table-border-color;
+      }
+    }
+  }
+}
+
+.table-responsive > .table {
+  background-color: $table-bg;
+}
+
+.table-of-contents a:hover {
+  color: $accent-text-hover;
+}
+
+.table-of-contents a:active {
+  color: $accent-text-active;
+}
+
+// Forms ======================================================================
+
+input,
+textarea {
+  color: $input-color;
+}
+
+.has-warning {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $brand-warning;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-warning;
+  }
+
+  .input-group-addon {
+    background-color: $body-bg;
+    border: none;
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $brand-danger;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-danger;
+  }
+
+  .input-group-addon {
+    background-color: $body-bg;
+    border: none;
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $brand-success;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-success;
+  }
+
+  .input-group-addon {
+    background-color: $body-bg;
+    border: none;
+  }
+}
+
+legend {
+  color: #fff;
+}
+
+.input-group-addon {
+  border-color: rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  @include btn-shadow($btn-default-bg);
+  color: $btn-default-color;
+}
+
+// Navs =======================================================================
+
+.nav {
+
+  .open > a,
+  .open > a:hover,
+  .open > a:focus {
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+
+}
+
+.nav-pills {
+
+  & > li > a {
+    @include btn-shadow($btn-default-bg);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      @include btn-shadow-inverse($btn-default-bg);
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      color: $accent-text-hover;
+    }
+  }
+
+  & > li.active > a,
+  & > li.active > a:hover {
+    background-color: none;
+    @include btn-shadow-inverse($btn-default-bg);
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    color: $accent-text-active;
+  }
+
+  & > li.disabled > a,
+  & > li.disabled > a:hover {
+    @include btn-shadow($btn-default-bg);
+    color: $accent-text-disabled;
+  }
+}
+
+.pagination {
+
+  & > li > a,
+  & > li > span {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    @include btn-shadow($btn-default-bg);
+
+    &:hover {
+      @include btn-shadow-inverse($btn-default-bg);
+    }
+  }
+
+  & > li.active > a,
+  & > li.active > span {
+    @include btn-shadow-inverse($btn-default-bg);
+  }
+
+  & > li.disabled > a,
+  & > li.disabled > a:hover,
+  & > li.disabled > span,
+  & > li.disabled > span:hover {
+    background-color: transparent;
+    @include btn-shadow($btn-default-bg);
+  }
+}
+
+.pager {
+
+  & > li > a {
+    @include btn-shadow($btn-default-bg);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      @include btn-shadow-inverse($btn-default-bg);
+      color: $accent-text-hover;
+    }
+  }
+
+  & > li.disabled > a,
+  & > li.disabled > a:hover {
+    background-color: transparent;
+    @include btn-shadow($btn-default-bg);
+  }
+}
+
+.breadcrumb {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  @include btn-shadow($btn-default-bg);
+}
+
+// Indicators =================================================================
+
+.alert {
+
+  .alert-link,
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .close {
+    color: $close-color;
+    text-decoration: none;
+  }
+}
+
+// Progress bars ==============================================================
+
+// Containers =================================================================
+
+.light-well {
+  background-color: $input-bg;
+  color: $input-color;
+  border-color: $input-border;
+}
+
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: $thumbnail-border;
+}
+
+a.list-group-item {
+
+  &.active,
+  &.active:hover,
+  &.active:focus {
+    border-color: $list-group-border;
+  }
+
+  &-success {
+    &.active {
+      background-color: $state-success-bg;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($state-success-bg, 5%);
+    }
+  }
+
+  &-warning {
+    &.active {
+      background-color: $state-warning-bg;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($state-warning-bg, 5%);
+    }
+  }
+
+  &-danger {
+    &.active {
+      background-color: $state-danger-bg;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($state-danger-bg, 5%);
+    }
+  }
+}
+
+.jumbotron {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.jumbotron p {
+  font-size: 180%;
+}
+.panel-primary,
+.panel-success,
+.panel-danger,
+.panel-warning,
+.panel-info {
+
+  .panel-heading {
+    border-color: #000;
+  }
+}
+
+// Footer =====================================================================
+
+.footer-buffer {
+  padding: $footer-buffer;
+}
+
+.footer-divider {
+  border-top: solid 1px black;
+  width: 67%;
+  display: table-cell;
+  text-align: center;
+  width: 10%;
+  vertical-align: middle;
+}
+
+.sticky-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.footer, .sticky-footer {
+  width: 100%;
+  height: $footer-height;
+}
+
+.footer > .container, .sticky-footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+footer li {
+  display: inline;
+  margin-right: 20px;
+  list-style: none;
+}
+
+footer a, footer a:hover, footer a:active {
+  color: $footer-link-color;
+}
+
+footer .copyright {
+  padding-top: $footer-buffer;
+  border-top: 1px solid #111;
+  text-align: center;
+  width: 100%;
+  font-size: 80%;
+  word-spacing: 4px;
+}

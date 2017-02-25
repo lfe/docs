@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Index</h3>
+
+    <ul>
+  <li><a href="/v0.8/classic-docs/user-guide.html">User Guide</a></li>
+  <li><a href="/v0.8/classic-docs/release-notes.html">Release Notes</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-shell.html">LFE Shell</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-io.html">I/O Functions</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-macro.html">Macro Expander</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-comp.html">Compiler</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-bits.html">Common Binary Functions</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-gen.html">Dynamic Code Generator</a></li>
+  <li><a href="/v0.8/classic-docs/lfe-lib.html">Internal Library used by LFE</a></li>
+</ul>
+
+
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Documentation</h1>
+
+<h2>LFE Shell (REPL)</h2>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">    MODULE
+
+        lfe_shell
+
+    MODULE SUMMARY
+
+        Lisp Flavoured Erlang (LFE) shell
+
+    DESCRIPTION
+
+        There is now a simple LFE shell in which you can enter sexprs
+        which are evaluated and the value printed. There are no user
+        shell variables (scoping and lack of setq)
+
+        Built-in shell functions:
+
+        (c File [Options])
+            Compile and load an LFE file. Assumes default
+            extension .lfe.
+
+        (l Module ...)
+            Load modules.
+
+        (m Module ...)
+            Print out module information, if no modules are given
+            then print information about all modules.
+
+        (ec File [Options])
+            Compile and load an Erlang file.
+
+        (slurp File)
+            Slurp in a source LFE file and makes all functions and
+            macros defined in the file available in the
+            shell. Only one file can be slurped at a time and
+            slurping a new file removes all data about the
+            previous one.
+
+        (unslurp)
+            Remove all function and macro definitions except the
+            default ones.
+
+        (set Pattern Expr)
+            Evaluate Expr ad match the result with Pattern binding
+            variables in it. These variables can then be used in
+            the shell and also rebound in another set.
+
+        (: c Command Arg ...)
+            All the commands in the standard Erlang shell can be
+            reached in this way.
+
+        Builtin shell variables:
+
+        +/++/+++
+            The three previous expressions input.
+        */**/***
+            The values of the previous 3 expressions.
+        -
+            The current expression input.
+
+    Starting the LFE shell
+
+        The best way is probably to start Erlang directly running the
+        LFE shell with:
+
+        erl -noshell -noinput -s lfe_boot start
+
+        This can easily be put in a shell script.
+
+        From a normal Erlang shell the best way to start the shell is
+        by calling:
+
+        17&gt; lfe_shell:server().
+
+        Giving the user switch commands:
+
+        --&gt; s lfe_shell
+        --&gt; c
+
+        will create a job running the LFE shell and connect to
+        it. This also works when starting a remote shell.</code></pre></figure>
+
+  </article>
+</div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,438 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>5 Recursion</h1>
+
+<h2>5.8 The λ-Calculus</h2>
+
+<p>Oh, yeah. We just went there: the λ-calculus.</p>
+
+<p>Take heart, though... this is going to be fun. And after this bit, we&#39;ll
+finally get to the practical coding bits :-)</p>
+
+<p>Keep in mind that the Peano axioms made use of recursion, that Giuseppe Peano
+played a key role in Bertrand Russell&#39;s development of the Principia, that
+Alonzo Church sought to make improvements on the Principia, and the lambda
+calculus eventually arose from these efforts.</p>
+
+<p>Church realized when creating the λ-calculus that with only a lambda at
+his disposal, he could define numbers and perform arithmetic upon them. This is
+known as &quot;Church encoding&quot;. Using what we have defined above, we should be able
+to peer into this forest of lambdas and perhaps perceive some trees.</p>
+
+<p>Church, with his now-famous students Stephen Kleene and J. Barkley Rosser,
+established the λ-calculus as equivalent to a Turing machine for determining
+the computability of a given function. In particular, the Church-Turing Thesis
+states that the class of functions which are partial recursive functions has
+the same members as the class of functions which are computable functions.</p>
+
+<p>Previously, we examined natural numbers and operations such as addition in the
+context of positive integers. However, in the sections below, we will be
+leaving behind the comfort of the familiar. The λ-calculus does not concern
+itself with natural numbers per se; rather the ability to do something a given
+number of times.</p>
+
+<h3>5.8.1 A Quick Primer</h3>
+
+<p>In the literature, you will see such things as:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">λx.x
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(λx.x)y
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">(λwyx.y(wyx))(λsz.z)
+</code></pre></div>
+<p>This is standard notation for the λ-calculus, and here&#39;s how you read it:</p>
+
+<ul>
+<li>an expression can be a name, a function, or an application, e.g.: <code>x</code> or
+<code>λx.x</code> or <code>(λx.x)3</code></li>
+<li>a function is represented by a lambda followed by a name, a dot, and an
+expression, e.g.: <code>λx.x</code></li>
+<li>an application is represented as two expressions right next to each other,
+e.g.: <code>(λx.x)3</code></li>
+</ul>
+
+<p>As such, one says that <code>λx.x</code> is a function that takes one parameter, <code>x</code>, and
+produces one output, <code>x</code>. <code>λxy.y</code> takes two parameters, <code>x</code> and <code>y</code> and
+produces one output, <code>y</code>.</p>
+
+<h3>5.8.2 Church Encoding</h3>
+
+<p>Let&#39;s get our feet wet with figuring out how we can define the natural numbers
+under Church encoding, starting with <code>zero</code>. In the standard λ-calculus, this
+is done in the following manner:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">λs.λx.x
+</code></pre></div>
+<p>We are defining the successor function from above as <code>s</code>. We are also defining
+<code>x</code> as &quot;that which represents zero&quot;. So this reads something like &quot;We pass our
+counting function represented as <code>s</code> as the first parameter; there&#39;s nothing to
+do but then pass the second parameter <code>x</code> to the next function, which returns
+<code>x</code>&quot;. We never do anything with <code>s</code> and only return <code>x</code> itself.</p>
+
+<p>In the λ-calculus, zero is defined as taking the successor function, doing
+nothing with it, and returning the value for zero from the identify function.
+In LFE, this is simple:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">zero</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))</span></code></pre></figure>
+
+<p>We&#39;ve got some nested functions that represent &quot;zero&quot;; now what? Well, we
+didn&#39;t use the successor inside the zero function, if we <em>do</em>, we should get
+&quot;one&quot;, yes? But how? Well, we&#39;ll &quot;apply&quot; the successor function that is passed
+in, as opposed to ignoring it like we did in <code>zero</code>. Here&#39;s the Church numeral
+definition for <code>one</code>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">λs.λx.s x
+</code></pre></div>
+<p>Let&#39;s try that in LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">one</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span> <span class="nv">x</span><span class="p">))))</span></code></pre></figure>
+
+<p>Congratulations, you&#39;ve written your second Church numeral in LFE now :-)
+Successive numbers are very similar: an additional <code>(funcall s</code> before the
+<code>(funcall s x</code>.</p>
+
+<p>A small but significant caveat: technically speaking, the functions <code>zero</code> and
+<code>one</code> are not actual Church numerals, rather they wrap the Church numberals.
+Once you call these functions, you will have the Church numberals themselves
+(the lambda that is returned when the numberal functions are called).</p>
+
+<p>Now that we see Church numerals are nested <code>lambda</code>s with nested calls on the
+successor function, we want to peek inside. How does one convert a Church
+numeral to, say, an interger representation? Looking at the <code>one</code> function, we
+can make an educated guess:</p>
+
+<ol>
+<li>We will need to call <code>one</code> so that the top-most lambda is &quot;exposed&quot;.</li>
+<li>We will need to apply (<code>funcall</code>; it&#39;s more convenient) our choice of
+successor function to that top-most lambda.</li>
+<li>We will need to apply our representation of &quot;zero&quot; to the next lambda.</li>
+</ol>
+
+<p>With each of those done we end up with a solution that&#39;s actually quite general
+and can be used on any of our Church numerals.  Here&#39;s a practical
+demonstration:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;church.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">church</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">one</span><span class="p">)</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.10.53503600&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">funcall</span> <span class="p">(</span><span class="nb">funcall</span> <span class="p">(</span><span class="nv">one</span><span class="p">)</span> <span class="nf">#&#39;</span><span class="nv">successor/1</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mi">1</span></code></pre></figure>
+
+<p>Typing that into the REPL whenever we want to check our Church numeral will be
+tedious. Let&#39;s write a function that allows us to get the integer
+representation of a Church numeral more easily. There are a couple ways to do
+this. First:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">church-numeral</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">funcall</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nv">church-numeral</span> <span class="nf">#&#39;</span><span class="nv">successor/1</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span></code></pre></figure>
+
+<p>This would require that we call our Church numeral in the following manner
+(assuming that we&#39;ve re-<code>slurp</code>ed the <code>church.lfe</code> file):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">one</span><span class="p">))</span>
+<span class="mi">1</span></code></pre></figure>
+
+<p>Alternatively, we could do this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">church-&gt;int2</span> <span class="p">(</span><span class="nv">church-numeral</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">funcall</span> <span class="p">(</span><span class="nb">funcall</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nv">church-numeral</span><span class="p">)</span> <span class="nf">#&#39;</span><span class="nv">successor/1</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span></code></pre></figure>
+
+<p>This second approach lets us pass the Church numeral without calling it:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int2</span> <span class="nf">#&#39;</span><span class="nv">one/0</span><span class="p">)</span></code></pre></figure>
+
+<p>As mentioned earlier, we know that we can get successive Church numerals by
+adding more <code>(funcall s</code> applications (i.e., incrementing with a successor
+function). For instance, here is the Church numeral <code>four</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">four</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span>
+        <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span>
+          <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span>
+            <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span> <span class="nv">x</span><span class="p">)))))))</span></code></pre></figure>
+
+<p>Using this method of writing out Church numerals is going to be more tedious
+that putting beans in a pile to represent integers. What can we do? Well, we
+need a general (i.e., non-integer) λ-calculus representation for  a successor
+function. Then we need to be able to apply that to <code>zero</code> <code>n</code> times in order to
+get the desired Church numeral. Let&#39;s start with a Church numeral successor
+function:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">λn.λs.λx. s (n s x)
+</code></pre></div>
+<p>We translate that to LFE with the following:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">church-successor</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span>
+        <span class="p">(</span><span class="nb">funcall</span>
+          <span class="p">(</span><span class="nb">funcall</span> <span class="nv">n</span> <span class="nv">s</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))))</span></code></pre></figure>
+
+<p>Next we need a function that can give us a Church numeral for a given number of
+applications of the <code>church-successor</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">get-church</span> <span class="p">(</span><span class="nv">church-numeral</span> <span class="nb">count</span> <span class="nv">limit</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">==</span> <span class="nb">count</span> <span class="nv">limit</span><span class="p">)</span> <span class="nv">church-numeral</span><span class="p">)</span>
+        <span class="p">((</span><span class="nb">/=</span> <span class="nb">count</span> <span class="nv">limit</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">get-church</span> <span class="p">(</span><span class="nv">church-successor</span> <span class="nv">church-numeral</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="nb">count</span><span class="p">)</span> <span class="nv">limit</span><span class="p">))))</span></code></pre></figure>
+
+<p>We&#39;re getting a little bit ahead of ourselves, since we haven&#39;t yet talked
+about countdown or countup recursive functions in LFE; consider this a teaser
+;-)</p>
+
+<p>Our <code>get-church</code> function keeps track of how many times it is recursed and
+returns the appropriate Church numeral when the limit has been reached.
+However, it&#39;s a bit cumbersome to use. Let&#39;s see if we can do better:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">get-church</span> <span class="p">(</span><span class="nc">integer</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">get-church</span> <span class="p">(</span><span class="nv">zero</span><span class="p">)</span> <span class="mi">0</span> <span class="nc">integer</span><span class="p">))</span></code></pre></figure>
+
+<p>Now we&#39;ve got two <code>get-church</code> functions, each with different arity.
+<code>get-church/1</code> calls <code>get-church/3</code> with the appropriate initial arguments, at
+which point <code>get-church/3</code> calls itself until the limit is reached and returns
+a Church numeral.</p>
+
+<p>Let&#39;s take a look:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;examples/church.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">church</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">0</span><span class="p">)</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.10.53503600&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">==</span> <span class="p">(</span><span class="nv">zero</span><span class="p">)</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">0</span><span class="p">))</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.10.53503600&gt;</span></code></pre></figure>
+
+<p>Looks good so far. Let&#39;s check out the values:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="mi">1</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">50</span><span class="p">)))</span>
+<span class="mi">50</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">100</span><span class="p">)))</span>
+<span class="mi">100</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">2000</span><span class="p">)))</span>
+<span class="mi">2000</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">church-&gt;int1</span> <span class="p">(</span><span class="nv">get-church</span> <span class="mi">10000</span><span class="p">)))</span>
+<span class="mi">10000</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>That last one caused a little lag in the LFE REPL, but still quite impressive
+given the fact that it just applied so many thousands of lambdas!</p>
+
+<p>How fortunate that we didn&#39;t have to type 10,000 <code>funcall</code>s (and the
+corresponding set of opening and closing parentheses 10,000 times).</p>
+
+<h3>5.8.3 Arithmetic</h3>
+
+<p>We looked at basic arithmetic when we were exploring Peano&#39;s axioms. Now we&#39;re
+going to do arithmetic at a whole new level, with church encoding.</p>
+
+<p>In the previous section, we defined a Church successor function in the following
+manner:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">λn.λs.λx. s (n s x)
+</code></pre></div>
+<p>Then we translated that into LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">church-successor</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">funcall</span> <span class="nv">s</span>
+        <span class="p">(</span><span class="nb">funcall</span>
+          <span class="p">(</span><span class="nb">funcall</span> <span class="nv">n</span> <span class="nv">s</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))))</span></code></pre></figure>
+
+<p>We bring this up now because an addition function will make use of it. Here is
+addition as defined in the λ-calculus:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">λm.λn.λs.λx. m s (n s x)
+</code></pre></div>
+<p>We can express this in English with the following: given a Church numeral
+<code>m</code> and another Church numeral <code>n</code>, </p>
+
+<p>Here&#39;s how we would implement it in LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">add</span> <span class="p">(</span><span class="nv">m</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">funcall</span> <span class="nv">m</span> <span class="nv">s</span>
+        <span class="p">(</span><span class="nb">funcall</span>
+          <span class="p">(</span><span class="nb">funcall</span> <span class="nv">n</span> <span class="nv">s</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))))</span></code></pre></figure>
+
+<h3>5.8.4 Logic</h3>
+
+<h3>5.8.5 Church Pairs</h3>
+
+<h3>5.8.6 List Encoding</h3>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="4.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="6.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

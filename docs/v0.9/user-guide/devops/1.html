@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>9 Development &amp; Deployment</h1>
+
+<h2>9.1 Creating Projects with Rebar</h2>
+
+<p>In this section we&#39;ll be exploring how rebar can be used to manage LFE projects.</p>
+
+<h3>9.1.1 Dependencies</h3>
+
+<p>You&#39;re going to need to have an Erlang. We recommend using kerl, as deponstrated
+in the <a href="/v0.9/user-guide/devops/2.html">next section</a>.
+However, you may already have one set up, in which case you&#39;re good for the next
+step.</p>
+
+<h3>9.1.2 Installation</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ curl -L -O https://raw.github.com/wiki/rebar/rebar/rebar
+$ mv rebar /usr/local/bin/
+$ chmod a+x /usr/local/bin/rebar
+</code></pre></div>
+<p>Make sure everything&#39;s working as expected:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ rebar h
+</code></pre></div>
+<p>This will give you output like the following:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Usage: rebar [-h] [-c] [-v &lt;verbose&gt;] [-V] [-f] [-D &lt;defines&gt;] [-j &lt;jobs&gt;]
+             [-C &lt;config&gt;] [-p] [var=value,...] &lt;command,...&gt;
+
+  -h, --help        Show the program options
+  -c, --commands    Show available commands
+  -v, --verbose     Verbosity level (-v, -vv, -vvv, --verbose 3). Default: 0
+  -V, --version     Show version information
+  -f, --force       Force
+  -D                Define compiler macro
+  -j, --jobs        Num concurrent workers a command may use. Default: 3
+  -C, --config      Rebar config file to use
+  -p, --profile     Profile this run of rebar
+  var=value     rebar global variables (e.g. force=1)
+  command       Command to run (e.g. compile)
+</code></pre></div>
+<h3>9.1.2 What is a Project?</h3>
+
+<p>The first question we should probably address is this: How are we defining a
+project?</p>
+
+<p>An LFE project is a set of modules developed and distributed to accomplish a
+particular goal. The project should have a rebar configuration file, a source
+directory with <code>.lfe</code> files in it, possibly an include directory, and (ideally)
+unit tests in a <code>test</code> directory.</p>
+
+<h3>9.1.2 Project Structure</h3>
+
+<p>Let&#39;s expand upon the project definition given above, focusing on the directory
+structure of a prototypical project and some of the files one might find in an
+LFE project.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">├── ebin
+│   └── libexample.app
+├── src
+│   └── libexample.lfe
+├── Makefile
+├── README.md
+└── rebar.config
+</code></pre></div>
+<p>This is from a sample project whose purpose is to provide a library for use by
+other LFE (or Erlang!) projects. More on that below.</p>
+
+<p>Rebar supports LFE files. All that it needs is the standard <code>rebar.config</code> and
+an <code>.app</code> file in the <code>ebin</code> directory. With these, Rebar will be able to
+download the project dependencies and compile the <code>*.lfe</code> files in <code>src</code> to the
+<code>ebin</code> directory as <code>*.beam</code> files.</p>
+
+<h3>9.1.3 Project Dependencies</h3>
+
+<p>Dependencies are handled very nicely with Rebar: just add a git repo in your
+<code>rebar.config</code> file like so:</p>
+<div class="highlight"><pre><code class="language-erlang" data-lang="erlang"><span class="p">{</span><span class="n">deps</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">{</span><span class="n">lfe</span><span class="p">,</span> <span class="s">&quot;.*&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">git</span><span class="p">,</span> <span class="s">&quot;git://github.com/rvirding/lfe.git&quot;</span><span class="p">,</span> <span class="s">&quot;develop&quot;</span><span class="p">}}</span>
+  <span class="p">]}.</span>
+</code></pre></div>
+<p>Any dependencies listed here will be downloaded with the <code>rebar get-deps</code>
+command. Once downloaded, issuing the <code>rebar compile</code> command will not only
+compile your project&#39;s <code>src/*</code> files into its <code>ebin</code> directory, but will compile
+all dependency project source code as well.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

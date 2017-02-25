@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>1 Introduction</h1>
+
+<h2>1.6 Loading Files</h2>
+
+<h3>1.6.1 Loading Files in the REPL</h3>
+
+<p>There are several ways in which one may load files in LFE.</p>
+
+<h4>1.6.1.1 <code>slurp</code></h4>
+
+<p>As mentioned in the section on
+<a href="/v0.9/user-guide/intro/2.html">LFE&#39;s REPL</a>, <code>slurp</code>ing a file makes
+all functions and macros defined in the file available in the shell. One does
+not need to reference the module (and, in fact, attempting to do so will result
+in an error. Also, note that only one file can be slurped at a time; slurping a
+new one removes all data about the previous file.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;my-module.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">my-module</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h4>1.6.1.2 <code>c</code></h4>
+
+<p>Compiling a module from the REPL is what you need if you wish to work with
+multiple modules simultaneously:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;my-module&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">my-module</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h4>1.6.1.3 <code>ec</code></h4>
+
+<p>You can also load Erlang files in LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">ec</span> <span class="o">&#39;</span><span class="s">&quot;../lfe/src/lfe_macro.erl&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">lfe_macro</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h4>1.6.1.4 <code>l</code></h4>
+
+<p>If a module is in your Erlang/LFE path,  you can load that too:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">l</span> <span class="ss">&#39;mochiweb</span><span class="p">)</span>
+<span class="p">(</span><span class="o">#(</span><span class="nv">module</span> <span class="nv">mochiweb</span><span class="p">))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h3>1.6.2 Loading Files in Modules</h3>
+
+<p>Code may be included wholesale into LFE modules by either using
+<code>include-file</code> or <code>include-lib</code>.</p>
+
+<h4>1.6.2.1 <code>include-file</code></h4>
+
+<p>If you have records or data that you would like to be available to more than
+one module, you can put those in a dedicated file and pull them in to your
+modules. For example, let&#39;s say I had defined the following constants in the
+file <code>include/consts.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="vg">*base-cool-factor*</span> <span class="nv">_</span> <span class="o">`</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">defmacro</span> <span class="vg">*earth-adjustment*</span> <span class="nv">_</span> <span class="o">`</span><span class="mf">0.3</span><span class="p">)</span></code></pre></figure>
+
+<p>Then, in the following two files I could easily use those constants by
+including them:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">zaphod</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="nv">all</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nv">include-file</span> <span class="s">&quot;include/consts.lfe&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">get-coolness</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">zaphod-cool-factor</span> <span class="mf">0.9</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="vg">*base-cool-factor*</span><span class="p">)</span> <span class="nv">zaphod-cool-factor</span><span class="p">)))</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">arthur</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="nv">all</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nv">include-file</span> <span class="s">&quot;include/consts.lfe&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">get-coolness</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">arthur-cool-factor</span> <span class="mf">0.1</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">*</span> <span class="p">(</span><span class="vg">*base-cool-factor*</span><span class="p">)</span> <span class="p">(</span><span class="vg">*earth-adjustment*</span><span class="p">)</span> <span class="nv">arthur-cool-factor</span><span class="p">)))</span></code></pre></figure>
+
+<h4>1.6.2.2 <code>include-lib</code></h4>
+
+<p>TBD</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

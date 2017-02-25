@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.8/tutorials/counter-app/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/counter-app/2.html">The Set Up</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/counter-app/3.html">Thinking
+        About Counting</a></li>
+      <li><a class="spec" href="/v0.8/tutorials/counter-app/4.html">Thinking
+        About Lisp</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Counter Application</h1>
+
+<h2>1 Introduction</h2>
+
+<p>This example application is inspired by <a href="http://www.tbray.org/ongoing/When/200x/2009/10/26/Messaging">this blog post</a>. The following is an excerpt from the article:</p>
+
+<p>&quot;Let’s suppose we’ve got a program we want to smash across lots of cores, and we want it to count things. The counts aren’t going to be reported out till the program finishes, so there’s no reason for the main workload to wait for the counting arithmetic. So the obvious thing to do is to run the counters off in their own thread(s), send them please-count messages (no need to wait for the answers), and the numbers will all get added up eventually.&quot;</p>
+
+<p>This tutorial will demonstrate how to create the same application in LFE...</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,536 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>1 Introduction</h1>
+
+<h2>1.5 The LFE REPL</h2>
+
+<h3>1.5.1 Using the REPL</h3>
+
+<p>We covered basic REPL usage in the
+<a href="http://lfe.gitbooks.io/quick-start/content/index.html">quick start</a>.
+We&#39;ll provide some information about the REPL in the document you are currently
+reading :-)</p>
+
+<h4>1.5.1.1 Starting the REPL</h4>
+
+<p>If you <em>don&#39;t</em> have LFE installed system-wide, you need to tell it (Erlang,
+really) where the LFE <code>.beam</code> files are. Here are the three ways to start
+up LFE in this case. The easiest is <code>lfetool</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ lfetool repl lfe
+</code></pre></div>
+<p>If you&#39;re project was built with <code>lfetool</code>, then you&#39;ll have a make target
+called <code>shell</code>; calling this will first compile your source files and then
+call out to <code>lfetool</code>. Due to the compiling, this is a little slower way to
+start the REPL (though better for debugging!):</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ make repl
+</code></pre></div>
+<p>The nice thing about both of these is that they automatically add your
+dependencies to <code>ERL_LIBS</code> so you have access to everything you need in the
+REPL itself.</p>
+
+<p>Here are some more ways to start the REPL that don&#39;t take care of these niceties
+for you:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ ./bin/lfe -pa ./ebin
+    LFE Shell V5.10.4 <span class="o">(</span>abort with ^G<span class="o">)</span>
+    &gt;
+</code></pre></div><div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ erl -user lfe_boot -pa /path/to/lfe/ebin
+    LFE Shell V5.10.4 <span class="o">(</span>abort with ^G<span class="o">)</span>
+    &gt;
+</code></pre></div>
+<p>You can also start an LFE REPL from the Erlang shell. First hop into <code>erl</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ erl -pa /path/to/lfe/ebin
+    Eshell V5.10.4  <span class="o">(</span>abort with ^G<span class="o">)</span>
+    1&gt;
+</code></pre></div>
+<p>then fire up LFE:</p>
+<div class="highlight"><pre><code class="language-erlang" data-lang="erlang">    <span class="mi">1</span><span class="o">&gt;</span> <span class="nn">lfe_shell</span><span class="p">:</span><span class="nf">server</span><span class="p">().</span>
+    <span class="nv">LFE</span> <span class="nv">Shell</span> <span class="nv">V5</span><span class="p">.</span><span class="mi">10</span><span class="p">.</span><span class="mi">4</span> <span class="p">(</span><span class="n">abort</span> <span class="n">with</span> <span class="err">^</span><span class="nv">G</span><span class="p">)</span>
+    <span class="o">&gt;</span>
+</code></pre></div>
+<p>If you do have LFE installed system-wide, then starting the shell can be done in
+the ways listed below.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ lfe
+</code></pre></div>
+<p>You can also start the LFE REPL by passing options directly to <code>erl</code>.
+Again, assuming that you have LFE installed system-wide, from any directory you
+may do this:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">    $ erl -user lfe_boot
+</code></pre></div>
+<p>Also, if you happen to be running an Erlang shell already, you can start the
+LFE REPL with the following:</p>
+<div class="highlight"><pre><code class="language-erlang" data-lang="erlang"><span class="mi">14</span><span class="o">&gt;</span> <span class="nn">lfe_shell</span><span class="p">:</span><span class="nf">server</span><span class="p">().</span>
+<span class="nv">LFE</span> <span class="nv">Shell</span> <span class="nv">V5</span><span class="p">.</span><span class="mi">9</span><span class="p">.</span><span class="mi">3</span><span class="p">.</span><span class="mi">1</span> <span class="p">(</span><span class="n">abort</span> <span class="n">with</span> <span class="err">^</span><span class="nv">G</span><span class="p">)</span>
+<span class="o">&gt;</span>
+</code></pre></div>
+<h4>1.5.1.2 Running Commands</h4>
+
+<p>Once you&#39;re in the REPL, it&#39;s just a matter of entering code:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">+</span> <span class="mf">1.5</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">)</span>
+<span class="mi">28</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Unlike the Erlang shell, the LFE REPL supports defining functions:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">defun</span> <span class="nb">exp</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">trunc</span> <span class="p">(</span><span class="nv">math:pow</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)))</span>
+<span class="nb">exp</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Let&#39;s put that <code>exp</code> to use:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">exp</span> <span class="mi">2</span> <span class="mi">6</span><span class="p">)</span>
+<span class="mi">64</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>You could take the <code>lambda</code> route too:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nb">exp</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">trunc</span> <span class="p">(</span><span class="nv">math:pow</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.15.132627770&gt;</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>And, if you want to get nuts:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lists:map</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">z</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">funcall</span> <span class="nb">exp</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr</span> <span class="nv">z</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nb">list</span> <span class="mf">1.5</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">81</span> <span class="mi">15625</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h4>1.5.1.3 Quitting the REPL</h4>
+
+<p>Just as there are multiple ways in which you can start the REPL, there are a
+couple ways you can leave it. You can jump into the JCL from the LFE prompt by
+hitting ^g and then entering <code>q</code>:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">^g</span>
+<span class="nv">User</span> <span class="nv">switch</span> <span class="nv">command</span>
+ <span class="nv">--&gt;</span> <span class="nv">q</span>
+<span class="nv">$</span>
+</code></pre></div>
+<p>or you can call the Erlang shell&#39;s quit function:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c:q</span><span class="p">)</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+<span class="nv">$</span>
+</code></pre></div>
+<p>Or simplest of all, the LFE <code>exit</code> command:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">exit</span><span class="p">)</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+<span class="nv">$</span>
+</code></pre></div>
+<h3>1.5.2 Special Functions</h3>
+
+<p>There are some functions specially defined in LFE for use from the REPL.
+These are listed below with information about their use.</p>
+
+<ul>
+<li><p><code>(c File [Options])</code> - Compile and load an LFE file. Assumes default
+extension <code>.lfe</code>.</p></li>
+<li><p><code>(l Module ...)</code> - Load modules.</p></li>
+<li><p><code>(m Module ...)</code> - Print out module information, if no modules are given
+then print information about all modules.</p></li>
+<li><p><code>(ec File [Options])</code> - Compile and load an Erlang file.</p></li>
+<li><p><code>(slurp File)</code> - Slurp in a source LFE file and makes all functions and
+macros defined in the file available in the shell. Only one file can be
+slurped at a time and slurping a new file removes all data about the previous
+one.</p></li>
+<li><p><code>(unslurp)</code> - Remove all function and macro definitions except the
+default ones.</p></li>
+<li><p><code>(set Pattern Expr)</code> - Evaluate Expr and match the result with Pattern
+binding variables in it. These variables can then be used in the shell and
+also rebound in another set.</p></li>
+<li><p><code>(c:command-arg ...)</code> - All the commands in the Erlang shell&#39;s
+<a href="http://www.erlang.org/doc/man/c.html">Command Interface Module</a>
+can be reached in this way.</p></li>
+</ul>
+
+<h3>1.5.3 Special Variables</h3>
+
+<p>LFE also provides some convenience variables similar to what Lisp
+has defined for
+<a href="http://www.lispworks.com/documentation/HyperSpec/Body/v_pl_plp.htm"> +, ++, +++</a>,
+<a href="http://www.lispworks.com/documentation/HyperSpec/Body/v__stst_.htm"><em>, *</em>, ***</a>,
+and
+<a href="http://www.lispworks.com/documentation/HyperSpec/Body/v__.htm">-</a>.
+Additionally, LFE also provides the <code>$ENV</code> variable.</p>
+
+<ul>
+<li><code>+/++/+++</code> - The three previous expressions input.</li>
+<li><code>*/**/***</code> - The values of the previous 3 expressions.</li>
+<li><code>-</code> - The current expression input.</li>
+<li><code>$ENV</code> - The current environment (accessible in the REPL as well as in
+macros).</li>
+</ul>
+
+<p>These probably warrant some examples.</p>
+
+<p>Let&#39;s say you had just entered the following in the REPL:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">+</span> <span class="mf">1.5</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c:memory</span><span class="p">)</span>
+<span class="p">(</span><span class="o">#(</span><span class="nv">total</span> <span class="mi">10026672</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">processes</span> <span class="mi">1656528</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">processes_used</span> <span class="mi">1656528</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">system</span> <span class="mi">8370144</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nb">atom</span> <span class="mi">153321</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">atom_used</span> <span class="mi">147399</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">binary</span> <span class="mi">1338560</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">code</span> <span class="mi">3255239</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">ets</span> <span class="mi">290544</span><span class="p">))</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">my-func</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">io:format</span> <span class="s">&quot;Hello, Zaphod!~n&quot;</span><span class="p">)))</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.23.86468545&gt;</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Then you can get the previous expressions you input with the following
+commands:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">+++</span>
+<span class="p">(</span><span class="nb">+</span> <span class="mf">1.5</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="nv">+++</span>
+<span class="p">(</span><span class="nv">c:memory</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="nv">+++</span>
+<span class="p">(</span><span class="nb">set</span> <span class="nv">my-func</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">io:format</span> <span class="s">&quot;Hello, Zaphod!~n&quot;</span><span class="p">)))</span>
+<span class="nb">&gt;</span> <span class="nv">++</span>
+<span class="nv">+++</span>
+<span class="nb">&gt;</span> <span class="nb">+</span>
+<span class="nv">++</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>Most of us will actually use the arrow keys, thanks to the <code>readline</code>
+library. However, the classic, pre-<code>readline</code> approach is still available,
+should you choose to use it.</p>
+
+<p>Similarly, you can get the results returned by using the variabels from the
+second bullet item. If you&#39;re following along in the REPL, go ahead and
+re-enter the commands we typed above to reset the last three items in your
+command history. Then do the following:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="vg">***</span>
+<span class="mi">3</span>
+<span class="nb">&gt;</span> <span class="vg">***</span>
+<span class="p">(</span><span class="o">#(</span><span class="nv">total</span> <span class="mi">9976496</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">processes</span> <span class="mi">1606688</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">processes_used</span> <span class="mi">1606688</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">system</span> <span class="mi">8369808</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nb">atom</span> <span class="mi">153321</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">atom_used</span> <span class="mi">147399</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">binary</span> <span class="mi">1338096</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">code</span> <span class="mi">3255239</span><span class="p">)</span>
+ <span class="o">#(</span><span class="nv">ets</span> <span class="mi">290544</span><span class="p">))</span>
+<span class="nb">&gt;</span> <span class="vg">***</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.23.86468545&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">funcall</span> <span class="nb">*</span><span class="p">)</span>
+<span class="nv">Hello,</span> <span class="nv">Zaphod!</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>There&#39;s another, called the &quot;dash&quot; varibale. It is bound to the actual
+expression that is currently being evaluated. Here&#39;s an example of this being
+used:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">io:format</span> <span class="s">&quot;Evaluating the expression &#39;~p&#39; ...~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nb">-</span><span class="p">))</span>
+<span class="nv">Evaluating</span> <span class="k">the</span> <span class="nv">expression</span> <span class="ss">&#39;[</span><span class="o">&#39;</span><span class="err">:</span><span class="ss">&#39;,io,format,</span>
+                            <span class="nv">[quote,</span><span class="s">&quot;Evaluating the expression &#39;~p&#39; ...~n&quot;</span><span class="nv">],</span>
+                            <span class="nv">[list,</span><span class="ss">&#39;-&#39;]]</span><span class="o">&#39;</span> <span class="o">...</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We&#39;ve saved one of the more archane special variables to last: <code>$ENV</code>.
+When you first start up a shell, the <code>$ENV</code> variable holds pristine state
+data:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">$ENV</span>
+<span class="o">#(</span><span class="nv">env</span>
+<span class="o">...</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We can define a few variables and then check them out with another display of
+the environment:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">my-var</span> <span class="mi">42</span><span class="p">)</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span> <span class="nv">$ENV</span>
+<span class="o">#(</span><span class="nv">env</span>
+<span class="o">...</span>
+   <span class="o">#(</span><span class="nv">my-var</span> <span class="mi">42</span><span class="p">)</span>
+<span class="o">...</span>
+</code></pre></div>
+<p>If you <code>slurp</code> a file in the REPL, your environment will be updated with all
+the definitions in that file:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="s">&quot;../lfe/examples/joes-fav.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">joes-fav</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="nv">$ENV</span>
+<span class="o">...</span>
+  <span class="p">(</span><span class="o">#(</span><span class="nv">MODULE</span> <span class="o">#(</span><span class="nv">macro</span> <span class="p">(</span><span class="nv">match-lambda</span> <span class="p">(((</span><span class="nb">list</span><span class="p">)</span> <span class="nv">$ENV</span><span class="p">)</span> <span class="o">`</span><span class="ss">&#39;joes-fav</span><span class="p">))))</span>
+<span class="o">...</span>
+  <span class="o">#(</span><span class="nv">run-it</span>
+<span class="o">...</span>
+  <span class="o">#(</span><span class="nv">universal-server</span>
+<span class="o">...</span>
+</code></pre></div>
+<p>There is, as you might have guessed, much more to that ellided output (for that
+particular example, nearly all the rest of it is macro definitions).</p>
+
+<p>Making use of <code>$ENV</code> can be very helpful when debugging include files,
+loading Erlang header files, or when creating macros. Furthermore, when spending
+a great deal of time in the REPL prototyping code for a project, it can be
+quite useful to refresh one&#39;s memory as to what functions and variables are
+currently available in <code>$ENV</code>.</p>
+
+<p>Looking at the output for <code>$ENV</code> can be a bit overwhelming, however. As you
+might imagine, there is an easy answer to this: filter it! The following makes
+use of the Erlang <code>lists</code> module as well as patterns in an anonymous
+function, both of which will be covered in more detail later. This will
+prevent most nested variables from being displayed:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">defun</span> <span class="nv">filter-env</span> <span class="p">(</span><span class="nv">env</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">lists:foreach</span>
+      <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">section</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">lists:foreach</span>
+          <span class="p">(</span><span class="nv">match-lambda</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="nb">*</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="nv">**</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="vg">***</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="nb">+</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="nv">++</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="nv">+++</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(</span><span class="nb">-</span> <span class="o">,</span><span class="nv">_</span><span class="p">)))</span>
+            <span class="p">((</span><span class="o">`#(,</span><span class="nv">name</span> <span class="o">,</span><span class="nv">value</span><span class="p">))</span>
+              <span class="p">(</span><span class="nv">lfe_io:format</span> <span class="s">&quot;~s: ~p~n&quot;</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">name</span> <span class="o">,</span><span class="nv">value</span><span class="p">)))</span>
+            <span class="p">((</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">filter-env</span> <span class="o">`#(</span><span class="nv">env</span> <span class="o">,</span><span class="nv">x</span><span class="p">))))</span>
+          <span class="nv">section</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">lists:nthtail</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">tuple_to_list</span> <span class="nv">env</span><span class="p">))))</span>
+<span class="nv">filter-env</span>
+</code></pre></div>
+<p>Now, as one hacks away in the REPL, <code>slurp</code>ing away at various modules,
+getting a list of what&#39;s defined in the current environment is a piece of cake:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">filter-env</span> <span class="nv">$ENV</span><span class="p">)</span>
+<span class="nv">my-var:</span> <span class="mi">42</span>
+<span class="nv">my-func:</span> <span class="err">#</span><span class="nv">Fun&lt;lfe_eval.23.86468545&gt;</span>
+<span class="nv">script-args:</span> <span class="p">()</span>
+<span class="nv">script-name:</span> <span class="s">&quot;lfe&quot;</span>
+<span class="nv">MODULE:</span> <span class="o">#(</span><span class="nv">macro</span> <span class="p">(</span><span class="nv">match-lambda</span> <span class="p">(((</span><span class="nb">list</span><span class="p">)</span> <span class="nv">$ENV</span><span class="p">)</span> <span class="o">`</span><span class="ss">&#39;joes-fav</span><span class="p">)))</span>
+<span class="nv">c:</span> <span class="o">#(</span><span class="nv">macro</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">args</span> <span class="nv">$ENV</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="err">:</span> <span class="nv">lfe_shell</span> <span class="nv">c</span> <span class="o">,@</span><span class="nv">args</span><span class="p">)))</span>
+<span class="nv">ec:</span> <span class="o">#(</span><span class="nv">macro</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">args</span> <span class="nv">$ENV</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="err">:</span> <span class="nv">lfe_shell</span> <span class="nv">ec</span> <span class="o">,@</span><span class="nv">args</span><span class="p">)))</span>
+<span class="nv">exit:</span> <span class="o">#(</span><span class="k">function</span> <span class="p">(</span><span class="o">#(</span><span class="mi">0</span> <span class="o">#(</span><span class="nv">dynamic_expr</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="err">:</span> <span class="nv">lfe_shell</span> <span class="nv">exit</span><span class="p">))))))</span>
+<span class="nv">factorial:</span> <span class="o">#(</span><span class="k">function</span>
+<span class="o">...</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>1.5.4 Getting Out of Trouble</h3>
+
+<p>Every once in a while you may find that you do something which causes the REPL
+to crash, presenting you with something that looks like this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    &gt;
+      =ERROR REPORT==== 17-Feb-2013::15:39:33 ===
+      ...
+</code></pre></div>
+<p>You don&#39;t have to quit and restart the REPL, if you don&#39;t want to! There are a
+couple of steps that you can take instead.</p>
+
+<h4>1.5.4.1 Interrupting a Shell Process</h4>
+
+<p>When you get an error as seen above, type <code>^g</code>. This will put you into JCL
+(Job Control Language) mode. At the JCL prompt, type <code>?</code> to see a list of
+options:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    User switch command
+     --&gt; ?
+      c [nn]            - connect to job
+      i [nn]            - interrupt job
+      k [nn]            - kill job
+      j                 - list all jobs
+      s [shell]         - start local shell
+      r [node [shell]]  - start remote shell
+      q        - quit erlang
+      ? | h             - this message
+</code></pre></div>
+<p>Let&#39;s see what&#39;s running:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    --&gt; j
+      1* {lfe_shell,start,[]}
+</code></pre></div>
+<p>Our shell process is still alive, though not responding. Let&#39;s interrupt it and
+then connect to it again:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    --&gt; i 1
+    --&gt; c 1
+    exception error: function_clause
+     in (: lists sublist #(error interrupted) 1)
+     in (lfe_scan string 4)
+     in (lfe_io scan_and_parse 3)
+
+    &gt;
+</code></pre></div>
+<p>Once we interrupted the job, our error messages were printed to the REPL and we
+were placed back at the LFE prompt.</p>
+
+<h4>1.5.4.2 Starting a New Shell</h4>
+
+<p>Sometimes, though, there is no shell process any more.  Here&#39;s how to start up
+a new shell process if the one that you&#39;re using dies:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    --&gt; s lfe_shell
+    --&gt; j
+          2* {lfe_shell,start,[]}
+    --&gt; c 2
+    LFE Shell V5.9.3.1 (abort with ^G)
+    &gt;
+</code></pre></div>
+<p>And you&#39;re back up!</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

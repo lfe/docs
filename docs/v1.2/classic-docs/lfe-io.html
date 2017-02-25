@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v1.2/css/styles.css" />
+    <link rel="stylesheet" href="/v1.2/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v1.2/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v1.2/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v1.2/community.html">Community</a></li>
+            <li class="title"><a href="/v1.2/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v1.2/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Index</h3>
+
+    <ul>
+  <li>
+    <a href="https://github.com/rvirding/lfe/blob/develop/doc/user_guide.txt">User Guide</a>
+    (available as a Gitbook <a href="http://lfe.gitbooks.io/reference-guide/">here</a>)
+  </li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt">lfescript</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_shell.txt">LFE Shell</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_io.txt">I/O Functions</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_macro.txt">Macro Expander</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_comp.txt">Compiler</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_bits.txt">Common Binary Functions</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_gen.txt">Dynamic Code Generator</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_lib.txt">Internal Library used by LFE</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/version_history.md">Version History</a></li>
+</ul>
+
+
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Documentation</h1>
+
+<h2>I/O Functions</h2>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">MODULE
+
+        lfe_io
+
+MODULE SUMMARY
+
+        Lisp Flavoured Erlang (LFE) io functions
+
+DESCRIPTION
+
+        This module provides a standard set of io functions for
+        LFE. In the following description, many functions have an
+        optional parameter IoDevice. If included, it must be the pid
+        of a process which handles the IO protocols such as the
+        IoDevice returned by file:open/2.
+
+        Two functions in this module are used to generate
+        aesthetically attractive representations of abstract forms,
+        which are suitable for printing. These functions return
+        (possibly deep) lists of characters and generate an error if
+        the form is wrong.
+
+DATA TYPES
+
+        chars() = [char() | chars()]
+        filesexpr() = {Sexpr,Line}
+            This is the format returned by lfe_io:parse_file/1 and
+            is used by the compiler to give better error
+            information.
+
+EXPORTS
+
+read([IoDevice]) -&gt; {ok,Sexpr} | {error,ErrorInfo}
+
+        Read an s-expr from the standard input (IoDevice).
+
+read_string(String) -&gt; {ok,Sexpr} | {error,ErrorInfo}
+
+        Read an s-expr from String.
+
+print([IoDevice,] Sexpr) -&gt; ok
+
+        Print the s-expr Sexpr to the standard output (IoDevice).
+
+prettyprint([IoDevice,] Sexpr) -&gt; ok
+
+        Pretty print the s-expr Sexpr to the standard output
+        (IoDevice). Assume we start with no indentation.
+
+print1(Sexpr) -&gt; DeepCharList
+
+        Return the list of characters which represent the s-expr Sexpr.
+
+prettyprint1(Sexpr, CurrentIndentation) -&gt; DeepCharList
+
+        Return the lost of characters which represents the
+        prettyprinted s-expr Sexpr. Assume we start at indentation
+        CurrentIndentation.
+
+print1_symb(Symbol) -&gt; DeepCharList.
+
+        Return the list of characters needed to print the symbol Symbol.
+
+print1_string(String) -&gt; DeepCharList.
+
+        Return the list of characters needed to print the string
+        String as a string.
+
+format([IoDevice,] Format, Args) -&gt; ok
+format1(Format, Args) -&gt; DeepCharList
+
+        Print formatted output. The following commands are valid in
+        the format string:
+
+        ~w, ~W        - print LFE terms
+        ~p, ~P        - prettyprint LFE terms
+        ~s            - print a string
+        ~e, ~f, ~g    - print floats
+        ~b, ~B        - based integers
+        ~x, ~X        - based integers with a prefix
+        ~+, ~#        - based integers in vanilla erlang format
+        ~c, ~n, ~i
+
+        Currently they behave as for vanilla erlang except that ~w,
+        ~W, ~p, ~P print the terms as LFE sexprs.
+
+read_file(FileName) -&gt; {ok,[Sexpr]} | {error,ErrorInfo}
+
+        Read the file Filename returning a list of s-exprs (as it
+        should be).
+
+parse_file(FileName) -&gt; {ok,[FileSexpr]} | {error,ErrorInfo}
+
+        where
+          FileSexpr = filesexpr()
+
+        Read the file Filename returning a list of pairs containing
+        s-expr and line number of the start of the s-expr.
+
+Error Information
+
+        The ErrorInfo mentioned above is the standard ErrorInfo
+        structure which is returned from all IO modules. It has the
+        following format:
+
+        {ErrorLine,Module,ErrorDescriptor}
+
+        A string describing the error is obtained with the following call:
+
+        apply(Module, format_error, ErrorDescriptor)</code></pre></figure>
+
+  </article>
+</div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Programming Rules and Conventions</h3>
+    <ol>
+      <li><a class="spec" href="/v0.8/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/10.html">Required Documents</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Programming Rules and Conventions</h1>
+
+<h2>5 Processes, Servers and Messages</h2>
+
+<h3>5.1 Implement a process in one module</h3>
+
+<p>Code for implementing a single process should be contained in one module. A
+process can call functions in any library routine but the code for the &quot;top
+loop&quot; of the process should be contained in a single module. The code for
+the top loop of a process should not be split into several modules - this
+would make the flow of control extremely difficult to understand. This does
+not mean that one should not make use of generic server libraries, these are
+for helping structuring the control flow.</p>
+
+<p>Conversely, code for no more than one kind of process should be implemented
+in a single module. Modules containing code for several different processes
+can be extremely difficult to understand. The code for each individual
+process should be broken out into a separate module.</p>
+
+<h3>5.2 Use processes for structuring the system</h3>
+
+<p>Processes are the basic system structuring elements. But don&#39;t use processes
+and message passing when a function call can be used instead.</p>
+
+<h3>5.3 Registered processes</h3>
+
+<p>Registered processes should be registered with the same name as the module.
+This makes it easy to find the code for a process.</p>
+
+<p>Only register processes that should live a long time.</p>
+
+<h3>5.4 Assign exactly one parallel process to each true concurrent activity in the system</h3>
+
+<p>When deciding whether to implement libraries and applications using
+sequential or parallel processes, look to the nature of the problem  the
+software is solving; when clearly analyzed, its structure will be clear.
+This structure, the one inherint in the solution, should be used.</p>
+
+<p>The main rule is as follows:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;Use one parallel process to model each truly concurrent activity in the
+real world&quot;
+</code></pre></div>
+<p>If there is a one-to-one mapping between the number of parallel processes
+and the number of truly parallel activities in the real world, the program
+will be easy to understand.</p>
+
+<h3>5.5 Each process should only have one &quot;role&quot;</h3>
+
+<p>Processes can have different roles in the system. Take, for example, the
+<strong>client</strong> and <strong>server</strong> model: one role is to serve, responding to
+requests; the other role is to make requests when connecting to the
+server(s).</p>
+
+<p>As far as possible, a process implementation should cleanly mirror the
+separation that exists in the conceptual model of the roles of a given
+system. A process should only have one role, e.g., it can be a client or a
+server, and should not combine or conflate these roles.</p>
+
+<p>Other roles which process might have are:</p>
+
+<ul>
+<li><strong>Supervisor</strong>: watches other processes and restarts them if they fail.</li>
+<li><strong>Worker</strong>: a normal work process (can have errors).</li>
+<li><strong>Trusted Worker</strong>: not allowed to have errors.</li>
+</ul>
+
+<h3>5.6 Use generic functions for servers and protocol handlers wherever possible</h3>
+
+<p>In many circumstances it is a good idea to use generic server programs such
+as the generic server implemented in the standard libraries. Consistent use
+of a small set of generic servers will greatly simplify the total system
+structure.</p>
+
+<p>The same is possible for most of the protocol handling software in the
+system.</p>
+
+<h3>5.7 Tag messages</h3>
+
+<p>All messages should be tagged. This makes the order in the receive statement
+less important and the implementation of new messages easier.</p>
+
+<p>Don&#39;t program like this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nb">loop</span> <span class="p">(</span><span class="nv">state</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="o">...</span>
+    <span class="c1">; don&#39;t do the following</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">args</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">apply</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">args</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">loop</span> <span class="nv">state</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">))</span>
+</code></pre></div>
+<p>The new message <code>(tuple &#39;get-status-info, from, option)</code> will introduce a
+conflict if it is placed below the <code>(tuple mod func args)</code> message.</p>
+
+<p>If messages are synchronous, the return message should be tagged with a new
+atom, describing the returned message. Example: if the incoming message is
+tagged <code>&#39;get-status-info</code>, the returned message could be tagged
+<code>&#39;status_info</code>. One reason for choosing different tags is to make
+debugging easier.</p>
+
+<p>This is a good solution:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nb">loop</span> <span class="p">(</span><span class="nv">state</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="o">...</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;execute</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">args</span><span class="p">)</span> <span class="c1">; use a tagged message</span>
+      <span class="p">(</span><span class="nb">apply</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">args</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">loop</span> <span class="nv">state</span><span class="p">))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;get-status-info</span> <span class="nv">from</span> <span class="nv">option</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">!</span> <span class="nv">from</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;status-info</span> <span class="p">(</span><span class="nv">get-status-info</span> <span class="nv">option</span> <span class="nv">state</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">loop</span> <span class="nv">state</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">))</span>
+</code></pre></div>
+<h3>5.8 Flush unknown messages</h3>
+
+<p>Every server should have an <code>other</code> alternative in at least one receive
+statement. This is to avoid filling up message queues.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">main-loop</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;msg-1</span> <span class="nv">message-1-data</span><span class="p">)</span>
+      <span class="o">...</span>
+      <span class="p">(</span><span class="nv">main-loop</span><span class="p">))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;msg-2</span> <span class="nv">message-2-data</span><span class="p">)</span>
+      <span class="o">...</span>
+      <span class="p">(</span><span class="nv">main-loop</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">other</span> <span class="c1">; flushes the message queue</span>
+      <span class="p">(</span><span class="nv">error-logger:error-msg</span>
+        <span class="o">&#39;</span><span class="s">&quot;Error: Process ~w got unknown message ~w.~n&quot;</span>
+        <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">self</span><span class="p">)</span> <span class="nv">other</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">main-loop</span><span class="p">))))</span>
+</code></pre></div>
+<h3>5.9 Write tail-recursive servers</h3>
+
+<p>All servers must be tail-recursive, otherwise the server will consume memory
+until the system runs out of it.</p>
+
+<p>Don&#39;t program like this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nb">loop</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">msg-1</span> <span class="nv">message-1-data</span><span class="p">)</span>
+      <span class="o">...</span>
+      <span class="p">(</span><span class="nb">loop</span><span class="p">))</span>
+    <span class="p">(</span><span class="ss">&#39;stop</span>
+      <span class="ss">&#39;true</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">other</span>
+      <span class="p">(</span><span class="nv">error-logger:error-msg</span>
+        <span class="o">&#39;</span><span class="s">&quot;Error: Process ~w got unknown message ~w.~n&quot;</span>
+        <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">self</span><span class="p">)</span> <span class="nv">other</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">loop</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">io:format</span> <span class="o">&#39;</span><span class="s">&quot;Server going down&quot;</span> <span class="o">&#39;</span><span class="p">()))</span> <span class="c1">; don&#39;t do this!</span>
+                                        <span class="c1">; this is not tail-recursive</span>
+</code></pre></div>
+<p>This is a correct solution:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nb">loop</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">msg-1</span> <span class="nv">message-1-data</span><span class="p">)</span>
+      <span class="o">...</span>
+      <span class="p">(</span><span class="nb">loop</span><span class="p">))</span>
+    <span class="p">(</span><span class="ss">&#39;stop</span>
+      <span class="p">(</span><span class="nv">io:format</span> <span class="o">&#39;</span><span class="s">&quot;Server going down&quot;</span> <span class="o">&#39;</span><span class="p">()))</span>
+    <span class="p">(</span><span class="nv">other</span>
+      <span class="p">(</span><span class="nv">error-logger:error-msg</span>
+        <span class="o">&#39;</span><span class="s">&quot;Error: Process ~w got unknown message ~w.~n&quot;</span>
+        <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">self</span><span class="p">)</span> <span class="nv">other</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">loop</span><span class="p">))))</span>
+</code></pre></div>
+<p>If you use some kind of server library, for example generic, you
+automatically avoid doing this mistake.</p>
+
+<h3>5.10 Interface functions</h3>
+
+<p>Use functions for interfaces whenever possible, avoid sending messages
+directly. Encapsulate message passing into interface functions. There are
+cases where you can&#39;t do this.</p>
+
+<p>The message protocol is internal information and should be hidden to other
+modules.</p>
+
+<p>Example of interface function:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">start</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">stop</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">open-file</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">open-file</span> <span class="p">(</span><span class="nv">file-name</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">!</span> <span class="nv">fileserver</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">open-file-request</span> <span class="nv">filename</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">open-file-response</span> <span class="nv">result</span><span class="p">)</span>
+      <span class="nv">result</span><span class="p">))</span>
+  <span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<h3>5.11 Time-outs</h3>
+
+<p>Be careful when using <code>(after ...)</code> in <code>(receive ...)</code> statements. Make
+sure that you handle the case when the message arrives later.</p>
+
+<p>(See previous section &quot;Flush unknown messages&quot;.)</p>
+
+<h3>5.12 Trapping exits</h3>
+
+<p>As few processes as possible should trap exit signals. Processes should
+either trap exits or they should not. It is usually very bad practice for a
+process to &quot;toggle&quot; trapping exits.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="4.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="6.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

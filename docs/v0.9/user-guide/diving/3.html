@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.9/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.9/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.9/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>2 Diving In</h1>
+
+<h2>2.3 Binary and Bitstrings</h2>
+
+<h3>2.3.1 Lists and <code>binary</code></h3>
+
+<p>A full discussion of the binary type is a huge topic that probably deserves one
+or more dedicated tutorials, especially given the close connection with pattern
+matching and the efficient parsing of binary data. However, for now, we&#39;re just
+going to look at one particular area: working with strings as binary data.</p>
+
+<p>In the previous section, we had mentioned using <code>(binary ...)</code> to more
+efficiently represent large strings. Here&#39;s an example (pretending, for now,
+that our example is using a very large string ;-)):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">binary</span> <span class="s">&quot;There&#39;s a frood who really knows where his towel is.&quot;</span><span class="p">)</span>
+<span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">84</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">39</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">97</span> <span class="mi">32</span> <span class="mi">102</span> <span class="mi">114</span> <span class="mi">111</span> <span class="mi">111</span> <span class="mi">100</span> <span class="mi">32</span> <span class="mi">119</span> <span class="mi">104</span> <span class="mi">111</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<p>Or you could use the Erlang function, if you wanted:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">erlang</span> <span class="nv">list_to_binary</span> <span class="o">&#39;</span><span class="s">&quot;There&#39;s a frood who really knows...&quot;</span><span class="p">)</span>
+<span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">84</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">39</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">97</span> <span class="mi">32</span> <span class="mi">102</span> <span class="mi">114</span> <span class="mi">111</span> <span class="mi">111</span> <span class="mi">100</span> <span class="mi">32</span> <span class="mi">119</span> <span class="mi">104</span> <span class="mi">111</span> <span class="o">...</span><span class="p">)</span>
+<span class="mi">101</span> <span class="mi">97</span> <span class="mi">108</span> <span class="mi">108</span> <span class="mi">121</span> <span class="mi">32</span> <span class="mi">107</span> <span class="mi">110</span> <span class="mi">111</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<p>Let&#39;s set a variable with this value in the shell, so we can work with it more
+easily:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">set</span> <span class="nv">data</span> <span class="p">(</span><span class="nv">binary</span> <span class="s">&quot;There&#39;s a frood who really knows where his towel is.&quot;</span><span class="p">))</span>
+<span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">84</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">39</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">97</span> <span class="mi">32</span> <span class="mi">102</span> <span class="mi">114</span> <span class="mi">111</span> <span class="mi">111</span> <span class="mi">100</span> <span class="mi">32</span> <span class="mi">119</span> <span class="mi">104</span> <span class="mi">111</span> <span class="o">...</span><span class="p">)</span></code></pre></figure>
+
+<h3>2.3.2 Binary Functions in OTP</h3>
+
+<p>Let&#39;s convert it back to a list using a function from the Erlang stdlib
+<code>binary</code> module:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">unicode</span> <span class="nv">characters_to_list</span> <span class="nv">data</span><span class="p">)</span>
+<span class="s">&quot;There&#39;s a frood who really knows where his towel is.&quot;</span></code></pre></figure>
+
+<p>Note that the LFE <code>binary</code> function is quite different than the call to the
+<code>binary</code> module in the Erlang stdlib! The <code>binary</code> module has all sorts
+of nifty functions we can use (check out the
+<a href="http://www.erlang.org/doc/man/binary.html">docs</a>). Here&#39;s an
+example of splitting our data:
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">binary</span> <span class="nv">split</span> <span class="nv">data</span> <span class="p">(</span><span class="nv">binary</span> <span class="s">&quot; who really knows &quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">84</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">39</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">97</span> <span class="mi">32</span> <span class="mi">102</span> <span class="mi">114</span> <span class="mi">111</span> <span class="mi">111</span> <span class="mi">100</span><span class="p">)</span>
+ <span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">119</span> <span class="mi">104</span> <span class="mi">101</span> <span class="mi">114</span> <span class="mi">101</span> <span class="mi">32</span> <span class="mi">104</span> <span class="mi">105</span> <span class="mi">115</span> <span class="mi">32</span> <span class="mi">116</span> <span class="mi">111</span> <span class="mi">119</span> <span class="mi">101</span> <span class="mi">108</span> <span class="mi">32</span> <span class="mi">105</span> <span class="mi">115</span> <span class="mi">46</span><span class="p">))</span></code></pre></figure></p>
+
+<p>The <code>split</code> gives us two pieces; here&#39;s how we can get the new string from
+that <code>split</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">unicode</span> <span class="nv">characters_to_list</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">binary</span> <span class="nv">split</span> <span class="nv">data</span> <span class="p">(</span><span class="nv">binary</span> <span class="s">&quot;who really knows &quot;</span><span class="p">)))</span>
+<span class="s">&quot;There&#39;s a frood where his towel is.&quot;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p><code>binary split</code> creates a list of binaries, but since this is an
+<code>IoList</code> and <code>unicode characters_to_list</code> can handle those without us
+having to flatten them, our work is done! We get our result: the new string
+that we created by splitting on <code>&quot;who really knows &quot;</code>.</p>
+
+<h3>2.3.3 Bit-Packing (and Unpacking)</h3>
+
+<p>For this section, let&#39;s use the 16-bit color example that is given in Joe
+Armstrong&#39;s Erlang book where 5 bits are allocated for the red channel, 6 for
+the green and 5 for the blue. In LFE, we can create a 16-bit memory area like
+so:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">red</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">green</span> <span class="mi">61</span><span class="p">)</span>
+<span class="mi">61</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">blue</span> <span class="mi">20</span><span class="p">)</span>
+<span class="mi">20</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">binary</span>
+    <span class="p">(</span><span class="nv">red</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">green</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">blue</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">5</span><span class="p">)))</span>
+<span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">23</span> <span class="mi">180</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>All packed and ready!</p>
+
+<p>We can use patterns to unpack binary data in a <code>let</code> expression into the
+variables <code>r</code>, <code>g</code>, and <code>b</code>, printing out the results within the
+<code>let</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="k">let</span> <span class="p">(((</span><span class="nv">binary</span> <span class="p">(</span><span class="nv">r</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">5</span><span class="p">))</span> <span class="p">(</span><span class="nv">g</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">6</span><span class="p">))</span> <span class="p">(</span><span class="nv">b</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">5</span><span class="p">)))</span>
+         <span class="err">#</span><span class="nv">b</span><span class="p">(</span><span class="mi">23</span> <span class="mi">180</span><span class="p">)))</span>
+       <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~p ~p ~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">r</span> <span class="nv">g</span> <span class="nv">b</span><span class="p">)))</span>
+<span class="mi">2</span> <span class="mi">61</span> <span class="mi">20</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>We&#39;re getting a little ahead of ourselves here, by throwing a pattern in the
+mix, but it&#39;s a good enough example to risk it :-)</p>
+
+<h3>2.3.4 So What&#39;s a Bitstring?</h3>
+
+<p>We&#39;ve been looking at binaries in LFE, but what&#39;s a bitstring? The
+<a href="http://www.erlang.org/doc/programming_examples/bit_syntax.html">Erlang docs</a>
+say it well: A bitstring is a sequence of zero or more bits, where the number
+of bits doesn&#39;t need to be divisible by 8. If the number of bits is divisible
+by 8, the bitstring is also a binary.</p>
+
+<h3>2.3.5 LFE&#39;s Exact Definition of Binary</h3>
+
+<p>Here&#39;s the full  definition for the <code>binary</code> from in LFE:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">binary</span> <span class="nv">seg</span> <span class="o">...</span> <span class="p">)</span></code></pre></figure>
+
+<p>Where <code>seg</code> is:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">byte</span>
+<span class="nb">string</span>
+<span class="p">(</span><span class="nv">val</span> <span class="nc">integer</span><span class="nv">|float|binary|bitstring|bytes|bits</span>
+<span class="nv">     (size n) (unit n)</span>
+<span class="nv">     big-endian|little-endian|native-endian|little|native|big</span>
+     <span class="nv">signed</span><span class="err">|</span><span class="nv">unsigned</span><span class="p">)</span></code></pre></figure>
+
+<p>This should help you puzzle through some of the more complex binary
+constructions you come accross ;-)</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

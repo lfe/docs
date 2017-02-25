@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v1.2/css/styles.css" />
+    <link rel="stylesheet" href="/v1.2/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v1.2/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v1.2/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v1.2/community.html">Community</a></li>
+            <li class="title"><a href="/v1.2/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v1.2/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v1.2/tutorials/processes/1.html">Interacting with Processes</a></li>
+      <li><a class="spec" href="/v1.2/tutorials/processes/2.html">Processes in Modules</a></li>
+      <li><a class="spec" href="/v1.2/tutorials/processes/3.html">The Process Registry</a></li>
+      <li><a class="spec" href="/v1.2/tutorials/processes/4.html">Process Communications</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Lightweight Processes</h1>
+
+<p>Due to its Erlang foundation, an LFE program is composed of anywhere from 1 to
+hundreds of thousands of lightweight processes.  In fact, a
+<a href="https://groups.google.com/forum/?fromgroups=#!topic/comp.lang.functional/5kldn1QJ73c">2005 message</a>
+to
+<a href="https://groups.google.com/forum/?fromgroups=#!forum/comp.lang.functional">comp.lang.functional</a>
+reported spawning 20 million messages in a ring benchmark (on a 1.5 GHz SPARC
+with 16 GB RAM).</p>
+
+<p>This is possible in part because each process operates independently with its
+own private memory, communicating via message passing, and the overhead for an
+Erlang process is pretty low (~1.5k for 32-bit and ~2.7k for 64-bit; see the
+Efficiency Guide&#39;s section on
+<a href="http://www.erlang.org/doc/efficiency_guide/processes.html">processes</a>
+for more info).</p>
+
+<p>This tutorial aims to decrease the mystery around Erlang processes and how to
+use them in LFE programs.</p>
+
+<h2>1 Interacting with Processes</h2>
+
+<h3>1.1 Dump and <code>flush</code></h3>
+
+<p>Processes in LFE are built from functions. These running functions communicate
+with other running functions via messages. When you start up the LFE REPL,
+you&#39;re using an Erlang process, and you can communicate with it just like any
+other process.</p>
+
+<p>Let&#39;s get the REPL&#39;s process id and then send messages to the REPL using the
+PID:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">self</span><span class="p">))</span>
+<span class="nv">&lt;0.30.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Testing: 1, 2, 3!&quot;</span><span class="p">)</span>
+<span class="s">&quot;Testing: 1, 2, 3!&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;This is another test message...&quot;</span><span class="p">)</span>
+<span class="s">&quot;This is another test message...&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>The messages are sitting in the inbox of the process they were sent to, the
+REPL. If we flush the REPL&#39;s inbox, we can see them:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">c</span> <span class="nv">flush</span><span class="p">)</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="s">&quot;Test1&quot;</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="s">&quot;Testing: 1, 2, 3!&quot;</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="s">&quot;This is another test message...&quot;</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="nv">[1,2,3]</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h3>1.2 Getting Classy with <code>receive</code></h3>
+
+<p>As you might imagine, there&#39;s a better way to do this. Let&#39;s send another
+message to the REPL&#39;s message queue (inbox):</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now let&#39;s take a look at that message without flushing the queue:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+     <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;results: ~p ~p ~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))))</span>
+<span class="nv">results:</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>If there is a message in the inbox matching the pattern we have defined (in
+this case, a list of length 3), then we will have access to the data that is matched and
+bound to the variables. For more information on pattern matching, see
+<a href="/v1.2/tutorials/patterns/1.html">the tutorial</a>.</p>
+
+<p>If there are a bunch of messages in the inbox, they will all be iterated over until
+a match is found:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">self</span><span class="p">))</span>
+<span class="nv">&lt;0.30.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="mi">3</span><span class="p">))</span>
+<span class="o">#(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">a</span><span class="p">)</span>
+     <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;results: ~p ~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">a</span><span class="p">))))</span>
+<span class="nv">results:</span> <span class="mi">3</span>
+<span class="nv">ok</span></code></pre></figure>
+
+<p>Let&#39;s confirm that only the last message we entered was matched:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">c</span> <span class="nv">flush</span><span class="p">)</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="nv">{1,2,3}</span>
+<span class="nv">Shell</span> <span class="nv">got</span> <span class="nv">{2,3}</span>
+<span class="nv">ok</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h3>1.3 Shell <code>spawn</code></h3>
+
+<p>So far, we&#39;ve only look at the process for the REPL itself. We&#39;d like to expand
+our horizons and look at creating a process in the REPL, writing to it
+instead of our shell.</p>
+
+<p>However, we are faced with a difficulty: Erlang&#39;s <code>spawn</code> function
+takes a module and function as a parameter.</p>
+
+<p>Here is a simple function called <code>print-result</code> that responds to
+messages when it&#39;s running as an Erlang process using a call to
+<code>receive</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nv">receive</span>
+        <span class="p">(</span><span class="nv">msg</span>
+          <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))))))</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.21.53503600&gt;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now that we&#39;ve got our message-capable function, let&#39;s <code>spawn</code> it and
+capture the process id so that we can write to it:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">print-result</span><span class="p">))))</span>
+<span class="nv">&lt;0.66.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Time is an illusion. Lunchtime doubly so.&quot;</span><span class="p">)</span>
+<span class="s">&quot;Time is an illusion. Lunchtime doubly so.&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;Time</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">illusion.</span> <span class="nv">Lunchtime</span> <span class="nv">doubly</span> <span class="nv">so.</span><span class="o">&#39;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>As you can see, when we send our message to the process we started with
+<code>spawn</code>, the process&#39; function prints out the message that it received from
+us.</p>
+
+<p>Up next: we&#39;ll do the same thing from a module. Crazy times we live
+in, aren&#39;t they?</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v1.2/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

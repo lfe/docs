@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.9/tutorials/processes/1.html">Interacting with Processes</a></li>
+      <li><a class="spec" href="/v0.9/tutorials/processes/2.html">Processes in Modules</a></li>
+      <li><a class="spec" href="/v0.9/tutorials/processes/3.html">The Process Registry</a></li>
+      <li><a class="spec" href="/v0.9/tutorials/processes/4.html">Process Communications</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Lightweight Processes</h1>
+
+<h2>2 Processes in Modules</h2>
+
+<h3>2.1 Shell <code>spawn</code>: The Sequel</h3>
+
+<p>In the last section, we were all primed to explore spawning processes from the
+REPL. Let&#39;s put the code from before into a module.</p>
+
+<p>Save the code below to <code>messenger.lfe</code>:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">messenger</span>
+ <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">print-result</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">(</span><span class="nv">msg</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">)))))</span></code></pre></figure>
+
+<p>Then start up <code>lfe</code>, compile your new module, and spawn our print function:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;messenger&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">messenger</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger</span> <span class="ss">&#39;print-result</span> <span class="p">()))</span>
+<span class="nv">&lt;0.51.0&gt;</span></code></pre></figure>
+
+<p>Great! It works as expected. Now let&#39;s play... by sending it a message from
+the REPL:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Zaphod was here.&quot;</span><span class="p">)</span>
+<span class="s">&quot;Zaphod was here.&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;Zaphod</span> <span class="nv">was</span> <span class="nv">here.</span><span class="o">&#39;</span></code></pre></figure>
+
+<p>The only problem with our solution is that it&#39;s a one-shot deal; subsequent
+sends to the pid won&#39;t call our function, since that function is no longer
+running. We can change that, though: let&#39;s make sure that once it prints the
+message, it starts listening again:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">messenger</span>
+ <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">print-result</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">(</span><span class="nv">msg</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">print-result</span><span class="p">))))</span></code></pre></figure>
+
+<p>Let&#39;s take it for a test drive:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;messenger&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">messenger</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger</span> <span class="ss">&#39;print-result</span> <span class="p">()))</span>
+<span class="nv">&lt;0.55.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Zaphod was here.&quot;</span><span class="p">)</span>
+<span class="s">&quot;Zaphod was here.&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;Zaphod</span> <span class="nv">was</span> <span class="nv">here.</span><span class="o">&#39;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Ford is missing.&quot;</span><span class="p">)</span>
+<span class="s">&quot;Ford is missing.&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;Ford</span> <span class="nv">is</span> <span class="nv">missing.</span><span class="o">&#39;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="o">&#39;</span><span class="s">&quot;Arthur is pining for Trillian.&quot;</span><span class="p">)</span>
+<span class="s">&quot;Arthur is pining for Trillian.&quot;</span>
+<span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;Arthur</span> <span class="nv">is</span> <span class="nv">pining</span> <span class="nv">for</span> <span class="nv">Trillian.</span><span class="o">&#39;</span></code></pre></figure>
+
+<p>Horray! You&#39;ve just written a simple listener in LFE!</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

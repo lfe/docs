@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Programming Rules and Conventions</h3>
+    <ol>
+      <li><a class="spec" href="/v0.8/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/v0.8/prog-rules/10.html">Required Documents</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Programming Rules and Conventions</h1>
+
+<h2>6 Various LFE Specific Conventions</h2>
+
+<h3>6.1 Use records as the principle data structure</h3>
+
+<p>Use records as the principle data structure. A record is a tagged tuple and
+was introduced in Erlang version 4.3 and thereafter (see EPK/NP 95:034). It
+is similar to struct in C or record in Pascal.</p>
+
+<p>If the record is to be used in several modules, its definition should be
+placed in a header file (with suffix <code>.lfe</code>) that is included from the
+modules. If the record is only used from within one module, the definition
+of the record should be in the beginning of the file the module is defined
+in.</p>
+
+<p>The record features of LFE can be used to ensure cross module consistency
+of data structures and should therefore be used by interface functions when
+passing data structures between modules.</p>
+
+<h3>6.2 Use selectors and constructors</h3>
+
+<p>Use the record macros provided by LFE for managing instances of records.
+Don&#39;t use matching that explicitly assumes that the record is a tuple.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">demo</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">joe</span> <span class="p">(</span><span class="nv">make-person</span> <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Joe&quot;</span> <span class="nv">age</span> <span class="mi">29</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">name-2</span> <span class="p">(</span><span class="nv">person-name</span> <span class="nv">joe</span><span class="p">)))</span>
+    <span class="o">...</span>
+    <span class="p">))</span>
+</code></pre></div>
+<p>Don&#39;t program like this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">demo</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">joe</span> <span class="p">(</span><span class="nv">make-person</span> <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Joe&quot;</span> <span class="nv">age</span> <span class="mi">29</span><span class="p">))</span>
+         <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;person</span> <span class="nv">name</span> <span class="nv">age</span><span class="p">)</span> <span class="nv">joe</span><span class="p">))</span>
+    <span class="o">...</span>
+    <span class="p">))</span>
+</code></pre></div>
+<h3>6.3 Use tagged return values</h3>
+
+<p>Use tagged return values.</p>
+
+<p>Don&#39;t program like this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">keysearch</span>
+  <span class="p">((</span><span class="nv">key</span> <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">key</span> <span class="nv">value</span><span class="p">)</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="nv">value</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">key</span> <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">wrong-key</span> <span class="nv">wrong-value</span><span class="p">)</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">keysearch</span> <span class="nv">key</span> <span class="o">&#39;</span><span class="p">()))</span>
+  <span class="p">((</span><span class="nv">key</span> <span class="o">&#39;</span><span class="p">())</span>
+    <span class="ss">&#39;false</span><span class="p">))</span>
+</code></pre></div>
+<p>Then <code>(tuple key, value)</code> cannot contain the false value.</p>
+
+<p>This is the correct solution:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">keysearch</span>
+  <span class="p">((</span><span class="nv">key</span> <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">key</span> <span class="nv">value</span><span class="p">)</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;value</span> <span class="nv">value</span><span class="p">))</span>
+  <span class="p">((</span><span class="nv">key</span> <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">wrong-key</span> <span class="nv">wrong-value</span><span class="p">)</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">keysearch</span> <span class="nv">key</span> <span class="o">&#39;</span><span class="p">()))</span>
+  <span class="p">((</span><span class="nv">key</span> <span class="o">&#39;</span><span class="p">())</span>
+    <span class="ss">&#39;false</span><span class="p">))</span>
+</code></pre></div>
+<h3>6.4 Use catch and throw with extreme care</h3>
+
+<p>Do not use catch and throw unless you know exactly what you are doing! Use
+catch and throw as little as possible.</p>
+
+<p>Catch and throw can be useful when the program handles complicated and
+unreliable input (from the outside world, not from your own reliable
+program) that may cause errors in many places deeply within the code. One
+example is a compiler.</p>
+
+<h3>6.5 Use the process dictionary with extreme care</h3>
+
+<p>Do not use <code>get</code> and <code>put</code> etc. unless you know exactly what you are
+doing! Use <code>get</code> and <code>put</code> etc., as little as possible.</p>
+
+<p>A function that uses the process dictionary can be rewritten by introducing
+a new argument.</p>
+
+<p>Don&#39;t program like this:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">tokenize</span>
+  <span class="p">(((</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">)</span>
+  <span class="p">((</span><span class="o">&#39;</span><span class="p">())</span>
+    <span class="p">(</span><span class="nb">case</span> <span class="p">(</span><span class="nv">get-characters-from-device</span> <span class="p">(</span><span class="nb">get</span> <span class="ss">&#39;device</span><span class="p">))</span>
+      <span class="p">(</span><span class="ss">&#39;eof</span>
+        <span class="o">&#39;</span><span class="p">())</span>
+      <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;value</span> <span class="nv">chars</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">tokenize</span> <span class="nv">chars</span><span class="p">)))))</span>
+</code></pre></div>
+<p>The correct solution:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">tokenize</span>
+  <span class="p">((</span><span class="nv">device</span> <span class="p">(</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">device</span> <span class="o">&#39;</span><span class="p">())</span>
+    <span class="p">(</span><span class="nb">case</span> <span class="p">(</span><span class="nv">get-characters-from-device</span> <span class="nv">device</span><span class="p">)</span>
+      <span class="p">(</span><span class="ss">&#39;eof</span>
+        <span class="o">&#39;</span><span class="p">())</span>
+      <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;value</span> <span class="nv">chars</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">tokenize</span> <span class="nv">device</span> <span class="nv">chars</span><span class="p">)))))</span>
+</code></pre></div>
+<p>The use of <code>get</code> and <code>put</code> will cause a function to behave differently
+when called with the same input at different occasions. This makes the code
+hard to read since it is non-deterministic. Debugging will be more
+complicated since a function using <code>get</code> and <code>put</code> is a function of not
+only of its argument, but also of the process dictionary. Many of the run
+time errors in LFE (for example <code>bad_match</code>) include the arguments to a
+function, but never the process dictionary.</p>
+
+<h3>6.6 Use import judiciously</h3>
+
+<p>We strongly urge you to be caseful about the use of <code>(import ...)</code> in
+<code>(defmodule ...)</code>. Over-using can make code in the module harder to read,
+since you cannot directly see in what module a function is defined.</p>
+
+<p>Generally, explicit is better than implicit.</p>
+
+<p>That being said, there are times when using <code>import</code> actually makes the
+code <em>more</em> legible.</p>
+
+<h3>6.7 Exporting functions</h3>
+
+<p>Make a distinction of why a function is exported. A function can be exported
+for the following reasons (for example):</p>
+
+<ul>
+<li>It is a user interface to the module.</li>
+<li>It is an interface function for other modules.</li>
+<li>It is called from <code>apply</code>, <code>spawn</code>, etc., but only from within its
+module.</li>
+</ul>
+
+<p>Use different <code>(export ...)</code> groupings and comment them accordingly.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">my-mod</span>
+  <span class="c1">;; user interface</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">help</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">start</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">stop</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">info</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="c1">;; inter-module exports</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">make-pid</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">make-pid</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">process-abbrevs</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">print-info</span> <span class="mi">5</span><span class="p">))</span>
+  <span class="c1">;; exports for use within module only</span>
+  <span class="p">(</span><span class="nb">export</span>
+    <span class="p">(</span><span class="nv">init</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">info-log-impl</span> <span class="mi">1</span><span class="p">)))</span>
+</code></pre></div>
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="5.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="7.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

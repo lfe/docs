@@ -1,0 +1,701 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.7/css/styles.css" />
+    <link rel="stylesheet" href="/v0.7/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.7/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.7/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/lfe.github.io/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="/v0.7/download.html">Download</a></li>
+          <li class="title"><a href="/v0.7/community.html">Community</a></li>
+          <li class="title"><a href="/v0.7/docs.html">Docs</a></li>
+          <li class="title"><a href="/v0.7/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.7/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Index</h3>
+
+    <ul>
+  <li><a href="/v0.7/classic-docs/user-guide.html">User Guide</a></li>
+  <li><a href="/v0.7/classic-docs/release-notes.html">Release Notes</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-shell.html">LFE Shell</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-io.html">I/O Functions</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-macro.html">Macro Expander</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-comp.html">Compiler</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-bits.html">Common Binary Functions</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-gen.html">Dynamic Code Generator</a></li>
+  <li><a href="/v0.7/classic-docs/lfe-lib.html">Internal Library used by LFE</a></li>
+</ul>
+
+
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Documentation</h1>
+
+<h2>User Guide</h2>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl">    <span class="nv">Note</span> <span class="nv">\{\{</span> <span class="o">...</span> <span class="nv">\}\}</span> <span class="nv">is</span> <span class="nv">use</span> <span class="nv">to</span> <span class="nv">denote</span> <span class="nv">optional</span> <span class="nv">syntax.</span>
+
+    <span class="nv">Special</span> <span class="nv">syntactic</span> <span class="nv">rules</span>
+    <span class="nv">-----------------------</span>
+
+    <span class="err">#</span><span class="nv">b</span> <span class="err">#</span><span class="nv">o</span> <span class="err">#</span><span class="nv">d</span> <span class="err">#</span><span class="nv">x</span> <span class="err">#</span><span class="nv">23r</span>        <span class="nb">-</span> <span class="nv">Based</span> <span class="nv">integers</span>
+    <span class="o">#(</span><span class="nv">e</span> <span class="nv">e</span> <span class="o">...</span> <span class="p">)</span>             <span class="nb">-</span> <span class="nv">Tuple</span> <span class="nv">constants</span>
+    <span class="err">#</span><span class="nv">b</span><span class="p">(</span><span class="nv">e</span> <span class="nv">e</span> <span class="o">...</span> <span class="p">)</span>            <span class="nb">-</span> <span class="nv">Binary</span> <span class="nv">constant,</span> <span class="nv">e</span> <span class="o">...</span> <span class="nv">are</span> <span class="nv">valid</span> <span class="nv">literals</span> <span class="nv">segments</span>
+    <span class="nv">[</span> <span class="o">...</span> <span class="nv">]</span>                 <span class="nb">-</span> <span class="nv">Allowed</span> <span class="nv">as</span> <span class="nv">alternative</span> <span class="nv">to</span> <span class="p">(</span> <span class="o">...</span> <span class="p">)</span>
+
+    <span class="nv">Supported</span> <span class="nv">Core</span> <span class="nv">forms</span>
+    <span class="nv">--------------------</span>
+
+    <span class="p">(</span><span class="k">quote</span> <span class="nv">e</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">cons</span> <span class="nv">head</span> <span class="nv">tail</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">car</span> <span class="nv">e</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">cdr</span> <span class="nv">e</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">list</span> <span class="nv">e</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">tuple</span> <span class="nv">e</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">binary</span> <span class="nv">seg</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">match-lambda</span>
+      <span class="p">((</span><span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span> <span class="o">...</span><span class="p">)</span>             <span class="nb">-</span> <span class="nv">Matches</span> <span class="nv">clauses</span>
+      <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">pat</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span> <span class="nv">e</span><span class="p">)</span>
+          <span class="o">...</span><span class="p">)</span>
+      <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">let-function</span> <span class="p">((</span><span class="nv">name</span> <span class="k">lambda</span><span class="nv">|match-lambda)       - Only define local functions</span>
+<span class="nv">                   ... )</span>
+<span class="nv">      ... )</span>
+<span class="nv">    (letrec-function ((name lambda|match-lambda</span><span class="p">)</span>    <span class="nb">-</span> <span class="nv">Only</span> <span class="nv">define</span> <span class="nv">local</span> <span class="nv">functions</span>
+                      <span class="o">...</span> <span class="p">)</span>
+      <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">let-macro</span> <span class="p">((</span><span class="nv">name</span> <span class="nv">lambda-match-lambda</span><span class="p">)</span>          <span class="nb">-</span> <span class="nv">Only</span> <span class="nv">define</span> <span class="nv">local</span> <span class="nv">macros</span>
+                <span class="o">...</span><span class="p">)</span>
+      <span class="o">...</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">progn</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="k">if</span> <span class="nv">test</span> <span class="nv">true-expr</span> <span class="nv">\{\{false-expr\}\}</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">case</span> <span class="nv">e</span>
+      <span class="p">(</span><span class="nv">pat</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span> <span class="o">...</span><span class="p">)</span>
+       <span class="o">...</span> <span class="p">))</span>
+    <span class="p">(</span><span class="nv">receive</span>
+      <span class="p">(</span><span class="nv">pat</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span> <span class="o">...</span> <span class="p">)</span>
+      <span class="o">...</span>
+      <span class="p">(</span><span class="nv">after</span> <span class="nv">timeout</span> <span class="o">...</span> <span class="p">))</span>
+    <span class="p">(</span><span class="k">catch</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">try</span>
+      <span class="nv">e</span>
+      <span class="nv">\{\{</span><span class="p">(</span><span class="nb">case</span> <span class="p">((</span><span class="nv">pat</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span> <span class="o">...</span> <span class="p">)</span>
+              <span class="o">...</span> <span class="p">))</span><span class="nv">\}\}</span>
+      <span class="nv">\{\{</span><span class="p">(</span><span class="k">catch</span>
+         <span class="p">(((</span><span class="nv">tuple</span> <span class="k">type</span> <span class="nv">value</span> <span class="k">ignore</span><span class="p">)</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span>
+                                            <span class="nb">-</span> <span class="nv">Must</span> <span class="nv">be</span> <span class="nv">tuple</span> <span class="nv">of</span> <span class="nb">length</span> <span class="mi">3</span> <span class="nv">here!</span>
+          <span class="o">...</span> <span class="p">)</span>
+         <span class="o">...</span> <span class="p">)</span><span class="nv">\}\}</span>
+      <span class="nv">\{\{</span><span class="p">(</span><span class="nv">after</span> <span class="o">...</span> <span class="p">)</span><span class="nv">\}\}</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">funcall</span> <span class="nv">func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">call</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span>                <span class="nb">-</span> <span class="nv">Call</span> <span class="nv">to</span> <span class="nv">Mod:Func</span><span class="p">(</span><span class="nv">Arg,</span> <span class="o">...</span> <span class="p">)</span>
+
+    <span class="p">(</span><span class="nv">define-function</span> <span class="nv">name</span> <span class="k">lambda</span><span class="nv">|match-lambda)</span>
+<span class="nv">    (define-macro name lambda|match-lambda</span><span class="p">)</span>
+            <span class="nv">Define</span> <span class="nv">functions/macros</span> <span class="nv">at</span> <span class="nv">top-level.</span>
+
+
+    <span class="nv">Supported</span> <span class="nv">macro</span> <span class="nv">forms</span>
+    <span class="nv">---------------------</span>
+
+    <span class="p">(</span><span class="err">:</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span> <span class="nv">=&gt;</span>
+            <span class="p">(</span><span class="nv">call</span> <span class="ss">&#39;mod</span> <span class="ss">&#39;func</span> <span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">?</span> <span class="nv">\{\{timeout</span> <span class="nv">\{\{default\}\}</span> <span class="nv">\}\}</span><span class="p">)</span>            <span class="nb">-</span> <span class="nv">Receive</span> <span class="nv">next</span> <span class="nv">message,</span>
+                                              <span class="nv">optional</span> <span class="nv">timeout</span> <span class="nb">and</span> <span class="nv">default</span> <span class="nv">value</span>
+    <span class="p">(</span><span class="nv">++</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nb">list*</span> <span class="o">...</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let*</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>                       <span class="nb">-</span> <span class="nv">Sequential</span> <span class="k">let</span><span class="ss">&#39;s</span>
+    <span class="p">(</span><span class="k">flet</span> <span class="p">((</span><span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+           <span class="o">...</span><span class="p">)</span>
+      <span class="o">...</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">flet*</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>                      <span class="nb">-</span> <span class="nv">Sequential</span> <span class="k">flet</span><span class="ss">&#39;s</span>
+    <span class="p">(</span><span class="nv">fletrec</span> <span class="p">((</span><span class="nv">name</span> <span class="p">(</span><span class="nv">arg</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>
+              <span class="o">...</span><span class="p">)</span>
+      <span class="o">...</span><span class="p">)</span>
+            <span class="nv">Define</span> <span class="nv">local</span> <span class="nv">functions,</span> <span class="nv">this</span> <span class="nv">will</span> <span class="nv">expand</span> <span class="nv">to</span> <span class="k">lambda</span> <span class="nb">or</span>
+            <span class="nv">match-lambda</span> <span class="nv">depending</span> <span class="nv">on</span> <span class="nv">structure</span> <span class="nv">as</span> <span class="nv">with</span> <span class="nv">defun.</span>
+    <span class="p">(</span><span class="nb">cond</span> <span class="o">...</span> <span class="p">)</span>                             <span class="nb">-</span> <span class="nv">The</span> <span class="nv">normal</span> <span class="nv">cond,</span> <span class="nv">with</span> <span class="p">(</span><span class="nv">?=</span> <span class="nv">pat</span> <span class="nv">expr</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">andalso</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">orelse</span> <span class="o">...</span> <span class="p">)</span>
+    <span class="p">(</span><span class="nv">fun</span> <span class="nv">func</span> <span class="nv">arity</span><span class="p">)</span>                        <span class="nb">-</span> <span class="nv">fun</span> <span class="nv">func/arity</span>
+    <span class="p">(</span><span class="nv">fun</span> <span class="nb">mod</span> <span class="nv">func</span> <span class="nv">arity</span><span class="p">)</span>                    <span class="nb">-</span> <span class="nv">fun</span> <span class="nv">mod:func/arity</span>
+    <span class="p">(</span><span class="nv">lc</span> <span class="p">(</span><span class="nv">qual</span> <span class="o">...</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span>                     <span class="nb">-</span> <span class="nv">[</span> <span class="nv">expr</span> <span class="err">|</span><span class="nv">| qual ... ]</span>
+<span class="nv">    (bc (qual ...) ...)                     - &lt;&lt; expr || qual ... &gt;&gt;</span>
+<span class="nv">    (match-spec ...)                        - ets:fun2ms(fun ( ) -&gt; end)</span>
+
+<span class="nv">    Common Lisp inspired macros</span>
+<span class="nv">    ---------------------------</span>
+
+<span class="nv">    (defun name (arg ...) ...)</span>
+<span class="nv">    (defun name</span>
+<span class="nv">      ((argpat ...) ...)</span>
+<span class="nv">      ...)</span>
+<span class="nv">            Define a toplevel function, this will expand to lambda or</span>
+<span class="nv">            match-lambda depending on structure.</span>
+<span class="nv">    (defmacro name (arg ...) ...)</span>
+<span class="nv">    (defmacro name arg ...)</span>
+<span class="nv">    (defmacro name</span>
+<span class="nv">      ((argpat ...) ...)</span>
+<span class="nv">      ...)</span>
+<span class="nv">            Define a top-level macro, this will expand to lambda or</span>
+<span class="nv">            match-lambda depending on structure.</span>
+<span class="nv">    (defsyntax name</span>
+<span class="nv">      (pat exp)</span>
+<span class="nv">      ...)</span>
+<span class="nv">            Define a top-level macro using Scheme inspired syntax-rules</span>
+<span class="nv">            format.</span>
+<span class="nv">    (macrolet ((name (arg ...) ...)</span>
+<span class="nv">               ...)</span>
+<span class="nv">      ...)</span>
+<span class="nv">    (syntaxlet ((name (pat exp) ...)</span>
+<span class="nv">                ...)</span>
+<span class="nv">      ...)</span>
+<span class="nv">            Define local macros in macro or syntax-rule format.</span>
+<span class="nv">    (defmodule name ...)</span>
+<span class="nv">    (defrecord name ...)</span>
+
+<span class="nv">    Older Scheme inspired macros</span>
+<span class="nv">    ----------------------------</span>
+
+<span class="nv">    (define (name arg ...) ...)</span>
+<span class="nv">    (define name lambda|match-lambda</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">define-syntax</span> <span class="nv">name</span>
+      <span class="p">(</span><span class="nv">syntax-rules</span> <span class="p">(</span><span class="nv">pat</span> <span class="nb">exp</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span><span class="nv">|(macro (pat body) ...))</span>
+<span class="nv">    (let-syntax ((name ...)</span>
+<span class="nv">                 ...)</span>
+<span class="nv">      ...)</span>
+<span class="nv">    (begin ...)</span>
+<span class="nv">    (define-module name ...)</span>
+<span class="nv">    (define-record name ...)</span>
+
+<span class="nv">    Patterns</span>
+<span class="nv">    --------</span>
+
+<span class="nv">    Written as normal data expressions where symbols are variables and use</span>
+<span class="nv">    quote to match explicit values. Binaries and tuples have special syntax.</span>
+
+<span class="nv">    {ok,X}                  -&gt; (tuple &#39;ok x)</span>
+<span class="nv">    error                   -&gt; &#39;error</span>
+<span class="nv">    {yes,[X|Xs]}</span>            <span class="nv">-&gt;</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;yes</span> <span class="p">(</span><span class="nb">cons</span> <span class="nv">x</span> <span class="nv">xs</span><span class="p">))</span>
+    <span class="nv">&lt;&lt;34,F/float&gt;&gt;</span>          <span class="nv">-&gt;</span> <span class="p">(</span><span class="nv">binary</span> <span class="mi">34</span> <span class="p">(</span><span class="nv">f</span> <span class="nb">float</span><span class="p">))</span>
+    <span class="nv">[P|Ps]=All              -&gt; (= (cons p ps) all)</span>
+
+<span class="nv">    Repeated variables are *NOT* supported in patterns, there is no</span>
+<span class="nv">    automatic comparison of values. It must explicitly be done in a</span>
+<span class="nv">    guard.</span>
+
+<span class="nv">    _ as the &quot;don&#39;t care&quot; variable is supported. This means that the</span>
+<span class="nv">    symbol _, which is a perfectly valid symbol, can never be bound</span>
+<span class="nv">    through pattern matching.</span>
+
+<span class="nv">    Aliases are defined with the (= pattern1 pattern2) pattern. As in</span>
+<span class="nv">    Erlang patterns they can be used anywhere in a pattern.</span>
+
+<span class="nv">    *CAVEAT* The lint pass of the compiler checks for aliases and if they</span>
+<span class="nv">    are possible to match. If not an error is flagged. This is not the</span>
+<span class="nv">    best way. Instead there should be a warning and the offending clause</span>
+<span class="nv">    removed, but later passes of the compiler can&#39;t handle this yet.</span>
+
+<span class="nv">    Guards</span>
+<span class="nv">    ------</span>
+
+<span class="nv">    Wherever a pattern occurs (let, case, receive, lc, etc.) it can be</span>
+<span class="nv">    followed by an optional guard which has the form (when test ...).</span>
+<span class="nv">    Guard tests are the same as in vanilla Erlang and can contain the</span>
+<span class="nv">    following guard expressions:</span>
+
+<span class="nv">    (quote e)</span>
+<span class="nv">    (cons gexpr gexpr)</span>
+<span class="nv">    (car gexpr)</span>
+<span class="nv">    (cdr gexpr)</span>
+<span class="nv">    (list gexpr ...)</span>
+<span class="nv">    (tuple gexpr ...)</span>
+<span class="nv">    (binary ...)</span>
+<span class="nv">    (progn gtest ...)               - Sequence of guard tests</span>
+<span class="nv">    (if gexpr gexpr gexpr)</span>
+<span class="nv">    (type-test e)</span>
+<span class="nv">    (guard-bif ...)                 - Guard BIFs, arithmetic,</span>
+<span class="nv">                                      boolean and comparison operators</span>
+
+<span class="nv">    An empty guard, (when), always succeeds as there is no test which</span>
+<span class="nv">    fails. This simplifies writing macros which handle guards.</span>
+
+<span class="nv">    Bindings and Scoping</span>
+<span class="nv">    --------------------</span>
+
+<span class="nv">    LFE is a Lisp-2 and has separate namespaces for variables and</span>
+<span class="nv">    functions/macros. Both variables and functions/macros are lexically</span>
+<span class="nv">    scoped. Variables are bound by lambda, match-lambda and let, functions</span>
+<span class="nv">    are bound by top-level defun, flet and fletrec, macros are bound by</span>
+<span class="nv">    top-level defmacro/defsyntax and by macrolet/syntaxlet.</span>
+
+<span class="nv">    When searching for function both name and arity are used, a macro is</span>
+<span class="nv">    considered to have any arity and will match all functions with that</span>
+<span class="nv">    name. While this is not consistent with either Scheme (or CL) it is</span>
+<span class="nv">    simple, usually easy to understand and fits Erlang quite well. It</span>
+<span class="nv">    does, however, require using (funcall func arg ... ) like CL to call</span>
+<span class="nv">    lambdas/match-lambdas (funs) bound to variables.</span>
+
+<span class="nv">    Core solves this by having separate bindings and special to</span>
+<span class="nv">    have only one apply:</span>
+
+<span class="nv">        apply _F (...) and apply _F/3 ( a1, a2, a3 ).</span>
+
+<span class="nv">    Function shadowing</span>
+<span class="nv">    ------------------</span>
+
+<span class="nv">    Unqualified functions shadow as stated above which results in the</span>
+<span class="nv">    following order within a module, outermost to innermost:</span>
+
+<span class="nv">            Predefined BIFs (same as in vanilla Erlang)</span>
+<span class="nv">            Predefined LFE BIFs</span>
+<span class="nv">            Imports</span>
+<span class="nv">            Top-level defines</span>
+<span class="nv">            Flet/fletrec</span>
+
+<span class="nv">    This means that it is perfectly legal to shadow BIFs by imports,</span>
+<span class="nv">    BIFs/imports by top-level functions and BIFs/imports/top-level by</span>
+<span class="nv">    fletrecs. In this respect there is nothing special about BIfs, they</span>
+<span class="nv">    just behave as prefined imported functions, a whopping big (import</span>
+<span class="nv">    (from erlang ...)). EXCEPT that we know about guard BIFs and</span>
+<span class="nv">    expression BIFs. If you want a private version of spawn then define</span>
+<span class="nv">    it, there will be no warnings.</span>
+
+<span class="nv">    *CAVEAT* This does not hold for the supported core forms. These can be</span>
+<span class="nv">    shadowed by imports or redefined but the compiler will *always* use</span>
+<span class="nv">    the core meaning and never an alternative. Silently!</span>
+
+<span class="nv">    Module definition</span>
+<span class="nv">    -----------------</span>
+
+<span class="nv">    (defmodule name</span>
+<span class="nv">      (export (f 2) (g 1) ... )</span>
+<span class="nv">      (export all)                                  ;Export all functions</span>
+<span class="nv">      (import (from mod (f1 2) (f2 1) ... )</span>
+<span class="nv">              (rename mod ((f1 2) sune) ((f2 1) kurt) ... ))</span>
+<span class="nv">      (import (prefix mod mod-prefix))              - NYI</span>
+<span class="nv">      (attr-1 value-1 value-2)</span>
+<span class="nv">      ... )</span>
+
+<span class="nv">    Can have multiple export and import declarations within module</span>
+<span class="nv">    declaration. The (export all) declaration is allowed together with</span>
+<span class="nv">    other export declarations and overrides them. Other attributes which</span>
+<span class="nv">    are not recognised by the compiler are allowed and are simply passed</span>
+<span class="nv">    on to the module and can be accessed through module_info/0-1.</span>
+
+<span class="nv">    Parameterized modules</span>
+<span class="nv">    ---------------------</span>
+
+<span class="nv">    (defmodule (name par1 par2 ... )</span>
+<span class="nv">      ... )</span>
+
+<span class="nv">    Define a parameterized module which behaves the same way as in vanilla</span>
+<span class="nv">    Erlang. For now avoid defining functions &#39;new&#39; and &#39;instance&#39;.</span>
+
+<span class="nv">    Macros</span>
+<span class="nv">    ------</span>
+
+<span class="nv">    Macro calls are expanded in both body and patterns. This can be very</span>
+<span class="nv">    useful to have both make and match macros, but be careful with names.</span>
+
+<span class="nv">    A macro is function of two argument which is a called with a list of</span>
+<span class="nv">    the arguments to the macro call and the current macro environment. It</span>
+<span class="nv">    can be either a lambda or a match-lambda. The basic forms for defining</span>
+<span class="nv">    macros are:</span>
+
+<span class="nv">    (define-macro name lambda|match-lambda</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">let-macro</span> <span class="p">((</span><span class="nv">name</span> <span class="k">lambda</span><span class="nv">|match-lambda)</span>
+<span class="nv">      ...)</span>
+
+<span class="nv">    Macros are definitely NOT hygienic in any form.</span>
+
+<span class="nv">    To simplify writing macros there are a number of predefined macros:</span>
+
+<span class="nv">    (defmacro name (arg ...) ...)</span>
+<span class="nv">    (defmacro name arg ...)</span>
+<span class="nv">    (defmacro name ((argpat ...) body) ...)</span>
+
+<span class="nv">    Defmacro can be used for defining simple macros or sequences of</span>
+<span class="nv">    matches depending on whether the arguments are a simple list of</span>
+<span class="nv">    symbols or can be interpreted as a list of pattern/body pairs. In the</span>
+<span class="nv">    second case when the argument is just a symbol it will be bound to the</span>
+<span class="nv">    whole argument list. For example:</span>
+
+<span class="nv">    (defmacro double (a) `(+ ,a ,a))</span>
+<span class="nv">    (defmacro my-list args `(list ,@args))</span>
+<span class="nv">    (defmacro andalso</span>
+<span class="nv">      ((list e) `,e)</span>
+<span class="nv">      ((cons e es) `(if ,e (andalso ,@es) &#39;false))</span>
+<span class="nv">      (() `&#39;true))</span>
+
+<span class="nv">    The macro definitions in a macrolet obey the same rules as defmacro.</span>
+
+<span class="nv">    The macro functions created by defmacro and macrolet automatically add</span>
+<span class="nv">    the second argument with the current macro environment with the name</span>
+<span class="nv">    $ENV. This allows explicit expansion of macros inside the macro and</span>
+<span class="nv">    also manipulation of the macro environment. No changes to the</span>
+<span class="nv">    environment are exported outside the macro.</span>
+
+<span class="nv">    User defined macros shadow the predefined macros so it is possible to</span>
+<span class="nv">    redefine the built-in macro definitions. However, see the caveat</span>
+<span class="nv">    below!</span>
+
+<span class="nv">    Yes, we have the backquote. It is implemented as a macro so it is</span>
+<span class="nv">    expanded at macro expansion time.</span>
+
+<span class="nv">    Local functions that are only available at compile time and can be</span>
+<span class="nv">    called by macros are defined using eval-when-compile:</span>
+
+<span class="nv">    (defmacro foo (x)</span>
+<span class="nv">      ...</span>
+<span class="nv">      (foo-helper m n)</span>
+<span class="nv">      ...)</span>
+
+<span class="nv">    (eval-when-compile</span>
+<span class="nv">      (defun foo-helper (a b)</span>
+<span class="nv">        ...)</span>
+
+<span class="nv">      )</span>
+
+<span class="nv">    There can be many eval-when-compile forms. Functions defined within an</span>
+<span class="nv">    eval-when-compile are mutually recursive but they can only call other</span>
+<span class="nv">    local functions defined in an earlier eval-when-compile and macros</span>
+<span class="nv">    defined earlier in the file. Functions defined in eval-when-compile</span>
+<span class="nv">    which are called by macros can defined after the macro but must be</span>
+<span class="nv">    defined before the macro is used.</span>
+
+<span class="nv">    Scheme&#39;s syntax rules are an easy way to define macros where the body</span>
+<span class="nv">    is just a simple expansion. These are supported with defsyntax and</span>
+<span class="nv">    syntaxlet. Note that the patterns are only the arguments to the macro</span>
+<span class="nv">    call and do not contain the macro name. So using them we would get:</span>
+
+<span class="nv">    (defsyntax andalso</span>
+<span class="nv">      (() &#39;true)</span>
+<span class="nv">      ((e) e)</span>
+<span class="nv">      ((e . es) (case e (&#39;true (andalso . es)) (&#39;false &#39;false))))</span>
+
+<span class="nv">    N.B. These are definitely NOT hygienic.</span>
+
+<span class="nv">    *CAVEAT* While it is perfectly legal to define a Core form as a macro</span>
+<span class="nv">     these will silently be ignored by the compiler.</span>
+
+<span class="nv">    Extended cond</span>
+<span class="nv">    -------------</span>
+
+<span class="nv">    Cond has been extended with the extra test (?= pat expr) which tests</span>
+<span class="nv">    if the result of expr matches pat. If so it binds the variables in pat</span>
+<span class="nv">    which can be used in the cond. A optional guard is allowed here. An</span>
+<span class="nv">    example:</span>
+
+<span class="nv">    (cond ((foo x) ...)</span>
+<span class="nv">          ((?= (cons x xs) (when (is_atom x)) (bar y))</span>
+<span class="nv">           (fubar xs (baz x)))</span>
+<span class="nv">          ((?= (tuple &#39;ok x) (baz y))</span>
+<span class="nv">           (zipit x))</span>
+<span class="nv">          ... )</span>
+
+<span class="nv">    Records</span>
+<span class="nv">    -------</span>
+
+<span class="nv">    Records are tuples with the record name as first element and the rest</span>
+<span class="nv">    of the fields in order exactly like &quot;normal&quot; Erlang records. As with</span>
+<span class="nv">    Erlang records the default default value is &#39;undefined&#39;.</span>
+
+<span class="nv">    (defrecord name</span>
+<span class="nv">      field</span>
+<span class="nv">      (field default-value)</span>
+<span class="nv">      ... )</span>
+
+<span class="nv">    Will create access functions/macros for creation and accessing</span>
+<span class="nv">    fields. The make, match and set forms takes optional argument pairs</span>
+<span class="nv">    field-name value to get non-default values. E.g. for</span>
+
+<span class="nv">    (defrecord person</span>
+<span class="nv">      (name &#39;&quot;&quot;)</span>
+<span class="nv">      (address &#39;&quot;&quot;)</span>
+<span class="nv">      age)</span>
+
+<span class="nv">    =&gt; (make-person \{\{field value\}\} ... )</span>
+<span class="nv">       (match-person \{\{field value\}\} ... )</span>
+<span class="nv">       (is-person r)</span>
+<span class="nv">       (emp-person \{\{field value\}\} ... )</span>
+<span class="nv">       (set-person r \{\{field value\}\} ... )</span>
+<span class="nv">       (person-name r)</span>
+<span class="nv">       (set-person-name r name)</span>
+<span class="nv">       (person-age r)</span>
+<span class="nv">       (set-person-age r age)</span>
+<span class="nv">       (person-address r)</span>
+<span class="nv">       (set-person-address r address)</span>
+
+<span class="nv">    (make-person name &#39;&quot;Robert&quot; age 54)</span>
+
+<span class="nv">            Will create a new person record with the name field set to</span>
+<span class="nv">            &quot;Robert&quot;, the age field set to 54 and the address field set to</span>
+<span class="nv">            the default &quot;&quot;.</span>
+
+<span class="nv">    (match-person name name age 55)</span>
+
+<span class="nv">            Will match a person with age 55 and bind the variable name to</span>
+<span class="nv">            the name field of the record. Can use any variable name here.</span>
+
+<span class="nv">    (is-person john)</span>
+
+<span class="nv">            Test if john is a person record.</span>
+
+<span class="nv">    (emp-person age &#39;$1)</span>
+
+<span class="nv">            Create an Ets Match Pattern for record person where the age</span>
+<span class="nv">            field is set to $1 and all other fields are set to &#39;_.</span>
+
+<span class="nv">    (person-address john)</span>
+
+<span class="nv">            Return the address field of the person record john.</span>
+
+<span class="nv">    (set-person-address john &#39;&quot;back street&quot;)</span>
+
+<span class="nv">            Sets the address field of the person record john to</span>
+<span class="nv">            &quot;back street&quot;.</span>
+
+<span class="nv">    (set-person john age 35 address &#39;&quot;front street&quot;)</span>
+
+<span class="nv">            In the person record john set the age field to 35 and the</span>
+<span class="nv">            address field to &quot;front street&quot;.</span>
+
+<span class="nv">    Binaries/bitstrings</span>
+<span class="nv">    -------------------</span>
+
+<span class="nv">    A binary is</span>
+
+<span class="nv">    (binary seg ... )</span>
+
+<span class="nv">    where seg is</span>
+<span class="nv">            byte</span>
+<span class="nv">            string</span>
+<span class="nv">            (val integer|</span><span class="nb">float</span><span class="nv">|binary|bitstring|bytes|bits</span>
+                 <span class="p">(</span><span class="nv">size</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nv">unit</span> <span class="nv">n</span><span class="p">)</span>
+                 <span class="nv">big-endian|little-endian|native-endian|little|native|big</span>
+<span class="nv">                 signed|unsigned</span><span class="p">)</span>
+
+    <span class="nv">Val</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nb">string</span> <span class="nv">in</span> <span class="nv">which</span> <span class="nb">case</span> <span class="k">the</span> <span class="nv">specifiers</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">applied</span>
+    <span class="nv">to</span> <span class="nb">every</span> <span class="nb">character</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">string.</span> <span class="nv">As</span> <span class="nv">strings</span> <span class="nv">are</span> <span class="nv">just</span> <span class="nv">lists</span> <span class="nv">of</span>
+    <span class="nv">integers</span> <span class="nv">these</span> <span class="nv">are</span> <span class="nv">also</span> <span class="nv">valid</span> <span class="nv">here.</span> <span class="nv">In</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">constant</span> <span class="nv">all</span> <span class="nv">literal</span>
+    <span class="nv">forms</span> <span class="nv">are</span> <span class="nv">allowed</span> <span class="nv">on</span> <span class="nv">input</span> <span class="nv">but</span> <span class="nv">they</span> <span class="nv">will</span> <span class="nv">always</span> <span class="nv">be</span> <span class="nv">written</span> <span class="nv">as</span> <span class="nv">bytes.</span>
+
+    <span class="nv">List/binary</span> <span class="nv">comprehensions</span>
+    <span class="nv">--------------------------</span>
+
+    <span class="nv">List/binary</span> <span class="nv">comprehensions</span> <span class="nv">are</span> <span class="nv">supported</span> <span class="nv">as</span> <span class="nv">macros.</span> <span class="nv">The</span> <span class="nv">syntax</span> <span class="nv">for</span>
+    <span class="nb">list</span> <span class="nv">comprehensions</span> <span class="nv">is:</span>
+
+    <span class="p">(</span><span class="nv">lc</span> <span class="p">(</span><span class="nv">qual</span>  <span class="o">...</span><span class="p">)</span> <span class="nv">expr</span> <span class="o">...</span> <span class="p">)</span>
+
+    <span class="nv">where</span> <span class="k">the</span> <span class="nv">final</span> <span class="nv">expr</span> <span class="nv">is</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">generate</span> <span class="k">the</span> <span class="nv">elements</span> <span class="nv">of</span> <span class="k">the</span> <span class="nv">list.</span>
+
+    <span class="nv">The</span> <span class="nv">syntax</span> <span class="nv">for</span> <span class="nv">binary</span> <span class="nv">comprehensions</span> <span class="nv">is:</span>
+
+    <span class="p">(</span><span class="nv">bc</span> <span class="p">(</span><span class="nv">qual</span>  <span class="o">...</span><span class="p">)</span> <span class="nv">expr</span> <span class="o">...</span> <span class="p">)</span>
+
+    <span class="nv">where</span> <span class="k">the</span> <span class="nv">final</span> <span class="nv">expr</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">bitseg</span> <span class="nv">expr</span> <span class="nb">and</span> <span class="nv">is</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">generate</span> <span class="k">the</span>
+    <span class="nv">elements</span> <span class="nv">of</span> <span class="k">the</span> <span class="nv">binary.</span>
+
+    <span class="nv">The</span> <span class="nv">supported</span> <span class="nv">qualifiers,</span> <span class="nv">in</span> <span class="nv">both</span> <span class="nv">list/binary</span> <span class="nv">comprehensions</span> <span class="nv">are:</span>
+
+    <span class="p">(</span><span class="nv">&lt;-</span> <span class="nv">pat</span> <span class="nv">\{\{guard\}\}</span> <span class="nv">list-expr</span><span class="p">)</span>        <span class="nb">-</span> <span class="nv">Extract</span> <span class="nv">elements</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nb">list</span> <span class="nv">expression</span>
+    <span class="p">(</span><span class="nb">&lt;=</span> <span class="nv">bin-pat</span> <span class="nv">\{\{guard\}\}</span> <span class="nv">binary-expr</span><span class="p">)</span>  <span class="nb">-</span> <span class="nv">Extract</span> <span class="nv">elements</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">binary/bits</span>
+                                          <span class="nv">expression</span>
+    <span class="p">(</span><span class="nv">?=</span> <span class="nv">pat</span> <span class="nv">\{\{guard\}\}</span> <span class="nv">expr</span><span class="p">)</span>  <span class="nb">-</span> <span class="nv">Match</span> <span class="nv">test</span> <span class="nb">and</span> <span class="nv">bind</span> <span class="nv">variables</span> <span class="nv">in</span> <span class="nv">pat</span>
+    <span class="nv">expr</span>                     <span class="nb">-</span> <span class="nv">Normal</span> <span class="kt">boolean</span> <span class="nv">test</span>
+
+    <span class="nv">Some</span> <span class="nv">examples:</span>
+
+    <span class="p">(</span><span class="nv">lc</span> <span class="p">((</span><span class="nv">&lt;-</span> <span class="nv">v</span> <span class="nv">l1</span><span class="p">)</span> <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">v</span> <span class="mi">5</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">==</span> <span class="p">(</span><span class="nb">rem</span> <span class="nv">v</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="nv">v</span><span class="p">)</span>
+
+    <span class="nv">returns</span> <span class="nv">a</span> <span class="nb">list</span> <span class="nv">of</span> <span class="nv">all</span> <span class="k">the</span> <span class="nv">even</span> <span class="nv">elements</span> <span class="nv">of</span> <span class="k">the</span> <span class="nb">list</span> <span class="nv">l1</span> <span class="nv">which</span> <span class="nv">are</span>
+    <span class="nv">greater</span> <span class="nv">than</span> <span class="mi">5.</span>
+
+    <span class="p">(</span><span class="nv">bc</span> <span class="p">((</span><span class="nb">&lt;=</span> <span class="p">(</span><span class="nv">f</span> <span class="nb">float</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">32</span><span class="p">))</span> <span class="nv">b1</span><span class="p">)</span>        <span class="c1">;No wrapping, only bitseg needed</span>
+         <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">f</span> <span class="mf">10.0</span><span class="p">))</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nv">fwrite</span> <span class="o">&#39;</span><span class="s">&quot;~p\n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">f</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">f</span> <span class="nb">float</span> <span class="p">(</span><span class="nv">size</span> <span class="mi">64</span><span class="p">)))</span>                  <span class="c1">;No wrapping, only bitseg needed</span>
+
+    <span class="nv">returns</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">of</span> <span class="nv">floats</span> <span class="nv">of</span> <span class="nv">size</span> <span class="mi">64</span> <span class="nv">of</span> <span class="nv">floats</span> <span class="nv">which</span> <span class="nv">are</span> <span class="nv">larger</span> <span class="nv">than</span>
+    <span class="mf">10.0</span> <span class="nv">from</span> <span class="k">the</span> <span class="nv">binary</span> <span class="nv">b1</span> <span class="nb">and</span> <span class="nv">of</span> <span class="nv">size</span> <span class="mi">32.</span> <span class="nv">The</span> <span class="nv">returned</span> <span class="nv">numbers</span> <span class="nv">are</span> <span class="nb">first</span>
+    <span class="nv">printed.</span>
+
+    <span class="nv">N.B.</span> <span class="nv">A</span> <span class="nv">word</span> <span class="nv">of</span> <span class="kt">warning</span> <span class="nb">when</span> <span class="nv">using</span> <span class="nv">guards</span> <span class="nb">when</span> <span class="nv">extracting</span> <span class="nv">elements</span> <span class="nv">from</span>
+    <span class="nv">a</span> <span class="nv">binary.</span>  <span class="nv">When</span> <span class="nv">a</span> <span class="nv">match/guard</span> <span class="nv">fails</span> <span class="nv">for</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">no</span> <span class="nv">more</span> <span class="nv">attempts</span> <span class="nv">will</span>
+    <span class="nv">be</span> <span class="nv">made</span> <span class="nv">to</span> <span class="nv">extract</span> <span class="nv">data</span> <span class="nv">from</span> <span class="k">the</span> <span class="nv">binary.</span> <span class="nv">This</span> <span class="nv">means</span> <span class="nv">that</span> <span class="nv">even</span> <span class="k">if</span> <span class="nv">a</span>
+    <span class="nv">value</span> <span class="nv">could</span> <span class="nv">be</span> <span class="nv">extracted</span> <span class="nv">from</span> <span class="k">the</span> <span class="nv">binary</span> <span class="k">if</span> <span class="k">the</span> <span class="nv">guard</span> <span class="nv">fails</span> <span class="nv">this</span> <span class="nv">value</span>
+    <span class="nv">will</span> <span class="nv">be</span> <span class="nv">lost</span> <span class="nb">and</span> <span class="nv">extraction</span> <span class="nv">will</span> <span class="nv">cease.</span> <span class="nv">This</span> <span class="nv">is</span> <span class="vg">*NOT*</span> <span class="k">the</span> <span class="nv">same</span> <span class="nv">as</span>
+    <span class="nv">having</span> <span class="nv">following</span> <span class="kt">boolean</span> <span class="nv">test</span> <span class="nv">which</span> <span class="nv">may</span> <span class="nb">remove</span> <span class="nv">an</span> <span class="nv">element</span> <span class="nv">but</span> <span class="nv">will</span> <span class="nb">not</span>
+    <span class="nv">stop</span> <span class="nv">extraction.</span> <span class="nv">Using</span> <span class="nv">a</span> <span class="nv">guard</span> <span class="nv">is</span> <span class="nv">probably</span> <span class="nb">not</span> <span class="nv">what</span> <span class="nv">you</span> <span class="nv">want!</span>
+
+    <span class="nv">Normal</span> <span class="nv">vanilla</span> <span class="nv">Erlang</span> <span class="nv">does</span> <span class="k">the</span> <span class="nv">same</span> <span class="nv">thing</span> <span class="nv">but</span> <span class="nv">does</span> <span class="nb">not</span> <span class="nv">allow</span> <span class="nv">guards.</span>
+
+    <span class="nv">ETS</span> <span class="nb">and</span> <span class="nv">Mnesia</span>
+    <span class="nv">--------------</span>
+
+    <span class="nv">Apart</span> <span class="nv">from</span> <span class="p">(</span><span class="nv">emp-record</span> <span class="o">...</span><span class="p">)</span> <span class="nv">macros</span> <span class="nv">for</span> <span class="nv">ETS</span> <span class="nv">Match</span> <span class="nv">Patterns,</span> <span class="nv">which</span> <span class="nv">are</span>
+    <span class="nv">also</span> <span class="nv">valid</span> <span class="nv">in</span> <span class="nv">Mnesia,</span> <span class="nv">LFE</span> <span class="nv">also</span> <span class="nv">supports</span> <span class="nv">match</span> <span class="nv">specifications</span> <span class="nb">and</span> <span class="nv">Query</span>
+    <span class="nv">List</span> <span class="nv">Comprehensions.</span> <span class="nv">The</span> <span class="nv">syntax</span> <span class="nv">for</span> <span class="nv">a</span> <span class="nv">match</span> <span class="nv">specification</span> <span class="nv">is</span> <span class="k">the</span> <span class="nv">same</span>
+    <span class="nv">as</span> <span class="nv">for</span> <span class="nv">match-lambdas:</span>
+
+    <span class="p">(</span><span class="nv">match-spec</span>
+      <span class="p">((</span><span class="nv">arg</span> <span class="o">...</span> <span class="p">)</span> <span class="nv">\{\{</span><span class="p">(</span><span class="nb">when</span> <span class="nv">e</span> <span class="o">...</span><span class="p">)</span><span class="nv">\}\}</span> <span class="o">...</span><span class="p">)</span>             <span class="nb">-</span> <span class="nv">Matches</span> <span class="nv">clauses</span>
+      <span class="o">...</span> <span class="p">)</span>
+
+    <span class="nv">For</span> <span class="nv">example:</span>
+
+    <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">select</span> <span class="nv">db</span> <span class="p">(</span><span class="nv">match-spec</span>
+                       <span class="p">(</span><span class="nv">[</span><span class="p">(</span><span class="nv">tuple</span> <span class="nv">_</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span><span class="nv">]</span> <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">a</span> <span class="mi">3</span><span class="p">))</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;ok</span> <span class="nv">b</span><span class="p">))))</span>
+
+    <span class="nv">It</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">macro</span> <span class="nv">which</span> <span class="nv">creates</span> <span class="k">the</span> <span class="nv">match</span> <span class="nv">specification</span> <span class="nv">structure</span> <span class="nv">which</span> <span class="nv">is</span>
+    <span class="nv">used</span> <span class="nv">in</span> <span class="nv">ets:select</span> <span class="nb">and</span> <span class="nv">mnesia:select.</span> <span class="nv">The</span> <span class="nv">same</span> <span class="nv">match-spec</span> <span class="nv">macro</span> <span class="nv">can</span>
+    <span class="nv">also</span> <span class="nv">be</span> <span class="nv">used</span> <span class="nv">with</span> <span class="k">the</span> <span class="nv">dbg</span> <span class="nv">module.</span> <span class="nv">The</span> <span class="nv">same</span> <span class="nv">restrictions</span> <span class="nv">as</span> <span class="nv">to</span> <span class="nv">what</span> <span class="nv">can</span>
+    <span class="nv">be</span> <span class="nv">done</span> <span class="nb">apply</span> <span class="nv">as</span> <span class="nv">for</span> <span class="nv">vanilla</span> <span class="nv">match</span> <span class="nv">specifications:</span>
+
+    <span class="nb">-</span> <span class="nv">There</span> <span class="nv">is</span> <span class="nv">only</span> <span class="nv">a</span> <span class="nv">limited</span> <span class="nc">number</span> <span class="nv">of</span> <span class="nv">BIFs</span> <span class="nv">which</span> <span class="nv">are</span> <span class="nv">allowed</span>
+    <span class="nb">-</span> <span class="nv">There</span> <span class="nv">are</span> <span class="nb">some</span> <span class="k">special</span> <span class="nv">functions</span> <span class="nv">only</span> <span class="nv">for</span> <span class="nv">use</span> <span class="nv">with</span> <span class="nv">dbg</span>
+    <span class="nb">-</span> <span class="nv">For</span> <span class="nv">ets/mnesia</span> <span class="nv">it</span> <span class="nv">takes</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">parameter</span> <span class="nv">which</span> <span class="nv">must</span> <span class="nv">a</span> <span class="nv">tuple</span> <span class="nb">or</span> <span class="nv">a</span>
+      <span class="nv">variable</span>
+    <span class="nb">-</span> <span class="nv">For</span> <span class="nv">dbg</span> <span class="nv">it</span> <span class="nv">takes</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">parameter</span> <span class="nv">which</span> <span class="nv">must</span> <span class="nv">a</span> <span class="nb">list</span> <span class="nb">or</span> <span class="nv">a</span> <span class="nv">variable</span>
+
+    <span class="nv">N.B.</span> <span class="k">the</span> <span class="nv">current</span> <span class="nv">macro</span> <span class="nv">neither</span> <span class="nv">knows</span> <span class="nv">nor</span> <span class="nv">cares</span> <span class="nv">whether</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">being</span>
+    <span class="nv">used</span> <span class="nv">in</span> <span class="nv">ets/mnesia</span> <span class="nb">or</span> <span class="nv">in</span> <span class="nv">dbg.</span> <span class="nv">It</span> <span class="nv">is</span> <span class="nv">up</span> <span class="nv">to</span> <span class="k">the</span> <span class="nv">user</span> <span class="nv">to</span> <span class="nb">get</span> <span class="nv">this</span> <span class="nv">right.</span>
+
+    <span class="nv">Macros,</span> <span class="nv">especially</span> <span class="nv">record</span> <span class="nv">macros,</span> <span class="nv">can</span> <span class="nv">freely</span> <span class="nv">be</span> <span class="nv">used</span> <span class="nv">inside</span> <span class="nv">match</span>
+    <span class="nv">specs.</span>
+
+    <span class="vg">*CAVEAT*</span> <span class="nv">Some</span> <span class="nv">things</span> <span class="nv">which</span> <span class="nv">are</span> <span class="nv">known</span> <span class="nb">not</span> <span class="nv">to</span> <span class="nv">work</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">current</span>
+     <span class="nv">version</span> <span class="nv">are</span> <span class="nv">andalso,</span> <span class="nv">orelse</span> <span class="nb">and</span> <span class="nv">record</span> <span class="nv">updates.</span>
+
+    <span class="nv">Query</span> <span class="nv">List</span> <span class="nv">Comprehensions</span>
+    <span class="nv">-------------------------</span>
+
+    <span class="nv">LFE</span> <span class="nv">supports</span> <span class="nv">QLCs</span> <span class="nv">for</span> <span class="nv">mnesia</span> <span class="nv">through</span> <span class="k">the</span> <span class="nv">qlc</span> <span class="nv">macro.</span> <span class="nv">It</span> <span class="nv">has</span> <span class="k">the</span> <span class="nv">same</span>
+    <span class="nv">structure</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nb">list</span> <span class="nv">comprehension</span> <span class="nb">and</span> <span class="nv">generates</span> <span class="nv">a</span> <span class="nv">Query</span> <span class="nv">Handle</span> <span class="nv">in</span> <span class="k">the</span>
+    <span class="nv">same</span> <span class="nv">way</span> <span class="nv">as</span> <span class="nv">with</span> <span class="nv">qlc:q</span><span class="p">(</span><span class="nv">[...]</span><span class="p">)</span><span class="o">.</span> <span class="nv">The</span> <span class="nv">handle</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">used</span> <span class="nv">together</span> <span class="nv">with</span>
+    <span class="nv">all</span> <span class="k">the</span> <span class="nv">combination</span> <span class="nv">functions</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">module</span> <span class="nv">qlc.</span>
+
+    <span class="nv">For</span> <span class="nv">example:</span>
+
+    <span class="p">(</span><span class="nv">qlc</span> <span class="p">(</span><span class="nv">lc</span> <span class="p">((</span><span class="nv">&lt;-</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">k</span> <span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="err">:</span> <span class="nv">ets</span> <span class="nv">table</span> <span class="nv">e2</span><span class="p">))</span> <span class="p">(</span><span class="nv">==</span> <span class="nv">k</span> <span class="nv">i</span><span class="p">))</span> <span class="nv">v</span><span class="p">)</span> <span class="nv">\{\{Option\}\}</span><span class="p">)</span>
+
+    <span class="nv">Macros,</span> <span class="nv">especially</span> <span class="nv">record</span> <span class="nv">macros,</span> <span class="nv">can</span> <span class="nv">freely</span> <span class="nv">be</span> <span class="nv">used</span> <span class="nv">inside</span> <span class="nv">query</span> <span class="nb">list</span>
+    <span class="nv">comprehensions.</span>
+
+    <span class="vg">*CAVEAT*</span> <span class="nv">Some</span> <span class="nv">things</span> <span class="nv">which</span> <span class="nv">are</span> <span class="nv">known</span> <span class="nb">not</span> <span class="nv">to</span> <span class="nv">work</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">current</span>
+     <span class="nv">version</span> <span class="nv">are</span> <span class="nv">nested</span> <span class="nv">QLCs</span> <span class="nb">and</span> <span class="nv">let/case/recieve</span> <span class="nv">which</span> <span class="nb">shadow</span> <span class="nv">variables.</span>
+
+    <span class="nv">Predefined</span> <span class="nv">LFE</span> <span class="nv">functions</span>
+    <span class="nv">------------------------</span>
+
+    <span class="nv">The</span> <span class="nv">following</span> <span class="nv">more</span> <span class="nb">or</span> <span class="nv">less</span> <span class="nv">standard</span> <span class="nv">lisp</span> <span class="nv">functions</span> <span class="nv">are</span> <span class="nv">pre-defined:</span>
+
+    <span class="p">(</span><span class="nv">&lt;arith_op&gt;</span> <span class="nv">expr</span> <span class="o">...</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">&lt;comp_op&gt;</span> <span class="nv">expr</span> <span class="o">...</span><span class="p">)</span>
+            <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">arithmentic</span> <span class="nv">operators,</span> <span class="nb">+</span> <span class="nb">-</span> <span class="nb">*</span> <span class="nv">/,</span> <span class="nb">and</span> <span class="nv">comparison</span>
+            <span class="nv">operators,</span> <span class="nb">&gt;</span> <span class="nb">&gt;=</span> <span class="nb">&lt;</span> <span class="nv">=&lt;</span> <span class="nv">==</span> <span class="nb">/=</span> <span class="nv">=:=</span> <span class="nv">=/=</span> <span class="o">,</span> <span class="nv">can</span> <span class="nv">take</span> <span class="nv">multiple</span>
+            <span class="nv">arguments</span> <span class="k">the</span> <span class="nv">same</span> <span class="nv">as</span> <span class="nv">their</span> <span class="nv">standard</span> <span class="nv">lisp</span> <span class="nv">counterparts.</span> <span class="nv">This</span>
+            <span class="nv">is</span> <span class="nv">still</span> <span class="nv">experimental</span> <span class="nb">and</span> <span class="nv">implemented</span> <span class="nv">using</span> <span class="nv">macros.</span> <span class="nv">They</span> <span class="nv">do,</span>
+            <span class="nv">however,</span> <span class="nv">behave</span> <span class="nv">like</span> <span class="nv">normal</span> <span class="nv">functions</span> <span class="nb">and</span> <span class="nv">evaluate</span> <span class="nv">ALL</span> <span class="nv">their</span>
+            <span class="nv">arguments</span> <span class="nv">before</span> <span class="nv">doing</span> <span class="k">the</span> <span class="nv">arithmetic/comparisons</span> <span class="nv">operations.</span>
+
+    <span class="p">(</span><span class="nb">acons</span> <span class="nv">key</span> <span class="nv">value</span> <span class="nb">list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">assoc</span> <span class="nv">key</span> <span class="nb">list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">rassoc</span> <span class="nv">value</span> <span class="nb">list</span><span class="p">)</span>
+            <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">association</span> <span class="nb">list</span> <span class="nv">functions.</span>
+
+    <span class="p">(</span><span class="nb">subst</span> <span class="nv">new</span> <span class="nv">old</span> <span class="nv">tree</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">subst-if</span> <span class="nv">new</span> <span class="nv">test</span> <span class="nv">tree</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">subst-if-not</span> <span class="nv">new</span> <span class="nv">test</span> <span class="nv">tree</span><span class="p">)</span>
+            <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">substituition</span> <span class="nv">functions.</span>
+
+    <span class="p">(</span><span class="nb">macroexpand-1</span> <span class="nv">expr</span> <span class="nv">\{\{environment\}\}</span><span class="p">)</span>
+        <span class="nv">If</span> <span class="nv">Expr</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">macro</span> <span class="nv">call,</span> <span class="nv">does</span> <span class="nv">one</span> <span class="nb">round</span> <span class="nv">of</span> <span class="nv">expansion,</span>
+        <span class="nv">otherwise</span> <span class="nv">returns</span> <span class="nv">Expr.</span>
+
+    <span class="p">(</span><span class="nb">macroexpand</span> <span class="nv">expr</span> <span class="nv">\{\{environment\}\}</span><span class="p">)</span>
+        <span class="nv">Returns</span> <span class="k">the</span> <span class="nv">expansion</span> <span class="nv">returned</span> <span class="nv">by</span> <span class="nv">calling</span> <span class="nb">macroexpand-1</span>
+        <span class="nv">repeatedly,</span> <span class="nv">starting</span> <span class="nv">with</span> <span class="nv">Expr,</span> <span class="nv">until</span> <span class="k">the</span> <span class="nv">result</span> <span class="nv">is</span> <span class="nv">no</span> <span class="nv">longer</span>
+        <span class="nv">a</span> <span class="nv">macro</span> <span class="nv">call.</span>
+
+    <span class="p">(</span><span class="nv">macroexpand-all</span> <span class="nv">expr</span> <span class="nv">\{\{environment\}\}</span><span class="p">)</span>
+        <span class="nv">Returns</span> <span class="k">the</span> <span class="nv">expansion</span> <span class="nv">from</span> <span class="k">the</span> <span class="nv">expression</span> <span class="nv">where</span> <span class="nv">all</span> <span class="nv">macro</span>
+        <span class="nv">calls</span> <span class="nv">have</span> <span class="nv">been</span> <span class="nv">expanded</span> <span class="nv">with</span> <span class="nv">macroexpand.</span>
+
+        <span class="nv">NOTE</span> <span class="nv">that</span> <span class="nb">when</span> <span class="nv">no</span> <span class="nv">explicit</span> <span class="nv">environment</span> <span class="nv">is</span> <span class="nv">given</span> <span class="k">the</span>
+        <span class="nb">macroexpand</span> <span class="nv">functions</span> <span class="nv">then</span> <span class="nv">only</span> <span class="k">the</span> <span class="nv">default</span> <span class="nv">built-in</span> <span class="nv">macros</span>
+        <span class="nv">will</span> <span class="nv">be</span> <span class="nv">expanded.</span> <span class="nv">Inside</span> <span class="nv">macros</span> <span class="nb">and</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">shell</span> <span class="k">the</span> <span class="nv">variable</span>
+        <span class="nv">$ENV</span> <span class="nv">is</span> <span class="nv">bound</span> <span class="nv">to</span> <span class="k">the</span> <span class="nv">current</span> <span class="nv">macro</span> <span class="nv">environment.</span>
+
+    <span class="p">(</span><span class="nb">eval</span> <span class="nv">expr</span> <span class="nv">\{\{environment\}\}</span><span class="p">)</span>
+            <span class="nv">Evaluate</span> <span class="k">the</span> <span class="nv">expression</span> <span class="nv">expr.</span> <span class="nv">Note</span> <span class="nv">that</span> <span class="nv">only</span> <span class="k">the</span> <span class="nv">pre-defined</span>
+            <span class="nv">lisp</span> <span class="nv">functions,</span> <span class="nv">erlang</span> <span class="nv">BIFs</span> <span class="nb">and</span> <span class="nv">exported</span> <span class="nv">functions</span> <span class="nv">can</span> <span class="nv">be</span>
+            <span class="nv">called.</span> <span class="nv">Also</span> <span class="nv">no</span> <span class="nv">local</span> <span class="nv">variables</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">accessed.</span> <span class="nv">To</span> <span class="nv">access</span>
+            <span class="nv">local</span> <span class="nv">variables</span> <span class="k">the</span> <span class="nv">expr</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">evaluated</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">wrapped</span> <span class="nv">in</span> <span class="nv">a</span>
+            <span class="k">let</span> <span class="nv">defining</span> <span class="nv">these.</span>
+
+            <span class="nv">For</span> <span class="nv">example</span> <span class="k">if</span> <span class="k">the</span> <span class="nv">data</span> <span class="nv">we</span> <span class="nv">wish</span> <span class="nv">to</span> <span class="nv">evaluate</span> <span class="nv">is</span> <span class="nv">in</span> <span class="k">the</span> <span class="nv">variable</span>
+            <span class="nv">expr</span> <span class="nb">and</span> <span class="nv">it</span> <span class="nv">assumes</span> <span class="nv">there</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">local</span> <span class="nv">variable</span> <span class="s">&quot;foo&quot;</span> <span class="nv">which</span> <span class="nv">it</span>
+            <span class="nv">needs</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">then</span> <span class="nv">we</span> <span class="nv">could</span> <span class="nv">evaluate</span> <span class="nv">it</span> <span class="nv">by</span> <span class="nv">calling:</span>
+
+            <span class="p">(</span><span class="nb">eval</span> <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">foo</span> <span class="o">,</span><span class="nv">foo</span><span class="p">))</span> <span class="o">,</span><span class="nv">expr</span><span class="p">))</span>
+
+    <span class="nv">Notes</span>
+    <span class="nv">-----</span>
+
+    <span class="nv">NYI</span> <span class="nb">-</span> <span class="nv">Not</span> <span class="nv">Yet</span> <span class="nv">Implemented</span>
+    <span class="nv">N.B.</span> <span class="nb">-</span> <span class="nv">Nota</span> <span class="nv">bene</span> <span class="p">(</span><span class="nv">note</span> <span class="nv">well</span><span class="p">)</span></code></pre></figure>
+
+  </article>
+</div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

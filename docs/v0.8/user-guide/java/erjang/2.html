@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.8/css/styles.css" />
+    <link rel="stylesheet" href="/v0.8/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.8/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.8/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.8/community.html">Community</a></li>
+          <li class="title"><a href="/v0.8/contributing.html">Contributing</a></li>
+          <li class="title"><a href="/v0.8/quick-start/1.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.8/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.8/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.8/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.8/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>10 Java Interop</h1>
+
+<h2>10.2 Lisp Flavored Erjang</h2>
+
+<h3>10.2.3 Getting Started</h3>
+
+<p>As you might expect, we use <code>lfetool</code> to work with Erjang :-) Here&#39;s how you
+install it:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool install erjang
+</code></pre></div>
+<p>On a fast internet connection, this should take less than 3 minutes to download
+Erjang, download Erlang/OTP, and then create the necessary <code>.jar</code> files.
+Once <code>lfetool</code> has downloaded, compiled, and installed Erjang, you&#39;ll be
+ready for the next step: hopping into the REPL:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool repl jlfe
+LFE Shell V5.10.4 <span class="o">(</span>abort with ^G<span class="o">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nv">lists:foldl</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">))</span> <span class="mi">0</span> <span class="p">(</span><span class="nv">lists:seq</span> <span class="mi">1</span> <span class="mi">6</span><span class="p">)))</span>
+<span class="mi">42</span>
+</code></pre></div>
+<p>For that to work, you will either need to have <code>lfe</code> in your path, or be in
+an LFE project directory that you created with <code>lfetool</code>.</p>
+
+<h3>10.2.4 Using LFE Projects from Erjang</h3>
+
+<p>If you&#39;ve got an LFE project you have already created and want to see how it
+runs on Erjang with <code>jlfe</code>, go ahead and start up the <code>jlfe</code> REPL in that
+project directory -- <code>cd</code> to your project dir and start the REPL like we did
+in the above example.</p>
+
+<p>For those that don&#39;t have one, try this out:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ git clone https://github.com/lfe/exemplar.git
+$ <span class="nb">cd</span> exemplar
+$ lfetool repl jlfe
+LFE Shell V5.10.4 <span class="o">(</span>abort with ^G<span class="o">)</span>
+</code></pre></div>
+<p>Now start up the REPL and call some functions:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">slurp</span> <span class="o">&#39;</span><span class="s">&quot;src/exemplar-html.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">ok</span> <span class="nv">exemplar-html</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">p</span> <span class="o">&#39;</span><span class="s">&quot;My paragraph.&quot;</span><span class="p">)</span>
+<span class="s">&quot;&lt;p&gt;My paragraph.&lt;/p&gt;&quot;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">html</span> <span class="p">(</span><span class="nv">body</span> <span class="p">(</span><span class="nv">div</span> <span class="p">(</span><span class="nv">p</span> <span class="o">&#39;</span><span class="s">&quot;A paragraph in my page.&quot;</span><span class="p">))))</span>
+<span class="s">&quot;&lt;html&gt;&lt;body&gt;&lt;div&gt;&lt;p&gt;A paragraph in my page.&lt;/p&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h3>10.2.5 Calling Java from LFE</h3>
+
+<h4>10.2.5.1 Static Method on a Class</h4>
+
+<p>Here&#39;s an example of calling as static method on a Java class from LFE:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">java.lang.Math:sin</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="mf">0.479425538604203</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<h4>10.2.5.2 Static Field on a Class</h4>
+
+<p>For right now, in order to activate the Erjang BIFs <code>java:get_static/2</code> and
+<code>java:call/4</code>, you need to create a <code>java</code> module:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cat &gt; java.lfe
+<span class="o">(</span>defmodule java<span class="o">)</span>
+
+<span class="o">(</span>defun noop <span class="o">()</span>
+ <span class="err">&#39;</span>noop<span class="o">)</span>
+^D
+</code></pre></div>
+<p>Start up the REPL:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ lfetool repl jlfe
+</code></pre></div>
+<p>Once your <code>java</code> module is compiled, you&#39;ll be able to access static fields:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="ss">&#39;java</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">java</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">java:get_static</span> <span class="ss">&#39;java.lang.Math</span> <span class="ss">&#39;PI</span><span class="p">)</span>
+<span class="mf">3.141592653589793</span>
+</code></pre></div>
+<h4>10.2.5.3 Member on an Instance</h4>
+
+<p>In order to call members on instances, you need to create an instance first:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">rand-obj</span> <span class="p">(</span><span class="nv">java.util.Random:new</span><span class="p">))</span>
+<span class="err">#</span><span class="nv">B</span><span class="p">()</span>
+</code></pre></div>
+<p>You can confirm the type that you just created:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">java:call</span> <span class="nv">rand-obj</span> <span class="ss">&#39;getClass</span> <span class="o">&#39;</span><span class="p">()</span> <span class="o">&#39;</span><span class="p">())</span>
+<span class="nv">java.util.Random</span>
+</code></pre></div>
+<p>Erjang&#39;s <code>java:call/4</code> function takes two additional parameters that we&#39;re
+not using right now: types and arguments.</p>
+
+<p>Here&#39;s how you call the various <code>Random</code> instance methods:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">call</span> <span class="nv">rand-obj</span> <span class="ss">&#39;nextInt</span><span class="p">)</span>
+<span class="mi">1845347843</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">call</span> <span class="nv">rand-obj</span> <span class="ss">&#39;nextDouble</span><span class="p">)</span>
+<span class="mf">0.34850947916661346</span>
+</code></pre></div>
+<p>You may also make the Erjang call:</p>
+<div class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">java:call</span> <span class="nv">rand-obj</span> <span class="ss">&#39;nextInt</span> <span class="o">&#39;</span><span class="p">()</span> <span class="o">&#39;</span><span class="p">())</span>
+<span class="mi">-2083227816</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">java:call</span> <span class="nv">rand-obj</span> <span class="ss">&#39;nextDouble</span> <span class="o">&#39;</span><span class="p">()</span> <span class="o">&#39;</span><span class="p">())</span>
+<span class="mf">0.8218552203785259</span>
+</code></pre></div>
+<h4>10.2.5.4 Working with Files from Java</h4>
+
+<p>TBD</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.8/docs.html">Docs</a> |
+      <a class="page-numbers spec" href="/v0.8/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

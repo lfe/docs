@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v1.2/css/styles.css" />
+    <link rel="stylesheet" href="/v1.2/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v1.2/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v1.2/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v1.2/community.html">Community</a></li>
+            <li class="title"><a href="/v1.2/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v1.2/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Programming Rules and Conventions</h3>
+    <ol>
+      <li><a class="spec" href="/v1.2/prog-rules/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/2.html">Structure and LFE Terminology</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/3.html">SW Engineering Principles</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/4.html">Error Handling</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/5.html">Processes, Servers and Messages</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/6.html">Various LFE Specific Conventions</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/7.html">Specific Lexical and Stylistic Conventions</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/8.html">Documenting Code</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/9.html">Common Mistakes</a></li>
+      <li><a class="spec" href="/v1.2/prog-rules/10.html">Required Documents</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Program Development Using LFE - Rules and Conventions</h1>
+
+<h2>1 Introduction</h2>
+
+<h3>1.1 Abstract</h3>
+
+<p>This is a description of programming rules and advise for how to write systems using LFE.</p>
+
+<h3>1.2 Caveats and Warnings</h3>
+
+<p>This document is a preliminary document and is not complete.</p>
+
+<p>This document contains examples of bad code. They are to demonstrate what
+<em>not</em> to do. Ready carefully lest you misinterpret.</p>
+
+<h3>1.3 Additional Requirements</h3>
+
+<p>The requirements for the use of EBC&#39;s &quot;Base System&quot; are not documented here,
+but must be followed at a very early design phase if the &quot;Base System&quot; is to
+be used. These requirements are documented in 1/10268-AND 10406 Uen &quot;MAP -
+Start and Error Recovery&quot;.</p>
+
+<h3>1.4 Purpose</h3>
+
+<p>This paper lists some aspects which should be taken into consideration when
+specifying and programming software systems using LFE. It does not attempt
+to give a complete description of general specification and design activities
+which are independent of the use of LFE.</p>
+
+<h3>1.5 Background and Credits</h3>
+
+<p>LFE Programming Rules and Conventions was copied from the
+<a href="http://www.erlang.se/doc/programming_rules.shtml">Erlang original</a>
+and modified for use with LFE programming best practices. All credit to the following:</p>
+
+<ul>
+<li>EPK/NP Klas Eriksson</li>
+<li>EUA/SU M Williams</li>
+<li>J Armstrong</li>
+</ul>
+
+<h3>1.7 Changes in the LFE Version</h3>
+
+<p>Obvious changes include the conversion of Erlang code examples to LFE code
+examples. However, there exist other more subtle differences. They include
+the following:</p>
+
+<ul>
+<li>Replacing or complementing occuranges of the word &quot;Erlang&quot; with &quot;LFE&quot;</li>
+<li>Adding clarity to some points.</li>
+<li>Restructure a few sentences and paragraphs.</li>
+<li>Adding missing words or removing extraneous ones.</li>
+<li>Tweaking punctuation.</li>
+<li>Adding formatting (e.g., emphasis).</li>
+<li>Removing content that does not apply to LFE.</li>
+<li>Adding new content that relates only to LFE.</li>
+</ul>
+
+<h3>1.6 LFE Source Code</h3>
+
+<p>Source code for some of the examples (both good and bad) can be found in the
+<code>prog-rules/src</code>
+<a href="https://github.com/lfe/docs/tree/master/prog-rules/src">directory</a>
+of the
+<a href="https://github.com/lfe/docs">github repo for docs.lfe.io</a>.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v1.2/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

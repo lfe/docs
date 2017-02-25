@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.10/tutorials/records/1.html">Creating a Record</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/records/2.html">Extracting Record Data</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/records/3.html">Querying Records</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: LFE Records</h1>
+
+<h2>2 Extracting Record Data</h2>
+
+<p>Defining a record will create access functions/macros for creation and accessing
+fields. The make, match and set forms takes optional argument pairs
+field-name value to get non-default values. E.g. for</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defrecord</span> <span class="nv">person</span>
+  <span class="p">(</span><span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">address</span> <span class="o">&#39;</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+  <span class="nv">age</span><span class="p">)</span></code></pre></figure>
+
+<p>The following functions are available</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl">   <span class="p">(</span><span class="nv">make-person</span>  <span class="o">...</span> <span class="p">)</span>
+   <span class="p">(</span><span class="nv">match-person</span>  <span class="o">...</span> <span class="p">)</span>
+   <span class="p">(</span><span class="nv">is-person</span> <span class="nv">r</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">emp-person</span>  <span class="o">...</span> <span class="p">)</span>
+   <span class="p">(</span><span class="nv">set-person</span> <span class="nv">r</span>  <span class="o">...</span> <span class="p">)</span>
+   <span class="p">(</span><span class="nv">person-name</span> <span class="nv">r</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">person-name</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">set-person-name</span> <span class="nv">r</span> <span class="nv">name</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">person-age</span> <span class="nv">r</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">person-age</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">set-person-age</span> <span class="nv">r</span> <span class="nv">age</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">person-address</span> <span class="nv">r</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">set-person-address</span> <span class="nv">r</span> <span class="nv">address</span><span class="p">)</span></code></pre></figure>
+
+<p>Taking our example from <a href="/v0.10/tutorials/records/1">Creating a Record</a>, we
+again define a <em>person</em> record, but this time we expose a function to
+print the information on a <em>person</em>.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">person</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">print-data</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nv">defrecord</span> <span class="nv">person</span>
+  <span class="nv">name</span>
+  <span class="nv">address</span>
+  <span class="nv">age</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">print-data</span> <span class="p">()</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">ford</span> <span class="p">(</span><span class="nv">make-person</span> <span class="nv">name</span> <span class="o">&#39;</span><span class="s">&quot;Ford Prefect&quot;</span>
+                           <span class="nv">address</span> <span class="o">&#39;</span><span class="s">&quot;Betelgeuse Seven&quot;</span>
+                           <span class="nv">age</span> <span class="mi">234</span><span class="p">)))</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">ford</span><span class="p">))</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">person-name</span> <span class="nv">ford</span><span class="p">)))</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">person-address</span> <span class="nv">ford</span><span class="p">)))</span>
+    <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;~p~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">person-age</span> <span class="nv">ford</span><span class="p">)))))</span>
+    </code></pre></figure>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="1.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="3.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/current/css/styles.css" />
+    <link rel="stylesheet" href="/current/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/current/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/current/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/current/community.html">Community</a></li>
+            <li class="title"><a href="/current/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/current/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">LFE Style Guide</h3>
+    <ol>
+      <li><a class="spec" href="/current/style-guide/1.html">Introduction</a></li>
+      <li><a class="spec" href="/current/style-guide/2.html">General Guidelines</a></li>
+      <li><a class="spec" href="/current/style-guide/3.html">Formatting</a></li>
+      <li><a class="spec" href="/current/style-guide/4.html">Documentation</a></li>
+      <li><a class="spec" href="/current/style-guide/5.html">Naming</a></li>
+      <li><a class="spec" href="/current/style-guide/6.html">Testing</a></li>
+      <li><a class="spec" href="/current/style-guide/7.html">Language Usage
+        Guidelines</a></li>
+      <li><a class="spec" href="/current/style-guide/8.html">Meta-Language
+        Guidelines</a></li>
+      <li><a class="spec" href="/current/style-guide/9.html">Data Representation</a></li>
+      <li><a class="spec" href="/current/style-guide/10.html">Proper Forms</a></li>
+      <li><a class="spec" href="/current/style-guide/11.html">Optimization</a></li>
+      <li><a class="spec" href="/current/style-guide/12.html">Pittfalls</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Style Guide</h1>
+
+<h2>8 Meta-Language Guidelines</h2>
+
+<h3>8.1 Macros</h3>
+
+<p>Macros bring syntactic abstraction, which is a wonderful thing. It helps
+make your code clearer, by describing your intent without getting bogged in
+implementation details (indeed abstracting those details away). It helps
+make your code more concise and more readable, by eliminating both
+redundancy and irrelevant details. But it comes at a cost to the reader,
+which is learning a new syntactic concept for each macro. And so it should
+not be abused.</p>
+
+<p>The general conclusion is that there shouldn&#39;t be any recognizable design
+pattern in a good LFE program. The one and only pattern is: use the
+language, which includes defining and using syntactic abstractions.</p>
+
+<p>Existing macros should be used whenever they make code clearer by conveying
+intent in a more concise way, which is often. When a macro is available in
+your project that expresses the concept you&#39;re using, you should not write
+the expansion rather than use the macro.</p>
+
+<p>New macros should be defined as appropriate, which should be seldom, for
+common macros have already been provided by the language and its various
+libraries, and your program typically only needs few new ones relative to
+its size.</p>
+
+<p>You should follow the OAOOM rule of thumb for deciding when to create a new
+abstraction, whether syntactic or not: if a particular pattern is used more
+than twice, it should probably be abstracted away. A more refined rule to
+decide when to use abstraction should take into account the benefit in term
+of number of uses and gain at each use, to the costs in term of having to
+get used to reading the code. For syntactic abstractions, costs and benefits
+to the reader is usually more important than costs and benefits to the
+writer, because good code is usually written once and read many times by
+many people (including the same programmer who has to maintain the program
+after having forgotten it). Yet the cost to the writer of the macro should
+also be taken into account; however, in doing so it should rather be
+compared to the cost of the programmer writing other code instead that may
+have higher benefits.</p>
+
+<p>Using Lisp macros properly requires taste. Avoid writing complicated macros
+unless the benefit clearly outweighs the cost. It takes more effort for your
+fellow developers to learn your macro, so you should only use a macro if the
+gain in expressiveness is big enough to justify that cost. As usual, feel
+free to consult your colleagues if you&#39;re not sure, since without a lot of
+Lisp experience, it can be hard to make this judgment.</p>
+
+<p>You should never use a macro where a function will do. That is, if the
+semantics of what you are writing conforms to the semantics of a function,
+then you should write it as a function rather than a macro.</p>
+
+<p>When you write a macro-defining macro (a macro that generates macros),
+document and comment it particularly clearly, since these are harder to
+understand.</p>
+
+<p>If your macro has a parameter that is a Lisp form that will be evaluated
+when the expanded code is run, you should name the parameter with the suffix
+<code>-form</code>. This convention helps make it clearer to the macro&#39;s user which
+parameters are Lisp forms to be evaluated, and which are not. The common
+names <code>body</code> and <code>end</code> are exceptions to this rule.</p>
+
+<p>You should follow the so-called <code>CALL-WITH</code> style when it applies. This
+style is explained at length
+<a href="http://random-state.net/log/3390120648.html">here</a>.
+The general principle is that the macro is strictly limited to processing
+the syntax, and as much of the semantics as possible is kept in normal
+functions. Therefore, a macro <code>WITH-FOO</code> is often limited to generating a
+call to an auxiliary function <code>CALL-WITH-FOO</code> with arguments deduced from
+the macro arguments. Macro <code>body</code> arguments are typically wrapped into a
+<code>lambda</code> expression of which they become the body, which is passed as one
+of the arguments of the auxiliary function.</p>
+
+<p>The separation of syntactic and semantic concerns is a general principle of
+style that applies beyond the case of <code>WITH-</code> macros. Its advantages are
+many. By keeping semantics outside the macro, the macro is made simpler,
+easier to get right, and less subject to change, which makes it easier to
+develop and maintain. The semantics is written in a simpler language — one
+without staging — which also makes it easier to develop and maintain. It
+becomes possible to debug and update the semantic function without having to
+recompile all clients of the macro. The semantic function appears in the
+stack trace which also helps debug client functions. The macro expansion is
+made shorter and each expansion shares more code with other expansions,
+which reduces memory pressure which in turn usually makes things faster. It
+also makes sense to write the semantic functions first, and write the macros
+last as syntactic sugar on top. You should use this style unless the macro
+is used in tight loops where performance matters; and even then, see our
+rules regarding optimization.</p>
+
+<p>Any functions (closures) created by the macro should be named, which can be
+done using <code>FLET</code>.</p>
+
+<p>When you write a macro with a body, such as a <code>WITH-xxx</code> macro, even if
+there aren&#39;t any parameters, you should leave space for them anyway. For
+example, if you invent <code>WITH-LIGHTS-ON</code>, do not make the call to it look
+like <code>(defmacro with-lights-on (body b) ...)</code>. Instead, do
+<code>(defmacro with-lights-on (() body b) ...)</code>. That way, if parameters are
+needed in the future, you can add them without necessarily having to change
+all the uses of the macro.</p>
+
+<h3>8.2 EVAL-WHEN-COMPILE</h3>
+
+<p>TBD</p>
+
+<h3>8.3 EVAL</h3>
+
+<p>Places where it is actually appropriate to use <code>EVAL</code> are so few and far
+between that you should consult with your reviewers; it&#39;s easily misused.</p>
+
+<p>Often, what you really need is to write a macro, not to use <code>EVAL</code>.</p>
+
+<p>You may be tempted to use <code>EVAL</code> as a shortcut to evaluating expressions
+in a safe subset of the language. But it often requires more scrutiny to
+properly check and sanitize all possible inputs to such use of EVAL than to
+build a special-purpose evaluator. You must not use EVAL in this way at
+runtime.</p>
+
+<p>Places where it is OK to use <code>EVAL</code> are:</p>
+
+<ul>
+<li>The implementation of an interactive development tool.</li>
+<li>The build infrastructure.</li>
+<li>Backdoors that are part of testing frameworks. (You should NOT have such
+backdoors in production code.)</li>
+<li>Macros that fold constants at compile-time.</li>
+<li>Macros that register definitions to meta-data structures; the registration
+form is sometimes evaluated at compile-time as well as included in the
+macro-expansion, so it is immediately available to other macros.</li>
+</ul>
+
+<p>Note that in the latter case, if the macro isn&#39;t going to be used at the top-
+level, it might not be possible to make these definitions available as part
+of the expansion.</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="7.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/current/">Home</a>
+
+      | <a href="9.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

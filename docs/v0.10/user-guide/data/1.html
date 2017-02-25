@@ -1,0 +1,380 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/v0.10/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/v0.10/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/v0.10/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>3 Lists and Simple Data</h1>
+
+<h2>3.1 Lists</h2>
+
+<p>Lists in Erlang and LFE are straight-forward; those coming from another
+programming language will not find anything surprising about them. Lists are
+generally good for storing and iterating over data that is of a similar type.
+There are other types one can use for more structured or complex data type
+combos.</p>
+
+<p>You can create lists in LFE in the following ways:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">==</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">))</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">=:=</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">))</span>
+<span class="nv">true</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>To get the length of a list, you&#39;ll need to use the <code>length</code> function from
+the <code>erlang</code> module:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">length</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">))</span>
+<span class="mi">7</span></code></pre></figure>
+
+<p>Later, we will discuss Lisp-specific functions that have been implemented in
+LFE, but this is a good time to mention a few classic functions:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">car</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">1</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cdr</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cadr</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">2</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cddr</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">cons</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">((</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>There is an Erlang <a href="http://www.erlang.org/doc/man/lists.html">module
+dedicated to handling lists</a> that we can take advantage of:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lists:append</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lists:append</span> <span class="p">(</span><span class="nb">list</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">5</span> <span class="mi">6</span><span class="p">)))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>You can also use the <code>++</code> operator to combine two lists:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">++</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Here&#39;s a <code>map</code> example that generates the same list we manually created
+above:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lists:map</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">trunc</span>
+        <span class="p">(</span><span class="nv">math:pow</span> <span class="mi">3</span> <span class="nv">x</span><span class="p">)))</span>
+    <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">9</span> <span class="mi">27</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Another one is <code>filter</code>, but before we use it, let&#39;s first define a
+predicate that returns <code>true</code> for even numbers:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nb">evenp</span>
+    <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">==</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">rem</span> <span class="nv">x</span> <span class="mi">2</span><span class="p">))))</span>
+<span class="err">#</span><span class="nv">Fun&lt;lfe_eval.10.53503600&gt;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Not let&#39;s try out <code>filter</code> with our new predicate:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">lists:filter</span> <span class="nb">evenp</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">(</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>There are many, many more highly useful functions in the <code>lists</code> module --
+be sure to give the docs a thorough reading, lest you miss something fun!</p>
+
+<h3>3.1.1 I/O Lists</h3>
+
+<p>There is another type of list that is used for such things as file and network
+operations; it&#39;s called an <code>IoList</code>. An <code>IoList</code> is a list whose
+elements are either
+* integers ranging from 0 to 255,
+* binaries,
+* other <code>IoList</code>s, or
+* a combination of these.</p>
+
+<p>Here&#39;s an example for you:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">list</span> <span class="s">&quot;hoopy&quot;</span> <span class="mi">42</span> <span class="err">#</span><span class="nv">b</span><span class="p">(</span><span class="s">&quot;frood&quot;</span> <span class="mi">210</span><span class="p">)</span> <span class="p">(</span><span class="nb">list</span> <span class="err">#</span><span class="nv">b</span><span class="p">(</span><span class="mi">42</span> <span class="mi">84</span> <span class="mi">126</span><span class="p">)</span> <span class="mi">168</span> <span class="mi">252</span><span class="p">))</span>
+<span class="p">(</span><span class="s">&quot;hoopy&quot;</span> <span class="mi">42</span> <span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">102</span> <span class="mi">114</span> <span class="mi">111</span> <span class="mi">111</span> <span class="mi">100</span> <span class="mi">210</span><span class="p">)</span> <span class="p">(</span><span class="err">#</span><span class="nv">B</span><span class="p">(</span><span class="mi">42</span> <span class="mi">84</span> <span class="mi">126</span><span class="p">)</span> <span class="mi">168</span> <span class="mi">252</span><span class="p">))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>You don&#39;t need to flatten <code>IoList</code>s; they get passed as they are to the
+various low-level functions that accept an <code>IoList</code> and Erlang will flatten
+them efficiently for you.</p>
+
+<p>We saw an example of this in a previous section when we were playing with
+strings as binaries. We ended up calling a function that accepted an
+<code>IoList</code> as a parameter and this saved us from having to flatten the list
+of binaries ourselves. If you recall, <code>data</code> was a long string and the
+<code>split</code> function returned a list of binaries:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">unicode:characters_to_list</span>
+    <span class="p">(</span><span class="nv">binary:split</span> <span class="nv">data</span> <span class="p">(</span><span class="nv">binary</span> <span class="s">&quot;who really knows &quot;</span><span class="p">)))</span>
+<span class="s">&quot;There&#39;s a frood where his towel is.&quot;</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<h2>3.2 Tuples</h2>
+
+<p>Tuples are the data melting pot for Erlang: you can combine any of Erlang&#39;s
+data types (including lists and other tuples) into a single composite data
+type. This comes in very handy with pattern matching, but in general, makes
+passing data around much easier.</p>
+
+<p>Creating a tuple can be as simple as:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">tuple</span><span class="p">)</span>
+<span class="o">#(</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>But perhaps more useful:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;odds</span> <span class="s">&quot;5 to 1 against&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">odds</span> <span class="s">&quot;5 to 1 against&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>You could also have done this:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="o">#(</span><span class="nv">odds</span> <span class="s">&quot;5 to 1 against&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">odds</span> <span class="s">&quot;5 to 1 against&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Here&#39;s a simple data structure:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">data</span>
+    <span class="p">(</span><span class="nv">tuple</span>
+      <span class="ss">&#39;|things to see|</span>
+      <span class="p">(</span><span class="nb">list</span> <span class="s">&quot;moons of Jaglan Beta&quot;</span>
+            <span class="s">&quot;beaches of Santraginus V&quot;</span>
+            <span class="s">&quot;desert world of Kakrafoon&quot;</span>
+            <span class="s">&quot;heavy river Moth&quot;</span><span class="p">)</span>
+      <span class="ss">&#39;|things to avoid|</span>
+      <span class="p">(</span><span class="nb">list</span> <span class="s">&quot;Ravenous Bugblatter Beast of Traal&quot;</span>
+            <span class="s">&quot;small piece of fairy cake&quot;</span><span class="p">)))</span>
+<span class="o">#(</span><span class="nv">|things to see|</span>
+  <span class="p">(</span><span class="s">&quot;moons of Jaglan Beta&quot;</span>
+   <span class="s">&quot;beaches of Santraginus V&quot;</span>
+   <span class="s">&quot;desert world of Kakrafoon&quot;</span>
+   <span class="s">&quot;heavy river Moth&quot;</span><span class="p">)</span>
+  <span class="nv">|things to avoid|</span>
+  <span class="p">(</span><span class="s">&quot;Ravenous Bugblatter Beast of Traal&quot;</span> <span class="s">&quot;small piece of fairy cake&quot;</span><span class="p">))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Now let&#39;s poke around at our new data structure:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">tuple_size</span> <span class="nv">data</span><span class="p">)</span>
+<span class="mi">4</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">element</span> <span class="mi">1</span> <span class="nv">data</span><span class="p">)</span>
+<span class="nv">|things to see|</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nv">element</span> <span class="mi">3</span> <span class="nv">data</span><span class="p">)</span>
+<span class="nv">|things to avoid|</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>Using the erlang module&#39;s function is one way to get our tuple data, but you&#39;ll
+probably not use that as much as the next method we show you.</p>
+
+<p>We&#39;re going to sneak ahead here a bit, and touch on patterns again; we&#39;ll
+explain in more detail in the actual section on patterns! For now, though, just
+know that extracting data from structures such as our tuple is very easy with
+patterns. Take a look:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">key1</span> <span class="nv">val1</span> <span class="nv">key2</span> <span class="nv">val2</span><span class="p">)</span> <span class="nv">data</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">|things to see|</span>
+  <span class="p">(</span><span class="s">&quot;moons of Jaglan Beta&quot;</span>
+   <span class="s">&quot;beaches of Santraginus V&quot;</span>
+   <span class="s">&quot;desert world of Kakrafoon&quot;</span>
+   <span class="s">&quot;heavy river Moth&quot;</span><span class="p">)</span>
+  <span class="nv">|things to avoid|</span>
+  <span class="p">(</span><span class="s">&quot;Ravenous Bugblatter Beast of Traal&quot;</span> <span class="s">&quot;small piece of fairy cake&quot;</span><span class="p">))</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+<p>To be clear: had we needed to do this in a function, we would have used
+<code>let</code> ;-)</p>
+
+<p>Now we can references our data by the variables we bound when we extracted it
+with the pattern in our <code>set</code> call:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="nv">key1</span>
+<span class="nv">|things to see|</span>
+<span class="nb">&gt;</span> <span class="nv">key2</span>
+<span class="nv">|things to avoid|</span>
+<span class="nb">&gt;</span> <span class="nv">val1</span>
+<span class="p">(</span><span class="s">&quot;moons of Jaglan Beta&quot;</span>
+ <span class="s">&quot;beaches of Santraginus V&quot;</span>
+ <span class="s">&quot;desert world of Kakrafoon&quot;</span>
+ <span class="s">&quot;heavy river Moth&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="nv">val2</span>
+<span class="p">(</span><span class="s">&quot;Ravenous Bugblatter Beast of Traal&quot;</span> <span class="s">&quot;small piece of fairy cake&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span></code></pre></figure>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

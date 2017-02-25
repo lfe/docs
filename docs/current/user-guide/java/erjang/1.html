@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/current/css/styles.css" />
+    <link rel="stylesheet" href="/current/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/current/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/current/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/current/community.html">Community</a></li>
+            <li class="title"><a href="/current/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/current/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">User Guide Sections</h3>
+    <ol>
+      <li>Introduction</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/intro/1.html">Introduction</a></li>
+        <li><a class="spec" href="/current/user-guide/intro/2.html">The LFE REPL</a></li>
+        <li><a class="spec" href="/current/user-guide/intro/3.html">Loading Files</a></li>
+        <li><a class="spec" href="/current/user-guide/intro/4.html">Setting up a Development Environment</a></li>
+      </ul>
+
+      <li>Diving In</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/diving/1.html">Numbers & Operators</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/2.html">Strings & Atoms</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/3.html">Binary & Bitstrings</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/4.html">Variables</a></li>
+        <li><a class="spec" href="/current/user-guide/diving/5.html">Pattern Matching</a></li>
+      </ul>
+
+      <li>Lists & Simple Data (in progress)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/data/1.html">Lists & Tuples</a></li>
+        <li><a class="spec" href="/current/user-guide/data/2.html">Comprehensions</a></li>
+        <li><a class="spec" href="/current/user-guide/data/3.html">Property Lists & Hashes</a></li>
+        <li><a class="spec" href="/current/user-guide/data/4.html">Records</a></li>
+        <li><a class="spec" href="/current/user-guide/data/5.html">.hrl Header Files</a></li>
+      </ul>
+
+      <li>Functions & Modules (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/funcode/1.html">Functions</a></li>
+        <li><a class="spec" href="/current/user-guide/funcode/2.html">LFE-Specific Functions </a></li>
+        <li><a class="spec" href="/current/user-guide/funcode/3.html">Modules</a></li>
+      </ul>
+
+      <li>Recursion</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/recursion/1.html">History</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/2.html">Peano Axioms</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/3.html">Primitive Recursive</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/4.html">Total Recursive</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/5.html">The λ-Calculus</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/6.html">Practical Examples</a></li>
+        <li><a class="spec" href="/current/user-guide/recursion/7.html">Tail-Calls</a></li>
+      </ul>
+
+      <li>Checks, Errors, & Tests (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/check/1.html">Guards</a></li>
+        <li><a class="spec" href="/current/user-guide/check/2.html">Exception Handling</a></li>
+        <li><a class="spec" href="/current/user-guide/check/3.html">EUnit with LFE</a></li>
+      </ul>
+
+      <li>Processes & Servers (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/procs/1.html">TBD</a></li>
+      </ul>
+
+      <li>External Data (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/tutorials/mnesia/1.html">Mnesia Tutorial</a></li>
+        <li><a class="spec" href="/current/user-guide/extdata/1.html">TBD</a></li>
+      </ul>
+
+      <li>Development & Deployment (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/devops/1.html">Projects with Rebar</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/2.html">Working with Kerl</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/3.html">Creating a Library</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/4.html">Apps & Services</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/5.html">Releasing</a></li>
+        <li><a class="spec" href="/current/user-guide/devops/6.html">Running in Production</a></li>
+      </ul>
+
+      <li>Java Interop</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/java/jinterface/1.html">JInterface</a></li>
+        <li><a class="spec" href="/current/user-guide/java/erjang/1.html">Erjang</a></li>
+      </ul>
+
+      <li>Additional Topics (stubbed)</li>
+      <ul>
+        <li><a class="spec" href="/current/user-guide/extra/1.html">Scripting</a></li>
+        <li><a class="spec" href="/current/user-guide/extra/2.html">Macros</a></li>
+        <li><a class="spec" href="/current/user-guide/extra/3.html">Writing for Multi-Core</a></li>
+      </ul>
+
+    </ol>
+  </div>
+</div>
+
+
+<div id="content">
+  <article>
+    <h1>10 Java Interop</h1>
+
+<h2>10.2 Lisp Flavored Erjang</h2>
+
+<p>LFE running on Erjang transforms LFE into a close cousin of Clojure. It&#39;s
+rather amazing, to be honest. To provide you the opportunity to share in this
+amazement, this section of the LFE User Guide Java chapter is dedicated to
+Erjang.</p>
+
+<h3>10.2.1 Introduction</h3>
+
+<p>Thanks to <a href="https://github.com/krestenkrab">Kresten</a> and
+<a href="http://www.trifork.com/">Trifork</a>, the Erlang community has the
+option to run many of its libraries and services on the JVM with Erjang.</p>
+
+<p>Key points of Erjang:</p>
+
+<ul>
+<li>It is a virtual machine for Erlang which runs on Java 7.</li>
+<li>It loads <code>.beam</code> files, compiles them to Java <code>.class</code> files and loads them into the JVM.</li>
+<li>It can boot Erlang/OTP to the Eshell.</li>
+<li>It runs <code>mnesia</code>, with distribution across Erjang/BEAM nodes.</li>
+</ul>
+
+<p>Smaller projects and libraries tend to run quite nicely on Erjang. Larger
+systems like RabbitMQ and Riak boot, but still need some work. There is also
+on-going work to fully support some of the fringe cases exposed by LFE.</p>
+
+<h3>10.2.2 Community Resources</h3>
+
+<p>Here are some of the Erjang community resources:</p>
+
+<ul>
+<li><a href="http://groups.google.com/group/erjang">Mail list/user group</a></li>
+<li><a href="http://erjang.org/">Project Site</a></li>
+<li><a href="https://github.com/trifork/erjang">Erjang on Github</a></li>
+<li><a href="https://github.com/trifork/erjang/wiki">Project wiki pages</a></li>
+<li><a href="http://erjang.org/doc">Javadocs</a></li>
+</ul>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/current/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

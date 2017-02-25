@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Index</h3>
+
+    <ul>
+  <li>
+    <a href="https://github.com/rvirding/lfe/blob/develop/doc/user_guide.txt">User Guide</a>
+    (available as a Gitbook <a href="http://lfe.gitbooks.io/reference-guide/">here</a>)
+  </li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt">lfescript</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_shell.txt">LFE Shell</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_io.txt">I/O Functions</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_macro.txt">Macro Expander</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_comp.txt">Compiler</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_bits.txt">Common Binary Functions</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_gen.txt">Dynamic Code Generator</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/lfe_lib.txt">Internal Library used by LFE</a></li>
+  <li><a href="https://github.com/rvirding/lfe/blob/develop/doc/version_history.md">Version History</a></li>
+</ul>
+
+
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>LFE Documentation</h1>
+
+<h2>Common Binary Functions</h2>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">MODULE
+
+        lfe_bits
+
+MODULE SUMMARY
+
+        Lisp Flavoured Erlang (LFE) common binary functions
+
+DESCRIPTION
+
+        This module contains a collection of library functions for for
+        handling binaries. They are generally not called by the user.
+
+EXPORTS
+
+parse_bitspecs(Specs) -&gt;
+        {ok,Size,{Type,Unit,Sign,Endian}} |
+        {error,Error}.
+
+        Parse a bitspec and return the data. Unmentioned fields get
+        the value &#39;default&#39;.
+
+get_bitspecs(Specs) -&gt;
+        {ok,Size,{Type,Unit,Sign,Endian}} |
+        {error,Error}.
+
+        Parse a bitspec, apply defaults and return the
+        data. Unmentioned fields get the value &#39;default&#39;.
+
+Error Information
+
+        The following error values are returned:
+
+        {undefined_bittype,Type}
+        bittype_unit</code></pre></figure>
+
+  </article>
+</div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

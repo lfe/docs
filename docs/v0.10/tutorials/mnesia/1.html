@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.10/css/styles.css" />
+    <link rel="stylesheet" href="/v0.10/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.10/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.10/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+        <label for="navbar-checkbox" class="navbar-handle">&#9776;</label>
+        <nav>
+          <ul>
+            <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+            <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+            <li class="title"><a href="/v0.10/community.html">Community</a></li>
+            <li class="title"><a href="/v0.10/contributing.html">Contributing</a></li>
+            <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+            <li class="title"><a href="/v0.10/">Home</a></li>
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.10/tutorials/mnesia/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/mnesia/2.html">Getting Started</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/mnesia/3.html">Structure</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/mnesia/4.html">Content</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/mnesia/5.html">Querying</a></li>
+      <li><a class="spec" href="/v0.10/tutorials/mnesia/6.html">Big Data</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Mnesia</h1>
+
+<h2>1 Introduction</h2>
+
+<h3>1.1 Credit</h3>
+
+<p>This tutorial is adapted (massively copied) from the
+<a href="http://www.erlang.org/doc/apps/mnesia/Mnesia_chap1.html">Mnesia
+Book</a> on the Erlang docs site.</p>
+
+<h3>1.2 About Mnesia</h3>
+
+<p>Mnesia is a distributed Database Management System, appropriate for
+telecommunications applications and other Erlang applications which require
+continuous operation and soft real-time properties.</p>
+
+<p>Mnesia is designed with requirements like the following in mind:</p>
+
+<ul>
+<li>Fast real-time key/value lookup</li>
+<li>Complicated non real-time queries mainly for operation and maintenance</li>
+<li>Distributed data due to distributed applications</li>
+<li>High fault tolerance</li>
+<li>Dynamic re-configuration</li>
+<li>Complex objects</li>
+</ul>
+
+<p>Due to its focus on telecommunications applications, Mnesia combines many
+concepts found in traditional databases, such as transactions and queries with
+concepts such as very fast real-time operations, configurable degree of fault
+tolerance (by means of replication) and the ability to reconfigure the system
+without stopping or suspending it.</p>
+
+<p>Mnesia is also interesting due to its tight coupling to the programming
+language Erlang/LFE, thus almost turning Erlang/LFE into a database programming
+language.</p>
+
+<h3>1.3 Add-on Applications</h3>
+
+<p>The following add-ons can be used in conjunction with Mnesia to produce
+specialized functions which enhance the operational ability of Mnesia:</p>
+
+<ul>
+<li>QLC has the ability to optimize the query compiler for the Mnesia Database
+Management System, essentially making the DBMS more efficient.</li>
+<li>QLC, can be used as a database programming language for Mnesia. It includes a
+notation called &quot;list comprehensions&quot; and can be used to make complex
+database queries over a set of tables.</li>
+<li>Mnesia Session is an interface for the Mnesia Database Management System</li>
+<li>Mnesia Session enables access to the Mnesia DBMS from foreign programming
+languages (i.e. other languages than Erlang/LFE).</li>
+</ul>
+
+<h3>1.4 When to Use Mnesia</h3>
+
+<p>Use Mnesia with the following types of applications:</p>
+
+<ul>
+<li>Applications that need to replicate data.</li>
+<li>Applications that perform complicated searches on data.</li>
+<li>Applications that need to use atomic transactions to update several records
+simultaneously.</li>
+<li>Applications that use soft real-time characteristics.</li>
+</ul>
+
+<p>On the other hand, Mnesia may not be appropriate with the following types of
+applications:</p>
+
+<ul>
+<li>Programs that process plain text or binary data files</li>
+<li>Applications that merely need a look-up dictionary which can be stored to
+disc can utilize the standard library module dets, which is a disc based
+version of the module ets.</li>
+<li>Applications which need disc logging facilities can utilize the module
+disc_log by preference.</li>
+<li>Not suitable for hard real time systems.</li>
+</ul>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.10/">Home</a>
+
+      | <a href="2.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

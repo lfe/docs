@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lisp Flavored Erlang</title>
+    <link rel="stylesheet" href="/v0.9/css/styles.css" />
+    <link rel="stylesheet" href="/v0.9/css/pygment_trac.css" />
+    <link rel="shortcut icon" href="/v0.9/images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/v0.9/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  </head>
+
+
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><img src="https://github.com/lfe/docs/raw/master/images/logos/LispFlavoredErlang-xtiny.png" align="top" /></li>
+          <li class="title"><a href="http://lfe.io/#resources">Download</a></li>
+          <li class="title"><a href="/v0.9/community.html">Community</a></li>
+          <li class="title"><a href="/v0.9/contributing.html">Contributing</a></li>
+          <li class="title"><a href="http://lfe.gitbooks.io/quick-start/content/index.html">Quick Start</a></li>
+          <li class="title"><a href="/v0.9/">Home</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+
+<div id="sidebar-primary" class="sidebar">
+  <div class="widget">
+    <h3 class="widget-title">Tutorial Sections</h3>
+    <ol>
+      <li><a class="spec" href="/v0.9/tutorials/counter-app/1.html">Introduction</a></li>
+      <li><a class="spec" href="/v0.9/tutorials/counter-app/2.html">The Set Up</a></li>
+      <li><a class="spec" href="/v0.9/tutorials/counter-app/3.html">Thinking
+        About Counting</a></li>
+      <li><a class="spec" href="/v0.9/tutorials/counter-app/4.html">Thinking
+        About Lisp</a></li>
+    </ol>
+  </div>
+</div>
+
+<div id="content">
+  <article>
+    <h1>Tutorial: Counter Application</h1>
+
+<h2>3 Thinking About Counting</h2>
+
+<h3>Define the Counter Process</h3>
+
+<p>Now that we have our communication methods in place we should set about defining the operations of counter process. This is the actual running loop that will manage the counter variable and respond to requests. Because we&#39;ve already defined how we need to interact with this process, the construction is quite straight forward:</p>
+
+<p>First we&#39;ll build our <code>counter</code> function to be our start the process from <code>0</code>.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">counter</span> <span class="p">()</span>
+  <span class="s">&quot;Runs our actual counter loop.&quot;</span>
+  <span class="p">(</span><span class="nv">counter-loop</span> <span class="mi">0</span><span class="p">))</span></code></pre></figure>
+
+<p>No real surprises there, start our loop with our initial counter variable.</p>
+
+<p>Now for our <code>counter-loop</code> function!</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">counter-loop</span> <span class="p">(</span><span class="nb">count</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">incr</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">counter-loop</span> <span class="p">(</span><span class="nb">+</span> <span class="nb">count</span> <span class="mi">1</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;count</span> <span class="nv">requestor</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">!</span> <span class="nv">requestor</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;count</span> <span class="nb">count</span><span class="p">))</span>
+     <span class="p">(</span><span class="nv">counter-loop</span> <span class="nb">count</span><span class="p">))))</span></code></pre></figure>
+
+<p>Pretty simple. Our initial value is passed in and the process waits to receive a message telling it to either increment the counter or return the current value.</p>
+
+<h3>Testing It Out</h3>
+
+<p>Lets take it out for a spin:</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;counter.lfe&quot;</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">module</span> <span class="nv">counter</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">set</span> <span class="nv">foo</span> <span class="p">(</span><span class="err">:</span> <span class="nv">counter</span> <span class="nv">new</span><span class="p">))</span>
+<span class="nv">&lt;0.35.0&gt;</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">counter</span> <span class="nb">count</span> <span class="nv">foo</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">counter</span> <span class="nv">incr</span> <span class="nv">foo</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">incr</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">counter</span> <span class="nv">incr</span> <span class="nv">foo</span><span class="p">)</span>
+<span class="o">#(</span><span class="nv">incr</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">counter</span> <span class="nb">count</span> <span class="nv">foo</span><span class="p">)</span>
+<span class="mi">2</span></code></pre></figure>
+
+<p>Success! We create a new counter process and store the <code>pid</code> in <code>foo</code>, then we ask for the current value, which is zero because we haven&#39;t incremented it yet. Increment the value a couple of times and ask for the current value which is now two! Yay.</p>
+
+<h3>Touch Up</h3>
+
+<p>Of course there are some things missing from this example, although creating a module to only hold a counter variable is slightly excessive (but not always!). Our counter process has no way to handle a malformed message, lets fix that.</p>
+
+<figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">counter-loop</span> <span class="p">(</span><span class="nb">count</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;incr</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">counter-loop</span> <span class="p">(</span><span class="nb">+</span> <span class="nb">count</span> <span class="mi">1</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="ss">&#39;count</span> <span class="nv">requestor</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">!</span> <span class="nv">requestor</span> <span class="p">(</span><span class="nv">tuple</span> <span class="ss">&#39;count</span> <span class="nb">count</span><span class="p">))</span>
+     <span class="p">(</span><span class="nv">counter-loop</span> <span class="nb">count</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">msg</span>
+     <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Unknown message received ~p~n&quot;</span><span class="o">,</span> <span class="nv">msg</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">counter-loop</span> <span class="nb">count</span><span class="p">))))</span></code></pre></figure>
+
+<p>We simply extend our receive patterns to include a wildcard that responds with the appropriate message, and call the <code>counter-loop</code> again so we can contiue waiting for other requests.. See how easy that was, now you have no excuses for not handling unknown messages! Although you will most likely want to do something more clever than simply printing a message and happily trunding along, but you get the idea.</p>
+
+<p>That will probably do for now, feel free to give your counter another whirl in the shell to make sure everything still works, but the end result should look something similar to this:</p>
+
+  </article>
+
+
+  <div class="pagination loop-pagination">
+
+      <a href="2.html" class="previous page-numbers spec">&larr; Previous</a> |
+
+      <a class="page-numbers spec" href="">Top</a> |
+      <a class="page-numbers spec" href="/v0.9/">Home</a>
+
+      | <a href="4.html" class="next page-numbers spec">Next &rarr;</a>
+
+  </div>
+
+
+
+</div><!-- #content -->
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38274766-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

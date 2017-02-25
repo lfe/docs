@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ncx PUBLIC
+    "-//NISO//DTD ncx 2005-1//EN"
+    "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+    <title>LFE Quick Start</title>
+    <meta name="DC.language" content="eng" />
+    <meta name="DC.creator" content="Duncan McGreggor" />
+    <meta name="DC.title" content="LFE Quick Start" />
+    <base href="http://lfe.github.io/" />
+  </head>
+  <body>
+  <p><a name="quick_start"></a></p>
+
+<h1>Quick Start</h1>
+
+<p><a name="1_going_plaid"></a></p>
+
+<h2>1 Going Plaid</h2>
+
+<p><img src="https://raw.github.com/lfe/lfe.github.io/master/images/plaid.jpg"
+     style="float: right;">
+This guide will give you what you need in order to jump into LFE at ludicrous
+speed.</p>
+
+<p>For a more gradual introduction (with a bit more Erlang) and for
+something that&#39;s going to give you time to see the stars, checkout the
+<a href="http://lfe.github.io/user-guide/intro/1.html">User Guide</a>.</p>
+
+<p><a name="11_lfetool"></a></p>
+
+<h3>1.1 lfetool</h3>
+
+<p>For a quick introduction to LFE, <code>lfetool</code> has everything you need. The
+Quick Start guide will use it almost exclusively -- all in the interst of
+sending you a week and a half into the future.</p>
+
+<p>Where appropriate, we will point you to other resources that provide more
+details.</p>
+
+<p>Let&#39;s get started: install <code>lfetool</code>!</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>curl -o ./lfetool https://raw.github.com/lfe/lfetool/master/lfetool
+<span class="nv">$ </span>bash lfetool install /usr/local/bin
+</code></pre></div>
+<p>Note that this does require the most recent release of Erlang right now (r16).
+(We are working towards full support for r15 and will update this Quick Start
+when that has landed.)</p>
+
+<p>If you need <code>sudo</code> to put the script there, be sure to set the ownership:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>chown <span class="nv">$USER</span> /usr/local/bin/lfetool
+</code></pre></div>
+<p>That way you&#39;ll be able to use the <code>update</code> command to get the latest version
+of <code>lfetool</code> in the future.</p>
+
+<p><a name="12_other_dependencies"></a></p>
+
+<h3>1.2 Other Dependencies</h3>
+
+<p>First and foremost, you will need Erlang installed. On Mac OS X, this is as
+easy as executing <code>brew install erlang</code> or on Ubuntu <code>apt-get install
+erlang</code>. You can also install Erlang from the various pre-built packages
+provided on the <a href="http://www.erlang.org/download.html">official Erlang
+download page</a> or from the
+<a href="https://www.erlang-solutions.com/downloads/download-erlang-otp">Erlang
+Solutions page</a> (supports many more package types).</p>
+
+<p>Personally, we prefer to manage our Erlang builds and installations with
+<a href="https://github.com/spawngrid/kerl">kerl</a>.
+This allows for multiple versions of Erlang to be installed
+on your system simultaneously. For more information about using <code>kerl</code> in LFE
+projects, be sure to visit the &quot;kerl&quot; section of the
+<a href="http://lfe.github.io/user-guide/intro/4.html">User Guide</a>.</p>
+
+<p>You will be using <code>rebar</code> to build LFE under the covers as well as managing
+dependencies for your projects, so go ahead and get that set up:
+<a href="https://github.com/basho/rebar">get rebar</a>.</p>
+
+<p>You will also need to <a href="http://git-scm.com/downloads">download git</a> or
+install it using your favorite package manager.</p>
+
+<p><a name="next_stop"></a></p>
+
+<h3>Next Stop</h3>
+
+<p>Ready for some LFE? Next you&#39;ll learn how to create a new LFE project with
+just one command ...</p>
+
+<p><a name="2_your_first_lfe_project"></a></p>
+
+<h2>2 Your First LFE Project</h2>
+
+<p><img src="https://raw.github.com/lfe/lfe.github.io/master/images/barf.jpg"
+     style="float: left; padding-right: 1em;">
+A project? Already?! It sounds daunting, but it&#39;s just one command :-)</p>
+
+<p>Head over to your favorite workspace in an open terminal and do this:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>lfetool new library my-test-lib
+</code></pre></div>
+<p>As you watch the output crank away, read on to find out what it&#39;s doing:</p>
+
+<ul>
+<li><code>lfetool</code> created a skeleton project (of the &quot;library&quot; type)</li>
+<li><code>rebar</code> downloaded all the dependencies listed in the new
+<code>rebar.config</code> file that was created for your project</li>
+<li>All the downloaded dependendencies were then compiled</li>
+<li>During the first step, a failing test case was created for you; now, that
+test case has been run in the test suite and the error has been revealed
+(TDD!)</li>
+</ul>
+
+<p><a name="21_tests_first!"></a></p>
+
+<h3>2.1 Tests First!</h3>
+
+<p>First things first: let&#39;s get that failing unit test passing.</p>
+
+<p>Here&#39;s the output we saw:</p>
+<div class="highlight"><pre><code class="erlang language-erlang" data-lang="erlang"><span class="o">**</span><span class="nn">error</span><span class="p">:{</span><span class="n">assertEqual_failed</span><span class="p">,[{</span><span class="n">module</span><span class="p">,</span><span class="n">&#39;my-test-lib_tests&#39;</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">line</span><span class="p">,</span><span class="mi">11</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">expression</span><span class="p">,</span><span class="s">&quot;(: my-test-lib my-adder 2 2)&quot;</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">expected</span><span class="p">,</span><span class="mi">4</span><span class="p">},</span>
+                     <span class="p">{</span><span class="n">value</span><span class="p">,</span><span class="mi">5</span><span class="p">}]}</span>
+</code></pre></div>
+<p>We can see that our test expected 4 but it got 5.</p>
+
+<p>Before we go further, be sure you are in your project directory:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>my-test-lib
+</code></pre></div>
+<p>Let&#39;s look at the test by opening up <code>test/my-test-lib_tests.lfe</code>.</p>
+
+<p>Well, things there look good -- we should get 4 when 2 and 2 are added.</p>
+
+<p>Let&#39;s take a look at the source module: <code>src/my-test-lib.lfe</code>. Ah-ha! a
+bug :-) There&#39;s an extra operation that&#39;s being done which we don&#39;t want.</p>
+
+<p>To fix it, change this line:</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">y</span> <span class="mi">1</span><span class="p">)))</span>
+</code></pre></div>
+<p>to this:</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl">  <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</code></pre></div>
+<p>Now re-run the unit tests:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>make check-no-deps
+</code></pre></div>
+<p>And you should get a passing test:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="o">==</span>&gt; my-test-lib <span class="o">(</span>eunit<span class="o">)</span>
+<span class="o">========================</span> <span class="nv">EUnit</span> <span class="o">========================</span>
+my-test-lib_tests: my-adder_test <span class="o">(</span>module <span class="s1">&#39;my-test-lib_tests&#39;</span><span class="o">)</span>...<span class="o">[</span>0.031 s<span class="o">]</span> <span class="nv">ok</span>
+<span class="o">=======================================================</span>
+  Test passed.
+</code></pre></div>
+<p>We&#39;ll talk about the <code>make</code> targets in a bit, but our target above run the
+unit tests without recompiling all the deps; just our project files and
+our unit tests.</p>
+
+<p><a name="22_project_inventory"></a></p>
+
+<h3>2.2 Project Inventory</h3>
+
+<p>Okay, we&#39;ve got our tests passing and our project looks healthy. But what does
+it have in it?</p>
+
+<ul>
+<li>a README file in ReStructured Text</li>
+<li>a <code>Makefile</code></li>
+<li>the <code>rebar.config</code> file we mentioned earlier (this has all your project
+dependencies in it)</li>
+<li>a <code>package.exs</code> file for uploading your project to
+<a href="http://expm.co">expm.co</a></li>
+<li>the <code>src</code> directory which holds your project code, and</li>
+<li>the <code>test</code> directory which holds the tests</li>
+</ul>
+
+<p>There are some other things there (e.g., the <code>deps</code> directory created by <code>rebar</code>
+and the <code>ebin</code> directory that&#39;s created when everything is compiled).</p>
+
+<p><a name="23_repo_ready_to_go"></a></p>
+
+<h3>2.3 Repo Ready to Go</h3>
+
+<p><code>lfetool</code> also did one more thing for you: <code>init</code>ed the project in git
+and added all the files:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>git status
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;on_branch_master&quot;</span>&gt;&lt;/a&gt;
+<span class="c"># On branch master</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;initial_commit&quot;</span>&gt;&lt;/a&gt;
+<span class="c"># Initial commit</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;changes_to_be_committed:&quot;</span>&gt;&lt;/a&gt;
+<span class="c"># Changes to be committed:</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;(use_&quot;</span>git_rm_--cached_&lt;file&gt;<span class="s2">&quot;_to_unstage)&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___gitignore&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   .gitignore</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___makefile&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   Makefile</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___readmerst&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   README.rst</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___packageexs&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   package.exs</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___rebarconfig&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   rebar.config</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___src/my-test-libappsrc&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   src/my-test-lib.app.src</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___src/my-test-liblfe&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   src/my-test-lib.lfe</span>
+&lt;a <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;new_file:___test/my-test-lib_testslfe&quot;</span>&gt;&lt;/a&gt;
+<span class="c">#   new file:   test/my-test-lib_tests.lfe</span>
+</code></pre></div>
+<p>All you need to do it <code>git commit -a &amp;&amp; git push --all</code> to wherever you want
+to put your project :-)</p>
+
+<p>You can taste it, can&#39;t you? That LFE flavor coming your way? Yup, you&#39;re right.
+You&#39;re going to be looking at LFE code next ...</p>
+
+<p><a name="3_hitting_the_code"></a></p>
+
+<h2>3 Hitting the Code</h2>
+
+<p><img src="https://raw.github.com/lfe/lfe.github.io/master/images/smash.jpg"
+     style="float: right; padding-left: 1em;">
+It may not seem like it, but we&#39;re off to a pretty fast start. If you had to
+do everything we&#39;ve done, manually, you&#39;d have given up by now. Seriously.</p>
+
+<p>Time to put the brakes on, though, &#39;cause you&#39;re gonna want to see this next
+part in slow motion.</p>
+
+<p><a name="31_repl_me_up!"></a></p>
+
+<h3>3.1 REPL Me Up!</h3>
+
+<p>Sure thing :-) Just do this from your new LFE project directory:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">make shell-no-deps
+</code></pre></div>
+<p>(There&#39;s that <code>-no-deps</code> thing again... don&#39;t worry, we&#39;re going to tell
+you about it.)</p>
+
+<p>This should give you something that looks like the following:</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl"><span class="nv">Erlang</span> <span class="nv">R16B</span> <span class="p">(</span><span class="nv">erts-5.10.1</span><span class="p">)</span> <span class="nv">[source]</span> <span class="nv">[smp:8:8]</span> <span class="nv">[async-threads:10]</span> <span class="nv">[hipe]</span> <span class="o">...</span>
+
+<span class="nv">LFE</span> <span class="nv">Shell</span> <span class="nv">V5.10.1</span> <span class="p">(</span><span class="nb">abort</span> <span class="nv">with</span> <span class="nv">^G</span><span class="p">)</span>
+<span class="nb">&gt;</span>
+</code></pre></div>
+<p>We&#39;re not going to spend a lot of time in the REPL right now, but feel free to
+take it for a spin :-)</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">)</span>
+<span class="mi">21</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">2</span> <span class="p">(</span><span class="nb">+</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">42</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">lists</span> <span class="nv">foldl</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">n</span> <span class="nv">acc</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">n</span> <span class="nv">acc</span><span class="p">))</span> <span class="mi">0</span> <span class="p">(</span><span class="err">:</span> <span class="nv">lists</span> <span class="nv">seq</span> <span class="mi">1</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">21</span>
+</code></pre></div>
+<p>Enough fancy stuff! What about code? What does a project look like?</p>
+
+<p><a name="32_sample_code"></a></p>
+
+<h3>3.2 Sample Code</h3>
+
+<p>Well, you&#39;ve already seen one! Let&#39;s print it here for your viewing pleasure,
+though. Here&#39;s the starter project you have, with just the one module:</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">my-test-lib</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="nv">all</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">my-adder</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</code></pre></div>
+<p>It has a corresponding test module:</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">my-test-lib_tests</span>
+  <span class="p">(</span><span class="nb">export</span> <span class="nv">all</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">import</span>
+    <span class="p">(</span><span class="nv">from</span> <span class="nv">lfeunit-util</span>
+      <span class="p">(</span><span class="nv">check-failed-assert</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">check-wrong-assert-exception</span> <span class="mi">2</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nv">include-lib</span> <span class="s">&quot;deps/lfeunit/include/lfeunit-macros.lfe&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">deftest</span> <span class="nv">my-adder</span>
+  <span class="p">(</span><span class="nv">is-equal</span> <span class="mi">4</span> <span class="p">(</span><span class="err">:</span> <span class="nv">my-test-lib</span> <span class="nv">my-adder</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)))</span>
+</code></pre></div>
+<p>Almost couldn&#39;t be simpler.</p>
+
+<p>Here&#39;s something a little more involved you may enjoy, from the examples in the
+LFE source code:</p>
+<div class="highlight"><pre><code class="cl language-cl" data-lang="cl"><span class="p">(</span><span class="nv">defmodule</span> <span class="nv">messenger-back</span>
+ <span class="p">(</span><span class="nb">export</span> <span class="p">(</span><span class="nv">print-result</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">send-message</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">print-result</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">receive</span>
+    <span class="p">((</span><span class="nv">tuple</span> <span class="nv">pid</span> <span class="nv">msg</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Received message: &#39;~s&#39;~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="err">:</span> <span class="nv">io</span> <span class="nb">format</span> <span class="o">&#39;</span><span class="s">&quot;Sending message to process ~p ...~n&quot;</span> <span class="p">(</span><span class="nb">list</span> <span class="nv">pid</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">!</span> <span class="nv">pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">msg</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">print-result</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">send-message</span> <span class="p">(</span><span class="nv">calling-pid</span> <span class="nv">msg</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">spawned-pid</span> <span class="p">(</span><span class="nv">spawn</span> <span class="ss">&#39;messenger-back</span> <span class="ss">&#39;print-result</span> <span class="p">())))</span>
+    <span class="p">(</span><span class="nv">!</span> <span class="nv">spawned-pid</span> <span class="p">(</span><span class="nv">tuple</span> <span class="nv">calling-pid</span> <span class="nv">msg</span><span class="p">))))</span>
+</code></pre></div>
+<p>That bit of code demonstrates one of Erlang&#39;s core features in lovely Lisp
+syntax :-) (For those that don&#39;t read Erlang yet, when loaded into the REPL,
+that example shows some bidirectional message passing between the LFE shell
+and a spawned process.)</p>
+
+<p>If you&#39;d like to learn more about using the LFE REPL, be sure to read the
+<a href="http://lfe.github.io/user-guide/intro/2.html">REPL Section</a> of the
+User Guide.</p>
+
+<p>If you want to step through a tutorial on Erlang&#39;s light-weight threds (per the
+example code above), you&#39;ll want to read
+<a href="http://lfe.github.io/tutorials/processes/1.html">this tutorial</a>.</p>
+
+<p>We did promise a bit more information, so we&#39;re going to do that next and then
+wrap up the quick start and point you in the direction of your next LFE
+adventure ...</p>
+
+<p><a name="4_behind_the_scenes"></a></p>
+
+<h2>4 Behind the Scenes</h2>
+
+<p><img src="https://raw.github.com/lfe/lfe.github.io/master/images/doubles.jpg"
+     style="float: right; padding-left: 1em;"></p>
+
+<p><a name="41_using_make"></a></p>
+
+<h3>4.1 Using make</h3>
+
+<p>We promised to come back to <code>make</code>, so here we are.</p>
+
+<p>Eventually, the <code>Makefile</code> will be replaced with a combination of <code>rebar</code>
+scripts and updates to <code>lfetool</code>, but for now it&#39;s what we&#39;ve got.</p>
+
+<p>There are some convenient targets available for you in the <code>Makefile</code>:</p>
+
+<ul>
+<li><code>upload</code> - when your project&#39;s ready for release, this will push it up to
+<a href="http://expm.co/">expm.co</a> for you</li>
+<li><code>compile</code> - rebuilds all your <code>.beam</code>s, including the dependencies</li>
+<li><code>install</code> - should you wish to install your project system-wide (we recommend
+against it), you could use this target to do it</li>
+<li><code>check</code> - run your unit tests after recompiling all <code>*.lfe</code> files <code>*.beam</code></li>
+<li><code>shell</code> - start up the LFE REPL after recompiling all <code>*.lfe</code> files</li>
+<li><code>get-deps</code> - not only does this target get your deps initially, but subsequent
+runs of it will perform <code>git pull</code>s for the repos cloned in your <code>deps</code>
+dir, ensuring you have the latest code for everything</li>
+</ul>
+
+<p>If you do not need to recompile dependencies (and most of the time, you don&#39;t),
+you can skip the deps with the following targets:</p>
+
+<ul>
+<li><code>compile-no-deps</code></li>
+<li><code>shell-no-deps</code></li>
+<li><code>check-no-deps</code></li>
+</ul>
+
+<p>There are other interesting <code>make</code> targets tucked in the <code>Makefile</code>, and
+you can learn more about how to manage LFE projects by checking them out.</p>
+
+<p>One thing to keep in mind for future reference: if you add new deps to your
+<code>rebar.confg</code> file, you&#39;ll need to update the <code>ERL_LIBS</code> in your
+<code>Makefile</code> to include them.</p>
+
+<p>Read more about setting up a development environment
+<a href="http://lfe.github.io/user-guide/intro/4.html">here</a>.</p>
+
+<p><a name="42_next_steps"></a></p>
+
+<h3>4.2 Next Steps</h3>
+
+<p>This has been a quick overview of what LFE has to offer, so you might enjoy
+reading the <a href="/v0.10/user-guide/intro/1.html">User Guide</a>
+next. You can see all our docs at a glance by visiting the
+<a href="/v0.10/docs.html">Docs</a> page.</p>
+
+<p>There is a <a href="http://lfe.github.io/tutorials/processes/1.html">tutorial
+on light-weight Erlang processes</a> in LFE that you may be intersted in.</p>
+
+<p>If you want to develop RESTful services in LFE, you should take a look at the
+<a href="https://github.com/lfe/yaws-rest-starter">REST on YAWS with LFE</a>
+starter project.</p>
+
+<p>The <a href="https://github.com/lfe">LFE organization</a> on Gitub has a large
+collection of LFE projects that may be of interest to you.</p>
+
+<p>You should also take some time reading the
+<a href="https://github.com/rvirding/lfe">examples</a> provided in the LFE
+source code; studying examples is the quickest way to make progress.</p>
+
+<p>If at any time you would like to provide feedback about the documentation on
+this site, feel free to
+<a href="https://github.com/lfe/lfe.github.io/issues">create an issue</a>. Be
+sure to give a full description so that we can best help you!</p>
+
+  </body>
+</html>

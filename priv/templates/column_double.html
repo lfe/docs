@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div id="wrapper">
+  {% block column_double_sidebar %}
+  {% endblock %}
+  <div id="page-wrapper">
+    <div class="container-fluid">
+    {% block column_double_main %}
+    {% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}
