@@ -182,7 +182,7 @@ done prior to a new release of LFE and/or the documentation site. Any PRs that
 update `current` will not be approved until those changes are removed (modulo
 typo fixes and the like).
 
-If you have called `(docs:gen)` by accident, simply to a `git checkout` of the
+If you have called `(docs:gen)` by accident, simply do a `git checkout` of the
 `current` dir to undo the docs regen.
 
 **Submission**
