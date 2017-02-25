@@ -39,6 +39,7 @@
                       (genserver-opts))))
 
 (defun stop ()
+  (logjam:info "Stopping docs gen-server ...")
   (gen_server:call (server-name) 'stop))
 
 ;;; callback implementation
