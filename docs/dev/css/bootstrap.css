@@ -5929,6 +5929,9 @@ center-block {
   height: 70px;
   color: #ccc; }
 
+.landing-doc-cats > div > div > div > .nav > li > a {
+  padding: 0; }
+
 .btn,
 .btn:hover {
   border-color: rgba(0, 0, 0, 0.6);
