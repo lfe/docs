@@ -12,6 +12,8 @@
 * [Goals](#goals-)
 * [Dependencies](#dependencies-)
 * [Building](#building-)
+   * [With make](#with-make-)
+   * [In the REPL](#in-the-repl-)
 * [Contributing Content](#contributing-content-)
 * [License](#license-)
 
@@ -64,12 +66,42 @@ If you want to regenerate the CSS, you'll need `sass`:
 * `sass` (use `make sass` to install; requires Ruby + `gem` to be
   installed)
 
+## Building
 
-## Building [&#x219F;](#contents)
+There are two supported ways of building the LFE docs site and CSS:
+
+* using `make` targets (which call erlang under the hood)
+* running `docs` functions from the LFE REPL
+
+
+### With `make` [&#x219F;](#contents)
+
+To (re)generate the static files:
+
+```bash
+$ make docs-dev
+```
+
+That will build both the HTML files as well as the CSS.
+
+To only build the HTML:
+
+```bash
+$ make docs-dev-only
+```
+
+To only build the CSS:
+
+```bash
+$ make css-dev
+```
+
+
+### In the REPL [&#x219F;](#contents)
 
 To (re)generate the static files, start up an LFE REPL:
 
-```
+```bash
 $ make repl
 ```
 ```
