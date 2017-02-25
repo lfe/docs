@@ -38,7 +38,7 @@ And the current development work on the docs is published here:
 
 * http://docs.lfe.io/dev/
 
-Note that the latest dev version provides a drop-down menu in the top-nav for 
+Note that the latest dev version provides a drop-down menu in the top-nav for
 accessing previous releases of the LFE Documentation.
 
 
@@ -49,7 +49,7 @@ The aim of this project is twofold:
 * Maintain the content for the LFE documentation site
 * Maintain a tool (written in LFE) for generating the LFE docs site
 
-The next release of the docs site and tooling is v3.1. All tickets 
+The next release of the docs site and tooling is v3.1. All tickets
 for the release are ulimately linked here:
  * https://github.com/lfe/docs/issues/95
 
