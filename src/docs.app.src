@@ -22,7 +22,9 @@
   {applications,
    [
     kernel,
-    stdlib
+    stdlib,
+    inets,
+    barista
    ]},
 
   %% OTP application loader will load, but not start, included apps. Again

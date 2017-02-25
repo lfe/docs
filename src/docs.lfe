@@ -12,8 +12,11 @@
     (terminate 2)
     (code_change 3)
     ;; server API
-    (gen-content 0)
-    (httpd 0)))
+    (gen 0)
+    (gen-dev 0)
+    (httpd 0)
+    (httpd-restart 0)
+    (httpd-stop 0)))
 
 ;;; config functions
 
@@ -45,9 +48,15 @@
 
 (defun handle_cast
   (('gen state-data)
-    `#(noreply ,(docs-gen:run state-data)))
+    `#(noreply ,(docs-gen:run)))
+  (('gen-dev state-data)
+    `#(noreply ,(docs-gen:run-dev)))
   (('httpd state-data)
-    `#(noreply ,(docs-dev:start-httpd state-data))))
+    `#(noreply ,(docs-dev:serve)))
+  (('httpd-restart state-data)
+    `#(noreply ,(docs-dev:restart-server)))
+  (('httpd-stop state-data)
+    `#(noreply ,(docs-dev:stop-server))))
 
 (defun handle_call
   ((message _caller state-data)
@@ -71,8 +80,17 @@
 
 ;;; our server API
 
-(defun gen-content ()
+(defun gen ()
   (gen_server:cast (server-name) 'gen))
+
+(defun gen-dev ()
+  (gen_server:cast (server-name) 'gen-dev))
 
 (defun httpd ()
   (gen_server:cast (server-name) 'httpd))
+
+(defun httpd-restart ()
+  (gen_server:cast (server-name) 'httpd-restart))
+
+(defun httpd-stop ()
+  (gen_server:cast (server-name) 'httpd-stop))

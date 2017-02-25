@@ -93,22 +93,24 @@ Erlang/OTP 18 [erts-7.3] [source] [64-bit] [smp:4:4] [async-threads:10] ...
     \   r     /      |   LFE v1.3-dev (abort with ^G)
      `-E___.-'
 
-lfe>
+lfe> (docs:httpd)
+ok
 ```
 
 To generate the docs to dev:
 
 ```cl
-lfe> (docs-gen:run-dev)
+lfe> (docs:gen-dev)
 Created docs/dev/index.html.
 ...
 ok
 ```
 
-Or to generate the static files to prod (the `current` directory):
+Or to generate the static files to prod (the `current` directory; this is
+only done when promoting dev to stable):
 
 ```cl
-lfe> (docs-gen:run)
+lfe> (docs:gen)
 Created docs/current/index.html.
 ...
 ok
@@ -118,7 +120,7 @@ To run a local copy of the development server and view your work at
 [http://localhost:8080](http://localhost:8080), run the following:
 
 ```bash
-lfe> (docs-dev:serve)
+lfe> (docs:httpd)
 ok
 ```
 
