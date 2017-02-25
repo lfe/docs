@@ -25,10 +25,10 @@
             (docs-data:base)
             (landing-tmpl:render)
             (get-content)))
-  (('bootstrap path)
+  (('bootstrap-theme path)
     (clj:-> path
             (docs-data:base)
-            (theme-tmpl:render)
+            (bootstrap-theme-tmpl:render)
             (get-content)))
   (('example-two-column path)
     (clj:-> path
