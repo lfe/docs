@@ -10,7 +10,14 @@
   %% All modules used by the application.
   {modules,
    [
-    docs
+    docs,
+    'docs-cfg',
+    'docs-cli',
+    'docs-data',
+    'docs-dev',
+    'docs-gen',
+    'docs-pages',
+    'docs-routes'
    ]},
 
   %% All of the registered names the application uses. This can be ignored.
