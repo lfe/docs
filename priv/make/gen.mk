@@ -62,6 +62,9 @@ serve-watch-css: serve-header css-watch-dev serve-only
 serve-dev: docs-header clean compile css-dev serve-header
 	@ERL_LIBS=$(ERL_LIBS) $(LFE) -s docs-cli gen-dev-httpd
 
+serve-dev-watch: docs-header clean compile css-dev serve-header
+	@ERL_LIBS=$(ERL_LIBS) $(LFE) -s docs-cli gen-dev-watch
+
 contributors:
 	git log --pretty=format:"%an"|sort -u
 
