@@ -11,9 +11,14 @@
   (barista:start #'handler/1))
 
 (defun stop-server ()
-  (logjam:warn "Stopping HTTP server ...")
-  (barista:stop))
+  (logjam:info "Stopping HTTP server ...")
+  (barista:stop)
+  ;; XXX update barista to do the following
+  (erlang:unregister 'lmug-handler))
 
 (defun restart-server ()
-  (stop-server)
-  (serve))
+  (logjam:info "Restarting HTTP server ...")
+  (barista:stop)
+  (erlang:unregister 'lmug-handler)
+  (barista:start #'handler/1))
+

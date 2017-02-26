@@ -29,6 +29,8 @@
 
 ;;; gen_server implementation
 
+;; XXX how much responsibility for whole-app startup shoudl these have?
+;;     do we want to use these for docs-watcher too?
 (defun start ()
   (logjam:start)
   (let ((cfg (initial-state)))
@@ -40,7 +42,12 @@
 
 (defun stop ()
   (logjam:info "Stopping docs gen-server ...")
-  (gen_server:call (server-name) 'stop))
+  (gen_server:call (server-name) 'stop)
+  (gen_server:stop (server-name)))
+
+(defun restart ()
+  (stop)
+  (start))
 
 ;;; callback implementation
 
@@ -60,6 +67,9 @@
     `#(noreply ,(docs-dev:stop-server))))
 
 (defun handle_call
+  (('stop caller state-data)
+    ;; XXX perform cleanup
+    `#(reply stopping ,state-data))
   ((message _caller state-data)
     `#(reply ,(unknown-command) ,state-data)))
 
@@ -87,6 +97,7 @@
 (defun gen-dev ()
   (gen_server:cast (server-name) 'gen-dev))
 
+;; XXX move these out of here; not the place for it
 (defun httpd ()
   (gen_server:cast (server-name) 'httpd))
 
