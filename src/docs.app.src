@@ -11,6 +11,7 @@
     docs,
     'docs-cfg',
     'docs-cli',
+    'docs-compiler',
     'docs-data',
     'docs-httpd',
     'docs-gen',
