@@ -22,7 +22,4 @@
       (docs:httpd))))
 
 (defun gen-dev-watch ()
-  (do-cmd
-    (lambda ()
-      (docs:gen-dev)
-      (docs-watcher:start))))
+  (docs-watcher:start))
