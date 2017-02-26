@@ -17,3 +17,5 @@ priv/templates/*.erl
 rebar.lock
 *.backup
 *.bak
+compile_commands.json
+rebar3.crashdump
