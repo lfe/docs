@@ -7,19 +7,19 @@
   (docs:stop))
 
 (defun gen-stable ()
-  (do-cmd #'docs:gen/0))
+  (do-cmd #'docs-gen:run-stable/0))
 
 (defun gen-dev ()
-  (do-cmd #'docs:gen-dev/0))
+  (do-cmd #'docs-gen:run-dev/0))
 
-(defun httpd ()
-  (do-cmd #'docs:httpd/0))
+(defun start-httpd ()
+  (do-cmd #'docs-httpd:start/0))
 
 (defun gen-dev-httpd ()
   (do-cmd
     (lambda ()
-      (docs:gen-dev)
-      (docs:httpd))))
+      (docs-gen:run-dev)
+      (docs-httpd:start))))
 
 (defun gen-dev-watch ()
   (docs-watcher:start))

@@ -10,13 +10,7 @@
     (handle_cast 2)
     (handle_info 2)
     (terminate 2)
-    (code_change 3)
-    ;; server API
-    (gen 0)
-    (gen-dev 0)
-    (httpd 0)
-    (httpd-restart 0)
-    (httpd-stop 0)))
+    (code_change 3)))
 
 ;;; config functions
 
@@ -29,7 +23,7 @@
 
 ;;; gen_server implementation
 
-;; XXX how much responsibility for whole-app startup shoudl these have?
+;; XXX how much responsibility for whole-app startup should these have?
 ;;     do we want to use these for docs-watcher too?
 (defun start ()
   (logjam:start)
@@ -55,20 +49,11 @@
   `#(ok ,initial-state))
 
 (defun handle_cast
-  (('gen state-data)
-    `#(noreply ,(docs-gen:run)))
-  (('gen-dev state-data)
-    `#(noreply ,(docs-gen:run-dev)))
-  (('httpd state-data)
-    `#(noreply ,(docs-dev:serve)))
-  (('httpd-restart state-data)
-    `#(noreply ,(docs-dev:restart-server)))
-  (('httpd-stop state-data)
-    `#(noreply ,(docs-dev:stop-server))))
+  ((message state-data)
+    `#(reply ,(unknown-command) ,state-data)))
 
 (defun handle_call
   (('stop caller state-data)
-    ;; XXX perform cleanup
     `#(reply stopping ,state-data))
   ((message _caller state-data)
     `#(reply ,(unknown-command) ,state-data)))
@@ -88,21 +73,3 @@
 
 (defun code_change (_old-version state _extra)
   `#(ok ,state))
-
-;;; our server API
-
-(defun gen ()
-  (gen_server:cast (server-name) 'gen))
-
-(defun gen-dev ()
-  (gen_server:cast (server-name) 'gen-dev))
-
-;; XXX move these out of here; not the place for it
-(defun httpd ()
-  (gen_server:cast (server-name) 'httpd))
-
-(defun httpd-restart ()
-  (gen_server:cast (server-name) 'httpd-restart))
-
-(defun httpd-stop ()
-  (gen_server:cast (server-name) 'httpd-stop))

@@ -75,9 +75,9 @@
       (lists:subtract (filelib:wildcard wildcard) `(,filename)))
     ;; Finally, re-render the pages with the recompiled templates
     (logjam:info "Re-rendering pages ...")
-    (docs:gen-dev)
+    (docs-gen:run-dev)
     (inotify:watch template-dir watcher)
-    (docs-dev:restart-server)))
+    (docs-httpd:restart)))
 
 (defun erlydtl-watcher
   ((`#(,path file close_write ,fd ,file))
@@ -91,8 +91,7 @@
 (defun start (watch-data)
   (logjam:start)
   (docs-gen:run-dev)
-  (application:ensure_all_started 'inets)
-  (docs-dev:serve)
+  (docs-httpd:start)
   (application:ensure_all_started 'inotify)
   (application:ensure_all_started 'docs)
   (docs:start)
@@ -105,11 +104,14 @@
     (err (logjam:error err))))
 
 (defun stop ()
-  (docs-dev:stop-server)
+  (docs:stop)
+  (application:stop 'docs)
   (application:stop 'ets_manager)
   (application:stop 'inotify)
-  (application:stop 'docs)
-  (docs:stop))
+  (docs-httpd:stop)
+  ;; XXX add the following to logjam
+  ;(logjam:stop)
+  )
 
 (defun restart ()
   (stop)

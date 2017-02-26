@@ -53,7 +53,7 @@ serve-header:
 	@echo
 
 serve-only:
-	@ERL_LIBS=$(ERL_LIBS) erl -s docs-cli httpd -noshell
+	@ERL_LIBS=$(ERL_LIBS) erl -s docs-cli start-httpd -noshell
 
 serve: compile serve-header serve-only
 
