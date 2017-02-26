@@ -77,21 +77,21 @@
            (list_to_atom)))
 
 (defun get-ebin-dir (filename)
-  ;; XXX if the result of this is "." we should instead use
-  ;; (get-ebin-dir "docs.lfe") instead
-  (clj:-> filename
-          (get-module-name)
-          (code:which)
-          (filename:dirname)))
+  (case (clj:-> filename
+                (get-module-name)
+                (code:which)
+                (filename:dirname))
+    ("." (get-ebin-dir "docs.lfe"))
+    (dir dir)))
 
 (defun get-ebin-dir (filename opts)
-  ;; XXX if the result of this is "." we should instead use
-  ;; (get-ebin-dir "docs.lfe") instead
-  (clj:->> opts
-           (get-module-name filename)
-           (code:get_object_code)
-           (element 3)
-           (filename:dirname)))
+  (case (clj:->> opts
+                 (get-module-name filename)
+                 (code:get_object_code)
+                 (element 3)
+                 (filename:dirname))
+    ("." (get-ebin-dir "docs.lfe" opts))
+    (dir dir)))
 
 (defun get-erlydtl-opts ()
   (case (file:consult "rebar.config")
