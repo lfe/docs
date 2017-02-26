@@ -30,8 +30,7 @@
    [
     kernel,
     stdlib,
-    inets,
-    barista
+    inets
    ]},
 
   %% OTP application loader will load, but not start, included apps. Again
