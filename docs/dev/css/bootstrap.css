@@ -5838,7 +5838,8 @@ body {
     width: 216px;
     height: 27px;
     margin-top: 12px;
-    margin-left: -10px !important;
+    margin-left: 0px !important;
+    margin-bottom: 6px;
     background: url(/dev/images/logos/lfe-logo-site-brand.png) 0 0 no-repeat; }
   .navbar .navbar-nav > li > a {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
