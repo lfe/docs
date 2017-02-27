@@ -28,11 +28,16 @@ css-stable: css
 css-1.3: DEPLOYMENT = v1.3
 css-1.3: css
 
+css-watch: DEPLOYMENT = dev
 css-watch:
-	@$(SASS_WATCH) $(SASS_DIR)/lfe-$(DEPLOYMENT).scss:$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap-min.css &
+	@$(SASS_WATCH) \
+	$(SASS_DIR)/lfe-$(DEPLOYMENT).scss:$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap-min.css &
 
 css-watch-dev: DEPLOYMENT = dev
 css-watch-dev: css-watch
+
+css-unwatch:
+	@killall sass
 
 docs-header:
 	@echo "\nBuilding docs ..."
@@ -62,7 +67,7 @@ serve-watch-css: serve-header css-watch-dev serve-only
 serve-dev: docs-header clean compile css-dev serve-header
 	@ERL_LIBS=$(ERL_LIBS) $(LFE) -s docs-cli gen-dev-httpd
 
-serve-dev-watch: docs-header clean compile css-dev serve-header
+serve-dev-watch: docs-header clean compile css-dev css-watch-dev serve-header
 	@ERL_LIBS=$(ERL_LIBS) $(LFE) -s docs-cli gen-dev-watch
 
 contributors:
