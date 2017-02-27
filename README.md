@@ -2,7 +2,6 @@
 
 [![][lfe-tiny]][lfe-large]
 
-
 *Documentation source for Lisp Flavoured Erlang*
 
 
@@ -94,6 +93,21 @@ To only build the CSS:
 
 ```bash
 $ make css-dev
+```
+
+Additionally, a `make` target is provided which compiles everything fresh,
+starts up a local dev HTTP server, and watches for changes in CSS, HTML
+templates, and LFE code:
+
+```bash
+$ make serve-dev-watch
+```
+
+The CSS watcher is a backgrounded `sass` process, and not native LFE, so you
+will need to kill it when you are done:
+
+```bash
+$ make css-unwatch
 ```
 
 
