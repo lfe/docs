@@ -32,7 +32,7 @@
   (docs-httpd:start)
   (application:ensure_all_started 'inotify)
   (application:ensure_all_started 'docs)
-  (docs:start)
+  (docs:start-gen-server)
   (case (lists:map (match-lambda ((`#(,path ,func))
                      (logjam:info "Watching path: ~p with function: ~p"
                                    `(,path ,func))
@@ -42,14 +42,12 @@
     (err (logjam:error err))))
 
 (defun stop ()
-  (docs:stop)
+  (docs:stop-gen-server)
   (application:stop 'docs)
   (application:stop 'ets_manager)
   (application:stop 'inotify)
   (docs-httpd:stop)
-  ;; XXX add the following to logjam
-  ;(logjam:stop)
-  )
+  (logjam:stop))
 
 (defun restart ()
   (stop)

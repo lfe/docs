@@ -3,6 +3,8 @@
   (export
     ;; gen_server implementation
     (start 0)
+    (start-gen-server 0)
+    (start-gen-server 1)
     (stop 0)
     ;; callback implementation
     (init 1)
@@ -23,25 +25,45 @@
 
 ;;; gen_server implementation
 
-;; XXX how much responsibility for whole-app startup should these have?
-;;     do we want to use these for docs-watcher too?
 (defun start ()
+  (start "Starting docs gen-server ..."))
+
+(defun start (msg)
+  (start #'logjam:info/1 msg))
+
+(defun start (log-fn log-msg)
   (logjam:start)
-  (let ((cfg (initial-state)))
-    (logjam:info "Starting docs gen-server ...")
-    (gen_server:start (register-name)
-                      (callback-module)
-                      cfg
-                      (genserver-opts))))
+  (application:ensure_all_started 'docs)
+  (funcall log-fn `(,log-msg))
+  (start-gen-server))
+
+(defun start-gen-server ()
+  (start-gen-server (initial-state)))
+
+(defun start-gen-server (cfg)
+  (gen_server:start (register-name)
+                    (callback-module)
+                    cfg
+                    (genserver-opts)))
 
 (defun stop ()
-  (logjam:info "Stopping docs gen-server ...")
+  (stop "Stopping docs gen-server ..."))
+
+(defun stop (msg)
+  (stop #'logjam:info/1 msg))
+
+(defun stop (log-fn log-msg)
+  (funcall log-fn `(,log-msg))
+  (stop-gen-server)
+  (application:stop 'docs))
+
+(defun stop-gen-server ()
   (gen_server:call (server-name) 'stop)
   (gen_server:stop (server-name)))
 
 (defun restart ()
-  (stop)
-  (start))
+  (stop (lambda (x) x) "")
+  (start "Restarting docs gen-server ..."))
 
 ;;; callback implementation
 
