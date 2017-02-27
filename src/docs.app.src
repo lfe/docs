@@ -1,6 +1,5 @@
 %% -*- erlang -*-
-{application, docs,
- [
+{application, docs, [
   %% A quick description of the application.
   {description, "Documentation source for Lisp Flavoured Erlang."},
 
@@ -8,13 +7,13 @@
   {vsn, "3.1.0-dev"},
 
   %% All modules used by the application.
-  {modules,
-   [
+  {modules, [
     docs,
     'docs-cfg',
     'docs-cli',
+    'docs-compiler',
     'docs-data',
-    'docs-dev',
+    'docs-httpd',
     'docs-gen',
     'docs-pages',
     'docs-routes'
@@ -26,12 +25,10 @@
   %% Applications that are to be started prior to this one. This can be ignored
   %% leave it alone unless you understand it well and let the .rel files in
   %% your release handle this.
-  {applications,
-   [
+  {applications, [
     kernel,
     stdlib,
-    inets,
-    barista
+    inets
    ]},
 
   %% OTP application loader will load, but not start, included apps. Again
@@ -42,5 +39,4 @@
   %% configuration parameters similar to those in the config file specified
   %% on the command line. can be fetched with gas:get_env
   {env, []}
- ]
-}.
+]}.

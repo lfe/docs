@@ -1,7 +1,7 @@
 (defmodule docs-gen
   (export all))
 
-(defun run ()
+(defun run-stable ()
   (poise:generate (docs-routes:site)))
 
 (defun run-dev ()

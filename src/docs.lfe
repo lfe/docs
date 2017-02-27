@@ -3,6 +3,8 @@
   (export
     ;; gen_server implementation
     (start 0)
+    (start-gen-server 0)
+    (start-gen-server 1)
     (stop 0)
     ;; callback implementation
     (init 1)
@@ -10,13 +12,7 @@
     (handle_cast 2)
     (handle_info 2)
     (terminate 2)
-    (code_change 3)
-    ;; server API
-    (gen 0)
-    (gen-dev 0)
-    (httpd 0)
-    (httpd-restart 0)
-    (httpd-stop 0)))
+    (code_change 3)))
 
 ;;; config functions
 
@@ -30,17 +26,44 @@
 ;;; gen_server implementation
 
 (defun start ()
+  (start "Starting docs gen-server ..."))
+
+(defun start (msg)
+  (start #'logjam:info/1 msg))
+
+(defun start (log-fn log-msg)
   (logjam:start)
-  (let ((cfg (initial-state)))
-    (logjam:info "Starting docs gen-server ...")
-    (gen_server:start (register-name)
-                      (callback-module)
-                      cfg
-                      (genserver-opts))))
+  (application:ensure_all_started 'docs)
+  (funcall log-fn `(,log-msg))
+  (start-gen-server))
+
+(defun start-gen-server ()
+  (start-gen-server (initial-state)))
+
+(defun start-gen-server (cfg)
+  (gen_server:start (register-name)
+                    (callback-module)
+                    cfg
+                    (genserver-opts)))
 
 (defun stop ()
-  (logjam:info "Stopping docs gen-server ...")
-  (gen_server:call (server-name) 'stop))
+  (stop "Stopping docs gen-server ..."))
+
+(defun stop (msg)
+  (stop #'logjam:info/1 msg))
+
+(defun stop (log-fn log-msg)
+  (funcall log-fn `(,log-msg))
+  (stop-gen-server)
+  (application:stop 'docs))
+
+(defun stop-gen-server ()
+  (gen_server:call (server-name) 'stop)
+  (gen_server:stop (server-name)))
+
+(defun restart ()
+  (stop (lambda (x) x) "")
+  (start "Restarting docs gen-server ..."))
 
 ;;; callback implementation
 
@@ -48,18 +71,12 @@
   `#(ok ,initial-state))
 
 (defun handle_cast
-  (('gen state-data)
-    `#(noreply ,(docs-gen:run)))
-  (('gen-dev state-data)
-    `#(noreply ,(docs-gen:run-dev)))
-  (('httpd state-data)
-    `#(noreply ,(docs-dev:serve)))
-  (('httpd-restart state-data)
-    `#(noreply ,(docs-dev:restart-server)))
-  (('httpd-stop state-data)
-    `#(noreply ,(docs-dev:stop-server))))
+  ((message state-data)
+    `#(reply ,(unknown-command) ,state-data)))
 
 (defun handle_call
+  (('stop caller state-data)
+    `#(reply stopping ,state-data))
   ((message _caller state-data)
     `#(reply ,(unknown-command) ,state-data)))
 
@@ -78,20 +95,3 @@
 
 (defun code_change (_old-version state _extra)
   `#(ok ,state))
-
-;;; our server API
-
-(defun gen ()
-  (gen_server:cast (server-name) 'gen))
-
-(defun gen-dev ()
-  (gen_server:cast (server-name) 'gen-dev))
-
-(defun httpd ()
-  (gen_server:cast (server-name) 'httpd))
-
-(defun httpd-restart ()
-  (gen_server:cast (server-name) 'httpd-restart))
-
-(defun httpd-stop ()
-  (gen_server:cast (server-name) 'httpd-stop))
