@@ -13,7 +13,4 @@ otp_release:
   - 18.3
   - 17.5
   - R16B03-1
-addons:
-  apt:
-    packages:
-      - inotify
+
