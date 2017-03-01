@@ -2,20 +2,21 @@ SASS_DIR = priv/sass
 DOCS_ROOT = $(ROOT_DIR)/docs
 DOCS_STABLE_BUILD_DIR = $(DOCS_ROOT)/current
 DOCS_DEV_BUILD_DIR = $(DOCS_ROOT)/dev
-SASS = sass --no-cache -f --trace
+SASS = bundle exec sass --no-cache -f --trace
 SASS_MIN = $(SASS) --style compressed
-SASS_WATCH = sass --no-cache --watch --trace
+SASS_WATCH = bundle exec sass --no-cache --watch --trace
 
 sass:
 	sudo gem update --system
-	sudo gem install sass
+	sudo gem install bundler
+	@cd $(SASS_DIR) && bundler install --path=.
 
 css:
 	@echo "\nGenerating minimized and regular versions of CSS files for $(DEPLOYMENT) ..."
 	@echo
-	@$(SASS_MIN) $(SASS_DIR)/lfe-$(DEPLOYMENT).scss \
+	@cd $(SASS_DIR) && $(SASS_MIN) lfe-$(DEPLOYMENT).scss \
 		$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap-min.css
-	@$(SASS) $(SASS_DIR)/lfe-$(DEPLOYMENT).scss \
+	@cd $(SASS_DIR) && $(SASS) lfe-$(DEPLOYMENT).scss \
 		$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap.css
 	@echo "Done.\n"
 
@@ -30,8 +31,9 @@ css-1.3: css
 
 css-watch: DEPLOYMENT = dev
 css-watch:
-	@$(SASS_WATCH) \
-	$(SASS_DIR)/lfe-$(DEPLOYMENT).scss:$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap-min.css &
+	@cd $(SASS_DIR) && \
+	$(SASS_WATCH) \
+	lfe-$(DEPLOYMENT).scss:$(DOCS_ROOT)/$(DEPLOYMENT)/css/bootstrap-min.css &
 
 css-watch-dev: DEPLOYMENT = dev
 css-watch-dev: css-watch

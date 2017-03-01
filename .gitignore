@@ -19,3 +19,6 @@ rebar.lock
 *.bak
 compile_commands.json
 rebar3.crashdump
+priv/sass/Gemfile.lock
+priv/sass/ruby
+priv/sass/.bundle
