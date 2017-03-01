@@ -6,9 +6,11 @@ SASS = bundle exec sass --no-cache -f --trace
 SASS_MIN = $(SASS) --style compressed
 SASS_WATCH = bundle exec sass --no-cache --watch --trace
 
-sass:
+sass-deps:
 	sudo gem update --system
 	sudo gem install bundler
+
+sass:
 	@cd $(SASS_DIR) && bundler install --path=.
 
 css:
