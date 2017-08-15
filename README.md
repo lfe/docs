@@ -138,7 +138,7 @@ ok
 To generate the docs to dev:
 
 ```cl
-lfe> (docs:gen-dev)
+lfe> (docs-cli:gen-dev)
 Created docs/dev/index.html.
 ...
 ok
@@ -148,7 +148,7 @@ Or to generate the static files to prod (the `current` directory; this is
 only done when promoting dev to stable):
 
 ```cl
-lfe> (docs:gen)
+lfe> (docs-cli:gen)
 Created docs/current/index.html.
 ...
 ok
@@ -158,7 +158,13 @@ To run a local copy of the development server and view your work at
 [http://localhost:8080](http://localhost:8080), run the following:
 
 ```bash
-lfe> (docs:httpd)
+lfe> (docs-cli:start-httpd)
+ok
+```
+or for dev server
+
+```bash
+lfe> (docs-cli:gen-dev-httpd)
 ok
 ```
 
