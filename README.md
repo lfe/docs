@@ -222,21 +222,21 @@ following steps outline how to add new content to the LFE Documentation site.
 **Generation & Testing**
 
 1. Start up the LFE REPL (e.g., `make repl`).
-1. Generate the static content with `(docs:gen-dev)`.
-1. Serve the newly generated content with `(docs:httpd)`.
+1. Generate the static content with `(docs-cli:gen-dev)`.
+1. Serve the newly generated content with `(docs-cli:httpd)`.
 1. Or do all of those with one target: `make serve-dev`.
 1. Visit
    [http://localhost:8080/dev/index.html](http://localhost:8080/dev/index.html)
    and any other pages you need to test.
 1. Once you are sure it's good, commit the changes.
 
-*Caution*: Do not run `(docs:gen)`, as that will generate an updated stable
+*Caution*: Do not run `(docs-cli:gen)`, as that will generate an updated stable
 version of the docs (the contents of the `current`) directory. That is only
 done prior to a new release of LFE and/or the documentation site. Any PRs that
 update `current` will not be approved until those changes are removed (modulo
 typo fixes and the like).
 
-If you have called `(docs:gen)` by accident, simply do a `git checkout` of the
+If you have called `(docs-cli:gen)` by accident, simply do a `git checkout` of the
 `current` dir to undo the docs regen.
 
 **Submission**
