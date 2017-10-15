@@ -189,7 +189,7 @@ following steps outline how to add new content to the LFE Documentation site.
 1. `git clone` your fork to your local machine and `cd` to the working
    directory of your clone. If you will be making CSS changes, you'll need the
    `bootstrap-sass` submodule. In that case, you'll want to use
-   `git clone --recursive`.
+   `git clone --recursive` and `git clone --recursive --depth 1`.
 1. If you plan on making content additions, you'll want to select the
    template you want to base your page on (e.g., `priv/templates/base.html`).
 
