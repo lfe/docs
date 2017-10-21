@@ -7,7 +7,9 @@
     ("design/bootstrap-theme.html"
       ,(lambda () (docs-pages:get-page 'bootstrap-theme path)))
     ("design/example-2-column.html"
-      ,(lambda () (docs-pages:get-page 'example-two-column path)))))
+     ,(lambda () (docs-pages:get-page 'example-two-column path)))
+    ("community.html"
+     ,(lambda () (docs-pages:get-page 'sub-page path)))))
 
 (defun get-site (path)
   (poise:site
