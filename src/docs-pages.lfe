@@ -34,4 +34,10 @@
     (clj:-> path
             (docs-data:base)
             (example_two_column-tmpl:render)
-            (get-content))))
+            (get-content)))
+  (('sub-page path)
+   (clj:-> path
+           (docs-data:base)
+           (sub-page-tmpl:render)
+           (get-content))))
+
