@@ -103,7 +103,7 @@ Note that this will <code>spawn</code> a listener and send it a message:</p>
 
 <figure class="highlight"><pre><code class="language-cl" data-lang="cl"><span class="nb">&gt;</span> <span class="p">(</span><span class="nv">c</span> <span class="o">&#39;</span><span class="s">&quot;messenger-back&quot;</span><span class="p">)</span>
 <span class="o">#(</span><span class="nv">module</span> <span class="nv">messenger-back</span><span class="p">)</span>
-<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">messenger-back</span> <span class="nv">send-message</span> <span class="o">&#39;</span><span class="s">&quot;There was a terrible ghastly silence.&quot;</span><span class="p">)</span>
+<span class="nb">&gt;</span> <span class="p">(</span><span class="err">:</span> <span class="nv">messenger-back</span> <span class="nv">send-message</span> <span class="nv">(self)</span> <span class="o">&#39;</span><span class="s">&quot;There was a terrible ghastly silence.&quot;</span><span class="p">)</span>
 <span class="o">#(</span><span class="nv">&lt;0.25.0&gt;</span> <span class="s">&quot;There was a terrible ghastly silence.&quot;</span><span class="p">)</span>
 <span class="nv">Received</span> <span class="nv">message:</span> <span class="ss">&#39;There</span> <span class="nv">was</span> <span class="nv">a</span> <span class="nv">terrible</span> <span class="nv">ghastly</span> <span class="nv">silence.</span><span class="o">&#39;</span>
 <span class="nv">Sending</span> <span class="nv">message</span> <span class="nv">to</span> <span class="nv">process</span> <span class="nv">&lt;0.25.0&gt;</span> <span class="o">...</span>
